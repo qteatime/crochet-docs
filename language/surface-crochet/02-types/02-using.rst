@@ -45,6 +45,8 @@ because B does not have direct constructing capabilities over types
 defined by A. This gives A control over which capabilities it wants
 to provide, and how it wants to provide those capabilities.
 
+Capabilities and how exactly Crochet achieves its safety guarantees
+is discussed in more details in the `Security and Capabilities`_ section.
 
 .. _field-projection:
 
