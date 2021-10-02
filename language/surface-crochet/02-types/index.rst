@@ -1,3 +1,5 @@
+.. _data-and-types:
+
 Data and types
 --------------
 

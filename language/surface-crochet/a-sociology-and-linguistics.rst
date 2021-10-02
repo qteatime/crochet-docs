@@ -28,7 +28,7 @@ Identifiers can start with a lowercase latin letter
 (``a`` to ``z``), and can be followed by any lowercase latin letter
 (``a`` to ``z``), a plain hyphen (``-``), or digits (``0`` to ``9``).
 
-A :term:`name` is what Crochet calls the names used for :ref:`variables`.
+A :term:`name` is what Crochet calls the names used for variables.
 They're similar to identifiers, but must start with an uppercase latin letter
 (``A`` to ``Z``).
 

@@ -46,7 +46,7 @@ defined by A. This gives A control over which capabilities it wants
 to provide, and how it wants to provide those capabilities.
 
 Capabilities and how exactly Crochet achieves its safety guarantees
-is discussed in more details in the `Security and Capabilities`_ section.
+is discussed in more details in the Security and Capabilities section.
 
 .. _field-projection:
 
@@ -125,7 +125,7 @@ could very well violate that guarantee, since it's not necessary to know
 the type in order to perform a projection.
 
 To address this, projection of typed data is only possible within the
-:ref:`package` that defines the type. This means that any access to the
+package that defines the type. This means that any access to the
 information inside of a typed data is conditioned to commands instead,
 and these follow the expected Crochet guarantees. Users can decide which of
 the fields in a typed data can safely be exposed as commands, and what kind

@@ -16,4 +16,5 @@ non-native English speaking) programmers.
 
    01-design-philosophy
    02-types/index
+   03-commands/index
    a-sociology-and-linguistics

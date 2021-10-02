@@ -30,10 +30,10 @@ the threats to safe experimentation aren't just accidental damage; we must
 also protect people from malicious actors.
 
 Crochet goes through great lengths to make experimentation safer: adopting
-the `Principle of Least Authority`_, using `Capability Security`_, isolating
-effects with `Algebraic Effect Handlers`_ (this is important to avoid
+the Principle of Least Authority, using Capability Security, isolating
+effects with Algebraic Effect Handlers (this is important to avoid
 accidental damage during experimentation), and controlling resource usage
-through `Computational Zones`_.
+through Computational Zones.
 
 
 "Privacy is required for safety!"
@@ -47,9 +47,9 @@ we must value privacy as much as we value security.
 
 The combination of security and privacy-respecting code requires us to
 treat all pieces of code as "untrusted and potentially dangerous". So
-Crochet approaches privacy through ideas from `Information Flow`_ combined
-with ideas from `Capability Security`_. The way it actually addresses
-the problem does not provide any `non-interference`_ guarantees, but
+Crochet approaches privacy through ideas from Information Flow combined
+with ideas from Capability Security. The way it actually addresses
+the problem does not provide any non-interference guarantees, but
 the guarantees it does provide are often reasonable for the domains
 Crochet aims for.
 
@@ -82,7 +82,7 @@ representations for the same piece of data, and different ways of
 manipulating it (direct manipulations or programmatic manipulations).
 This is one of the reasons Crochet limits things like lambdas, which
 are so common in functional languages, and approaches interactive
-programming through the idea of `Program Versioning`_.
+programming through the idea of Program Versioning.
 
 
 Language domains
@@ -103,8 +103,8 @@ independent, AI-driven NPCs. The term "Interactive Fiction" here covers
 many narrative-driven (and adjacent) games such as Visual Novels, RPGs, and
 Environmental Simulations.
 
-Crochet helps these games with a `Symbolic Logic`_ sub-language that relies
-on a `Global Fact Database`_. A `Simulation`_ sub-language allows expressing
+Crochet helps these games with a Symbolic Logic sub-language that relies
+on a Global Fact Database. A Simulation sub-language allows expressing
 game rules (and game agents' behaviour) declaratively, and in a way that
 allows the runtime to verify and optimise their execution.
 
@@ -112,27 +112,27 @@ allows the runtime to verify and optimise their execution.
 Software verification
 '''''''''''''''''''''
 
-It turns out that `Model Checking`_ falls quite closely to the idea of 
+It turns out that Model Checking falls quite closely to the idea of 
 expressing game rules in a declarative and verifiable manner. Crochet lends
-itself better to `Stochastic Model Checking` (such as `Property-Based Testing`_),
-and `Bounded Model Checking`_, since there are usability features of the
+itself better to Stochastic Model Checking (such as Property-Based Testing),
+and Bounded Model Checking, since there are usability features of the
 underlying symbolic logic that prevent translations to common model checking
 tools.
 
-Crochet's `Algebraic Effect Handlers`_ and `Tracing Debugger`_ provide a very
+Crochet's Algebraic Effect Handlers and Tracing Debugger provide a very
 good basis for applying model checking to *external* languages, in ways that
 are recordable, reproducible, and interactively explorable going both forwards
-and backwards in time. The `Simulation`_ sub-language allows one to express
-these models in concise ways, in similar fashion to tools such as `Alloy`_.
+and backwards in time. The Simulation sub-language allows one to express
+these models in concise ways, in similar fashion to tools such as Alloy.
 
 
 Cross-platform automation
 '''''''''''''''''''''''''
 
 Crochet's approach to interactive experimentation, along with the idea of
-`Algebraic Effect Handlers`_ and `Capability Security`_, provides a safe
+Algebraic Effect Handlers and Capability Security, provides a safe
 way for people to play around with software automation. The
-`Interactive Playground`_ provides richer feedback than what is possible
+Interactive Playground provides richer feedback than what is possible
 with common Shells (such as Bash, Fish, etc), while at the same time
 being cross-platform and reproducible (one can turn a playground session
 into an actual program).
@@ -143,7 +143,7 @@ to the code, underlying programs, or even online services. Reproducibility
 follows the same, with the possibility of recording and replaying sessions
 without hitting external services.
 
-The obvious drawbacks here are that common *nix tools need to be reimplemented
+The obvious drawbacks here are that common \*nix tools need to be reimplemented
 in Crochet, but since this is a domain Crochet aims to excel at, reimplementing
 these tools with the mentioned features and reasonable performance is a 
 goal for the standard library as well.
@@ -154,7 +154,7 @@ Procedural generation
 
 Some games, such as Roguelikes, rely a lot on procedurally generated content,
 but this is often useful for Interactive Fiction and simulations as well. The
-`Simulation`_ sub-language's use of `Stochastic Search`_ allows some common
+Simulation sub-language's use of Stochastic Search allows some common
 procedural algorithms to be written declaratively in Crochet.
 
 Further, supporting Interactive Fiction with strong AIs also requires work on
@@ -175,6 +175,6 @@ Debuggers, user-extensible REPLs, etc. And these users should be able to modify
 any aspect of these tools to fit new languages (interactions, manipulations,
 rules, etc).
 
-To this end Crochet is somewhat similar to `Language Workbenches`_, such as
-`Spoofax`_, but also similar to other "language-driven" systems, such as
-`Racket`_ and `Glamorous Toolkit`_.
+To this end Crochet is somewhat similar to Language Workbenches, such as
+Spoofax, but also similar to other "language-driven" systems, such as
+Racket and Glamorous Toolkit.
