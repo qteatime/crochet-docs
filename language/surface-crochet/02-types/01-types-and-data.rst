@@ -72,6 +72,56 @@ data is really mostly operated (and observed) through `commands`_.
    discusses this in details.
 
 
+.. _typed-fields:
+
+Fields of typed data
+--------------------
+
+Typed data consists of an unique, unforgeable name (the type) and a set of
+fields. Each field is a named piece of data, bound at the time it's constructed,
+and unchangeable henceafter. That is, unlike many object-oriented languages,
+all fields in Crochet are effectively :term:`immutable <immutable data>`.
+
+Although fields describe what some kind of "shape" for the data---that is,
+what the typed data is constituted of---, fields don't really determine
+how Crochet stores this data in a computer. The :ref:`internal layout <internal-data-layout>`
+of a piece of typed data is a bit more complicated, and subject to constant
+changes.
+
+.. important::
+
+   What constitutes a valid spelling of a field name in Crochet is
+   very restricted. The section on the :ref:`lexical restriction of names <lexical-restriction-names>`
+   discusses this in details.
+
+
+Global fields
+'''''''''''''
+
+Because fields may carry very sensitive pieces of data, by default they're
+restricted and can only be accessed within the package that declared the
+type. In order to make them accessible outside of the package, one needs
+to expose them through a `command`_.
+
+Some types have very trivial patterns for accessing their fields, however.
+For example, if we have::
+
+    type point2d(x, y);
+
+Then we don't really want to do anything before providing the values stored
+in ``x`` and ``y`` to whoever needs them. So we'd essentially be writing::
+
+    type point2d(x, y);
+    command point2d x = self.x;
+    command point2d y = self.y;
+
+In these cases, we can mark the field as "global" and Crochet will generate
+the command definitions above for us. So the following is equivalent, but
+takes less effort::
+
+    type point2d(global x, global y);
+
+
 Data-less types
 ---------------
 
@@ -157,7 +207,7 @@ commonality; all of them are shapes. It gives us no language to talk
 about shapes, in general, only particular shapes.
 
 To address this, Crochet uses `subtyping`_ relationships. That is, types
-are placed into an `hierarchy`_, and types that are higher in the
+are placed into a `hierarchy`_, and types that are higher in the
 hierarchy can be used to talk about some commonalities of the
 types below them.
 
@@ -171,7 +221,7 @@ these specific shapes::
 
 Note the ``is shape`` attached at the end of the previous type declarations.
 It denotes that each of these individual shapes can also be understood as
-a ``shape``. A `command`_ that accepts ``shapes`` will accept any of the
+a ``shape``. A `command`_ that accepts ``shape``s will accept any of the
 specific ones, as well as ``shape`` itself.
 
 
@@ -263,7 +313,7 @@ would be inherited from ``rectangle``.
 
 Crochet does not work that way. In Crochet, there is no field inheritance.
 The layout of a data structure is precisely what is specified in its
-declaration. Commands, however, are inherited, and thus it's important
+declaration. Commands, however, are inherited, and thus it is important
 for inherited commands to not use field projection directly.
 
 This is discussed at length in the `subtyping and hierarchy`_ section.

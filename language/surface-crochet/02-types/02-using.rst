@@ -46,29 +46,6 @@ defined by A. This gives A control over which capabilities it wants
 to provide, and how it wants to provide those capabilities.
 
 
-.. _typed-fields:
-
-Fields of typed data
---------------------
-
-Typed data consists of an unique, unforgeable name (the type) and a set of
-fields. Each field is a named piece of data, bound at the time it's constructed,
-and unchangeable henceafter. That is, unlike many object-oriented languages,
-all fields in Crochet are effectively :term:`immutable <immutable data>`.
-
-Although fields describe what some kind of "shape" for the data---that is,
-what the typed data is constituted of---, fields don't really determine
-how Crochet stores this data in a computer. The :ref:`internal layout <internal-data-layout>`
-of a piece of typed data is a bit more complicated, and subject to constant
-changes.
-
-.. important::
-
-   What constitutes a valid spelling of a field name in Crochet is
-   very restricted. The section on the :ref:`lexical restriction of names <lexical-restriction-names>`
-   discusses this in details.
-
-
 .. _field-projection:
 
 Projecting fields
@@ -186,6 +163,10 @@ Projecting non-existing fields will, likewise, result in an error::
 
 Sequence projection
 '''''''''''''''''''
+
+.. warning::
+
+   This is an experimental feature and it's likely to change!
 
 Using projection on a sequence, like ``[A, B, C].x`` is equivalent to
 projecting each item of the sequence, so the result will be
