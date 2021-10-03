@@ -11,4 +11,4 @@ you should keep in mind when using them.
 
 .. toctree::
 
-   01-declaration
+   declaration

@@ -14,7 +14,8 @@ non-native English speaking) programmers.
    :numbered:
    :maxdepth: 2
 
-   01-design-philosophy
-   02-types/index
-   03-commands/index
-   a-sociology-and-linguistics
+   design-philosophy
+   structure/index
+   types/index
+   commands/index
+   annexes/sociology-and-linguistics

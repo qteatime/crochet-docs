@@ -11,5 +11,5 @@ roles.
 
 .. toctree::
    
-   01-types-and-data
-   02-using
+   types-and-data
+   using
