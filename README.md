@@ -1,7 +1,7 @@
 # crochet-docs
 
-Documentation for Crochet and all related projects
-
+Documentation for Crochet and all related projects. This documentation is
+still largely a work in progress.
 
 ## Licence
 
