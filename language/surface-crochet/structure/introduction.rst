@@ -106,7 +106,7 @@ Modules
 -------
 
 So packages will contain modules. But what in the world are modules anyway?
-Well, they are files that tell Crochet what _code_ makes up the package.
+Well, they are files that tell Crochet what *code* makes up the package.
 Things are a bit trickier here than in other programming systems you may
 be familiar with because Crochet is a "language-driven" system. What this
 means is that modules may (and *will*) be written in different programming
@@ -161,7 +161,203 @@ translating between the new language (like Lingua) and the Crochet language.
 Code entities
 -------------
 
+So modules are a collection of these "code entities". But what exactly are
+"code entities" anyway? They're specific concepts that the Crochet knows
+how to interpret in order to make the computer behave in particular ways.
+They provide definitions and rules that direct computers, in a sense.
 
+Collectively, these entities make up the "code" portion of a package, and
+they are further divided into many types of entities.
+
+
+Types
+'''''
+
+A type tells Crochet how to classify and structure some piece of information.
+They also play a key role in Crochet's security and privacy guarantees. Here,
+a type is an unique, unforgeable name that has some structure associated with
+it.
+
+For example::
+
+    type rectangle(width, height);
+
+This type has the name ``rectangle``, and contains two pieces of information:
+the ``width`` of the rectangle, and the ``height`` of the rectangle. These
+pieces are also called Fields. We discuss types and their usage in more details
+in the :ref:`Data and Types <data-and-types>` chapter.
+
+But how are names unique? And what exactly does it mean for names to be
+"unforgeable"? We discuss these in details, and what exactly these properties
+mean for Crochet's security guarantees, in the Security chapter.
+
+
+Commands
+''''''''
+
+A command tells Crochet how to compute---how to instruct the computer to
+do something. Not only that, but commands are the *only* way to instruct
+the computer to do something. Nothing happens in Crochet if not by the
+execution of a command---and this has some important security and usability
+implications that we'll discuss in the Interactive Programming chapter.
+
+Commands look like this::
+
+    command (X is rectangle) area = X.width * X.height;
+
+This can be read as: "understand the area of a rectangle (we'll call it X),
+as the width of X times the height of X." It describes a rule to Crochet, and
+this rule tells Crochet how the area of a rectangle is computed.
+
+The name of this command is not really ``area`` though, but rather ``_ area``.
+The underscore (``_``) is used by convention to show where the arguments for
+that command should go. In the body of this command, ``*`` is just another
+command! More specifically, the ``_ * _`` command. Notice how ``X.width`` and
+``X.height`` both fill the underscore spaces---the way you define a command
+is very similar to the way you use it.
+
+Unlike types, multiple commands with the same name can exist in Crochet, as
+long as they apply to different types---in the example above, the ``is rectangle``
+part is what tells us what types the command applies to. So we could have, in
+the same module or elsewhere, something like::
+
+    command (X is circle) area = (X.radius ** 2) * pi;
+
+Because Crochet knows what type is associated with each piece of information,
+whenever we ask "hey, what's the ``_ area`` of this thing?", Crochet will know
+exactly which command needs to be executed, even though multiple rules for
+``_ area`` exist.
+
+We discuss commands and their usage in more details in the :ref:`Commands <commands>`
+chapter.
+
+
+Traits
+''''''
+
+If a type classifies one piece of information, then a trait identifies common
+aspects of many types. This commonality is, in Crochet, mostly captured by
+commands that can be performed on different types.
+
+For example, rectangles and circles are different kinds of shapes.
+But they both have a concept of an ``area``. This commonality can
+be captured with a trait::
+
+    trait has-area with
+      command X area;
+    end
+
+    type rectangle(width, height);
+    type circle(radius);
+
+    implement has-area for rectangle;
+    command (X is rectangle) area = X.width * X.height;
+
+    implement has-area for circle;
+    command (X is circle) area = (X.radius ** 2) * pi;
+
+Here we define a trait called ``has-area``, and the requirement for it is
+that the type must understand a ``_ area`` command. But just defining an
+``_ area`` command isn't sufficient---we also need to be explicit about
+wanting the type to belong to this trait. That's what we're doing with
+the ``implement has-area for ...`` entities.
+
+Why be explicit about it, though? Isn't it obvious that rectangle and
+circle have an area? Well, it might seem so because we're the ones defining
+it. But when we're dealing with other packages---which might not even be
+aware of traits we've conjured!---, it's easy to get into situations where
+types fulfill all of the requirements from a trait, but the commands don't
+really *behave* as we expected.
+
+If someone defines a type ``game-map``, and gives it an ``_ area`` command
+that provides the current area the player character is in, should ``game-map``
+really belong to our ``has-area`` classification for geometric shapes? Quite
+unlikely.
+
+We discuss more about traits, including how and when to use them, in the
+:ref:`Data and Types <data-and-types>` chapter.
+
+
+Effects
+'''''''
+
+Many programming systems try to make it easier to show things on the screen
+or interact with files. After all, what good is a program if you can't see
+what it's doing? Surely a program is only as good as the effects it has?
+
+Well, Crochet takes a different approach. By default, no programs can show
+things on the screen, interact with files, or, really, do anything that someone
+would be able to observe. And there's a very good reason for this: all of these
+things have a big impact on the security guarantees we can provide, and they
+can have very disastrous results: imagine writing a program to delete files
+and only realising you'd deleted the wrong one after it's gone!
+
+So, in Crochet, one describes what they expect the system to do---e.g.: showing
+things on screen, or deleting files. But how these things are carried out is
+decided later, and can very well be replaced. For example::
+
+    effect display with
+      show(text);
+    end
+
+Here we tell Crochet that we have some intention of showing text on the screen,
+and later we can ask Crochet to do so by performing this: ``perform display.show("Hello")``.
+But *how* Crochet actually goes about performing it is defined elsewhere.
+
+Effects are certainly one of the more difficult parts of Crochet. And so they
+get their own chapter, which explains, in depth, why they're important, how
+they're used, and why they are the way they are.
+
+
+Capability groups
+'''''''''''''''''
+
+Capabilities are how Crochet is able to guarantee that programs can be safe
+even if you add code from the internet to it. They also allow one to reason
+about a program---and then decide whether you trust it or not.
+
+A capability group is an entity that describes some kind of power---or
+capability. For example, we might think that deleting files is a dangerous
+thing. What someone sends you a Crochet package, telling you they'd love
+if you could help beta-testing their new game; and then you run it, and
+it deletes all of your personal photos. That wouldn't be cool.
+
+If, instead, we have a capability for deleting files, then Crochet would
+tell you beforehand: "Hey, this game you're running can actually delete
+your files. Do you want to run it anyway?".
+
+For example::
+
+    capability delete-files;
+    type file-system;
+    protect file-system with delete-files;
+
+Here we do three things: tell Crochet that "deleting files" is a thing, and
+is a very dangerous thing. We then introduce a ``file-system`` type, and tell
+Crochet that by using ``file-system`` one would be able to delete files. This
+way Crochet can accurately track these dangers and only show you *relevant*
+ones.
+
+Of course, it's not just because something can do dangerous things that it is
+inherently evil---but we discuss what exactly it means, and what goes into
+deciding whether to trust some application or not in the Security chapter.
+
+
+Tests
+'''''
+
+Tests are an important part of developing any software. Crochet supports
+tests as just any other code entity, and provides tools for running them.
+
+They look like this::
+
+    test "Addition" do
+      assert (0 + 1) === 1;
+      assert (1 + 0) === 1;
+      assert (2 + 3) === 5;
+    end
+
+We discuss testing and Crochet's support for tests in the Testing chapter.
 
 
 Native modules
