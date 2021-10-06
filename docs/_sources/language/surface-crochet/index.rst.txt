@@ -9,13 +9,3 @@ intelligence, programming for videogames, and software verification. As
 much as possible, it tries to package these ideas into a small set of
 concepts with a friendlier surface syntax for beginner (and possibly
 non-native English speaking) programmers.
-
-.. toctree::
-   :numbered:
-   :maxdepth: 2
-
-   design-philosophy
-   structure/index
-   types/index
-   commands/index
-   annexes/sociology-and-linguistics

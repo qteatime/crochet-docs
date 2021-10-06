@@ -1,0 +1,250 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Types and data modelling" href="types-and-data.html" /><link rel="prev" title="The Crochet universe" href="../structure/introduction.html" />
+
+    <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
+        <title>Data and types - Crochet 0.12 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
+    
+
+
+<style>
+  :root {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../_static/pygments_dark.css"></head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Crochet 0.12 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">The Crochet System</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../whats-crochet.html">What’s Crochet?</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../structure/index.html">How is Crochet structured?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../structure/introduction.html">The Crochet universe</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">Data and types</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="types-and-data.html">Types and data modelling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html">Using typed data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../commands/index.html">Commands</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../commands/declaration.html">Commands and program behaviour</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sociology-and-linguistics.html">Annex B: Sociology and linguistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="data-and-types">
+<span id="id1"></span><h1>Data and types<a class="headerlink" href="#data-and-types" title="Permalink to this headline">¶</a></h1>
+<p>Central to how Crochet works is the idea of a <strong>type</strong>. What Crochet calls
+a “type” is slightly different than what most other languages mean by the
+term, but that’s because Crochet overloads the term to mean several
+different things. In this section we’ll dive deep into types and their
+roles.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="types-and-data.html">Types and data modelling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#what-are-types">What are types?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#type-declarations-and-usage">Type declarations and usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#fields-of-typed-data">Fields of typed data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="types-and-data.html#global-fields">Global fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#data-less-types">Data-less types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#singleton-types">Singleton types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#types-as-possibilities">Types as possibilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="types-and-data.html#caveats-of-a-static-hierarchy">Caveats of a static hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types-and-data.html#caveats-of-an-open-hierarchy">Caveats of an open hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types-and-data.html#caveats-of-field-projection">Caveats of field projection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#abstract-types">Abstract types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#enumeration-types">Enumeration types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#static-types">Static types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using typed data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="using.html#the-new-operator">The <code class="docutils literal notranslate"><span class="pre">new</span></code> operator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="using.html#constructing-capabilities">Constructing capabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#projecting-fields">Projecting fields</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="using.html#non-existing-fields">Non-existing fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#fields-and-inheritance">Fields and inheritance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#visibility-of-fields">Visibility of fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#projection-with-non-typed-data">Projection with non-typed data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="using.html#record-projection">Record projection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#sequence-projection">Sequence projection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="types-and-data.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Types and data modelling</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../structure/introduction.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">The Crochet universe</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Q.
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="../../_sources/system/types/index.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </main>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/main.js"></script>
+    </body>
+</html>

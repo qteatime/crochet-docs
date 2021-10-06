@@ -1,7 +1,7 @@
 .. _data-and-types:
 
 Data and types
---------------
+==============
 
 Central to how Crochet works is the idea of a **type**. What Crochet calls
 a "type" is slightly different than what most other languages mean by the

@@ -1,5 +1,5 @@
-Design philosophy
------------------
+Annex A: Design philosophy
+==========================
 
 Crochet was born to make programming interactive fiction games more
 accessible to writers and artists---or rather, more accessible to
@@ -14,7 +14,7 @@ of "art," that covers any creative uses of computers.
 
 
 Design principles
-"""""""""""""""""
+-----------------
 
 Core to this goal are three tenets:
 
@@ -86,7 +86,7 @@ programming through the idea of Program Versioning.
 
 
 Language domains
-""""""""""""""""
+----------------
 
 Although people often categorise languages like Crochet as "general-purpose,"
 the category is unhelpful in understanding the language's tradeoffs, usage,
