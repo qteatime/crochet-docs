@@ -83,17 +83,102 @@ the individual tools themselves. Most of the time.
 How is Crochet safe?
 --------------------
 
-TODO
+For most applications you install or run in your computer,
+the application is able to do anything that you, yourself,
+would be able to do. It can read any file. *Delete* any file.
+Download malware from the internet. Or even just upload your
+personal files to random places---and you would have no say
+in any of this.
+
+Which is why, when you install or run an application, you
+must trust that it will do no evil, right? If you just install
+applications from well-known companies, from people you trust,
+surely you must be on the safe side, right?
+
+Things are not so simple, sadly. Even when applications may
+not, themselves, be evil, they may include bugs which allow
+outsiders to abuse your computer in the same way. For example,
+a bug in something like Chrome's auto-update feature could be
+abused to download and install malicious programs from the
+internet---as if the malicious program was simply Chrome.
+
+And bugs aren't even the only way malicious programs may end
+up in your computer. Even when you only install applications
+from trustworthy sources, and these applications go to lengths
+to protect against these kinds of bugs, they will still include
+components that were created by other people. And these
+components will not always follow the same rigorous and safe
+development practices as the people you're trusting. There's
+a chance that an attacker will target these smaler components,
+in the hopes that they can get malicious programs into common
+applications unnoticed---this kind of attack is, in fact,
+becoming more common nowadays.
+
+As an independent creator, you're likely going to be
+relying a lot on parts that were not made by you, or by
+the people who made Crochet. The same concerns apply here.
+It would be easy for someone to sneak malicious code into
+a component that you use, and that malicious code would
+then affect both you and the people consuming the things
+you make, causing all kinds of havoc.
+
+Because Crochet aims to support a remixing culture---where
+creators are encouraged to modify other people's creations---,
+this scenario becomes much more common. And so Crochet takes
+a different approach than most tools here by being a
+"safety first" tool. What this means is that, instead of
+just allowing any component to do whatever it wants, they
+are only allowed to do what you explicitly decide they can
+do.
+
+This is similar to how modern phone OSs work. For example,
+when you try to run an application on your phone that requires
+access to your photo library, your phone will ask if you want
+to grant that access or not. Crochet does a similar thing,
+and whenever you use a component made by someone else, you'll
+see what that component can do, and get to decide if that
+sounds like a reasonable risk.
+
+We discuss all of this in details in the Security chapter.
 
 
 What can I do with Crochet?
 ---------------------------
 
-TODO
+So if Crochet is a tool for creating interactive media, what
+exactly does that mean? What can you really make with it?
+
+Crochet was originally designed---and still heavily leans
+towards---creating video games. Particularly story-based
+ones, with characters that may be controlled by an AI.
+So you'll find tools that can help you build interactive
+fiction, visual novels, RPGs, and other kind of simulation
+games.
+
+But as Crochet evolved, it also became practically usable for
+other purposes as well: things like software verification,
+automating tasks in a computer, procedural generation
+of content (things like a Twitter bot), and even building
+tools for programming languages.
 
 
 What can I not do with Crochet?
 -------------------------------
 
-TODO
+Crochet is what's called a "general purpose programming system".
+In theory, this would mean that you can create anything with
+it. In practice, things don't really work like that.
 
+Once you step away from the tasks mentioned above you'll find
+that it becomes increasingly difficult to get anything done. So,
+sure, you could turn the knobs enough in Crochet to make music
+with it, but you'd find no tool, documentation, or community
+support to do so---you'd be on your own. You'd have to build
+most things from the scratch. And that's far more effort than
+most are willing to spend.
+
+It's possible that, in the future, Crochet gains more tools
+and communities that expand what you can do with reasonable
+effort. But for now, you should consider anything outside
+of the things mentioned above as outside of the realm of
+things you'd do with Crochet.
