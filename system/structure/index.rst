@@ -1,7 +1,7 @@
 .. _structure:
 
-Structuring programs
---------------------
+How is Crochet structured?
+==========================
 
 Crochet programs are an amalgamation of all sorts of information. So how does
 all of this data come together? How do we make sense of it? How does Crochet

@@ -1,4 +1,4 @@
-Annex A: Sociology and linguistics
+Annex B: Sociology and linguistics
 ==================================
 
 Etymology of Crochet

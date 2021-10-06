@@ -11,8 +11,3 @@ This section of the reference describes each of the languages in the
 system, in depth. It includes their design philosophy, tooling support,
 and language concepts. Annexes with formal specifications are included
 where it makes sense.
-
-.. toctree::
-   :maxdepth: 1
-
-   surface-crochet/index
