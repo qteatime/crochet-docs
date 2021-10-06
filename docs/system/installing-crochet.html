@@ -2,10 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="What’s Crochet?" href="whats-crochet.html" /><link rel="prev" title="Welcome to Crochet’s documentation!" href="../index.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="How is Crochet structured?" href="structure/index.html" /><link rel="prev" title="What’s Crochet?" href="whats-crochet.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
-        <title>The Crochet System - Crochet 0.12 documentation</title>
+        <title>Installing Crochet - Crochet 0.12 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css" />
@@ -89,7 +89,7 @@
       <a href="../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
     </div>
     <div class="header-right">
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
     </div>
@@ -108,9 +108,9 @@
   <input type="hidden" name="area" value="default">
 </form><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
-<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">The Crochet System</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">The Crochet System</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="whats-crochet.html">What’s Crochet?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installing-crochet.html">Installing Crochet</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Installing Crochet</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="structure/index.html">How is Crochet structured?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="structure/introduction.html">The Crochet universe</a></li>
 </ul>
@@ -140,25 +140,72 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
-        <div class="section" id="the-crochet-system">
-<h1>The Crochet System<a class="headerlink" href="#the-crochet-system" title="Permalink to this headline">¶</a></h1>
-<p>Crochet is a tool designed for creating and remixing
-interactive media safely. In this book we’ll see what
-this system is, how it’s structured, and how exactly
-it allows “creating interactive media safely”.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="whats-crochet.html">What’s Crochet?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installing-crochet.html">Installing Crochet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structure/index.html">How is Crochet structured?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="types/index.html">Data and types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="commands/index.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design-philosophy.html">Annex A: Design philosophy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sociology-and-linguistics.html">Annex B: Sociology and linguistics</a></li>
-</ul>
+        <div class="section" id="installing-crochet">
+<h1>Installing Crochet<a class="headerlink" href="#installing-crochet" title="Permalink to this headline">¶</a></h1>
+<p>Before you can use Crochet you’ll need to install it. The
+process is currently not as simple as it should be. So this
+page will walk you through all of the things you need to do
+to start using Crochet.</p>
+<p>Installing Crochet will require using the Terminal
+(PowerShell or CMD on Windows), and getting more
+familiarised with it.</p>
+<div class="section" id="install-node-js">
+<h2>Install Node.js<a class="headerlink" href="#install-node-js" title="Permalink to this headline">¶</a></h2>
+<p>In order to run the Crochet system, you’ll first need to <a class="reference external" href="https://nodejs.org/en/">install
+Node.js</a>. The website has installers
+for both Windows and Mac OS/X, so you can install it by
+downloading the installer and running it.</p>
+<p>You have the choice of downloading the “Long Term Support (LTS)”
+version or the latest version. Both works with Crochet, but the
+LTS version is recommended for most users, as it’s more stable,
+and supported for a longer time.</p>
+<div class="section" id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<p>If you’re running a Linux system, the official supported way of
+installing it is to <a class="reference external" href="https://nodejs.org/en/download/">download one of the binaries from the
+Node.js website</a>. And then
+setup it manually.</p>
+</div>
+</div>
+<div class="section" id="install-crochet-from-npm">
+<h2>Install Crochet from npm<a class="headerlink" href="#install-crochet-from-npm" title="Permalink to this headline">¶</a></h2>
+<p>The recommended way to install Crochet is through npm.
+Once you have Node.js installed, you can install Crochet from
+the terminal:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install -g @origamitower/crochet
+</pre></div>
+</div>
+<p>With this you should have a <code class="docutils literal notranslate"><span class="pre">crochet</span></code> application available
+in the terminal. You can test if everything is okay by running
+Crochet in the terminal:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>crochet
+</pre></div>
+</div>
+<p>And it should give you something like the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Unknown command (no command provided)
+
+crochet --- a safe programming language
+
+Usage:
+  crochet run &lt;crochet.json&gt; [options] [-- &lt;app-args...&gt;]
+  crochet run-web &lt;crochet.json&gt; [options]
+  crochet package &lt;crochet.json&gt; [options]
+  crochet repl &lt;crochet.json&gt; [options]
+  crochet test &lt;crochet.json&gt; [options]
+  crochet build &lt;crochet.json&gt; [options]
+  crochet show-ir &lt;file.crochet&gt; [options]
+  crochet show-ast &lt;file.crochet&gt; [options]
+  crochet new &lt;name&gt; [options]
+  crochet help [&lt;command&gt;]
+  crochet version
+
+Options:
+  --verbose      Outputs debugging information
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -166,23 +213,23 @@ it allows “creating interactive media safely”.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="whats-crochet.html">
+          <a class="next-page" href="structure/index.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">What’s Crochet?</div>
+                <div class="title">How is Crochet structured?</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../index.html">
+          <a class="prev-page" href="whats-crochet.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Home</div>
+                <div class="title">What’s Crochet?</div>
                 
               </div>
             </a>
@@ -196,7 +243,7 @@ it allows “creating interactive media safely”.</p>
               <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
               <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
             |
-            <a class="muted-link" href="../_sources/system/index.rst.txt"
+            <a class="muted-link" href="../_sources/system/installing-crochet.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -204,8 +251,31 @@ it allows “creating interactive media safely”.</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Installing Crochet</a><ul>
+<li><a class="reference internal" href="#install-node-js">Install Node.js</a><ul>
+<li><a class="reference internal" href="#linux">Linux</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#install-crochet-from-npm">Install Crochet from npm</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

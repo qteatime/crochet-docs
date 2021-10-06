@@ -11,6 +11,7 @@ it allows "creating interactive media safely".
    :maxdepth: 1
 
    whats-crochet
+   installing-crochet
    structure/index
    types/index
    commands/index
