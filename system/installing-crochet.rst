@@ -13,7 +13,7 @@ This is the recommended way of installing Crochet for anyone
 who isn't comfortable using the command line (or don't even
 know what that might be).
 
-[Download the zip package for your operating system](https://github.com/qteatime/crochet/releases)
+`Download the zip package for your operating system <https://github.com/qteatime/crochet/releases>`_
 from the Crochet releases page. For example, if you're running
 a Windows machine, you'd install the `crochet-VERSION-win32.zip`,
 where `VERSION` is the version of Crochet you're installing.
@@ -29,7 +29,7 @@ you need to build and run Crochet programs.
 --------------------------------------
 
 You can install the command line version of Crochet using
-[npm](https://www.npmjs.com/). For this you'll need to have [Node.js](https://nodejs.org/en/)
+`npm <https://www.npmjs.com/>`_. For this you'll need to have `Node.js <https://nodejs.org/en/>`_
 installed in your computer.
 
 Once you have all of the pre-requisites installed, you can install
@@ -78,6 +78,6 @@ Editor support
 ''''''''''''''
 
 Besides the built-in Crochet IDE, there is minimal support for
-[Visual Studio Code](https://code.visualstudio.com/). The
+`Visual Studio Code <https://code.visualstudio.com/>`_. The
 Crochet extension provides syntax highlighting for Crochet
 and related languages.
