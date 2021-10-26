@@ -44,7 +44,7 @@ exist, but they're just conventions.
 
 So what's this ``crochet.json`` file anyway? It's a `JSON <https://en.wikipedia.org/wiki/JSON>`_ 
 file that describes what the package is, what it uses, and what it contains.
-We call it, more colloquially, the Package Configuration.
+We call it, more colloquially, the :ref:`Package Configuration <package-configuration>`.
 
 The package configuration also tells Crochet where to find the things a package
 contains, as again Crochet doesn't force items to be organised in any particular way.
@@ -73,7 +73,7 @@ file.
 
 We go into more details on what exactly all of these properties---like ``"name"``
 or ``"target"``---in the JSON file mean, and how one would go about reading
-and writing these files in the Package Configuration section.
+and writing these files in the :ref:`Package Configuration <package-configuration>` section.
 
 
 Directory structure convention

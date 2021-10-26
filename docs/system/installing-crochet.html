@@ -113,6 +113,7 @@
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Installing Crochet</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="structure/index.html">How is Crochet structured?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="structure/introduction.html">The Crochet universe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structure/package-configuration.html">Package configuration</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="types/index.html">Data and types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -145,49 +146,42 @@
         </label>
         <div class="section" id="installing-crochet">
 <h1>Installing Crochet<a class="headerlink" href="#installing-crochet" title="Permalink to this headline">¶</a></h1>
-<p>Before you can use Crochet you’ll need to install it. The
-process is currently not as simple as it should be. So this
-page will walk you through all of the things you need to do
-to start using Crochet.</p>
-<p>Installing Crochet will require using the Terminal
-(PowerShell or CMD on Windows), and getting more
-familiarised with it.</p>
-<div class="section" id="install-node-js">
-<h2>Install Node.js<a class="headerlink" href="#install-node-js" title="Permalink to this headline">¶</a></h2>
-<p>In order to run the Crochet system, you’ll first need to <a class="reference external" href="https://nodejs.org/en/">install
-Node.js</a>. The website has installers
-for both Windows and Mac OS/X, so you can install it by
-downloading the installer and running it.</p>
-<p>You have the choice of downloading the “Long Term Support (LTS)”
-version or the latest version. Both works with Crochet, but the
-LTS version is recommended for most users, as it’s more stable,
-and supported for a longer time.</p>
-<div class="section" id="linux">
-<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
-<p>If you’re running a Linux system, the official supported way of
-installing it is to <a class="reference external" href="https://nodejs.org/en/download/">download one of the binaries from the
-Node.js website</a>. And then
-setup it manually.</p>
+<p>Before you can use Crochet you’ll need to install it. There
+are a few ways of installing Crochet, and this page will
+walk you through them.</p>
+<div class="section" id="recommended-installing-the-pre-packaged-crochet">
+<h2>(Recommended) Installing the pre-packaged Crochet<a class="headerlink" href="#recommended-installing-the-pre-packaged-crochet" title="Permalink to this headline">¶</a></h2>
+<p>This is the recommended way of installing Crochet for anyone
+who isn’t comfortable using the command line (or don’t even
+know what that might be).</p>
+<p><a class="reference external" href="https://github.com/qteatime/crochet/releases">Download the zip package for your operating system</a>
+from the Crochet releases page. For example, if you’re running
+a Windows machine, you’d install the <cite>crochet-VERSION-win32.zip</cite>,
+where <cite>VERSION</cite> is the version of Crochet you’re installing.</p>
+<p>Once you’ve finished downloading it, unpack the contents of the
+archive somewhere in your computer, and then run the <cite>Crochet</cite>
+(or <cite>Crochet.exe</cite>, or <cite>Crochet.app</cite>) application in the unpacked folder.
+This will open the Crochet IDE (Purr), which contains everything
+you need to build and run Crochet programs.</p>
 </div>
-</div>
-<div class="section" id="install-crochet-from-npm">
-<h2>Install Crochet from npm<a class="headerlink" href="#install-crochet-from-npm" title="Permalink to this headline">¶</a></h2>
-<p>The recommended way to install Crochet is through npm.
-Once you have Node.js installed, you can install Crochet from
-the terminal:</p>
+<div class="section" id="advanced-installing-crochet-with-npm">
+<h2>(Advanced) Installing Crochet with npm<a class="headerlink" href="#advanced-installing-crochet-with-npm" title="Permalink to this headline">¶</a></h2>
+<p>You can install the command line version of Crochet using
+<a class="reference external" href="https://www.npmjs.com/">npm</a>. For this you’ll need to have <a class="reference external" href="https://nodejs.org/en/">Node.js</a>
+installed in your computer.</p>
+<p>Once you have all of the pre-requisites installed, you can install
+Crochet from the terminal:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install -g @origamitower/crochet
 </pre></div>
 </div>
 <p>With this you should have a <code class="docutils literal notranslate"><span class="pre">crochet</span></code> application available
 in the terminal. You can test if everything is okay by running
 Crochet in the terminal:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>crochet
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>crochet <span class="nb">help</span>
 </pre></div>
 </div>
 <p>And it should give you something like the following:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Unknown command (no command provided)
-
-crochet --- a safe programming language
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>crochet --- a safe programming language
 
 Usage:
   crochet run &lt;crochet.json&gt; [options] [-- &lt;app-args...&gt;]
@@ -196,6 +190,7 @@ Usage:
   crochet repl &lt;crochet.json&gt; [options]
   crochet test &lt;crochet.json&gt; [options]
   crochet build &lt;crochet.json&gt; [options]
+  crochet launcher:server [options]
   crochet show-ir &lt;file.crochet&gt; [options]
   crochet show-ast &lt;file.crochet&gt; [options]
   crochet new &lt;name&gt; [options]
@@ -205,6 +200,15 @@ Usage:
 Options:
   --verbose      Outputs debugging information
 </pre></div>
+</div>
+<p>Run the <cite>launcher:server</cite> command to start an HTTP server for
+the Crochet IDE on port 8000.</p>
+<div class="section" id="editor-support">
+<h3>Editor support<a class="headerlink" href="#editor-support" title="Permalink to this headline">¶</a></h3>
+<p>Besides the built-in Crochet IDE, there is minimal support for
+<a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a>. The
+Crochet extension provides syntax highlighting for Crochet
+and related languages.</p>
 </div>
 </div>
 </div>
@@ -264,11 +268,11 @@ Options:
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Installing Crochet</a><ul>
-<li><a class="reference internal" href="#install-node-js">Install Node.js</a><ul>
-<li><a class="reference internal" href="#linux">Linux</a></li>
+<li><a class="reference internal" href="#recommended-installing-the-pre-packaged-crochet">(Recommended) Installing the pre-packaged Crochet</a></li>
+<li><a class="reference internal" href="#advanced-installing-crochet-with-npm">(Advanced) Installing Crochet with npm</a><ul>
+<li><a class="reference internal" href="#editor-support">Editor support</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#install-crochet-from-npm">Install Crochet from npm</a></li>
 </ul>
 </li>
 </ul>

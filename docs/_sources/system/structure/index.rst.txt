@@ -17,3 +17,4 @@ there must be a reason why things are done the way they are, right?
 .. toctree::
 
    introduction
+   package-configuration
