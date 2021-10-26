@@ -1,0 +1,440 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Annex A: Design philosophy" href="../design-philosophy.html" /><link rel="prev" title="Commands and program behaviour" href="declaration.html" />
+
+    <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
+        <title>Signatures and their uses - Crochet 0.12 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
+    
+
+
+<style>
+  :root {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../_static/pygments_dark.css"></head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Crochet 0.12 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">The Crochet System</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../whats-crochet.html">What’s Crochet?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installing-crochet.html">Installing Crochet</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../structure/index.html">How is Crochet structured?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../structure/introduction.html">The Crochet universe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure/package-configuration.html">Package configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../types/index.html">Data and types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../types/types-and-data.html">Types and data modelling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/using.html">Using typed data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Commands</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="declaration.html">Commands and program behaviour</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Signatures and their uses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sociology-and-linguistics.html">Annex B: Sociology and linguistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="signatures-and-their-uses">
+<h1>Signatures and their uses<a class="headerlink" href="#signatures-and-their-uses" title="Permalink to this headline">¶</a></h1>
+<p>So a part of a declaration is made out of (at least) a signature and a
+behaviour. But what is a signature, really? Signatures are a combination
+of the command’s name with the command’s requirements. It let us identify
+a specific command, or even talk about and search groups of related commands.</p>
+<div class="section" id="command-names">
+<h2>Command names<a class="headerlink" href="#command-names" title="Permalink to this headline">¶</a></h2>
+<p>In the previous section we’ve seen that command names have an underscore
+where requirements and values would go. So, for example, the command
+<code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">and</span> <span class="pre">true</span></code> has the name <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code>. But Crochet is actually
+quite restricted in which ways names can be formed. One can’t just
+write something like <code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">and</span> <span class="pre">true</span> <span class="pre">and</span> <span class="pre">also</span> <span class="pre">true</span></code> and expect Crochet
+to understand it as <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span> <span class="pre">and</span> <span class="pre">also</span> <span class="pre">_</span></code>.</p>
+<p>Crochet has four different “forms” of names:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Unary</strong>: these are names like <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">successor</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">round</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">is-empty</span></code>. Note that the name of the command always follows
+the underscore, and when a name is composed of multiple words they
+are written hyphen-separated, rather than space-separated.</p></li>
+<li><p><strong>Binary</strong>: these are names like <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">+</span> <span class="pre">_</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">&lt;-</span> <span class="pre">_</span></code>. These commands have exactly two requirements and
+two values, one on each side of the name. Unlike unary names,
+a binary name cannot be anything you come up with—rather,
+there are a handful of valid names that Crochet knows about,
+and any new name would require a change to the Crochet
+language itself.</p></li>
+<li><p><strong>Keyword</strong>: these are names like <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">to:</span> <span class="pre">_</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">between:</span> <span class="pre">_</span> <span class="pre">and:</span> <span class="pre">_</span></code>,
+<code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">from:</span> <span class="pre">_</span> <span class="pre">fold-with:</span> <span class="pre">_</span></code>. Here the command may have two or more requirements
+and values. It always starts with an underscore. And then is followed by
+any number of <code class="docutils literal notranslate"><span class="pre">keyword:</span> <span class="pre">_</span></code> suffixes. Like in the unary case, these
+keywords can be anything, and multiple words need to be separated with
+hyphens instead of spaces. Additionally, a colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>) needs to follow
+the keyword immediately—no spaces allowed between the hyphenated words
+and the colon.</p></li>
+<li><p><strong>Self-less keyword</strong>: this is a variation of the <strong>keyword</strong> form where
+the name starts with a keyword instead of a requirement/value. For
+example, <code class="docutils literal notranslate"><span class="pre">panic-without-trace:</span> <span class="pre">_</span> <span class="pre">tag:</span> <span class="pre">_</span></code> and <code class="docutils literal notranslate"><span class="pre">panic-without-trace:</span> <span class="pre">_</span></code>
+are both self-less keyword names. The reason it’s called “self-less” is
+that the very first requirement/value in a command is treated in a
+slightly special way in Crochet, and can be referenced through the
+special expression <code class="docutils literal notranslate"><span class="pre">self</span></code>. A command that does not start with a
+requirement/value would make it confusing to highlight any of them,
+so there’s no <code class="docutils literal notranslate"><span class="pre">self</span></code> allowed within these commands—they’re <code class="docutils literal notranslate"><span class="pre">self-less</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>So we’ve discussed names, but what about requirements? Requirements are
+what goes into each of those underscores when we’re declaring commands in
+Crochet.</p>
+<p>In their purest form, a requirement looks like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command (Left is integer) + (Right is integer) =
+  // behaviour omitted
+</pre></div>
+</div>
+<p>Both <code class="docutils literal notranslate"><span class="pre">Left</span> <span class="pre">is</span> <span class="pre">integer</span></code> and <code class="docutils literal notranslate"><span class="pre">Right</span> <span class="pre">is</span> <span class="pre">integer</span></code> are requirements. You
+can read these as they’re written—or in the slightly longer form:
+“Left is a value of type integer”—, but what they mean is that whatever
+we use at that location must be an instance of the specified type on the
+right of <code class="docutils literal notranslate"><span class="pre">is</span></code>—here our type is <code class="docutils literal notranslate"><span class="pre">integer</span></code>. And once we’ve made sure
+that the value meets the requirement, we’ll be able to refer to that value
+by the name that is on the left of <code class="docutils literal notranslate"><span class="pre">is</span></code>—here it can be <code class="docutils literal notranslate"><span class="pre">Left</span></code> or <code class="docutils literal notranslate"><span class="pre">Right</span></code>.
+These names, <code class="docutils literal notranslate"><span class="pre">Left</span></code> and <code class="docutils literal notranslate"><span class="pre">Right</span></code> are called variables, although in
+Crochet, unlike some other languages, they are not allowed to change
+what they refer to.</p>
+<p>For example, if we had an expression like <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">2</span></code>, then <code class="docutils literal notranslate"><span class="pre">Left</span></code> would
+refer to <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">Right</span></code> would refer to <code class="docutils literal notranslate"><span class="pre">2</span></code>—because both <code class="docutils literal notranslate"><span class="pre">1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">2</span></code> are instances of the integer type, and thus fulfill each side’s
+type requirements.</p>
+<p>Besides type requirements, Crochet also supports trait requirements:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command (Collection is any has countable-container) is-empty =
+  // behaviour omitted
+</pre></div>
+</div>
+<p>In this case you can again read it as it’s written, or use the slightly
+longer form: “Collection is a value that is an instance of any type, and
+has an implementation of the trait countable-container”. Here, the
+requirement is fulfilled if the value we’re using is an instance of the
+specified type, and there exists an implementation of the trait
+for the any of the types it’s an instance of. So in <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span> <span class="pre">is-empty</span></code>,
+we’d be able to refer to the list <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code> through the name <code class="docutils literal notranslate"><span class="pre">Collection</span></code>,
+because lists implement the trait countable-container.</p>
+<div class="section" id="multiple-trait-requirements">
+<h3>Multiple trait requirements<a class="headerlink" href="#multiple-trait-requirements" title="Permalink to this headline">¶</a></h3>
+<p>A value can have exactly one type, but it can have implementations for
+several different traits. So trait requirements allow one to specify
+multiple traits, when their combination is necessary.</p>
+<p>For example, the collections part of the standard Crochet library relies
+heavily on traits for specifying common properties among very different
+values—things like sets, lists, and maps can still be handled in a
+consistent way if we’re only interested in a specific concept that they
+all exhibit, but it wouldn’t really make sense to turn that into a
+<em>classification</em> of these types and their relationships.</p>
+<p>So, if you look at the standard library, you’re going to see several
+commands with requirements that look like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command
+  (A has set-algebra, countable-container)
+  is-subset:
+  (B has set-algebra, countable-container)
+=
+  (A complement: B) is-empty;
+</pre></div>
+</div>
+<p>Here we’re defining the subset relationship from set theory in a
+way that reads: “A is a subset of B if, after removing all B elements
+from A, we’re left with an empty set—which must mean the B has all
+elements that A has, and possibly some more. Note that in order for
+this definition to work we rely on being able to take the complement
+of two sets—to be able to take one set, and then remove from it all
+elements that are found in another set. This operation is available
+on any type that implements <code class="docutils literal notranslate"><span class="pre">set-algebra</span></code>. But we also need to be
+able to observe if we’re left with something that contains any elements
+or not. The <code class="docutils literal notranslate"><span class="pre">is-operation</span></code> is provided for types that implement
+the <code class="docutils literal notranslate"><span class="pre">countable-container</span></code> trait.</p>
+<p>Trait requirements can specify any number of traits after the <code class="docutils literal notranslate"><span class="pre">has</span></code>
+special word, separating all of them with a comma (<code class="docutils literal notranslate"><span class="pre">,</span></code>).</p>
+</div>
+<div class="section" id="convenience-forms">
+<h3>Convenience forms<a class="headerlink" href="#convenience-forms" title="Permalink to this headline">¶</a></h3>
+<p>While you can always write requirements in their pure form, it can
+be convenient to write it in a shorter form sometimes. For type
+requirements we can omit the variables and write just the type
+name. With the exception of the special <code class="docutils literal notranslate"><span class="pre">self</span></code> value, this leaves
+us with no way of referring to the value used at that location,
+but it can still be useful when either the type tells us everything
+about the value, or when we don’t need to use anything from the value
+in the particular command.</p>
+<p>Throughout the standard Crochet library, the <code class="docutils literal notranslate"><span class="pre">self</span></code> requirements
+almost always have their variables omitted, and the value is just
+referred to by its name within the behaviour. For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command integer successor = self + 1;
+</pre></div>
+</div>
+<p>This could have just as well been written with an explicit variable,
+but here adding a name lengthens the declaration without really
+communicating anything new. So the standard library makes the
+stylistic choice of omiting redundant information where possible.</p>
+<p>We can also omit the type part of the requirement, in which case
+the type is treated as <code class="docutils literal notranslate"><span class="pre">any</span></code>—all types are ultimately instances
+of the <code class="docutils literal notranslate"><span class="pre">any</span></code> type. Again, being explicit here would be redundant,
+as what we want to communicate is that we don’t have any specific
+requirement on this value—and omitting the type already tells us
+exactly that!</p>
+<p>We can see this happening in standard library functions like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command panic message: Message =
+  panic message: Message tag: "panic";
+</pre></div>
+</div>
+<p>It’s a common idiom in commands like the one above, which are
+just a convenient way of invoking a different command with some
+default pieces filled in. Not having a requirement here means that
+the requirements of the real command will be used for all values
+we provide here—and it avoids us having to replicate those
+requirements and keep them up to date.</p>
+<p>For traits, we can also omit the type part—but not the variable part.
+Often, for traits, we don’t want to stipulate any requirement other
+than an implementation of the trait, so the type requirement is often
+just  <code class="docutils literal notranslate"><span class="pre">any</span></code>—again, that’s pretty redundant.</p>
+<p>We can see this in standard library functions like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command (X has total-ordering) &lt;= (Y has total-ordering) =
+  (X &lt; Y) or (X === Y);
+</pre></div>
+</div>
+</div>
+<div class="section" id="a-word-of-caution-ambiguity">
+<h3>A word of caution: ambiguity<a class="headerlink" href="#a-word-of-caution-ambiguity" title="Permalink to this headline">¶</a></h3>
+<p>Crochet commands can be defined anywhere. By anyone. For any requirements.
+But when we put together a program to be loaded by the Crochet VM we need
+to make sure that a set of values cannot trigger more than one command.</p>
+<p>That is, if we have an expression like <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">2</span></code>, then the program is free
+to define as many <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">+</span> <span class="pre">_</span></code> commands as it wishes, but there must be exactly
+one of these commands which is the “closest match” for that expression.</p>
+<p>Crochet will always tell this when you try to load a program—if you have
+an ambiguity, that ambiguity will need to be fixed before you can load the
+program.</p>
+<p>With type requirements, an ambiguity would mean that you have the same
+set of type requirements on multiple commands. That is, if you have:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command true and true = "ok";
+command true and true = "not ok";
+</pre></div>
+</div>
+<p>Crochet will not be able to load this program because it can’t really
+know if <code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">and</span> <span class="pre">true</span></code> should mean <code class="docutils literal notranslate"><span class="pre">"ok"</span></code> or <code class="docutils literal notranslate"><span class="pre">"not</span> <span class="pre">ok"</span></code>.</p>
+<p>Trait requirements make this problem a bit trickier. Because any type
+can implement any trait—and even multiple traits—Crochet gives
+all traits the exact same weight. So if we have two different commands
+that only depend on traits, they’re considered ambiguous by Crochet:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command (A has countable-container) is-empty = A count === 0;
+command (A has collection-constructor, equality) is-empty = A empty === A;
+</pre></div>
+</div>
+<p>Here both <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">is-empty</span></code> commands depend on distinct traits. The second one
+even depends on multiple traits. But when you consider that someone could
+write the following implementations:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type set(...);
+implement countable-container for set;
+implement collection-constructor for set;
+implement equality for set;
+</pre></div>
+</div>
+<p>Then any uses of <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">set(...)</span> <span class="pre">is-empty</span></code> could just as well trigger either
+of them—there’s no relationship between these traits to dictate which one
+should be considered “closer” <em>by the people writing this program</em>. Sure
+Crochet could come up with a disambiguation strategy, but it would be arbitrary
+and unlikely to map to most users’ expectations. That would mean that using
+traits would be even more frustrating than it is now.</p>
+</div>
+</div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../design-philosophy.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Annex A: Design philosophy</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="declaration.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Commands and program behaviour</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Q.
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="../../_sources/system/commands/signatures.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Signatures and their uses</a><ul>
+<li><a class="reference internal" href="#command-names">Command names</a></li>
+<li><a class="reference internal" href="#requirements">Requirements</a><ul>
+<li><a class="reference internal" href="#multiple-trait-requirements">Multiple trait requirements</a></li>
+<li><a class="reference internal" href="#convenience-forms">Convenience forms</a></li>
+<li><a class="reference internal" href="#a-word-of-caution-ambiguity">A word of caution: ambiguity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </main>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/main.js"></script>
+    </body>
+</html>

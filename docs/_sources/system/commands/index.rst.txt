@@ -12,3 +12,4 @@ you should keep in mind when using them.
 .. toctree::
 
    declaration
+   signatures
