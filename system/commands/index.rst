@@ -13,3 +13,4 @@ you should keep in mind when using them.
 
    declaration
    signatures
+   dispatch

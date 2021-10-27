@@ -236,3 +236,28 @@ Crochet could come up with a disambiguation strategy, but it would be arbitrary
 and unlikely to map to most users' expectations. That would mean that using
 traits would be even more frustrating than it is now.
 
+
+Irrelevant variables
+''''''''''''''''''''
+
+Names don't always make sense in Crochet, but when using traits it's also
+hard to avoid them. For these cases you can use an underscore (``_``) where
+the name would go. This underscore tells Crochet that the name isn't really
+relevant.
+
+The underscore differs a bit from just picking a random name because we're
+allowed to use the underscore in multiple places in the requirement. If we
+were to pick a random name, we'd have to pick an unique one for each position
+we plan to use it at.
+
+For example, the following would be rejected by Crochet::
+
+    command (X has countable-collection) and: (X has countable-collection) = ...;
+
+That's because Crochet cannot make ``X`` refer to two different values at
+the same time---that would be very ambiguous. On the other hand, by using
+the underscore we give up on our ability of referring to the values, so
+this isn't a problem. Crochet will happilly accept the following::
+
+    command (_ has countable-collection) and: (_ has countable-collection) = ...;
+
