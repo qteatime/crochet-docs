@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Commands and program behaviour" href="declaration.html" /><link rel="prev" title="Using typed data" href="../types/using.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="What are commands?" href="declaration.html" /><link rel="prev" title="Using typed data" href="../types/using.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
         <title>Commands - Crochet 0.12 documentation</title>
@@ -122,8 +122,9 @@
 </ul>
 </li>
 <li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">Commands</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="declaration.html">Commands and program behaviour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="declaration.html">What are commands?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="signatures.html">Signatures and their uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dispatch.html">Executing commands</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -154,8 +155,7 @@ section we’ll dive deep into what they are, how they work, and other things
 you should keep in mind when using them.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="declaration.html">Commands and program behaviour</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="declaration.html#what-are-commands">What are commands?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="declaration.html">What are commands?</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="declaration.html#signatures">Signatures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="declaration.html#behaviours">Behaviours</a></li>
 </ul>
@@ -166,6 +166,22 @@ you should keep in mind when using them.</p>
 <li class="toctree-l3"><a class="reference internal" href="signatures.html#multiple-trait-requirements">Multiple trait requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="signatures.html#convenience-forms">Convenience forms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="signatures.html#a-word-of-caution-ambiguity">A word of caution: ambiguity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="signatures.html#irrelevant-variables">Irrelevant variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dispatch.html">Executing commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dispatch.html#selection-and-application">Selection and application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dispatch.html#the-selection-algorithm">The selection algorithm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dispatch.html#ranking-trait-requirements">Ranking trait requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dispatch.html#selection-with-multiple-requirements">Selection with multiple requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dispatch.html#ambiguities-in-selection">Ambiguities in selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dispatch.html#what-if-no-command-is-selected">What if no command is selected?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dispatch.html#applying-commands">Applying commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dispatch.html#the-self-name">The <code class="docutils literal notranslate"><span class="pre">self</span></code> name</a></li>
 </ul>
 </li>
 </ul>
@@ -183,7 +199,7 @@ you should keep in mind when using them.</p>
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Commands and program behaviour</div>
+                <div class="title">What are commands?</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>

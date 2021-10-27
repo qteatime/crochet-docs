@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Annex A: Design philosophy" href="../design-philosophy.html" /><link rel="prev" title="Commands and program behaviour" href="declaration.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Executing commands" href="dispatch.html" /><link rel="prev" title="What are commands?" href="declaration.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
         <title>Signatures and their uses - Crochet 0.12 documentation</title>
@@ -122,8 +122,9 @@
 </ul>
 </li>
 <li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Commands</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="declaration.html">Commands and program behaviour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="declaration.html">What are commands?</a></li>
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Signatures and their uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dispatch.html">Executing commands</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -355,6 +356,28 @@ Crochet could come up with a disambiguation strategy, but it would be arbitrary
 and unlikely to map to most users’ expectations. That would mean that using
 traits would be even more frustrating than it is now.</p>
 </div>
+<div class="section" id="irrelevant-variables">
+<h3>Irrelevant variables<a class="headerlink" href="#irrelevant-variables" title="Permalink to this headline">¶</a></h3>
+<p>Names don’t always make sense in Crochet, but when using traits it’s also
+hard to avoid them. For these cases you can use an underscore (<code class="docutils literal notranslate"><span class="pre">_</span></code>) where
+the name would go. This underscore tells Crochet that the name isn’t really
+relevant.</p>
+<p>The underscore differs a bit from just picking a random name because we’re
+allowed to use the underscore in multiple places in the requirement. If we
+were to pick a random name, we’d have to pick an unique one for each position
+we plan to use it at.</p>
+<p>For example, the following would be rejected by Crochet:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command (X has countable-collection) and: (X has countable-collection) = ...;
+</pre></div>
+</div>
+<p>That’s because Crochet cannot make <code class="docutils literal notranslate"><span class="pre">X</span></code> refer to two different values at
+the same time—that would be very ambiguous. On the other hand, by using
+the underscore we give up on our ability of referring to the values, so
+this isn’t a problem. Crochet will happilly accept the following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command (_ has countable-collection) and: (_ has countable-collection) = ...;
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -362,12 +385,12 @@ traits would be even more frustrating than it is now.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../design-philosophy.html">
+          <a class="next-page" href="dispatch.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Annex A: Design philosophy</div>
+                <div class="title">Executing commands</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -378,7 +401,7 @@ traits would be even more frustrating than it is now.</p>
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Commands and program behaviour</div>
+                <div class="title">What are commands?</div>
                 
               </div>
             </a>
@@ -418,6 +441,7 @@ traits would be even more frustrating than it is now.</p>
 <li><a class="reference internal" href="#multiple-trait-requirements">Multiple trait requirements</a></li>
 <li><a class="reference internal" href="#convenience-forms">Convenience forms</a></li>
 <li><a class="reference internal" href="#a-word-of-caution-ambiguity">A word of caution: ambiguity</a></li>
+<li><a class="reference internal" href="#irrelevant-variables">Irrelevant variables</a></li>
 </ul>
 </li>
 </ul>
