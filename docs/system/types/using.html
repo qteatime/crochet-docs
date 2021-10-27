@@ -9,12 +9,13 @@
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/crochet.css" />
     
 
 
 <style>
   :root {
-    --color-code-background: #f8f8f8;
+    --color-code-background: #ffffff;
   --color-code-foreground: black;
   
   }
@@ -28,7 +29,7 @@
 
   /* For allowing end-user-specific overrides */
   .override-light {
-    --color-code-background: #f8f8f8;
+    --color-code-background: #ffffff;
   --color-code-foreground: black;
   
   }
@@ -125,6 +126,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../commands/declaration.html">What are commands?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../commands/signatures.html">Signatures and their uses</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../commands/dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/why.html">Why are commands …?</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -152,11 +154,11 @@
 <span id="new-operator"></span><h2>The <code class="docutils literal notranslate"><span class="pre">new</span></code> operator<a class="headerlink" href="#the-new-operator" title="Permalink to this headline">¶</a></h2>
 <p>In order to manipulate data in Crochet it has to be <a class="reference internal" href="types-and-data.html#type-declaration"><span class="std std-ref">typed</span></a>.
 And we bring typed data into existence with the <code class="docutils literal notranslate"><span class="pre">new</span></code> operator:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>// Given the type
-type point2d(x, y);
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="c1">// Given the type</span>
+<span class="k">type</span> point2d<span class="p">(</span>x<span class="p">,</span> y<span class="p">);</span>
 
-// We can construct it
-new point2d(1, 2);
+<span class="c1">// We can construct it</span>
+<span class="k">new</span> point2d<span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Here, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are <a class="reference internal" href="types-and-data.html#typed-fields"><span class="std std-ref">fields</span></a> of the type
@@ -192,15 +194,15 @@ is discussed in more details in the Security and Capabilities section.</p>
 particular piece of data, we need to project it out. This is done by using
 the <code class="docutils literal notranslate"><span class="pre">.</span></code> (dot) operator.</p>
 <p>Given a type such as the following:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type point2d(x, y);
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> point2d<span class="p">(</span>x<span class="p">,</span> y<span class="p">);</span>
 </pre></div>
 </div>
 <p>And a typed data construct like:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>let P = new point2d(1, 2);
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">P</span> <span class="p">=</span> <span class="k">new</span> point2d<span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Then we can project fields out of it:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>P.x; // ==&gt; 1
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="nv">P</span><span class="p">.</span>x<span class="p">;</span> <span class="c1">// ==&gt; 1</span>
 </pre></div>
 </div>
 <div class="section" id="non-existing-fields">
@@ -208,20 +210,20 @@ the <code class="docutils literal notranslate"><span class="pre">.</span></code>
 <p>Trying to project a field that does not exist in a typed data is an error,
 but this error may not be reported until Crochet tries to execute that
 projection. For example:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type point2d(x, y);
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> point2d<span class="p">(</span>x<span class="p">,</span> y<span class="p">);</span>
 
-let P = new point2d(1, 2);
-P.z;
-// *** Error: The type point2d does not have a field `z`
-//            (known fields: [x, y])
+<span class="k">let</span> <span class="nv">P</span> <span class="p">=</span> <span class="k">new</span> point2d<span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
+<span class="nv">P</span><span class="p">.</span>z<span class="p">;</span>
+<span class="c1">// *** Error: The type point2d does not have a field `z`</span>
+<span class="c1">//            (known fields: [x, y])</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="fields-and-inheritance">
 <h3>Fields and inheritance<a class="headerlink" href="#fields-and-inheritance" title="Permalink to this headline">¶</a></h3>
 <p>Types can be described in a hierarchy. Thus, if we have something like:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type point2d(x, y);
-type point3d(a, b, c) is point2d;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> point2d<span class="p">(</span>x<span class="p">,</span> y<span class="p">);</span>
+<span class="k">type</span> point3d<span class="p">(</span>a<span class="p">,</span> b<span class="p">,</span> c<span class="p">)</span> <span class="k">is</span> point2d<span class="p">;</span>
 </pre></div>
 </div>
 <p>Then <code class="docutils literal notranslate"><span class="pre">point3d</span></code> can be provided both where <code class="docutils literal notranslate"><span class="pre">point2d</span></code> and <code class="docutils literal notranslate"><span class="pre">point3d</span></code> are
@@ -229,16 +231,16 @@ expected. This poses a problem with field projection because <code class="docuti
 are fields in <code class="docutils literal notranslate"><span class="pre">point2d</span></code>, but they are not fields in <code class="docutils literal notranslate"><span class="pre">point3d</span></code>. Types
 do not inherit any data layout from their supertypes in Crochet. This means
 that the following would cause very confusing failures:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command point2d x = self.x;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> point2d x <span class="p">=</span> self.x<span class="p">;</span>
 
-let P = new point3d(1, 2, 3);
-P x;
-// *** Error: The type point3d does not have a field `x`
-//            (known fields: [a, b, c])
-//
-//     Arising from:
-//       In (point2d) x
-//         from module (repl) in crochet.repl.basic
+<span class="k">let</span> <span class="nv">P</span> <span class="p">=</span> <span class="k">new</span> point3d<span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">,</span> <span class="mf">3</span><span class="p">);</span>
+<span class="nv">P</span> x<span class="p">;</span>
+<span class="c1">// *** Error: The type point3d does not have a field `x`</span>
+<span class="c1">//            (known fields: [a, b, c])</span>
+<span class="c1">//</span>
+<span class="c1">//     Arising from:</span>
+<span class="c1">//       In (point2d) x</span>
+<span class="c1">//         from module (repl) in crochet.repl.basic</span>
 </pre></div>
 </div>
 <p>For this reason, any command that is meant to be shared with other types
@@ -268,17 +270,17 @@ on sequences and records, and it does slightly different things with them.</p>
 <h3>Record projection<a class="headerlink" href="#record-projection" title="Permalink to this headline">¶</a></h3>
 <p>Records are non-typed pieces of data comprised of independent information.
 For example, one could represent coordinates as records like so:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>let Coords = [latitude -&gt; -75.0, longitude -&gt; 31.0];
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">Coords</span> <span class="p">=</span> <span class="p">[</span>latitude <span class="o">-&gt;</span> <span class="mf">-75.0</span><span class="p">,</span> longitude <span class="o">-&gt;</span> <span class="mf">31.0</span><span class="p">];</span>
 </pre></div>
 </div>
 <p>And these pieces of information can be projected like in a typed data:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Coords.latitude; // ==&gt; -75.0
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="nv">Coords</span><span class="p">.</span>latitude<span class="p">;</span> <span class="c1">// ==&gt; -75.0</span>
 </pre></div>
 </div>
 <p>Projecting non-existing fields will, likewise, result in an error:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Coords.lat;
-// *** Error: The key `lat` does not exist in the record
-//            (known keys: latitude, longitude)
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="nv">Coords</span><span class="p">.</span>lat<span class="p">;</span>
+<span class="c1">// *** Error: The key `lat` does not exist in the record</span>
+<span class="c1">//            (known keys: latitude, longitude)</span>
 </pre></div>
 </div>
 <div class="admonition danger">
@@ -297,15 +299,15 @@ guarantees and should not be used for data that isn’t completely public.</p>
 projecting each item of the sequence, so the result will be
 <code class="docutils literal notranslate"><span class="pre">[A.x,</span> <span class="pre">B.x,</span> <span class="pre">C.x]</span></code>.</p>
 <p>For example, given:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>let Alice = [name -&gt; "Alice", author -&gt; "Lewis Caroll"];
-let Dorothy = [name -&gt; "Dorothy", author -&gt; "L. Frank Baum"];
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">Alice</span> <span class="p">=</span> <span class="p">[</span>name <span class="o">-&gt;</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span> author <span class="o">-&gt;</span> <span class="dl">"</span><span class="s2">Lewis Caroll</span><span class="dl">"</span><span class="p">];</span>
+<span class="k">let</span> <span class="nv">Dorothy</span> <span class="p">=</span> <span class="p">[</span>name <span class="o">-&gt;</span> <span class="dl">"</span><span class="s2">Dorothy</span><span class="dl">"</span><span class="p">,</span> author <span class="o">-&gt;</span> <span class="dl">"</span><span class="s2">L. Frank Baum</span><span class="dl">"</span><span class="p">];</span>
 
-let Characters = [Alice, Dorothy];
+<span class="k">let</span> <span class="nv">Characters</span> <span class="p">=</span> <span class="p">[</span><span class="nv">Alice</span><span class="p">,</span> <span class="nv">Dorothy</span><span class="p">];</span>
 </pre></div>
 </div>
 <p>If we project the <code class="docutils literal notranslate"><span class="pre">name</span></code> field of this sequence, that’s equivalent to
 projecting the <code class="docutils literal notranslate"><span class="pre">name</span></code> field of each record:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Characters.name; // ==&gt; ["Alice", "Dorothy"]
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="nv">Characters</span><span class="p">.</span>name<span class="p">;</span> <span class="c1">// ==&gt; ["Alice", "Dorothy"]</span>
 </pre></div>
 </div>
 </div>

@@ -9,12 +9,13 @@
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/crochet.css" />
     
 
 
 <style>
   :root {
-    --color-code-background: #f8f8f8;
+    --color-code-background: #ffffff;
   --color-code-foreground: black;
   
   }
@@ -28,7 +29,7 @@
 
   /* For allowing end-user-specific overrides */
   .override-light {
-    --color-code-background: #f8f8f8;
+    --color-code-background: #ffffff;
   --color-code-foreground: black;
   
   }
@@ -125,6 +126,7 @@
 <li class="toctree-l3"><a class="reference internal" href="declaration.html">What are commands?</a></li>
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Signatures and their uses</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="why.html">Why are commands …?</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -161,8 +163,7 @@ quite restricted in which ways names can be formed. One can’t just
 write something like <code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">and</span> <span class="pre">true</span> <span class="pre">and</span> <span class="pre">also</span> <span class="pre">true</span></code> and expect Crochet
 to understand it as <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span> <span class="pre">and</span> <span class="pre">also</span> <span class="pre">_</span></code>.</p>
 <p>Crochet has four different “forms” of names:</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p><strong>Unary</strong>: these are names like <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">successor</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">round</span></code>, or
 <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">is-empty</span></code>. Note that the name of the command always follows
 the underscore, and when a name is composed of multiple words they
@@ -192,7 +193,6 @@ special expression <code class="docutils literal notranslate"><span class="pre">
 requirement/value would make it confusing to highlight any of them,
 so there’s no <code class="docutils literal notranslate"><span class="pre">self</span></code> allowed within these commands—they’re <code class="docutils literal notranslate"><span class="pre">self-less</span></code>.</p></li>
 </ul>
-</div></blockquote>
 </div>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
@@ -200,8 +200,8 @@ so there’s no <code class="docutils literal notranslate"><span class="pre">sel
 what goes into each of those underscores when we’re declaring commands in
 Crochet.</p>
 <p>In their purest form, a requirement looks like this:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command (Left is integer) + (Right is integer) =
-  // behaviour omitted
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="p">(</span><span class="nv">Left</span> <span class="k">is</span> integer<span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="nv">Right</span> <span class="k">is</span> integer<span class="p">)</span> <span class="p">=</span>
+  <span class="c1">// behaviour omitted</span>
 </pre></div>
 </div>
 <p>Both <code class="docutils literal notranslate"><span class="pre">Left</span> <span class="pre">is</span> <span class="pre">integer</span></code> and <code class="docutils literal notranslate"><span class="pre">Right</span> <span class="pre">is</span> <span class="pre">integer</span></code> are requirements. You
@@ -219,8 +219,8 @@ refer to <code class="docutils literal notranslate"><span class="pre">1</span></
 <code class="docutils literal notranslate"><span class="pre">2</span></code> are instances of the integer type, and thus fulfill each side’s
 type requirements.</p>
 <p>Besides type requirements, Crochet also supports trait requirements:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command (Collection is any has countable-container) is-empty =
-  // behaviour omitted
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="p">(</span><span class="nv">Collection</span> <span class="k">is</span> any <span class="k">has</span> countable-container<span class="p">)</span> is-empty <span class="p">=</span>
+  <span class="c1">// behaviour omitted</span>
 </pre></div>
 </div>
 <p>In this case you can again read it as it’s written, or use the slightly
@@ -244,12 +244,12 @@ all exhibit, but it wouldn’t really make sense to turn that into a
 <em>classification</em> of these types and their relationships.</p>
 <p>So, if you look at the standard library, you’re going to see several
 commands with requirements that look like this:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command
-  (A has set-algebra, countable-container)
-  is-subset:
-  (B has set-algebra, countable-container)
-=
-  (A complement: B) is-empty;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span>
+  <span class="p">(</span><span class="nv">A</span> <span class="k">has</span> set-algebra<span class="p">,</span> countable-container<span class="p">)</span>
+  <span class="nf">is-subset:</span>
+  <span class="p">(</span><span class="nv">B</span> <span class="k">has</span> set-algebra<span class="p">,</span> countable-container<span class="p">)</span>
+<span class="p">=</span>
+  <span class="p">(</span><span class="nv">A</span> <span class="nf">complement:</span> <span class="nv">B</span><span class="p">)</span> is-empty<span class="p">;</span>
 </pre></div>
 </div>
 <p>Here we’re defining the subset relationship from set theory in a
@@ -279,7 +279,7 @@ in the particular command.</p>
 <p>Throughout the standard Crochet library, the <code class="docutils literal notranslate"><span class="pre">self</span></code> requirements
 almost always have their variables omitted, and the value is just
 referred to by its name within the behaviour. For example:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command integer successor = self + 1;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> integer successor <span class="p">=</span> <span class="k">self</span> <span class="o">+</span> <span class="mf">1</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This could have just as well been written with an explicit variable,
@@ -293,8 +293,8 @@ as what we want to communicate is that we don’t have any specific
 requirement on this value—and omitting the type already tells us
 exactly that!</p>
 <p>We can see this happening in standard library functions like:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command panic message: Message =
-  panic message: Message tag: "panic";
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> panic <span class="nf">message:</span> <span class="nv">Message</span> <span class="p">=</span>
+  panic <span class="nf">message:</span> <span class="nv">Message</span> <span class="nf">tag:</span> <span class="dl">"</span><span class="s2">panic</span><span class="dl">"</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>It’s a common idiom in commands like the one above, which are
@@ -308,8 +308,8 @@ Often, for traits, we don’t want to stipulate any requirement other
 than an implementation of the trait, so the type requirement is often
 just  <code class="docutils literal notranslate"><span class="pre">any</span></code>—again, that’s pretty redundant.</p>
 <p>We can see this in standard library functions like:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command (X has total-ordering) &lt;= (Y has total-ordering) =
-  (X &lt; Y) or (X === Y);
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="p">(</span><span class="nv">X</span> <span class="k">has</span> total-ordering<span class="p">)</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="nv">Y</span> <span class="k">has</span> total-ordering<span class="p">)</span> <span class="p">=</span>
+  <span class="p">(</span><span class="nv">X</span> <span class="o">&lt;</span> <span class="nv">Y</span><span class="p">)</span> <span class="k">or</span> <span class="p">(</span><span class="nv">X</span> <span class="o">===</span> <span class="nv">Y</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -326,8 +326,8 @@ an ambiguity, that ambiguity will need to be fixed before you can load the
 program.</p>
 <p>With type requirements, an ambiguity would mean that you have the same
 set of type requirements on multiple commands. That is, if you have:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command true and true = "ok";
-command true and true = "not ok";
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="k">true</span> <span class="k">and</span> <span class="k">true</span> <span class="p">=</span> <span class="dl">"</span><span class="s2">ok</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">command</span> <span class="k">true</span> <span class="k">and</span> <span class="k">true</span> <span class="p">=</span> <span class="dl">"</span><span class="s2">not ok</span><span class="dl">"</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Crochet will not be able to load this program because it can’t really
@@ -336,17 +336,17 @@ know if <code class="docutils literal notranslate"><span class="pre">true</span>
 can implement any trait—and even multiple traits—Crochet gives
 all traits the exact same weight. So if we have two different commands
 that only depend on traits, they’re considered ambiguous by Crochet:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command (A has countable-container) is-empty = A count === 0;
-command (A has collection-constructor, equality) is-empty = A empty === A;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="p">(</span><span class="nv">A</span> <span class="k">has</span> countable-container<span class="p">)</span> is-empty <span class="p">=</span> <span class="nv">A</span> count <span class="o">===</span> <span class="mf">0</span><span class="p">;</span>
+<span class="k">command</span> <span class="p">(</span><span class="nv">A</span> <span class="k">has</span> collection-constructor<span class="p">,</span> equality<span class="p">)</span> is-empty <span class="p">=</span> <span class="nv">A</span> empty <span class="o">===</span> <span class="nv">A</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Here both <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">is-empty</span></code> commands depend on distinct traits. The second one
 even depends on multiple traits. But when you consider that someone could
 write the following implementations:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type set(...);
-implement countable-container for set;
-implement collection-constructor for set;
-implement equality for set;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> set<span class="p">(...);</span>
+<span class="k">implement</span> countable-container <span class="k">for</span> set<span class="p">;</span>
+<span class="k">implement</span> collection-constructor <span class="k">for</span> set<span class="p">;</span>
+<span class="k">implement</span> equality <span class="k">for</span> set<span class="p">;</span>
 </pre></div>
 </div>
 <p>Then any uses of <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">set(...)</span> <span class="pre">is-empty</span></code> could just as well trigger either
@@ -367,14 +367,14 @@ allowed to use the underscore in multiple places in the requirement. If we
 were to pick a random name, we’d have to pick an unique one for each position
 we plan to use it at.</p>
 <p>For example, the following would be rejected by Crochet:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command (X has countable-collection) and: (X has countable-collection) = ...;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="p">(</span><span class="nv">X</span> <span class="k">has</span> countable-collection<span class="p">)</span> <span class="nf">and:</span> <span class="p">(</span><span class="nv">X</span> <span class="k">has</span> countable-collection<span class="p">)</span> <span class="p">=</span> <span class="p">...;</span>
 </pre></div>
 </div>
 <p>That’s because Crochet cannot make <code class="docutils literal notranslate"><span class="pre">X</span></code> refer to two different values at
 the same time—that would be very ambiguous. On the other hand, by using
 the underscore we give up on our ability of referring to the values, so
 this isn’t a problem. Crochet will happilly accept the following:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command (_ has countable-collection) and: (_ has countable-collection) = ...;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="p">(</span><span class="nv">_</span> <span class="k">has</span> countable-collection<span class="p">)</span> <span class="nf">and:</span> <span class="p">(</span><span class="nv">_</span> <span class="k">has</span> countable-collection<span class="p">)</span> <span class="p">=</span> <span class="p">...;</span>
 </pre></div>
 </div>
 </div>

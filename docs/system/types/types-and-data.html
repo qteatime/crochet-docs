@@ -9,12 +9,13 @@
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/crochet.css" />
     
 
 
 <style>
   :root {
-    --color-code-background: #f8f8f8;
+    --color-code-background: #ffffff;
   --color-code-foreground: black;
   
   }
@@ -28,7 +29,7 @@
 
   /* For allowing end-user-specific overrides */
   .override-light {
-    --color-code-background: #f8f8f8;
+    --color-code-background: #ffffff;
   --color-code-foreground: black;
   
   }
@@ -125,6 +126,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../commands/declaration.html">What are commands?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../commands/signatures.html">Signatures and their uses</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../commands/dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/why.html">Why are commands …?</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -179,13 +181,13 @@ classify and secure data at runtime.</p></li>
 <span id="type-declaration"></span><h2>Type declarations and usage<a class="headerlink" href="#type-declarations-and-usage" title="Permalink to this headline">¶</a></h2>
 <p>A type declaration provides a name for a particular combination of data.
 For example:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type point2d(x, y);
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> point2d<span class="p">(</span>x<span class="p">,</span> y<span class="p">);</span>
 </pre></div>
 </div>
 <p>Here, <code class="docutils literal notranslate"><span class="pre">point2d</span></code> is a name that will be associated with a combination
 of data that contains <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> points. Here, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are
 also called <a class="reference internal" href="#typed-fields"><span class="std std-ref">fields</span></a>. Association is done through the <a class="reference internal" href="using.html#new-operator"><span class="std std-ref">new operator</span></a>:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>new point2d(1, 2);
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">new</span> point2d<span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Will associate the name <code class="docutils literal notranslate"><span class="pre">point2d</span></code> with the data points <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">1</span></code> and
@@ -194,9 +196,9 @@ name association is unforgeable. One must know and have power over
 the <code class="docutils literal notranslate"><span class="pre">point2d</span></code> declaration in order to associate it with data points.</p>
 <p>Once a piece of data is associated with a name, specific fields of
 this data can be projected with the dot operator:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>let P = new point2d(1, 2);
-assert P.x ==&gt; 1;
-assert P.y ==&gt; 2;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">P</span> <span class="p">=</span> <span class="k">new</span> point2d<span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
+<span class="k">assert</span> <span class="nv">P</span><span class="p">.</span>x <span class="p">=</span><span class="o">=&gt;</span> <span class="mf">1</span><span class="p">;</span>
+<span class="k">assert</span> <span class="nv">P</span><span class="p">.</span>y <span class="p">=</span><span class="o">=&gt;</span> <span class="mf">2</span><span class="p">;</span>
 </pre></div>
 </div>
 <p><a class="reference internal" href="using.html#field-projection"><span class="std std-ref">Field projection</span></a> is very restricted for security reasons, and typed
@@ -233,20 +235,20 @@ type. In order to make them accessible outside of the package, one needs
 to expose them through a <a class="reference internal" href="../commands/index.html#commands"><span class="std std-ref">command</span></a>.</p>
 <p>Some types have very trivial patterns for accessing their fields, however.
 For example, if we have:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type point2d(x, y);
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> point2d<span class="p">(</span>x<span class="p">,</span> y<span class="p">);</span>
 </pre></div>
 </div>
 <p>Then we don’t really want to do anything before providing the values stored
 in <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> to whoever needs them. So we’d essentially be writing:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type point2d(x, y);
-command point2d x = self.x;
-command point2d y = self.y;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> point2d<span class="p">(</span>x<span class="p">,</span> y<span class="p">);</span>
+<span class="k">command</span> point2d x <span class="p">=</span> self.x<span class="p">;</span>
+<span class="k">command</span> point2d y <span class="p">=</span> self.y<span class="p">;</span>
 </pre></div>
 </div>
 <p>In these cases, we can mark the field as “global” and Crochet will generate
 the command definitions above for us. So the following is equivalent, but
 takes less effort:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type point2d(global x, global y);
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> point2d<span class="p">(</span><span class="k">global</span> x<span class="p">,</span> <span class="k">global</span> y<span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -259,7 +261,7 @@ a piece of data. For example, types like <code class="docutils literal notransla
 own, they don’t need to be associated with anything else.</p>
 <p>A data-less type declaration looks much like what we’ve seen previously,
 but no fields are specified:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type some-name;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> some-name<span class="p">;</span>
 </pre></div>
 </div>
 <p>The <a class="reference internal" href="using.html#new-operator"><span class="std std-ref">new operator</span></a> is still what brings these types to the realm of
@@ -272,7 +274,7 @@ Crochet’s database. They are also often used to define modules,
 or as a secure capability.</p>
 <p>However one decides to use them, construction is similar, but again
 without providing any field bindings:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>new some-name;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">new</span> some-name<span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -286,7 +288,7 @@ if you’re building a game, and you’re using a data-less type for a
 main character, you don’t really want to have <em>multiple</em> unique copies
 of that character.</p>
 <p>Crochet provides a special type declaration for this:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>singleton player;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">singleton</span> player<span class="p">;</span>
 </pre></div>
 </div>
 <p>In this case we don’t use the <a class="reference internal" href="using.html#new-operator"><span class="std std-ref">new operator</span></a> for materialising the
@@ -294,15 +296,15 @@ name <code class="docutils literal notranslate"><span class="pre">player</span><
 It will construct a global name <code class="docutils literal notranslate"><span class="pre">player</span></code> that is unique.</p>
 <p>Indeed, the singleton declaration works much like the following
 piece of Crochet:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>// Introduces a new data-less type definition, `player`.
-type player;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="c1">// Introduces a new data-less type definition, `player`.</span>
+<span class="k">type</span> player<span class="p">;</span>
 
-// Constructs an unique `player` name, allows it to be accessed through
-// the global `player` variable.
-define player = new player;
+<span class="c1">// Constructs an unique `player` name, allows it to be accessed through</span>
+<span class="c1">// the global `player` variable.</span>
+<span class="k">define</span> player <span class="p">=</span> <span class="k">new</span> player<span class="p">;</span>
 
-// Forbids any further construction of `player` names.
-seal player;
+<span class="c1">// Forbids any further construction of `player` names.</span>
+seal player<span class="p">;</span>
 </pre></div>
 </div>
 <p>The seal operation at the end ensures that the system has exactly
@@ -317,9 +319,9 @@ are created accidentally.</p>
 <p>There’s one more data modelling aspect that is not covered by the previous
 type declarations. Consider the case where we want to talk about
 mathematical shapes. Sure we can just define each shape independently:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type square(side);
-type circle(radius);
-type triangle(adjacent, opposite, hypotenuse);
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> square<span class="p">(</span>side<span class="p">);</span>
+<span class="k">type</span> circle<span class="p">(</span>radius<span class="p">);</span>
+<span class="k">type</span> triangle<span class="p">(</span>adjacent<span class="p">,</span> opposite<span class="p">,</span> hypotenuse<span class="p">);</span>
 </pre></div>
 </div>
 <p>But these independent definitions obscure that all of them share some
@@ -331,10 +333,10 @@ hierarchy can be used to talk about some commonalities of the
 types below them.</p>
 <p>In this case, we could introduce a <code class="docutils literal notranslate"><span class="pre">shape</span></code> type that sits atop of
 these specific shapes:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type shape;
-type square(side) is shape;
-type circle(radius) is shape;
-type triangle(adjacent, opposite, hypotenuse) is shape;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> shape<span class="p">;</span>
+<span class="k">type</span> square<span class="p">(</span>side<span class="p">)</span> <span class="k">is</span> shape<span class="p">;</span>
+<span class="k">type</span> circle<span class="p">(</span>radius<span class="p">)</span> <span class="k">is</span> shape<span class="p">;</span>
+<span class="k">type</span> triangle<span class="p">(</span>adjacent<span class="p">,</span> opposite<span class="p">,</span> hypotenuse<span class="p">)</span> <span class="k">is</span> shape<span class="p">;</span>
 </pre></div>
 </div>
 <p>Note the <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">shape</span></code> attached at the end of the previous type declarations.
@@ -349,14 +351,14 @@ means that this feature is a poor fit for <em>contextual</em> hierarchies. For
 example, still in the theme of mathematical shapes, one may think that
 a <code class="docutils literal notranslate"><span class="pre">square</span></code> would be just a special case of a <code class="docutils literal notranslate"><span class="pre">rectangle</span></code>, and they
 may proceed to define the following hierarchy:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type rectangle(width, height) is shape;
-type square(side) is rectangle;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> rectangle<span class="p">(</span>width<span class="p">,</span> height<span class="p">)</span> <span class="k">is</span> shape<span class="p">;</span>
+<span class="k">type</span> square<span class="p">(</span>side<span class="p">)</span> <span class="k">is</span> rectangle<span class="p">;</span>
 </pre></div>
 </div>
 <p>You might think that this makes sense, but we run into things like the
 following:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>let A = new rectangle(10, 10);
-let B = new square(10);
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">A</span> <span class="p">=</span> <span class="k">new</span> rectangle<span class="p">(</span><span class="mf">10</span><span class="p">,</span> <span class="mf">10</span><span class="p">);</span>
+<span class="k">let</span> <span class="nv">B</span> <span class="p">=</span> <span class="k">new</span> square<span class="p">(</span><span class="mf">10</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Now, both <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> are mathematically equivalent shapes—they’re
@@ -380,10 +382,10 @@ be added to the hierarchy at any point in time, by anyone.</p>
 where characters may be affected by different conditions. This will
 often be defined as an hierarchy, so we can talk about <em>conditions</em>
 in general, as well as specific conditions:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type condition;
-type poisoned is condition;
-type sleeping is condition;
-type silenced is condition;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="k">condition</span><span class="p">;</span>
+<span class="k">type</span> poisoned <span class="k">is</span> <span class="k">condition</span><span class="p">;</span>
+<span class="k">type</span> sleeping <span class="k">is</span> <span class="k">condition</span><span class="p">;</span>
+<span class="k">type</span> silenced <span class="k">is</span> <span class="k">condition</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>As it stands, the author of the <code class="docutils literal notranslate"><span class="pre">condition</span></code> type has thought of
@@ -392,7 +394,7 @@ It’s quite likely that the code dealing with conditions may end up
 baking assumptions about its specific conditions. However, there is
 nothing in Crochet that prevents some other piece of code from
 attaching more conditions to this hierarchy:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type petrified is condition;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> petrified <span class="k">is</span> <span class="k">condition</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>If such a declaration appears at some later point, somewhere in the
@@ -411,8 +413,8 @@ sharing your code with someone else.</p>
 <p>Often programming languages that feature type hierarchies also have
 subtypes inherit the fields from the parent type. That is, given
 something like:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type rectangle(width, height);
-type square(side) is rectangle;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> rectangle<span class="p">(</span>width<span class="p">,</span> height<span class="p">);</span>
+<span class="k">type</span> square<span class="p">(</span>side<span class="p">)</span> <span class="k">is</span> rectangle<span class="p">;</span>
 </pre></div>
 </div>
 <p>Then, in common object-oriented languages, the <code class="docutils literal notranslate"><span class="pre">square</span></code> type would really
@@ -432,10 +434,10 @@ to construct. For example, in our previous examples with the <code class="docuti
 <code class="docutils literal notranslate"><span class="pre">condition</span></code> types, there aren’t really use cases for constructing them.
 Crochet makes it possible to make this explicit through the <code class="docutils literal notranslate"><span class="pre">abstract</span></code>
 declaration:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>abstract shape;
-type square(side) is shape;
-type circle(radius) is shape;
-type triangle(adjacent, opposite, hypotenuse) is shape;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">abstract</span> shape<span class="p">;</span>
+<span class="k">type</span> square<span class="p">(</span>side<span class="p">)</span> <span class="k">is</span> shape<span class="p">;</span>
+<span class="k">type</span> circle<span class="p">(</span>radius<span class="p">)</span> <span class="k">is</span> shape<span class="p">;</span>
+<span class="k">type</span> triangle<span class="p">(</span>adjacent<span class="p">,</span> opposite<span class="p">,</span> hypotenuse<span class="p">)</span> <span class="k">is</span> shape<span class="p">;</span>
 </pre></div>
 </div>
 <p>Here the only thing that has changed is the declaration of the <code class="docutils literal notranslate"><span class="pre">shape</span></code>
@@ -443,9 +445,9 @@ type, replacing the <code class="docutils literal notranslate"><span class="pre"
 semantics of the <code class="docutils literal notranslate"><span class="pre">shape</span></code> type (and any of its subtypes) remain largely
 unchanged, but this means that the <a class="reference internal" href="using.html#new-operator"><span class="std std-ref">new operator</span></a> will not work on
 <code class="docutils literal notranslate"><span class="pre">shape</span></code> itself:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>new shape;
-// *** Error: non-constructable: `shape` is an abstract type;
-//                                it cannot be constructed.
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">new</span> shape<span class="p">;</span>
+<span class="c1">// *** Error: non-constructable: `shape` is an abstract type;</span>
+<span class="c1">//                                it cannot be constructed.</span>
 </pre></div>
 </div>
 </div>
@@ -460,15 +462,15 @@ the <code class="docutils literal notranslate"><span class="pre">is</span> <span
 convenient way of declaring these hierarchies; called an
 enumeration.</p>
 <p>Enumerations in Crochet can be declared as follows:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>enum condition = poisoned, sleeping, silenced;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="k">condition</span> <span class="p">=</span> poisoned<span class="p">,</span> sleeping<span class="p">,</span> silenced<span class="p">;</span>
 </pre></div>
 </div>
 <p>The effect is similar to the following way of declaring the same:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>abstract condition;
-singleton poisoned is condition;
-singleton sleeping is condition;
-singleton silenced is condition;
-close condition;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">abstract</span> <span class="k">condition</span><span class="p">;</span>
+<span class="k">singleton</span> poisoned <span class="k">is</span> <span class="k">condition</span><span class="p">;</span>
+<span class="k">singleton</span> sleeping <span class="k">is</span> <span class="k">condition</span><span class="p">;</span>
+<span class="k">singleton</span> silenced <span class="k">is</span> <span class="k">condition</span><span class="p">;</span>
+close <span class="k">condition</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>However, enumerations are closed hierarchies, meaning that it is not
@@ -479,7 +481,7 @@ is declared.</p>
 out-of-the-box functionality. For example, enumerations are <em>ordered</em>,
 which makes them useful for modelling a set of progressive states—or
 steps:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>enum health = healthy, scratched, bleeding, dead;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> health <span class="p">=</span> healthy<span class="p">,</span> scratched<span class="p">,</span> bleeding<span class="p">,</span> dead<span class="p">;</span>
 </pre></div>
 </div>
 <p>In a game that features combat and tracks the health of characters without
@@ -510,7 +512,7 @@ for producing them?</p>
 representation of integral numbers, such as <code class="docutils literal notranslate"><span class="pre">"one"</span></code>, and producing
 the equivalent integer—which in this case would be <code class="docutils literal notranslate"><span class="pre">1</span></code>. A language
 may be tempted to define a command on pieces of text, such as:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command text to-integer = // implementation goes here
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> text to-integer <span class="p">=</span> <span class="c1">// implementation goes here</span>
 </pre></div>
 </div>
 <p>But command names in Crochet are neither unique nor unforgeable. We
@@ -527,7 +529,7 @@ of the type, with the same name, but which isn’t part of any hierarchy.</p>
 means the special static type when in a type context, and the unique
 static data when in a data context. So, if we were to write a more secure
 version of the previous command, we could do as follows:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command text to: #integer = // implementation goes here
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> text <span class="nf">to:</span> <span class="o">#</span>integer <span class="p">=</span> <span class="c1">// implementation goes here</span>
 </pre></div>
 </div>
 <p>And this would be used like so: <code class="docutils literal notranslate"><span class="pre">"one"</span> <span class="pre">to:</span> <span class="pre">#integer</span></code>, resulting in <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>

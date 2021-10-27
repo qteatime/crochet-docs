@@ -193,23 +193,23 @@ proceed on its own and needs some manual intervention.
 
 But how do these kinds of ambiguity rise? There are three common cases:
 
-  - **Uncoordinated definition of commands**: commands can be defined anywhere,
-    by anyone, for any type. So it might be the case that you've defined a
-    command for some type with a name, and someone else independently defined
-    another command for the same type, with the same name.
+- **Uncoordinated definition of commands**: commands can be defined anywhere,
+  by anyone, for any type. So it might be the case that you've defined a
+  command for some type with a name, and someone else independently defined
+  another command for the same type, with the same name.
 
-    Here, you need to pick which of the commands the application will use.
+  Here, you need to pick which of the commands the application will use.
 
-  - **Coding mistakes**: because commands can be defined anywhere, one might
-    forget that they had already defined a command for some type and try to
-    define it again somewhere else.
+- **Coding mistakes**: because commands can be defined anywhere, one might
+  forget that they had already defined a command for some type and try to
+  define it again somewhere else.
 
-    Here, you might want to remove one of the command definitions. Or, if
-    they're both supposed to exist, you can rename one of them.
+  Here, you might want to remove one of the command definitions. Or, if
+  they're both supposed to exist, you can rename one of them.
 
-  - **The use of traits**: because traits don't have a hierarchy, they're
-    particularly prone to ambiguities. In these cases you can try to make
-    the requirement more specific or rename the command.
+- **The use of traits**: because traits don't have a hierarchy, they're
+  particularly prone to ambiguities. In these cases you can try to make
+  the requirement more specific or rename the command.
 
 
 What if no command is selected?
@@ -221,32 +221,32 @@ really do much here on its own and will need manual intervention.
 
 There are three common cases where this failure happens:
 
-  - **Mistyping the command**: it's easy to have a typo in the command name
-    and not notice it. Sometimes these typos can mean that you get a command
-    that exists, but wasn't the one you wanted.
+- **Mistyping the command**: it's easy to have a typo in the command name
+  and not notice it. Sometimes these typos can mean that you get a command
+  that exists, but wasn't the one you wanted.
     
-    In either case, the way to address this is to fix the typo.
+  In either case, the way to address this is to fix the typo.
 
-  - **High requirements**: it can be that, when you started writing the
-    program, you had some view of the requirements in mind, but as you've
-    iterated in your design you started relaxing those requirements---but
-    didn't get to update them in all of the places.
+- **High requirements**: it can be that, when you started writing the
+  program, you had some view of the requirements in mind, but as you've
+  iterated in your design you started relaxing those requirements---but
+  didn't get to update them in all of the places.
     
-    In this case you might want to update the requirements in those
-    commands.
+  In this case you might want to update the requirements in those
+  commands.
 
-  - **Missing commands**: sometimes you might approach writing a program
-    through a more wishful approach---you use commands before you actually
-    define them; and you only define commands when you're happy with how
-    using them feels like. It's easy to forget to define the command later,
-    and get this error when trying to run the program.
+- **Missing commands**: sometimes you might approach writing a program
+  through a more wishful approach---you use commands before you actually
+  define them; and you only define commands when you're happy with how
+  using them feels like. It's easy to forget to define the command later,
+  and get this error when trying to run the program.
 
-    Another case where this can happen is if you're using a package written
-    by someone else, and you try to provide values to a command that the
-    package author had not considered when designing it.
+  Another case where this can happen is if you're using a package written
+  by someone else, and you try to provide values to a command that the
+  package author had not considered when designing it.
 
-    In both of these cases the only action you can do is define the missing
-    commands.
+  In both of these cases the only action you can do is define the missing
+  commands.
 
 
 Applying commands

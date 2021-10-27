@@ -2,19 +2,20 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Annex A: Design philosophy" href="../design-philosophy.html" /><link rel="prev" title="Signatures and their uses" href="signatures.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Why are commands …?" href="why.html" /><link rel="prev" title="Signatures and their uses" href="signatures.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
         <title>Executing commands - Crochet 0.12 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/crochet.css" />
     
 
 
 <style>
   :root {
-    --color-code-background: #f8f8f8;
+    --color-code-background: #ffffff;
   --color-code-foreground: black;
   
   }
@@ -28,7 +29,7 @@
 
   /* For allowing end-user-specific overrides */
   .override-light {
-    --color-code-background: #f8f8f8;
+    --color-code-background: #ffffff;
   --color-code-foreground: black;
   
   }
@@ -125,6 +126,7 @@
 <li class="toctree-l3"><a class="reference internal" href="declaration.html">What are commands?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="signatures.html">Signatures and their uses</a></li>
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="why.html">Why are commands …?</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -194,11 +196,11 @@ requirements.</p>
 in Crochet—the way we <em>talk</em> about plants often suggests some hierarchy,
 even if we don’t think about it that way. In Crochet, we could capture
 this plant-hierarchy (or taxonomy) in the following way:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type plant;
-type flower is plant;
-type rose is flower;
-type white-rose is rose;
-type red-rose is rose;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> plant<span class="p">;</span>
+<span class="k">type</span> flower <span class="k">is</span> plant<span class="p">;</span>
+<span class="k">type</span> rose <span class="k">is</span> flower<span class="p">;</span>
+<span class="k">type</span> white-rose <span class="k">is</span> rose<span class="p">;</span>
+<span class="k">type</span> red-rose <span class="k">is</span> rose<span class="p">;</span>
 </pre></div>
 </div>
 <p>So, from this declaration we know that a value such as <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">red-rose</span></code> is
@@ -214,12 +216,12 @@ things. If we say: “plants may or may not have thorns” that’s not exactly
 a more useful statement. It’s a <em>closer</em> statement, in Crochet’s sense.</p>
 <p>So if we had commands that had requirements in this hierarchy, they could
 look like this:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command any has-thorns = "that's a possibility";
-command plant has-thorns = "maybe";
-command flower has-thorns = "maybe";
-command rose has-thorns = "yes";
-command white-rose has-thorns = "definitely";
-command red-rose has-thorns = "you bet";
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> any has-thorns <span class="p">=</span> <span class="dl">"</span><span class="s2">that's a possibility</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">command</span> plant has-thorns <span class="p">=</span> <span class="dl">"</span><span class="s2">maybe</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">command</span> flower has-thorns <span class="p">=</span> <span class="dl">"</span><span class="s2">maybe</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">command</span> rose has-thorns <span class="p">=</span> <span class="dl">"</span><span class="s2">yes</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">command</span> white-rose has-thorns <span class="p">=</span> <span class="dl">"</span><span class="s2">definitely</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">command</span> red-rose has-thorns <span class="p">=</span> <span class="dl">"</span><span class="s2">you bet</span><span class="dl">"</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>And if we were to use this <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">has-thorns</span></code> command with our red rose,
@@ -229,11 +231,11 @@ In this case, we filter out the <code class="docutils literal notranslate"><span
 a red rose can never be a white rose, given the hierarchy we’ve described.</p>
 <p>Everything else is still a candidate for being executed, however, so
 Crochet proceeds to rank these commands in the following way:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1.   red-rose has-thorns
-2.   rose has-thorns
-3.   flower has-thorns
-4.   plant has-thorns
-5.   any has-thorns
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="mf">1</span><span class="p">.</span>   red-rose has-thorns
+<span class="mf">2</span><span class="p">.</span>   rose has-thorns
+<span class="mf">3</span><span class="p">.</span>   flower has-thorns
+<span class="mf">4</span><span class="p">.</span>   plant has-thorns
+<span class="mf">5</span><span class="p">.</span>   any has-thorns
 </pre></div>
 </div>
 <p>We’ve got one command at the very top—ranked in the 1st position:
@@ -257,15 +259,15 @@ have the same weight, the same specificity, the same closeness.</p>
 <p>However, Crochet does define that a requirement that includes traits
 is a tiny bit closer than a requirement that does not include traits,
 if both of them share the same type requirement. For example:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command (X is red-rose) smell = "It smells quite nice!";
-command (X is flower has perfume) smell = "It smells nice";
-command (X is flower) smell = "You can't really tell much";
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="p">(</span><span class="nv">X</span> <span class="k">is</span> red-rose<span class="p">)</span> smell <span class="p">=</span> <span class="dl">"</span><span class="s2">It smells quite nice!</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">command</span> <span class="p">(</span><span class="nv">X</span> <span class="k">is</span> flower <span class="k">has</span> perfume<span class="p">)</span> smell <span class="p">=</span> <span class="dl">"</span><span class="s2">It smells nice</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">command</span> <span class="p">(</span><span class="nv">X</span> <span class="k">is</span> flower<span class="p">)</span> smell <span class="p">=</span> <span class="dl">"</span><span class="s2">You can't really tell much</span><span class="dl">"</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Here, if we were to rank these commands we’d end up with:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1.  (X is red-rose) smell
-2.  (X is flower has perfume) smell
-3.  (X is flower) smell
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="mf">1</span><span class="p">.</span>  <span class="p">(</span><span class="nv">X</span> <span class="k">is</span> red-rose<span class="p">)</span> smell
+<span class="mf">2</span><span class="p">.</span>  <span class="p">(</span><span class="nv">X</span> <span class="k">is</span> flower <span class="k">has</span> perfume<span class="p">)</span> smell
+<span class="mf">3</span><span class="p">.</span>  <span class="p">(</span><span class="nv">X</span> <span class="k">is</span> flower<span class="p">)</span> smell
 </pre></div>
 </div>
 <p>Note how, despite being pretty much the same type requirement, the <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">smell</span></code>
@@ -280,14 +282,14 @@ includes traits or not.</p>
 But things get a bit more complicated when we have multiple requirements.
 For example, consider what happens if we extend our collection of rose
 commands to consider multiple of them at the same time:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command combine: rose and: flower = "A";
-command combine: flower and: rose = "B";
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="nf">combine:</span> rose <span class="nf">and:</span> flower <span class="p">=</span> <span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">command</span> <span class="nf">combine:</span> flower <span class="nf">and:</span> rose <span class="p">=</span> <span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Intuitivelly, we’d expect these commands to have the same requirements.
 They both require one rose and one flower on each side. So, if we were
 to use this command like so:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>combine: new red-rose and: new white-rose;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="nf">combine:</span> <span class="k">new</span> red-rose <span class="nf">and:</span> <span class="k">new</span> white-rose<span class="p">;</span>
 </pre></div>
 </div>
 <p>Which one of the commands would be selected? What would we get back
@@ -301,8 +303,8 @@ second requirement of each command to pick the closest one again. And it
 keeps doing so until it runs out of requirements, or only one top ranked
 command remains.</p>
 <p>So we’d rank the commands above like this:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1.  combine: rose and: flower
-2.  combine: flower and: rose
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="mf">1</span><span class="p">.</span>  <span class="nf">combine:</span> rose <span class="nf">and:</span> flower
+<span class="mf">2</span><span class="p">.</span>  <span class="nf">combine:</span> flower <span class="nf">and:</span> rose
 </pre></div>
 </div>
 </div>
@@ -313,8 +315,7 @@ that Crochet has, it isn’t able to pick just one top ranked command—it is
 left with several top ranked ones. In these cases Crochet simply cannot
 proceed on its own and needs some manual intervention.</p>
 <p>But how do these kinds of ambiguity rise? There are three common cases:</p>
-<blockquote>
-<div><ul>
+<ul>
 <li><p><strong>Uncoordinated definition of commands</strong>: commands can be defined anywhere,
 by anyone, for any type. So it might be the case that you’ve defined a
 command for some type with a name, and someone else independently defined
@@ -331,7 +332,6 @@ they’re both supposed to exist, you can rename one of them.</p>
 particularly prone to ambiguities. In these cases you can try to make
 the requirement more specific or rename the command.</p></li>
 </ul>
-</div></blockquote>
 </div>
 <div class="section" id="what-if-no-command-is-selected">
 <h3>What if no command is selected?<a class="headerlink" href="#what-if-no-command-is-selected" title="Permalink to this headline">¶</a></h3>
@@ -339,8 +339,7 @@ the requirement more specific or rename the command.</p></li>
 whose requirements are fulfilled by the used values. Again, Crochet can’t
 really do much here on its own and will need manual intervention.</p>
 <p>There are three common cases where this failure happens:</p>
-<blockquote>
-<div><ul>
+<ul>
 <li><p><strong>Mistyping the command</strong>: it’s easy to have a typo in the command name
 and not notice it. Sometimes these typos can mean that you get a command
 that exists, but wasn’t the one you wanted.</p>
@@ -365,7 +364,6 @@ package author had not considered when designing it.</p>
 commands.</p>
 </li>
 </ul>
-</div></blockquote>
 </div>
 </div>
 <div class="section" id="applying-commands">
@@ -377,17 +375,17 @@ allow the names described in the command’s signature to refer to the
 values we’ve used in that position, and then we execute the command’s
 body.</p>
 <p>That is, consider the following command:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type person;
-type alice is person;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> person<span class="p">;</span>
+<span class="k">type</span> alice <span class="k">is</span> person<span class="p">;</span>
 
-enum food = bread, cake, crepe;
+<span class="k">enum</span> food <span class="p">=</span> bread<span class="p">,</span> cake<span class="p">,</span> crepe<span class="p">;</span>
 
-command (Who is person) likes: (What is food) =
-  "[Who] likes [What]!";
+<span class="k">command</span> <span class="p">(</span><span class="nv">Who</span> <span class="k">is</span> person<span class="p">)</span> <span class="nf">likes:</span> <span class="p">(</span><span class="nv">What</span> <span class="k">is</span> food<span class="p">)</span> <span class="p">=</span>
+  <span class="dl">"</span><span class="si">[</span><span class="nv">Who</span><span class="si">]</span><span class="s2"> likes </span><span class="si">[</span><span class="nv">What</span><span class="si">]</span><span class="s2">!</span><span class="dl">"</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>If we use this command like so:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>alice likes: cake;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span>alice <span class="nf">likes:</span> cake<span class="p">;</span>
 </pre></div>
 </div>
 <p>Then, inside of that command’s body, the variable <code class="docutils literal notranslate"><span class="pre">Who</span></code> will refer to the
@@ -408,9 +406,9 @@ to by the special name <code class="docutils literal notranslate"><span class="p
 <code class="docutils literal notranslate"><span class="pre">some:</span> <span class="pre">_</span> <span class="pre">keyword:</span> <span class="pre">_</span></code>, because the first underscore here appears after
 a portion of the command’s name.</p>
 <p>Using self, both of the following commands have equivalent behaviour:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command alice greet = "[self] says, 'Hello!'";
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> alice greet <span class="p">=</span> <span class="dl">"</span><span class="si">[</span><span class="k">self</span><span class="si">]</span><span class="s2"> says, 'Hello!'</span><span class="dl">"</span><span class="p">;</span>
 
-command (Who is alice) greet = "[Who] says, 'Hello!'";
+<span class="k">command</span> <span class="p">(</span><span class="nv">Who</span> <span class="k">is</span> alice<span class="p">)</span> greet <span class="p">=</span> <span class="dl">"</span><span class="si">[</span><span class="nv">Who</span><span class="si">]</span><span class="s2"> says, 'Hello!'</span><span class="dl">"</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>You might have stumbled with the concept of <code class="docutils literal notranslate"><span class="pre">self</span></code> in other languages
@@ -427,12 +425,12 @@ the first parameter explicitly.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../design-philosophy.html">
+          <a class="next-page" href="why.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Annex A: Design philosophy</div>
+                <div class="title">Why are commands …?</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>

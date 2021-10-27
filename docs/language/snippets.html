@@ -9,12 +9,13 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/crochet.css" />
     
 
 
 <style>
   :root {
-    --color-code-background: #f8f8f8;
+    --color-code-background: #ffffff;
   --color-code-foreground: black;
   
   }
@@ -28,7 +29,7 @@
 
   /* For allowing end-user-specific overrides */
   .override-light {
-    --color-code-background: #f8f8f8;
+    --color-code-background: #ffffff;
   --color-code-foreground: black;
   
   }
@@ -125,6 +126,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../system/commands/declaration.html">What are commands?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../system/commands/signatures.html">Signatures and their uses</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../system/commands/dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system/commands/why.html">Why are commands …?</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../system/design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -150,8 +152,8 @@
 <h1>How are names unique?<a class="headerlink" href="#how-are-names-unique" title="Permalink to this headline">¶</a></h1>
 <p>But how is a name unique? Well, within a package, Crochet does not allow one
 to define two type entities with the same name. For example:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type rectangle(width, height);
-type rectangle(origin, destination);
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> rectangle<span class="p">(</span>width<span class="p">,</span> height<span class="p">);</span>
+<span class="k">type</span> rectangle<span class="p">(</span>origin<span class="p">,</span> destination<span class="p">);</span>
 </pre></div>
 </div>
 <p>If we give Crochet a module that looks like the one above, Crochet will reject
@@ -182,7 +184,7 @@ can’t get access to something by just knowing how its full name works. So if
 a separate package, such as <code class="docutils literal notranslate"><span class="pre">user-package</span></code> can only use that name if it
 has been granted access.</p>
 <p>Consider a case where <code class="docutils literal notranslate"><span class="pre">user-package</span></code> contains the following module:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>type other-rectangle(width, height) is my-package/rectangle;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> other-rectangle<span class="p">(</span>width<span class="p">,</span> height<span class="p">)</span> <span class="k">is</span> my-package<span class="o">/</span>rectangle<span class="p">;</span>
 </pre></div>
 </div>
 <p>Intuitively, it looks like <code class="docutils literal notranslate"><span class="pre">user-package</span></code> has managed to “forge” (have access

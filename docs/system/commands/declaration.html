@@ -9,12 +9,13 @@
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/crochet.css" />
     
 
 
 <style>
   :root {
-    --color-code-background: #f8f8f8;
+    --color-code-background: #ffffff;
   --color-code-foreground: black;
   
   }
@@ -28,7 +29,7 @@
 
   /* For allowing end-user-specific overrides */
   .override-light {
-    --color-code-background: #f8f8f8;
+    --color-code-background: #ffffff;
   --color-code-foreground: black;
   
   }
@@ -125,6 +126,7 @@
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">What are commands?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="signatures.html">Signatures and their uses</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="why.html">Why are commands …?</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -154,8 +156,8 @@ Crochet’s commands are a bit similar to “functions”, “procedures”, “
 and “methods” in other programming languages, but they have a few unique
 things about them.</p>
 <p>For example, consider the following command declarations:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>command true and true = true;
-command boolean and boolean = false;
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="k">true</span> <span class="k">and</span> <span class="k">true</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+<span class="k">command</span> boolean <span class="k">and</span> boolean <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This piece of code defines two commands, but both of them have the same
@@ -180,7 +182,7 @@ descending from it. And both <code class="docutils literal notranslate"><span cl
 When we use a command, Crochet will pick the one whose requirements are most
 closely matched to the arguments.</p>
 <p>For example, let’s say we have the following use of a command:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>true and true
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">true</span> <span class="k">and</span> <span class="k">true</span>
 </pre></div>
 </div>
 <p>Crochet will find all of the commands that have been declared with the name
@@ -204,6 +206,15 @@ it has a name and we can execute that function to do something. But multiple
 commands can share the same name, and when we execute one, Crochet will pick
 up the closest one that matches all requirements. Some languages call this
 a Multi-method.</p>
+<div class="section" id="commands-are-global">
+<h2>Commands are global<a class="headerlink" href="#commands-are-global" title="Permalink to this headline">¶</a></h2>
+<p>In Crochet, commands are always global. This might come as a surprise since
+almost everything else in Crochet is qualified by the package they’re in.
+So if you define a type like <code class="docutils literal notranslate"><span class="pre">player</span></code>, what you’re really defining is
+the type <code class="docutils literal notranslate"><span class="pre">some-package/player</span></code>. But this is not the case with commands.</p>
+<p>If you define a command <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code>, its name will always be just <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code>,
+regardless of which package it’s defined in.</p>
+</div>
 <div class="section" id="signatures">
 <h2>Signatures<a class="headerlink" href="#signatures" title="Permalink to this headline">¶</a></h2>
 <p>Because commands can have the same <em>name</em>, Crochet needs a different way
@@ -285,6 +296,7 @@ expression (concerning the value <code class="docutils literal notranslate"><spa
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">What are commands?</a><ul>
+<li><a class="reference internal" href="#commands-are-global">Commands are global</a></li>
 <li><a class="reference internal" href="#signatures">Signatures</a></li>
 <li><a class="reference internal" href="#behaviours">Behaviours</a></li>
 </ul>
