@@ -6,13 +6,9 @@
 
 # -- Path setup --------------------------------------------------------------
 
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+sys.path.insert(0, os.path.abspath('.'))
 
 
 # -- Project information -----------------------------------------------------
@@ -31,7 +27,8 @@ release = '0.12'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-  "sphinx.ext.todo"
+  "sphinx.ext.todo",
+  'crochet-sphinx'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -55,5 +52,10 @@ html_theme = 'furo'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+html_css_files = [
+  'css/crochet.css',
+]
+
 # TODO: write a pygments lexer for Crochet
-highlight_language = "none"
+highlight_language = "crochet"
+pygments_style = 'colorful'

@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=PT+Sans+Caption:wght@700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&display=swap");
+
+.main article {
+  font-size: 1.1em;
+  font-family: Lora, serif;
+}
+
+.highlight {
+  border: 1px solid #ececea;
+  border-left-width: 10px;
+  box-shadow: 0px 0px 1px rgb(0 0 0 / 10%);
+  font-size: 1.1em;
+}
+
+.highlight pre,
+code,
+pre,
+kbd,
+samp {
+  font-family: "Source Code Pro", monospace;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "PT Sans Caption", sans-serif;
+  margin-top: 2rem;
+}
+
+h3 {
+  border-bottom: 1px solid #ececea;
+}

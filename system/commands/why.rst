@@ -92,13 +92,13 @@ package. But later in the development of their collision library,
 Max notices that a "does this rectangle contain this point" function
 would also be useful. In most languages, Max would either:
 
-  1. Have to hope Alissa designed with this extension idea in mind---through
-     subclassing or traits;
+1. Have to hope Alissa designed with this extension idea in mind---through
+   subclassing or traits;
 
-  2. Use some local function for this, which will likely read very differently
-     from how rectangles and points are used everywhere else; or
+2. Use some local function for this, which will likely read very differently
+   from how rectangles and points are used everywhere else; or
 
-  3. Copy Alissa's source code and change the package itself.
+3. Copy Alissa's source code and change the package itself.
 
 Modern languages go for the first one, but that's problematic in
 Crochet's case because it requires anyone who's writing a library

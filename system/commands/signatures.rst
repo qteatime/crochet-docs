@@ -19,37 +19,37 @@ to understand it as ``_ and _ and also _``.
 
 Crochet has four different "forms" of names:
 
-  - **Unary**: these are names like ``_ successor``, ``_ round``, or
-    ``_ is-empty``. Note that the name of the command always follows
-    the underscore, and when a name is composed of multiple words they
-    are written hyphen-separated, rather than space-separated.
+- **Unary**: these are names like ``_ successor``, ``_ round``, or
+  ``_ is-empty``. Note that the name of the command always follows
+  the underscore, and when a name is composed of multiple words they
+  are written hyphen-separated, rather than space-separated.
 
-  - **Binary**: these are names like ``_ + _``, ``_ and _``, or
-    ``_ <- _``. These commands have exactly two requirements and
-    two values, one on each side of the name. Unlike unary names,
-    a binary name cannot be anything you come up with---rather,
-    there are a handful of valid names that Crochet knows about,
-    and any new name would require a change to the Crochet
-    language itself.
+- **Binary**: these are names like ``_ + _``, ``_ and _``, or
+  ``_ <- _``. These commands have exactly two requirements and
+  two values, one on each side of the name. Unlike unary names,
+  a binary name cannot be anything you come up with---rather,
+  there are a handful of valid names that Crochet knows about,
+  and any new name would require a change to the Crochet
+  language itself.
 
-  - **Keyword**: these are names like ``_ to: _``, ``_ between: _ and: _``,
-    ``_ from: _ fold-with: _``. Here the command may have two or more requirements
-    and values. It always starts with an underscore. And then is followed by
-    any number of ``keyword: _`` suffixes. Like in the unary case, these
-    keywords can be anything, and multiple words need to be separated with
-    hyphens instead of spaces. Additionally, a colon (``:``) needs to follow
-    the keyword immediately---no spaces allowed between the hyphenated words
-    and the colon.
+- **Keyword**: these are names like ``_ to: _``, ``_ between: _ and: _``,
+  ``_ from: _ fold-with: _``. Here the command may have two or more requirements
+  and values. It always starts with an underscore. And then is followed by
+  any number of ``keyword: _`` suffixes. Like in the unary case, these
+  keywords can be anything, and multiple words need to be separated with
+  hyphens instead of spaces. Additionally, a colon (``:``) needs to follow
+  the keyword immediately---no spaces allowed between the hyphenated words
+  and the colon.
 
-  - **Self-less keyword**: this is a variation of the **keyword** form where
-    the name starts with a keyword instead of a requirement/value. For
-    example, ``panic-without-trace: _ tag: _`` and ``panic-without-trace: _``
-    are both self-less keyword names. The reason it's called "self-less" is
-    that the very first requirement/value in a command is treated in a
-    slightly special way in Crochet, and can be referenced through the
-    special expression ``self``. A command that does not start with a
-    requirement/value would make it confusing to highlight any of them,
-    so there's no ``self`` allowed within these commands---they're ``self-less``.
+- **Self-less keyword**: this is a variation of the **keyword** form where
+  the name starts with a keyword instead of a requirement/value. For
+  example, ``panic-without-trace: _ tag: _`` and ``panic-without-trace: _``
+  are both self-less keyword names. The reason it's called "self-less" is
+  that the very first requirement/value in a command is treated in a
+  slightly special way in Crochet, and can be referenced through the
+  special expression ``self``. A command that does not start with a
+  requirement/value would make it confusing to highlight any of them,
+  so there's no ``self`` allowed within these commands---they're ``self-less``.
     
 
 Requirements
