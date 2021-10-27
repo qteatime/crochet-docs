@@ -67,6 +67,18 @@ up the closest one that matches all requirements. Some languages call this
 a Multi-method.
 
 
+Commands are global
+-------------------
+
+In Crochet, commands are always global. This might come as a surprise since
+almost everything else in Crochet is qualified by the package they're in.
+So if you define a type like ``player``, what you're really defining is
+the type ``some-package/player``. But this is not the case with commands.
+
+If you define a command ``_ and _``, its name will always be just ``_ and _``,
+regardless of which package it's defined in.
+
+
 Signatures
 ----------
 
