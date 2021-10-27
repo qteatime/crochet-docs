@@ -15,12 +15,35 @@ Here you'll find complete treatises on the technical aspects
 of Crochet and the tools that it includes.
 
 .. hlist::
-   :columns: 2
+   :columns: 1
+
+   * :doc:`Crochet for Functional Programmers`
+         An example-based book that introduces the concepts
+         of Crochet to people who're familiar with functional
+         programming.
+
+   * :doc:`Simulating with Crochet`
+         An introductory book that helps non-programmers take their
+         first steps with creating simulation and AI-based games with
+         Crochet.
 
    * :doc:`The Crochet System <system/index>`
          A reference book on Crochet. Dives deep into the
          technical details, but also the design and
          sociological ones.
+
+   * :doc:`Standard API Reference`
+         A reference book on all of the standard library in
+         Crochet.
+
+   * :doc:`Core: Crochet's IR`
+         A book on the mathematic formalism behind Crochet's
+         intermediary representation. Aimed at programming language designers
+         and compiler developers.
+
+   * :doc:`Contributing to Crochet`
+         A short book on how to contribute to Crochet in different
+         ways. From ideas to community work and code.
 
 
 Indices and tables
