@@ -32,6 +32,10 @@ of Crochet and the tools that it includes.
          technical details, but also the design and
          sociological ones.
 
+   * :doc:`A Catalogue of Techniques`
+         A book of recipes for how to express different programming
+         techniques in Crochet.
+
    * :doc:`Standard API Reference`
          A reference book on all of the standard library in
          Crochet.
