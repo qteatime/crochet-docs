@@ -43,3 +43,14 @@ h3 {
   text-transform: uppercase;
   font-size: 0.9em;
 }
+
+.field-list dt,
+.option-list dt,
+dl.footnote dt,
+dl.glossary dt,
+dl.simple dt,
+dl:not([class]) dt {
+  font-family: "PT Sans Caption", sans-serif;
+  font-weight: bold;
+  margin-top: 1.5em;
+}
