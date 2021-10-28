@@ -8,7 +8,7 @@
 .highlight {
   border: 1px solid #ececea;
   border-left-width: 10px;
-  box-shadow: 0px 0px 1px rgb(0 0 0 / 10%);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.1);
   font-size: 1.1em;
 }
 
@@ -29,4 +29,17 @@ h3 {
 
 h3 {
   border-bottom: 1px solid #ececea;
+}
+
+.admonition {
+  font-family: sans-serif;
+  border: 1px solid #ececea;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.1);
+  border-left-width: 5px;
+}
+
+.admonition-title {
+  font-family: "PT Sans Caption", sans-serif;
+  text-transform: uppercase;
+  font-size: 0.9em;
 }
