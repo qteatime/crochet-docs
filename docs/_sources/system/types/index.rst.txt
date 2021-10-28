@@ -13,3 +13,5 @@ roles.
    
    types-and-data
    using
+   hierarchies
+   traits

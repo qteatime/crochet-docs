@@ -120,6 +120,8 @@
 <li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Data and types</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Types and data modelling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="using.html">Using typed data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hierarchies.html">Hierarchies of types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traits.html">Traits</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../commands/index.html">Commands</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -343,89 +345,8 @@ these specific shapes:</p>
 It denotes that each of these individual shapes can also be understood as
 a <code class="docutils literal notranslate"><span class="pre">shape</span></code>. A <a class="reference internal" href="../commands/index.html#commands"><span class="std std-ref">command</span></a> that accepts <code class="docutils literal notranslate"><span class="pre">shape``s</span> <span class="pre">will</span> <span class="pre">accept</span> <span class="pre">any</span> <span class="pre">of</span> <span class="pre">the</span>
 <span class="pre">specific</span> <span class="pre">ones,</span> <span class="pre">as</span> <span class="pre">well</span> <span class="pre">as</span> <span class="pre">``shape</span></code> itself.</p>
-<div class="section" id="caveats-of-a-static-hierarchy">
-<h3>Caveats of a static hierarchy<a class="headerlink" href="#caveats-of-a-static-hierarchy" title="Permalink to this headline">¶</a></h3>
-<p>It’s important to note that Crochet admits only one static hierarchy. This
-is discussed at length in the subtyping and hierarchy section. But it
-means that this feature is a poor fit for <em>contextual</em> hierarchies. For
-example, still in the theme of mathematical shapes, one may think that
-a <code class="docutils literal notranslate"><span class="pre">square</span></code> would be just a special case of a <code class="docutils literal notranslate"><span class="pre">rectangle</span></code>, and they
-may proceed to define the following hierarchy:</p>
-<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> rectangle<span class="p">(</span>width<span class="p">,</span> height<span class="p">)</span> <span class="k">is</span> shape<span class="p">;</span>
-<span class="k">type</span> square<span class="p">(</span>side<span class="p">)</span> <span class="k">is</span> rectangle<span class="p">;</span>
-</pre></div>
-</div>
-<p>You might think that this makes sense, but we run into things like the
-following:</p>
-<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">A</span> <span class="p">=</span> <span class="k">new</span> rectangle<span class="p">(</span><span class="mf">10</span><span class="p">,</span> <span class="mf">10</span><span class="p">);</span>
-<span class="k">let</span> <span class="nv">B</span> <span class="p">=</span> <span class="k">new</span> square<span class="p">(</span><span class="mf">10</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>Now, both <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> are mathematically equivalent shapes—they’re
-both squares with sides of length 10. But Crochet’s type system does not
-know that a square means “all sides have equal length”, it only knows that
-rectangles have a <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code> component, and squares, which
-are a kind of rectangle, only have a <code class="docutils literal notranslate"><span class="pre">side</span></code> component. Therefore the
-type system does not consider <code class="docutils literal notranslate"><span class="pre">A</span></code> to be a square—even though we,
-humans, do.</p>
-<p>So, as a rule of thumb, it’s better to make subtypes only if they
-unconditionally fulfill all of the properties of its parent type. Such
-principle is often described as the Liskov substution principle.</p>
-</div>
-<div class="section" id="caveats-of-an-open-hierarchy">
-<h3>Caveats of an open hierarchy<a class="headerlink" href="#caveats-of-an-open-hierarchy" title="Permalink to this headline">¶</a></h3>
-<p>It’s important to note as well that hierarchies in Crochet are <strong>open</strong>.
-This—and its implications—is discussed at length in the
-subtyping and hierarchy section. But it means that new types may
-be added to the hierarchy at any point in time, by anyone.</p>
-<p>For example, consider the case where one is modelling an RPG system
-where characters may be affected by different conditions. This will
-often be defined as an hierarchy, so we can talk about <em>conditions</em>
-in general, as well as specific conditions:</p>
-<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="k">condition</span><span class="p">;</span>
-<span class="k">type</span> poisoned <span class="k">is</span> <span class="k">condition</span><span class="p">;</span>
-<span class="k">type</span> sleeping <span class="k">is</span> <span class="k">condition</span><span class="p">;</span>
-<span class="k">type</span> silenced <span class="k">is</span> <span class="k">condition</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>As it stands, the author of the <code class="docutils literal notranslate"><span class="pre">condition</span></code> type has thought of
-three different conditions: <code class="docutils literal notranslate"><span class="pre">poisoned</span></code>, <code class="docutils literal notranslate"><span class="pre">sleeping</span></code>, and <code class="docutils literal notranslate"><span class="pre">silenced</span></code>.
-It’s quite likely that the code dealing with conditions may end up
-baking assumptions about its specific conditions. However, there is
-nothing in Crochet that prevents some other piece of code from
-attaching more conditions to this hierarchy:</p>
-<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> petrified <span class="k">is</span> <span class="k">condition</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>If such a declaration appears at some later point, somewhere in the
-program, then <code class="docutils literal notranslate"><span class="pre">petrified</span></code> will be considered as much as a member
-of the <code class="docutils literal notranslate"><span class="pre">condition</span></code> hierarchy as any other. These declarations may,
-indeed, happen when the program is executing—through the
-Crochet interactive playground.</p>
-<p>In order to add new types to the hierarchy, however, an author would
-need to have access to the <code class="docutils literal notranslate"><span class="pre">condition</span></code> type. So limiting the visibility
-of this type would allow more control over the hierarchy. But the
-open and extensible behaviour is often more desirable if you’re
-sharing your code with someone else.</p>
-</div>
-<div class="section" id="caveats-of-field-projection">
-<h3>Caveats of field projection<a class="headerlink" href="#caveats-of-field-projection" title="Permalink to this headline">¶</a></h3>
-<p>Often programming languages that feature type hierarchies also have
-subtypes inherit the fields from the parent type. That is, given
-something like:</p>
-<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> rectangle<span class="p">(</span>width<span class="p">,</span> height<span class="p">);</span>
-<span class="k">type</span> square<span class="p">(</span>side<span class="p">)</span> <span class="k">is</span> rectangle<span class="p">;</span>
-</pre></div>
-</div>
-<p>Then, in common object-oriented languages, the <code class="docutils literal notranslate"><span class="pre">square</span></code> type would really
-define three fields: <code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">height</span></code>, and <code class="docutils literal notranslate"><span class="pre">side</span></code>. Where the first two
-would be inherited from <code class="docutils literal notranslate"><span class="pre">rectangle</span></code>.</p>
-<p>Crochet does not work that way. In Crochet, there is no field inheritance.
-The layout of a data structure is precisely what is specified in its
-declaration. Commands, however, are inherited, and thus it is important
-for inherited commands to not use field projection directly.</p>
-<p>This is discussed at length in the subtyping and hierarchy section.</p>
-</div>
+<p>We discuss hierarchies and possibilities in depth in the Hierarchies of types
+section.</p>
 </div>
 <div class="section" id="abstract-types">
 <h2>Abstract types<a class="headerlink" href="#abstract-types" title="Permalink to this headline">¶</a></h2>
@@ -608,12 +529,7 @@ is not a valid piece of code in Crochet.</p>
 </li>
 <li><a class="reference internal" href="#data-less-types">Data-less types</a></li>
 <li><a class="reference internal" href="#singleton-types">Singleton types</a></li>
-<li><a class="reference internal" href="#types-as-possibilities">Types as possibilities</a><ul>
-<li><a class="reference internal" href="#caveats-of-a-static-hierarchy">Caveats of a static hierarchy</a></li>
-<li><a class="reference internal" href="#caveats-of-an-open-hierarchy">Caveats of an open hierarchy</a></li>
-<li><a class="reference internal" href="#caveats-of-field-projection">Caveats of field projection</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#types-as-possibilities">Types as possibilities</a></li>
 <li><a class="reference internal" href="#abstract-types">Abstract types</a></li>
 <li><a class="reference internal" href="#enumeration-types">Enumeration types</a></li>
 <li><a class="reference internal" href="#static-types">Static types</a></li>
