@@ -2,10 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Types and data modelling" href="types-and-data.html" /><link rel="prev" title="Package configuration" href="../structure/package-configuration.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Intrinsic data types" href="intrinsics/index.html" /><link rel="prev" title="Why are commands …?" href="../commands/why.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
-        <title>Data and types - Crochet 0.12 documentation</title>
+        <title>Computing with Crochet - Crochet 0.12 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
@@ -117,11 +117,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../structure/package-configuration.html">Package configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">Data and types</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="types-and-data.html">Types and data modelling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="using.html">Using typed data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hierarchies.html">Hierarchies of types</a></li>
-<li class="toctree-l3"><a class="reference internal" href="traits.html">Traits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../types/index.html">Data and types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../types/types-and-data.html">Types and data modelling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/using.html">Using typed data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/hierarchies.html">Hierarchies of types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/traits.html">Traits</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../commands/index.html">Commands</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -131,9 +131,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../commands/why.html">Why are commands …?</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../computing/index.html">Computing with Crochet</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../computing/intrinsics/index.html">Intrinsic data types</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/gradual.html">Gradual representations</a></li>
+<li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">Computing with Crochet</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="intrinsics/index.html">Intrinsic data types</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/gradual.html">Gradual representations</a></li>
 </ul>
 </li>
 </ul>
@@ -157,64 +157,24 @@
         <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
-        <div class="section" id="data-and-types">
-<span id="id1"></span><h1>Data and types<a class="headerlink" href="#data-and-types" title="Permalink to this headline">¶</a></h1>
-<p>Central to how Crochet works is the idea of a <strong>type</strong>. What Crochet calls
-a “type” is slightly different than what most other languages mean by the
-term, but that’s because Crochet overloads the term to mean several
-different things. In this section we’ll dive deep into types and their
-roles.</p>
+        <div class="section" id="computing-with-crochet">
+<h1>Computing with Crochet<a class="headerlink" href="#computing-with-crochet" title="Permalink to this headline">¶</a></h1>
+<p>Type and command declarations provide the structure for Crochet
+programs—they describe a model for the world. But how this
+world <em>behaves</em> is described with expressions. In this chapter
+we’ll dive deep into how these expressions work—how we make
+Crochet do things.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="types-and-data.html">Types and data modelling</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#what-are-types">What are types?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#type-declarations-and-usage">Type declarations and usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#fields-of-typed-data">Fields of typed data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="types-and-data.html#global-fields">Global fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intrinsics/index.html">Intrinsic data types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intrinsics/gradual.html">Gradual representations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="intrinsics/gradual.html#the-any-type">The <code class="docutils literal notranslate"><span class="pre">any</span></code> type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intrinsics/gradual.html#the-unknown-type">The <code class="docutils literal notranslate"><span class="pre">unknown</span></code> type</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/gradual.html#a-note-on-overwrapping">A note on overwrapping</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#data-less-types">Data-less types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#singleton-types">Singleton types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#types-as-possibilities">Types as possibilities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#abstract-types">Abstract types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#enumeration-types">Enumeration types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="types-and-data.html#static-types">Static types</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="using.html">Using typed data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="using.html#the-new-operator">The <code class="docutils literal notranslate"><span class="pre">new</span></code> operator</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="using.html#constructing-capabilities">Constructing capabilities</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="using.html#projecting-fields">Projecting fields</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="using.html#non-existing-fields">Non-existing fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="using.html#fields-and-inheritance">Fields and inheritance</a></li>
-<li class="toctree-l3"><a class="reference internal" href="using.html#visibility-of-fields">Visibility of fields</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="using.html#projection-with-non-typed-data">Projection with non-typed data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="using.html#record-projection">Record projection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="using.html#sequence-projection">Sequence projection</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hierarchies.html">Hierarchies of types</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hierarchies.html#modelling-possibilities">Modelling possibilities</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="hierarchies.html#caveats-of-a-static-hierarchy">Caveats of a static hierarchy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hierarchies.html#caveats-of-an-open-hierarchy">Caveats of an open hierarchy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hierarchies.html#caveats-of-field-projection">Caveats of field projection</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="hierarchies.html#testing-classifications">Testing classifications</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="traits.html">Traits</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="traits.html#intentionality-of-implementation">Intentionality of implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="traits.html#trait-relationships">Trait relationships</a></li>
-<li class="toctree-l2"><a class="reference internal" href="traits.html#implementing-multiple-traits">Implementing multiple traits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="traits.html#testing-for-traits">Testing for traits</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="traits.html#traits-in-a-type-hierarchy">Traits in a type hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intrinsics/gradual.html#the-sealed-type">The <code class="docutils literal notranslate"><span class="pre">sealed</span></code> type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intrinsics/gradual.html#the-nothing-type">The <code class="docutils literal notranslate"><span class="pre">nothing</span></code> type</a></li>
 </ul>
 </li>
 </ul>
@@ -227,23 +187,23 @@ roles.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="types-and-data.html">
+          <a class="next-page" href="intrinsics/index.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Types and data modelling</div>
+                <div class="title">Intrinsic data types</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../structure/package-configuration.html">
+          <a class="prev-page" href="../commands/why.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Package configuration</div>
+                <div class="title">Why are commands …?</div>
                 
               </div>
             </a>
@@ -257,7 +217,7 @@ roles.</p>
               <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
               <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
             |
-            <a class="muted-link" href="../../_sources/system/types/index.rst.txt"
+            <a class="muted-link" href="../../_sources/system/computing/index.rst.txt"
                rel="nofollow">
               Show Source
             </a>

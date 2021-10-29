@@ -1,0 +1,343 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Annex A: Design philosophy" href="../../design-philosophy.html" /><link rel="prev" title="Intrinsic data types" href="index.html" />
+
+    <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
+        <title>Gradual representations - Crochet 0.12 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/crochet.css" />
+    
+
+
+<style>
+  :root {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../../_static/pygments_dark.css"></head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Crochet 0.12 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../../index.html">The Crochet System</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../whats-crochet.html">What’s Crochet?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installing-crochet.html">Installing Crochet</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../structure/index.html">How is Crochet structured?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../structure/introduction.html">The Crochet universe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../structure/package-configuration.html">Package configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../types/index.html">Data and types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../types/types-and-data.html">Types and data modelling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../types/using.html">Using typed data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../types/hierarchies.html">Hierarchies of types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../types/traits.html">Traits</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../commands/index.html">Commands</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/declaration.html">What are commands?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/signatures.html">Signatures and their uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../commands/why.html">Why are commands …?</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="../index.html">Computing with Crochet</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current has-children"><a class="reference internal" href="index.html">Intrinsic data types</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#">Gradual representations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-philosophy.html">Annex A: Design philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sociology-and-linguistics.html">Annex B: Sociology and linguistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="gradual-representations">
+<h1>Gradual representations<a class="headerlink" href="#gradual-representations" title="Permalink to this headline">¶</a></h1>
+<p>Expressions in Crochet deal with values, but every value in Crochet has
+an associated type. These types are organised in a hierarchy, which allows
+us to talk about more general characteristics of values by simply moving
+up in this hierarchy—just like we can talk about flowers in general and
+have that still include specific flowers, like roses or lilies.</p>
+<div class="section" id="the-any-type">
+<h2>The <code class="docutils literal notranslate"><span class="pre">any</span></code> type<a class="headerlink" href="#the-any-type" title="Permalink to this headline">¶</a></h2>
+<p>At the root of this hierarchy is the type <code class="docutils literal notranslate"><span class="pre">any</span></code>. Thus, every value in
+Crochet also belongs to the <code class="docutils literal notranslate"><span class="pre">any</span></code> type. Anything that we talk
+about when we talk about <code class="docutils literal notranslate"><span class="pre">any</span></code> must—and will—apply to every value
+in Crochet.</p>
+<p><code class="docutils literal notranslate"><span class="pre">any</span></code> itself is an abstract type, so it can’t be constructed. The value
+that represents the type <code class="docutils literal notranslate"><span class="pre">any</span></code> can still be accessed through <code class="docutils literal notranslate"><span class="pre">#any</span></code>,
+but there’s rarely any use for this.</p>
+</div>
+<div class="section" id="the-unknown-type">
+<h2>The <code class="docutils literal notranslate"><span class="pre">unknown</span></code> type<a class="headerlink" href="#the-unknown-type" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">unknown</span></code> type is a container for all types of values which has two
+primary functions:</p>
+<ul class="simple">
+<li><p>To be able to represent arbitrary values coming from the outside
+world (e.g.: through the foreign interface) in the Crochet space,
+but without really modelling that value in Crochet; and</p></li>
+<li><p>To be able to hide the concrete type of a value, so it can be passed
+around between two places in the code without any of the intermediary
+places having any knowledge of what this value is, or how to manipulate
+it—this is a very important feature for type safety and security.</p></li>
+</ul>
+<p>The first use case is covered in details in the Foreign Interfaces chapter.
+But what these two use cases mean is that <code class="docutils literal notranslate"><span class="pre">unknown</span></code> is pretty much a kind
+of black box—you can pass the box around, but you cannot know what is
+inside of it.</p>
+<p>From the Crochet side, values can be turned into this black box with the
+<code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">as</span> <span class="pre">unknown</span></code> command. So <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">as</span> <span class="pre">unknown</span></code> creates a black box containing
+the number <code class="docutils literal notranslate"><span class="pre">1</span></code>—a fact that is known internally in the Crochet VM, but not
+observable by the Crochet analysis tools, or really anyone else.</p>
+<p>In order to recover the value from the black box in the Crochet side, we
+need to know what lays inside of it. We once again use the <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">as</span> <span class="pre">_</span></code> command
+for this: <code class="docutils literal notranslate"><span class="pre">unknown</span> <span class="pre">as</span> <span class="pre">Type</span></code> will allow us to recover the value from the
+black box, as long as we know what <code class="docutils literal notranslate"><span class="pre">Type</span></code> is. And then we will be able
+to manipulate the value only with the the powers that  <code class="docutils literal notranslate"><span class="pre">Type</span></code> grants us.</p>
+<p>For example, imagine we first box the integer <code class="docutils literal notranslate"><span class="pre">1</span></code>. Then we unbox it as
+the type <code class="docutils literal notranslate"><span class="pre">any</span></code>—this will not give us back a value of type <code class="docutils literal notranslate"><span class="pre">integer</span></code>,
+but a value of type <code class="docutils literal notranslate"><span class="pre">any</span></code>! This means that we’ll still be unable to use
+arithmetic operators with the unboxed value, as <code class="docutils literal notranslate"><span class="pre">any</span></code> doesn’t really
+know what <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">+</span> <span class="pre">_</span></code> means.</p>
+<p>Internally, whenever there’s a mismatch between the type we request and
+the type of the value in the box—but the type we request is still acceptable—,
+Crochet will use a concept called Sealed Types to represent the value
+with the exact type we requested, hence preventing anyone who does not
+know the specific type to gain access to its powers.</p>
+<div class="section" id="a-note-on-overwrapping">
+<h3>A note on overwrapping<a class="headerlink" href="#a-note-on-overwrapping" title="Permalink to this headline">¶</a></h3>
+<p>What happens if you try to run <code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">as</span> <span class="pre">unknown)</span> <span class="pre">as</span> <span class="pre">unknown</span></code>? That is, to
+take something that is already a black box, and then try to turn it into
+another black box.</p>
+<p>In Crochet, this operation will give you the same black box. That is, you
+cannot put a black box inside of a black box. You can’t have an unknown
+value that contains another unknown value.</p>
+</div>
+</div>
+<div class="section" id="the-sealed-type">
+<h2>The <code class="docutils literal notranslate"><span class="pre">sealed</span></code> type<a class="headerlink" href="#the-sealed-type" title="Permalink to this headline">¶</a></h2>
+<p>A sealed type is a box for values that allows Crochet to see them as a
+different type from their specific one. That is, if we have <code class="docutils literal notranslate"><span class="pre">1</span></code>, we
+could seal this value with the <code class="docutils literal notranslate"><span class="pre">any</span></code> type, and we would get an integer
+value <code class="docutils literal notranslate"><span class="pre">1</span></code> which, as far as any Crochet code can observe, acts exactly
+like the <code class="docutils literal notranslate"><span class="pre">any</span></code> type, and nothing more than that.</p>
+</div>
+<div class="section" id="the-nothing-type">
+<h2>The <code class="docutils literal notranslate"><span class="pre">nothing</span></code> type<a class="headerlink" href="#the-nothing-type" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">nothing</span></code> value is a singleton that is used whenever there is no
+other more interesting value to be used.</p>
+<p>For example, when we define a command like the following:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="nf">i-dont-do-anything:</span> <span class="nv">_</span> <span class="k">do</span>
+  <span class="c1">// No, really, I don't do anything</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Whenever we use this command (e.g.: <code class="docutils literal notranslate"><span class="pre">i-dont-do-anything:</span> <span class="pre">1</span></code>) we’ll get
+a <code class="docutils literal notranslate"><span class="pre">nothing</span></code> value back. That’s because commands <em>always</em> need to provide
+some kind of result, but because we didn’t really add any result to this
+command definition, Crochet provided something for us.</p>
+<p><code class="docutils literal notranslate"><span class="pre">nothing</span></code> is also commonly used when we may or may not have a value.
+For example, it’s common to create hierarchies as follows:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> branch<span class="p">(</span>more-general<span class="p">,</span> name<span class="p">);</span>
+</pre></div>
+</div>
+<p>And we could then define a hierarchy like the following:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">Family</span> <span class="p">=</span> <span class="k">new</span> branch<span class="p">(</span><span class="k">nothing</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Felidae</span><span class="dl">"</span><span class="p">);</span>
+<span class="k">let</span> <span class="nv">Subfamily</span> <span class="p">=</span> <span class="k">new</span> branch<span class="p">(</span><span class="nv">Family</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Felinae</span><span class="dl">"</span><span class="p">);</span>
+<span class="k">let</span> <span class="nv">Genus</span> <span class="p">=</span> <span class="k">new</span> branch<span class="p">(</span><span class="nv">Subfamily</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Felis</span><span class="dl">"</span><span class="p">);</span>
+<span class="k">let</span> <span class="nv">Species</span> <span class="p">=</span> <span class="k">new</span> branch<span class="p">(</span><span class="nv">Genus</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Felis Catus</span><span class="dl">"</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In this snippet of the scientific taxonomy of domestic cats, we’ve chosen
+to stop the hierarchy at the Family level. That means that, if we start
+from the domestic cat, the more general we can get is the family Felidae.
+And we indicate such by saying that there’s <code class="docutils literal notranslate"><span class="pre">nothing</span></code> above it.</p>
+</div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../../design-philosophy.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Annex A: Design philosophy</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Intrinsic data types</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Q.
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="../../../_sources/system/computing/intrinsics/gradual.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Gradual representations</a><ul>
+<li><a class="reference internal" href="#the-any-type">The <code class="docutils literal notranslate"><span class="pre">any</span></code> type</a></li>
+<li><a class="reference internal" href="#the-unknown-type">The <code class="docutils literal notranslate"><span class="pre">unknown</span></code> type</a><ul>
+<li><a class="reference internal" href="#a-note-on-overwrapping">A note on overwrapping</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-sealed-type">The <code class="docutils literal notranslate"><span class="pre">sealed</span></code> type</a></li>
+<li><a class="reference internal" href="#the-nothing-type">The <code class="docutils literal notranslate"><span class="pre">nothing</span></code> type</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </main>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/main.js"></script>
+    </body>
+</html>

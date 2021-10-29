@@ -8,33 +8,47 @@ of Crochet, as well as providing community and learning
 resources.
 
 
-Guide books
-===========
+Introductory books
+==================
 
-Here you'll find complete treatises on the technical aspects
-of Crochet and the tools that it includes.
+These project-driven books are the perfect way to start your
+journey through Crochet. Pick the one that best suits your
+goals and experience with programming, and create away~.
 
 .. hlist::
    :columns: 1
 
    * :doc:`Crochet for Functional Programmers`
-         An example-based book that introduces the concepts
-         of Crochet to people who're familiar with functional
-         programming.
+         For people who're familiar with functional programming.
+         This example-based book will guide you through the different
+         concepts in Crochet by having you construct a few
+         different and fun toy programs.
 
    * :doc:`Simulating with Crochet`
-         An introductory book that helps non-programmers take their
-         first steps with creating simulation and AI-based games with
-         Crochet.
+         For people who have never programmed before. This book
+         will guide you on your first steps with creating simulation
+         and AI-based games.
+
+
+Reference books
+===============
+
+Here you'll find complete treatises on the technical aspects
+of Crochet and the tools that it includes. All of these books
+assume some previous familiarity with Crochet.
+
+But ever wondered how things *really* work? Ever asked why things
+are the way they are? Concerned about whether approaching things
+a certain way will be fast enough? You'll find the answer to those
+troubling quesitons here.
+
+.. hlist::
+   :columns: 1
 
    * :doc:`The Crochet System <system/index>`
          A reference book on Crochet. Dives deep into the
          technical details, but also the design and
          sociological ones.
-
-   * :doc:`A Catalogue of Techniques`
-         A book of recipes for how to express different programming
-         techniques in Crochet.
 
    * :doc:`Standard API Reference`
          A reference book on all of the standard library in
@@ -45,9 +59,28 @@ of Crochet and the tools that it includes.
          intermediary representation. Aimed at programming language designers
          and compiler developers.
 
+
+Cookbooks and Cheatsheets
+=========================
+
+.. hlist::
+   :columns: 1
+
+   * :doc:`A Catalogue of Techniques`
+         A book of recipes for how to express different programming
+         techniques in Crochet.
+
+
+Contributor guides
+==================
+
+.. hlist::
+   :columns: 1
+
    * :doc:`Contributing to Crochet`
          A short book on how to contribute to Crochet in different
          ways. From ideas to community work and code.
+
 
 
 Indices and tables

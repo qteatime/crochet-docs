@@ -15,6 +15,7 @@ it allows "creating interactive media safely".
    structure/index
    types/index
    commands/index
+   computing/index
    design-philosophy
    sociology-and-linguistics
 
