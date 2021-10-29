@@ -41,11 +41,7 @@ The intrinsic types cover the following categories of problems:
   in a consistent way. Collections are one way to achieve that.
 
 
-
-
-
-
-
-Numeric models
---------------
+.. toctree::
+  
+   gradual
 

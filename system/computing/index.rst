@@ -9,4 +9,4 @@ Crochet do things.
 
 .. toctree::
   
-   intrinsics
+   intrinsics/index

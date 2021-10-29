@@ -63,6 +63,9 @@ troubling quesitons here.
 Cookbooks and Cheatsheets
 =========================
 
+.. hlist::
+   :columns: 1
+
    * :doc:`A Catalogue of Techniques`
          A book of recipes for how to express different programming
          techniques in Crochet.
@@ -70,6 +73,9 @@ Cookbooks and Cheatsheets
 
 Contributor guides
 ==================
+
+.. hlist::
+   :columns: 1
 
    * :doc:`Contributing to Crochet`
          A short book on how to contribute to Crochet in different
