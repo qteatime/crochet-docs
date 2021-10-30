@@ -79,6 +79,10 @@ value that contains another unknown value.
 The ``sealed`` type
 -------------------
 
+.. warning::
+
+   Sealed types are not implemented in the Crochet VM yet.
+
 A sealed type is a box for values that allows Crochet to see them as a
 different type from their specific one. That is, if we have ``1``, we
 could seal this value with the ``any`` type, and we would get an integer

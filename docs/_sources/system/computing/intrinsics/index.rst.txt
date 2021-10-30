@@ -44,4 +44,4 @@ The intrinsic types cover the following categories of problems:
 .. toctree::
   
    gradual
-
+   numbers

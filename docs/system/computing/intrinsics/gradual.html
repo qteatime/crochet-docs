@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Annex A: Design philosophy" href="../../design-philosophy.html" /><link rel="prev" title="Intrinsic data types" href="index.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Numeric models" href="numbers.html" /><link rel="prev" title="Intrinsic data types" href="index.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
         <title>Gradual representations - Crochet 0.12 documentation</title>
@@ -134,6 +134,7 @@
 <li class="toctree-l2 current has-children"><a class="reference internal" href="../index.html">Computing with Crochet</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l3 current has-children"><a class="reference internal" href="index.html">Intrinsic data types</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l4 current current-page"><a class="current reference internal" href="#">Gradual representations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="numbers.html">Numeric models</a></li>
 </ul>
 </li>
 </ul>
@@ -222,6 +223,10 @@ value that contains another unknown value.</p>
 </div>
 <div class="section" id="the-sealed-type">
 <h2>The <code class="docutils literal notranslate"><span class="pre">sealed</span></code> type<a class="headerlink" href="#the-sealed-type" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Sealed types are not implemented in the Crochet VM yet.</p>
+</div>
 <p>A sealed type is a box for values that allows Crochet to see them as a
 different type from their specific one. That is, if we have <code class="docutils literal notranslate"><span class="pre">1</span></code>, we
 could seal this value with the <code class="docutils literal notranslate"><span class="pre">any</span></code> type, and we would get an integer
@@ -265,12 +270,12 @@ And we indicate such by saying that there’s <code class="docutils literal notr
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../../design-philosophy.html">
+          <a class="next-page" href="numbers.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Annex A: Design philosophy</div>
+                <div class="title">Numeric models</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>

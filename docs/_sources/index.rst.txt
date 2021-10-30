@@ -2,6 +2,13 @@
 Welcome to Crochet's documentation!
 ===================================
 
+.. warning::
+
+   These books are still being written and should currently be considered
+   unedited drafts. As Crochet itself has not stabilised yet, any concept
+   covered here might change in the future---particularly in flux sections
+   will be marked with an admonition like this one.
+
 The official documentation is divided into sections and books,
 and cover different aspects of the technical and practical sides
 of Crochet, as well as providing community and learning
