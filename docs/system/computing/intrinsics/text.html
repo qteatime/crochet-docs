@@ -2,10 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Textual models" href="text.html" /><link rel="prev" title="Gradual representations" href="gradual.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Annex A: Design philosophy" href="../../design-philosophy.html" /><link rel="prev" title="Numeric models" href="numbers.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
-        <title>Numeric models - Crochet 0.12 documentation</title>
+        <title>Textual models - Crochet 0.12 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css" />
@@ -90,7 +90,7 @@
       <a href="../../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
     </div>
     <div class="header-right">
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
     </div>
@@ -134,8 +134,8 @@
 <li class="toctree-l2 current has-children"><a class="reference internal" href="../index.html">Computing with Crochet</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l3 current has-children"><a class="reference internal" href="index.html">Intrinsic data types</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="gradual.html">Gradual representations</a></li>
-<li class="toctree-l4 current current-page"><a class="current reference internal" href="#">Numeric models</a></li>
-<li class="toctree-l4"><a class="reference internal" href="text.html">Textual models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="numbers.html">Numeric models</a></li>
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#">Textual models</a></li>
 </ul>
 </li>
 </ul>
@@ -156,75 +156,38 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+        <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
-        <div class="section" id="numeric-models">
-<h1>Numeric models<a class="headerlink" href="#numeric-models" title="Permalink to this headline">¶</a></h1>
-<p>Dealing with numbers in a computer is tricky. The current version of
-Crochet only offer support for a small part of this problem, which is
-more likely to happen when writing interactive fiction. Future versions
-will extend the numeric tower to cover other use cases, but do note that
-Crochet is not designed for things like heavy numerical analysis or scientific
-computing, so those spaces are unlikely to be covered in the standard library.</p>
-<p>The numeric tower in Crochet has two types:</p>
-<ul class="simple">
-<li><p><strong>Integers</strong>: the <code class="docutils literal notranslate"><span class="pre">integer</span></code> type can represent any integral number
-accurately, at the cost of computing power and memory to do so. That
-is, the further the number is from 0, the more memory is needed in
-order to represent it—and the more computing power is needed to
-perform arithmetic operations on it.</p></li>
-<li><p><strong>Floating points</strong>: the <code class="docutils literal notranslate"><span class="pre">float</span></code> type is an approximation of
-fractional numbers that always consumes 64 bits of memory. It
-can accurately represent some integral numbers, and approximate
-some decimal numbers with varying degrees of precision.</p></li>
-</ul>
-<div class="section" id="approximating-fractionals">
-<h2>Approximating fractionals<a class="headerlink" href="#approximating-fractionals" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">float</span></code> type follows the <a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754">IEEE-754</a>
-specification, natively supported in hardware. Approximations always
-consume 64 bits of memory, which means that integral numbers very far
-from 0 and fractions are not going to be <em>accurately</em> represented in
-the computer.</p>
-<p>Operating on floats means that you’re always operating on approximations,
-and it’s easy to lose precision, in particular when division operations
-are involved.</p>
-<p>Because games generally deal with <em>perceptual</em> values, rather than
-<em>accurate</em> values, these approximations are usually not a big issue.
-Efficiency and parsimonious use of memory are more important.</p>
-</div>
-<div class="section" id="mixed-operations">
-<h2>Mixed operations<a class="headerlink" href="#mixed-operations" title="Permalink to this headline">¶</a></h2>
-<p>Operations in Crochet can mix floating points and integers. For example,
-the operation <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">2.5</span></code> is supported in Crochet. Whenever this happens,
-the result of the operation will be promoted to the type that can best
-approximate it. Currently, that means that any operation mixing floats
-and integers will result in a floating point number—because integers
-cannot approximate fractional numbers at all!</p>
-</div>
+        <div class="section" id="textual-models">
+<h1>Textual models<a class="headerlink" href="#textual-models" title="Permalink to this headline">¶</a></h1>
+<p>Text is a big part of most kinds of programs, and it shows up quite
+often in interactive fiction as well. Crochet approaches textual
+representation in a way that tries to make it safer and more
+respecting—and supporting—of different languages and cultures.</p>
 </div>
 
       </article>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="text.html">
+          <a class="next-page" href="../../design-philosophy.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Textual models</div>
+                <div class="title">Annex A: Design philosophy</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="gradual.html">
+          <a class="prev-page" href="numbers.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Gradual representations</div>
+                <div class="title">Numeric models</div>
                 
               </div>
             </a>
@@ -238,7 +201,7 @@ cannot approximate fractional numbers at all!</p>
               <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
               <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
             |
-            <a class="muted-link" href="../../../_sources/system/computing/intrinsics/numbers.rst.txt"
+            <a class="muted-link" href="../../../_sources/system/computing/intrinsics/text.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -246,28 +209,8 @@ cannot approximate fractional numbers at all!</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            Contents
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Numeric models</a><ul>
-<li><a class="reference internal" href="#approximating-fractionals">Approximating fractionals</a></li>
-<li><a class="reference internal" href="#mixed-operations">Mixed operations</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>

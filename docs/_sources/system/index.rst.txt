@@ -17,7 +17,7 @@ this system is, how it's structured, and how exactly
 it allows "creating interactive media safely".
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    whats-crochet
    installing-crochet

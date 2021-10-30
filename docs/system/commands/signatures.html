@@ -135,6 +135,7 @@
 <li class="toctree-l3 has-children"><a class="reference internal" href="../computing/intrinsics/index.html">Intrinsic data types</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/gradual.html">Gradual representations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/numbers.html">Numeric models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/text.html">Textual models</a></li>
 </ul>
 </li>
 </ul>
@@ -174,10 +175,13 @@ write something like <code class="docutils literal notranslate"><span class="pre
 to understand it as <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span> <span class="pre">and</span> <span class="pre">also</span> <span class="pre">_</span></code>.</p>
 <p>Crochet has four different “forms” of names:</p>
 <ul class="simple">
-<li><p><strong>Unary</strong>: these are names like <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">successor</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">round</span></code>, or
+<li><p><strong>Unary postfix</strong>: these are names like <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">successor</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">round</span></code>, or
 <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">is-empty</span></code>. Note that the name of the command always follows
 the underscore, and when a name is composed of multiple words they
-are written hyphen-separated, rather than space-separated.</p></li>
+are written hyphen-separated, rather than space-separated. As the name
+suggests, these commands apply to exactly one value.</p></li>
+<li><p><strong>Unary prefix</strong>: the only name in this category is currently
+<code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">_</span></code>. Like the postfix variation, only one value is accepted.</p></li>
 <li><p><strong>Binary</strong>: these are names like <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">+</span> <span class="pre">_</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code>, or
 <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">&lt;-</span> <span class="pre">_</span></code>. These commands have exactly two requirements and
 two values, one on each side of the name. Unlike unary names,
@@ -203,6 +207,98 @@ special expression <code class="docutils literal notranslate"><span class="pre">
 requirement/value would make it confusing to highlight any of them,
 so there’s no <code class="docutils literal notranslate"><span class="pre">self</span></code> allowed within these commands—they’re <code class="docutils literal notranslate"><span class="pre">self-less</span></code>.</p></li>
 </ul>
+</div>
+<div class="section" id="binary-command-names">
+<h2>Binary command names<a class="headerlink" href="#binary-command-names" title="Permalink to this headline">¶</a></h2>
+<p>In Crochet, binary commands cannot have arbitrary names—rather, they must
+be one of the pre-defined symbol combinations. One of the reasons for this is that
+we want to help people read these consistently, both when they’re completely
+unfamiliar with the code in question, and when they need to use assistive
+technologies to read code. Both of these become much trickier when you
+allow arbitrary sequences of symbols to be used for commands.</p>
+<p>Crochet does not only prescribe a set of symbolic names, though. It also
+prescribes a reading for them, and a meaning for them. This <em>does</em> mean
+that commands which stray from the meaning prescribed here should probably
+choose a different name to avoid confusing users.</p>
+<p>The following names are prescribed:</p>
+<div class="section" id="change-operators">
+<h3>Change operators<a class="headerlink" href="#change-operators" title="Permalink to this headline">¶</a></h3>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Target</span> <span class="pre">&lt;-</span> <span class="pre">Value</span></code> (read as: store <code class="docutils literal notranslate"><span class="pre">Value</span></code> in <code class="docutils literal notranslate"><span class="pre">Target</span></code>)</dt><dd><p>This is used for any container of data that may change over time. The
+<code class="docutils literal notranslate"><span class="pre">Value</span></code> indicates how the <code class="docutils literal notranslate"><span class="pre">Target</span></code> will change. <code class="docutils literal notranslate"><span class="pre">Target``s</span> <span class="pre">may</span>
+<span class="pre">hold</span> <span class="pre">multiple</span> <span class="pre">values,</span> <span class="pre">however.</span> <span class="pre">And</span> <span class="pre">how</span> <span class="pre">these</span> <span class="pre">values</span> <span class="pre">and</span> <span class="pre">changes</span> <span class="pre">are</span>
+<span class="pre">observed</span> <span class="pre">is</span> <span class="pre">entirely</span> <span class="pre">up</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">``Target</span></code> implementation.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="boolean-operators">
+<h3>Boolean operators<a class="headerlink" href="#boolean-operators" title="Permalink to this headline">¶</a></h3>
+<p>The semantics for these operators should be close to how one would
+reason about boolean algebra.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">and</span> <span class="pre">B</span></code> (read as is)</dt><dd><p>This is used for combining two values in a way that produces something
+containing aspects of each side.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">or</span> <span class="pre">B</span></code> (read as is)</dt><dd><p>This is used for combining two values in a way that produces something
+containing aspects of one of the sides.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">A</span></code> (read as is)</dt><dd><p>This is used for inverting the meaning of a value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="equality-operators">
+<h3>Equality operators<a class="headerlink" href="#equality-operators" title="Permalink to this headline">¶</a></h3>
+<p>The semantics of these operators should strictly follow what is
+prescribed by the <code class="docutils literal notranslate"><span class="pre">equality</span></code> trait.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">===</span> <span class="pre">B</span></code> (read as: <code class="docutils literal notranslate"><span class="pre">A</span></code> equals <code class="docutils literal notranslate"><span class="pre">B</span></code>)</dt><dd><p>This is used strictly for value equality.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">=/=</span> <span class="pre">B</span></code> (read as: <code class="docutils literal notranslate"><span class="pre">A</span></code> does not equal <code class="docutils literal notranslate"><span class="pre">B</span></code>)</dt><dd><p>This is used strictly for non-equality of values.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="relational-operators">
+<h3>Relational operators<a class="headerlink" href="#relational-operators" title="Permalink to this headline">¶</a></h3>
+<p>These operators are used strictly for ordering of values. The semantics are
+prescribed by the <code class="docutils literal notranslate"><span class="pre">total-ordering</span></code> and <code class="docutils literal notranslate"><span class="pre">partial-ordering</span></code> traits.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&gt;</span> <span class="pre">B</span></code> (read as: <code class="docutils literal notranslate"><span class="pre">A</span></code> is greater than <code class="docutils literal notranslate"><span class="pre">B</span></code>)</dt><dd><p>Used for ordering.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&gt;=</span> <span class="pre">B</span></code> (read as: <code class="docutils literal notranslate"><span class="pre">A</span></code> is greater or equal to <code class="docutils literal notranslate"><span class="pre">B</span></code>)</dt><dd><p>Used for ordering.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&lt;</span> <span class="pre">B</span></code> (read as: <code class="docutils literal notranslate"><span class="pre">A</span></code> is less than <code class="docutils literal notranslate"><span class="pre">B</span></code>)</dt><dd><p>Used for ordering.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&lt;=</span> <span class="pre">B</span></code> (read as: <code class="docutils literal notranslate"><span class="pre">A</span></code> is less or equal to <code class="docutils literal notranslate"><span class="pre">B</span></code>)</dt><dd><p>Used for ordering.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="arithmetic-operators">
+<h3>Arithmetic operators<a class="headerlink" href="#arithmetic-operators" title="Permalink to this headline">¶</a></h3>
+<p>These operators are used strictly for arithmetic. The semantics are described
+by the <code class="docutils literal notranslate"><span class="pre">arithmetic</span></code> trait.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">+</span> <span class="pre">B</span></code> (read as: <code class="docutils literal notranslate"><span class="pre">A</span></code> plus <code class="docutils literal notranslate"><span class="pre">B</span></code>)</dt><dd><p>Used for arithmetic addition.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">-</span> <span class="pre">B</span></code> (read as: <code class="docutils literal notranslate"><span class="pre">A</span></code> minus <code class="docutils literal notranslate"><span class="pre">B</span></code>)</dt><dd><p>Used for arithmetic subtraction.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">*</span> <span class="pre">B</span></code> (read as: <code class="docutils literal notranslate"><span class="pre">A</span></code> times <code class="docutils literal notranslate"><span class="pre">B</span></code>)</dt><dd><p>Used for arithmetic multiplication.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">/</span> <span class="pre">B</span></code> (read as: <code class="docutils literal notranslate"><span class="pre">A</span></code> divided by <code class="docutils literal notranslate"><span class="pre">B</span></code>)</dt><dd><p>Used for arithmetic division without rounding.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">%</span> <span class="pre">B</span></code> (read as: the remainder of <code class="docutils literal notranslate"><span class="pre">A</span></code> divided by <code class="docutils literal notranslate"><span class="pre">B</span></code>)</dt><dd><p>Used for taking the remainder of a division.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">**</span> <span class="pre">B</span></code> (read as: <code class="docutils literal notranslate"><span class="pre">A</span></code> to the power of <code class="docutils literal notranslate"><span class="pre">B</span></code>)</dt><dd><p>Used for exponentiation.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="concatenation-operators">
+<h3>Concatenation operators<a class="headerlink" href="#concatenation-operators" title="Permalink to this headline">¶</a></h3>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">++</span> <span class="pre">B</span></code> (read as: <code class="docutils literal notranslate"><span class="pre">A</span></code> followed by <code class="docutils literal notranslate"><span class="pre">B</span></code>)</dt><dd><p>The concatenation operation can be used for anything that can be roughtly
+thought of as the juxtaposition of the two values.</p>
+</dd>
+</dl>
+</div>
 </div>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
@@ -447,6 +543,15 @@ this isn’t a problem. Crochet will happilly accept the following:</p>
             <ul>
 <li><a class="reference internal" href="#">Signatures and their uses</a><ul>
 <li><a class="reference internal" href="#command-names">Command names</a></li>
+<li><a class="reference internal" href="#binary-command-names">Binary command names</a><ul>
+<li><a class="reference internal" href="#change-operators">Change operators</a></li>
+<li><a class="reference internal" href="#boolean-operators">Boolean operators</a></li>
+<li><a class="reference internal" href="#equality-operators">Equality operators</a></li>
+<li><a class="reference internal" href="#relational-operators">Relational operators</a></li>
+<li><a class="reference internal" href="#arithmetic-operators">Arithmetic operators</a></li>
+<li><a class="reference internal" href="#concatenation-operators">Concatenation operators</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#requirements">Requirements</a><ul>
 <li><a class="reference internal" href="#multiple-trait-requirements">Multiple trait requirements</a></li>
 <li><a class="reference internal" href="#convenience-forms">Convenience forms</a></li>

@@ -19,10 +19,14 @@ to understand it as ``_ and _ and also _``.
 
 Crochet has four different "forms" of names:
 
-- **Unary**: these are names like ``_ successor``, ``_ round``, or
+- **Unary postfix**: these are names like ``_ successor``, ``_ round``, or
   ``_ is-empty``. Note that the name of the command always follows
   the underscore, and when a name is composed of multiple words they
-  are written hyphen-separated, rather than space-separated.
+  are written hyphen-separated, rather than space-separated. As the name
+  suggests, these commands apply to exactly one value.
+
+- **Unary prefix**: the only name in this category is currently
+  ``not _``. Like the postfix variation, only one value is accepted.
 
 - **Binary**: these are names like ``_ + _``, ``_ and _``, or
   ``_ <- _``. These commands have exactly two requirements and
@@ -51,6 +55,118 @@ Crochet has four different "forms" of names:
   requirement/value would make it confusing to highlight any of them,
   so there's no ``self`` allowed within these commands---they're ``self-less``.
     
+
+Binary command names
+--------------------
+
+In Crochet, binary commands cannot have arbitrary names---rather, they must
+be one of the pre-defined symbol combinations. One of the reasons for this is that
+we want to help people read these consistently, both when they're completely
+unfamiliar with the code in question, and when they need to use assistive
+technologies to read code. Both of these become much trickier when you
+allow arbitrary sequences of symbols to be used for commands.
+
+Crochet does not only prescribe a set of symbolic names, though. It also
+prescribes a reading for them, and a meaning for them. This *does* mean
+that commands which stray from the meaning prescribed here should probably
+choose a different name to avoid confusing users.
+
+The following names are prescribed:
+
+Change operators
+''''''''''''''''
+
+``Target <- Value`` (read as: store ``Value`` in ``Target``)
+  This is used for any container of data that may change over time. The
+  ``Value`` indicates how the ``Target`` will change. ``Target``s may
+  hold multiple values, however. And how these values and changes are
+  observed is entirely up to the ``Target`` implementation.
+
+
+Boolean operators
+'''''''''''''''''
+
+The semantics for these operators should be close to how one would
+reason about boolean algebra.
+
+
+``A and B`` (read as is)
+  This is used for combining two values in a way that produces something
+  containing aspects of each side.
+
+``A or B`` (read as is)
+  This is used for combining two values in a way that produces something
+  containing aspects of one of the sides.
+
+``not A`` (read as is)
+  This is used for inverting the meaning of a value.
+
+
+Equality operators
+''''''''''''''''''
+
+The semantics of these operators should strictly follow what is
+prescribed by the ``equality`` trait.
+
+``A === B`` (read as: ``A`` equals ``B``)
+  This is used strictly for value equality.
+
+``A =/= B`` (read as: ``A`` does not equal ``B``)
+  This is used strictly for non-equality of values.
+
+
+Relational operators
+''''''''''''''''''''
+
+These operators are used strictly for ordering of values. The semantics are
+prescribed by the ``total-ordering`` and ``partial-ordering`` traits.
+
+
+``A > B`` (read as: ``A`` is greater than ``B``)
+  Used for ordering.
+
+``A >= B`` (read as: ``A`` is greater or equal to ``B``)
+  Used for ordering.
+
+``A < B`` (read as: ``A`` is less than ``B``)
+  Used for ordering.
+
+``A <= B`` (read as: ``A`` is less or equal to ``B``)
+  Used for ordering.
+
+  
+Arithmetic operators
+''''''''''''''''''''
+
+These operators are used strictly for arithmetic. The semantics are described
+by the ``arithmetic`` trait.
+
+``A + B`` (read as: ``A`` plus ``B``)
+  Used for arithmetic addition.
+
+``A - B`` (read as: ``A`` minus ``B``)
+  Used for arithmetic subtraction.
+
+``A * B`` (read as: ``A`` times ``B``)
+  Used for arithmetic multiplication.
+
+``A / B`` (read as: ``A`` divided by ``B``)
+  Used for arithmetic division without rounding.
+
+``A % B`` (read as: the remainder of ``A`` divided by ``B``)
+  Used for taking the remainder of a division.
+
+``A ** B`` (read as: ``A`` to the power of ``B``)
+  Used for exponentiation.
+
+
+Concatenation operators
+'''''''''''''''''''''''
+
+``A ++ B`` (read as: ``A`` followed by ``B``)
+  The concatenation operation can be used for anything that can be roughtly
+  thought of as the juxtaposition of the two values.
+
 
 Requirements
 ------------
