@@ -1,6 +1,5 @@
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import *
-from sphinx.highlighting import lexers
 
 keywords = [
   "relation",
@@ -116,5 +115,3 @@ class CrochetLexer(RegexLexer):
       include('common')
     ]
   }
-
-lexers['crochet'] = CrochetLexer()
