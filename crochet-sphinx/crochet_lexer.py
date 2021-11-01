@@ -96,18 +96,30 @@ class CrochetLexer(RegexLexer):
       (r'//.*', Comment.Single),
       (r'([\-\+]?[0-9][0-9_]*(?:\.[0-9][0-9_]*)?(?:[eE][\-\+]?[0-9][0-9_]*)?)', Number.Float),
       (r'([\-\+]?[0-9][0-9_]*)', Number.Integer),
+      (r'<<', String.Delimiter, 'string_angle'),
+      (r'"', String.Delimiter, 'string_double'),
       (r'\->|=>|<\-|===|=/=|>=|>|<=|<|\+\+|\+|\-|\*\*|\*|/|%|#', Operator),
       (r'[\(\)\[\]\{\};,:\|=\'\.]', Punctuation),
-      (r'"', String.Delimiter, 'string_double'),
       (r'\s+', Text)
     ],
 
     'string_double': [
+      (r'\s{2,}|\s+$|^\s+', Error),
       (r'[^\\"\[]+', String.Double),
       (r'\[', String.Interpol, 'string_interpolation'),
-      (r'\\(u[0-9a-fA-F]{4}|x[0-9a-fA-F]{2}|.)', String.Escape),
+      (r'\\(u[0-9a-fA-F]{4}|x[0-9a-fA-F]{2}|")', String.Escape),
       (r'\\.', Error),
       (r'"', String.Delimiter, '#pop')
+    ],
+
+    'string_angle': [
+      (r'[\r\n]', String.Double),
+      (r'\\(u[0-9a-fA-F]{4}|x[0-9a-fA-F]{2})', String.Escape),
+      (r'\[', String.Interpol, 'string_interpolation'),
+      (r'\\.', Error),
+      (r'[^>]+', String.Double),
+      (r'>>', String.Delimiter, '#pop'),
+      (r'>', String.Double)
     ],
 
     'string_interpolation': [
