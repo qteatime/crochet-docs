@@ -90,7 +90,7 @@
       <a href="../../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
     </div>
     <div class="header-right">
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
     </div>
@@ -156,15 +156,293 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
         <div class="section" id="textual-models">
 <h1>Textual models<a class="headerlink" href="#textual-models" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Text is complex and everything that is written here most likely will
+change.</p>
+</div>
 <p>Text is a big part of most kinds of programs, and it shows up quite
 often in interactive fiction as well. Crochet approaches textual
 representation in a way that tries to make it safer and more
 respecting—and supporting—of different languages and cultures.</p>
+<div class="section" id="text-literals">
+<h2>Text literals<a class="headerlink" href="#text-literals" title="Permalink to this headline">¶</a></h2>
+<p>Text can be described in Crochet using the text literal form. This
+allows one to provide any kind of Unicode piece of text, which is
+sufficient to support people to capture text in languages like
+English or Japanese, and to use emojis:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">"</span><span class="s2">Hello! こんにちは 😊</span><span class="dl">"</span>
+</pre></div>
+</div>
+<p>Literals can also contain multiple lines:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">"</span><span class="s2">There’s an unfamiliar scent.</span>
+<span class="s2"> An unfamiliar feeling.</span>
+<span class="s2"> You’re laying down on a cold floor---you feel</span>
+<span class="s2"> the irregular stones beneath you,</span>
+<span class="s2"> but you haven’t seen them yet.</span>
+<span class="s2"> Your eyes remain shut.</span><span class="dl">"</span>
+</pre></div>
+</div>
+<p>These forms may still contain double quote (<code class="docutils literal notranslate"><span class="pre">"</span></code>) characters, but
+because they both indicate the start and end of the literal, including
+them requires the character to be escaped—that is, written with
+a preceding backslash: <code class="docutils literal notranslate"><span class="pre">\"</span></code>:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">"</span><span class="s2">They exchanged some glances. </span><span class="se">\"</span><span class="s2">Are you not eating...?</span><span class="se">\"</span><span class="s2"> Awra asked.</span><span class="dl">"</span>
+</pre></div>
+</div>
+<p>Alternatively, literals can be started with <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> (double left angle brackets),
+and end with <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> (double right angle brackets). In this form, double quotes
+don’t need to be escaped:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">&lt;&lt;</span><span class="s2">They exchanged some glances. "Are you not eating...?" Awra asked.</span><span class="dl">&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="unicode-escapes">
+<h3>Unicode escapes<a class="headerlink" href="#unicode-escapes" title="Permalink to this headline">¶</a></h3>
+<p>Crochet allows characters to be written using their explicit unicode escape
+sequence, rather than its representation. The notation uses <code class="docutils literal notranslate"><span class="pre">\u</span></code> followed
+by the four hexadecimal unicode digits.</p>
+<p>For example, the ASCII exclamation mark (<code class="docutils literal notranslate"><span class="pre">!</span></code>) has the unicode number
+<code class="docutils literal notranslate"><span class="pre">0021</span></code>, so the escape sequence would become <code class="docutils literal notranslate"><span class="pre">\u0021</span></code>. The following
+are equivalent:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">&lt;&lt;</span><span class="s2">Hello!</span><span class="dl">&gt;&gt;</span>
+
+<span class="dl">&lt;&lt;</span><span class="s2">Hello\u0021</span><span class="dl">&gt;&gt;</span>
+</pre></div>
+</div>
+<p>There are certain situations in Crochet where characters must be written
+in their unicode escape form.</p>
+</div>
+<div class="section" id="handling-of-white-space">
+<h3>Handling of white-space<a class="headerlink" href="#handling-of-white-space" title="Permalink to this headline">¶</a></h3>
+<p>Any leading or trailing white-space character in a line in a text literal
+is ignored by Crochet. That is, the following literals are equivalent:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">&lt;&lt;</span><span class="s2">    Hello!    </span><span class="dl">&gt;&gt;</span>
+
+<span class="dl">&lt;&lt;</span><span class="s2">Hello!</span><span class="dl">&gt;&gt;</span>
+</pre></div>
+</div>
+<p>As are the following:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">&lt;&lt;</span><span class="s2">First line</span>
+<span class="s2">      and second line</span>
+<span class="s2">    and third line       </span><span class="dl">&gt;&gt;</span>
+
+<span class="dl">&lt;&lt;</span><span class="s2">First line</span>
+<span class="s2">and second line</span>
+<span class="s2">and third line</span><span class="dl">&gt;&gt;</span>
+</pre></div>
+</div>
+<p>White-space that is not leading or trailing in a line is collapsed. That is,
+multiple space characters are treated as if there was a single space character.
+Thus, the following are equivalent:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">&lt;&lt;</span><span class="s2">This   has    many     spaces,    but   Crochet    doesn't    care</span><span class="dl">&gt;&gt;</span>
+
+<span class="dl">&lt;&lt;</span><span class="s2">This has many spaces, but Crochet doesn't care</span><span class="dl">&gt;&gt;</span>
+</pre></div>
+</div>
+<p>All white-space characters are normalised, which means that tabs (unicode
+<code class="docutils literal notranslate"><span class="pre">\u0009</span></code>) becomes a single ASCII space (unicode <code class="docutils literal notranslate"><span class="pre">\u0020</span></code>).</p>
+<p>White-space that must be preserved in the literal needs to appear as
+its unicode escape code in the source code, but tools are free to provide
+friendlier presentations and editing interfaces. For example:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">&lt;&lt;</span><span class="s2">One\u0009Two\u0009Three</span><span class="dl">&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Is how one would express the words “one”, “two”, and “three” separated by
+tabs.</p>
+</div>
+<div class="section" id="handling-of-invisible-characters">
+<h3>Handling of invisible characters<a class="headerlink" href="#handling-of-invisible-characters" title="Permalink to this headline">¶</a></h3>
+<p>Unicode supports invisible and control characters—characters that don’t
+really have any glyph representation, but change how the text is interpreted
+by the program presenting it on the screen.</p>
+<p>Crochet requires all invisible and control characters to appear as explicit
+unicode escape sequences in the source code, but tools are free to provide
+friendlier presentations and editing interfaces.</p>
+</div>
+<div class="section" id="unicode-normalisation">
+<h3>Unicode normalisation<a class="headerlink" href="#unicode-normalisation" title="Permalink to this headline">¶</a></h3>
+<p>Unicode allows text that can be presented in the same way on screen to be
+written in very different forms. For example:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">&lt;&lt;</span><span class="s2">cafe\u0301</span><span class="dl">&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Is presented in the screen in the same way as:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">&lt;&lt;</span><span class="s2">café</span><span class="dl">&gt;&gt;</span>
+</pre></div>
+</div>
+<p>But in the source code, these are different pieces of text—they’re composed
+of different characters. In Crochet, any text written in a literal is
+converted to its canonical composed form. That means that in both of these
+cases, Crochet will <em>act</em> as if the source code contained the second form,
+where the <code class="docutils literal notranslate"><span class="pre">é</span></code> character is a single character.</p>
+<p>Because Crochet uses the canonical form—where it’s assumed that the meaning
+of both representations will not change—there are some cases where one may
+consider the meaning to be the same, but Crochet cannot make that inference.</p>
+<p>For example, the following pieces of text could be considered to mean the
+same thing in Japanese:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">&lt;&lt;</span><span class="s2">ネコ</span><span class="dl">&gt;&gt;</span>
+
+<span class="dl">&lt;&lt;</span><span class="s2">ﾈｺ</span><span class="dl">&gt;&gt;</span>
+
+<span class="dl">&lt;&lt;</span><span class="s2">ねこ</span><span class="dl">&gt;&gt;</span>
+
+<span class="dl">&lt;&lt;</span><span class="s2">猫</span><span class="dl">&gt;&gt;</span>
+</pre></div>
+</div>
+<p>All of these pieces of text <em>can</em> be read as “neko” (cat), but the choice
+of spelling and the way they compose with surrounding pieces of text might
+be relevant to their <em>meaning</em>, therefore Crochet does not do any
+normalisation for these cases automatically.</p>
+</div>
+</div>
+<div class="section" id="text-composition">
+<h2>Text composition<a class="headerlink" href="#text-composition" title="Permalink to this headline">¶</a></h2>
+<p>An interesting aspect of text is that we often want to combine different
+pieces, with different grammars and semantics. This is not really a
+computing thing; handwritten text in a piece of paper may comprise
+different languages, formatting, colours, and so many other aspects.</p>
+<p>Likewise, it’s quite common for some computer program to include text
+that contains parts in another language. For example:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">"</span><span class="s2">The sun was out in full force again; summer has arrived. And</span>
+<span class="s2"> there's only one way to describe this feeling: 夏バテ.</span><span class="dl">"</span>
+</pre></div>
+</div>
+<p>Here we have a piece of text literal in Crochet that includes text
+in both English and Japanese—the Japanese part, “natsubate”, or
+“suffering from summer heat”, is used to capture and emphasise the
+leading sentences. These kind of multi-lingual pieces of text are
+very common, though more often would comprise pairs like English
+and French, or English and Latin.</p>
+<p>So Crochet literals supports some of these compositions already—though
+in this case that’s by plain luck, as there’s nothing that tells
+Crochet that this <em>is</em> a composition. Crochet is not aware of
+the intrinsic semantics of these sentences; it does not care about
+what they mean.</p>
+<p>Now, computers sometimes care about the meaning of these pieces of
+text, too. And at that point composition becomes more complicated.</p>
+<p>Consider:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">Room</span> <span class="p">=</span> <span class="dl">"</span><span class="s2">The ceiling of the log cabin is in the same wood</span>
+<span class="s2">            you see in the walls. Nothing fancy, but well</span>
+<span class="s2">            kept still.</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">let</span> <span class="nv">Chandelier</span> <span class="p">=</span> <span class="dl">"</span><span class="s2">At the centre there’s a chandelier with</span>
+<span class="s2">                  three gas lamps.</span><span class="dl">"</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Here we have two separate pieces of text, one which describes a room, and
+another which describes a chandelier. We might have an interactive fiction
+where these pieces of text might be combined depending on certain things
+happening in the simulated game world. For example, the number of gas
+lamps might change, thus changing the description of the chandelier.</p>
+<p>But when we present this to the player we still want to make sure that
+they will see the <em>combined</em> piece of text; as if it was a single literal
+to begin with. We want them to see this:</p>
+<blockquote>
+<div><p>The ceiling of the log cabin is in the same wood you see in the walls.
+Nothing fancy, but well kept still. At the centre there’s a chandelier
+with three gas lamps.</p>
+</div></blockquote>
+<p>In Crochet, this is achieved by using the text composition form—called
+interpolation. The composition form is similar to the text literal—but
+it allows us to insert different things within the text, by using an
+expression within square brackets. For example, we could combine the
+example above using:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">"</span><span class="si">[</span><span class="nv">Room</span><span class="si">]</span><span class="s2"> </span><span class="si">[</span><span class="nv">Chandelier</span><span class="si">]</span><span class="dl">"</span>
+</pre></div>
+</div>
+<p>This just makes it so all of the text in <code class="docutils literal notranslate"><span class="pre">Room</span></code> is followed by all
+of the text in <code class="docutils literal notranslate"><span class="pre">Chandelier</span></code>. We could also have written it as such:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">"</span><span class="s2">The ceiling of the log cabin is in the same wood</span>
+<span class="s2"> you see in the walls. Nothing fancy, but well</span>
+<span class="s2"> kept still. </span><span class="si">[</span><span class="nv">Chandelier</span><span class="si">]</span><span class="dl">"</span>
+</pre></div>
+</div>
+<p>They both have the same semantics.</p>
+<div class="section" id="non-text-composition">
+<h3>Non-text composition<a class="headerlink" href="#non-text-composition" title="Permalink to this headline">¶</a></h3>
+<p>Interpolation is not limited to pieces of literal text in Crochet. We
+can compose any kind of Crochet value using it. This is often used to
+handle things like text formatting. For example, you might want to
+present some pieces of text in bold or italic letters. Or you might
+want to use a different type face, or a different size, or colour.</p>
+<p>In Crochet, these will generally be commands that produce a
+Crochet value that represents this “intention” of formatting
+the text—or adding non-textual things to it. For example:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="dl">"</span><span class="s2">You inspect the bracelet in your wrist. It </span><span class="si">[</span><span class="nf">bold:</span> <span class="dl">"</span><span class="s2">looks</span><span class="dl">"</span><span class="si">]</span><span class="s2"></span>
+<span class="s2"> like an elastic band. The one that is perhaps too comfortable</span>
+<span class="s2"> to wear, as you hadn't noticed it there sooner.</span><span class="dl">"</span>
+</pre></div>
+</div>
+<p>Here we have <code class="docutils literal notranslate"><span class="pre">bold:</span> <span class="pre">"looks"</span></code> within square brackets—the double
+quotes here are not escaped because, within the brackets, we can
+write any expression; Crochet will not get confused as the
+brackets provide an explicit beginning and end for it.</p>
+<p>What this <code class="docutils literal notranslate"><span class="pre">bold:</span> <span class="pre">_</span></code> command would do is to create a Crochet
+value that can represent its piece of text in bold font. Essentially
+giving us something that looks like this:</p>
+<blockquote>
+<div><p>You inspect the bracelet in your wrist. It <strong>looks</strong>
+like an elastic band. The one that is perhaps too comfortable
+to wear, as you hadn’t noticed it there sooner.</p>
+</div></blockquote>
+<p>Internally, Crochet just keeps track of which parts of the
+interpolation are literal pieces of text, and which parts are
+some arbitrary Crochet value. But it’s up to the code handling
+these interpolations how to associate a meaning to the entire
+composition.</p>
+</div>
+</div>
+<div class="section" id="text-and-trust">
+<h2>Text and trust<a class="headerlink" href="#text-and-trust" title="Permalink to this headline">¶</a></h2>
+<p>Crochet considers all pieces of literal text to be “trusted”—that
+is, they originate from within the code itself, and so the meaning
+should be known. At least as long as the package which includes
+them is also trusted.</p>
+<p>On the other hand, pieces of text that come from outside of the
+program—say text that user can type and provide to your program,
+or the contents of a file—are always considered “untrusted”.
+Which means that Crochet cannot verify its origin, and cannot
+decide if that piece of text is “safe” or not.</p>
+<p>Whenever pieces of untrusted text are combined with pieces of
+trusted text, the entire interpolation becomes, itself, untrusted—
+but the pieces within this interpolation maintain their original
+trust level. This behaviour allows computations that interpret
+these interpolations to know which values need to be a bit
+more restricted, and subject to a bit more of scrutinity,
+when looking at them. Safe composition of values relies on
+this property.</p>
+<p>To put this in more concrete terms. Imagine that you allow
+users to type the name of a file, which your game can then
+use as their avatar. These avatars are stored within a particular
+folder, so in order to load them you use the following
+interpolation:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">Avatar</span> <span class="p">=</span> <span class="dl">"</span><span class="s2">images/avatars/</span><span class="si">[</span><span class="nv">Filename</span><span class="si">]</span><span class="dl">"</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>So when Alissa types in <code class="docutils literal notranslate"><span class="pre">cat.png</span></code> as her file name, she’ll
+get <code class="docutils literal notranslate"><span class="pre">images/avatars/cat.png</span></code> as her avatar. Maki, however,
+is trying to be a bit clever here. She sees the potential to
+<em>break</em> our little game. So she types <code class="docutils literal notranslate"><span class="pre">../game-logo.png</span></code> as her file
+name—and gets <code class="docutils literal notranslate"><span class="pre">images/game-logo.png</span></code> as her avatar.</p>
+<p>This example doesn’t have any particularly bad implications,
+but it still lets us see that when we combine pieces of text
+naïvely, what we expected is not <em>always</em> what happens—and
+a lot of security issues happen because of this mismatch
+between what we expected to happen and what was actually
+<em>possible</em> to happen, given the program we wrote.</p>
+<p>Crochet aims to keep that mismatch to a minimum, which is why it
+goes a bit further with the distinction between trusted
+and untrusted values. This is then used by code interpreting
+these interpolations to ensure that it’s very unlikely that
+they will do confusing things—most of the time, you don’t
+really need to <em>worry</em> about it, unless you’re the one writing
+one of these interpreters.</p>
+</div>
 </div>
 
       </article>
@@ -209,8 +487,38 @@ respecting—and supporting—of different languages and cultures.</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Textual models</a><ul>
+<li><a class="reference internal" href="#text-literals">Text literals</a><ul>
+<li><a class="reference internal" href="#unicode-escapes">Unicode escapes</a></li>
+<li><a class="reference internal" href="#handling-of-white-space">Handling of white-space</a></li>
+<li><a class="reference internal" href="#handling-of-invisible-characters">Handling of invisible characters</a></li>
+<li><a class="reference internal" href="#unicode-normalisation">Unicode normalisation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#text-composition">Text composition</a><ul>
+<li><a class="reference internal" href="#non-text-composition">Non-text composition</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#text-and-trust">Text and trust</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
