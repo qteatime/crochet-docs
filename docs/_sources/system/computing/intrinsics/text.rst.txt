@@ -157,6 +157,16 @@ be relevant to their *meaning*, therefore Crochet does not do any
 normalisation for these cases automatically.
 
 
+Raw text
+''''''''
+
+A special kind of text literal is the "raw" literal. Within this form,
+Crochet does not do any normalisation or special handling of white space.
+Raw literals are preceded by the letter ``r``::
+
+    r"These   spaces   will   be    preserved!   "
+
+
 Text composition
 ----------------
 

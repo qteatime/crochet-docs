@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Annex A: Design philosophy" href="../../design-philosophy.html" /><link rel="prev" title="Numeric models" href="numbers.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Logical models" href="logic.html" /><link rel="prev" title="Numeric models" href="numbers.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
         <title>Textual models - Crochet 0.12 documentation</title>
@@ -136,6 +136,7 @@
 <li class="toctree-l4"><a class="reference internal" href="gradual.html">Gradual representations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="numbers.html">Numeric models</a></li>
 <li class="toctree-l4 current current-page"><a class="current reference internal" href="#">Textual models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="logic.html">Logical models</a></li>
 </ul>
 </li>
 </ul>
@@ -299,6 +300,15 @@ of spelling and the way they compose with surrounding pieces of text might
 be relevant to their <em>meaning</em>, therefore Crochet does not do any
 normalisation for these cases automatically.</p>
 </div>
+<div class="section" id="raw-text">
+<h3>Raw text<a class="headerlink" href="#raw-text" title="Permalink to this headline">¶</a></h3>
+<p>A special kind of text literal is the “raw” literal. Within this form,
+Crochet does not do any normalisation or special handling of white space.
+Raw literals are preceded by the letter <code class="docutils literal notranslate"><span class="pre">r</span></code>:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span>r<span class="dl">"</span><span class="s2">These   spaces   will   be    preserved!   </span><span class="dl">"</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="text-composition">
 <h2>Text composition<a class="headerlink" href="#text-composition" title="Permalink to this headline">¶</a></h2>
@@ -449,12 +459,12 @@ one of these interpreters.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../../design-philosophy.html">
+          <a class="next-page" href="logic.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Annex A: Design philosophy</div>
+                <div class="title">Logical models</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -505,6 +515,7 @@ one of these interpreters.</p>
 <li><a class="reference internal" href="#handling-of-white-space">Handling of white-space</a></li>
 <li><a class="reference internal" href="#handling-of-invisible-characters">Handling of invisible characters</a></li>
 <li><a class="reference internal" href="#unicode-normalisation">Unicode normalisation</a></li>
+<li><a class="reference internal" href="#raw-text">Raw text</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#text-composition">Text composition</a><ul>

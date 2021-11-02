@@ -46,3 +46,4 @@ The intrinsic types cover the following categories of problems:
    gradual
    numbers
    text
+   logic
