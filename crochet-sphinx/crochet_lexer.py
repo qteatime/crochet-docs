@@ -104,7 +104,6 @@ class CrochetLexer(RegexLexer):
     ],
 
     'string_double': [
-      (r'\s{2,}|\s+$|^\s+', Error),
       (r'[^\\"\[]+', String.Double),
       (r'\[', String.Interpol, 'string_interpolation'),
       (r'\\(u[0-9a-fA-F]{4}|x[0-9a-fA-F]{2}|")', String.Escape),
@@ -113,7 +112,6 @@ class CrochetLexer(RegexLexer):
     ],
 
     'string_angle': [
-      (r'[\r\n]', String.Double),
       (r'\\(u[0-9a-fA-F]{4}|x[0-9a-fA-F]{2})', String.Escape),
       (r'\[', String.Interpol, 'string_interpolation'),
       (r'\\.', Error),
