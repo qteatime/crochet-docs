@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Intrinsic data types" href="intrinsics/index.html" /><link rel="prev" title="Why are commands …?" href="../commands/why.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Execution models" href="execution-models.html" /><link rel="prev" title="Why are commands …?" href="../commands/why.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
         <title>Computing with Crochet - Crochet 0.12 documentation</title>
@@ -132,6 +132,7 @@
 </ul>
 </li>
 <li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">Computing with Crochet</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="execution-models.html">Execution models</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="intrinsics/index.html">Intrinsic data types</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="intrinsics/gradual.html">Gradual representations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="intrinsics/numbers.html">Numeric models</a></li>
@@ -169,6 +170,25 @@ we’ll dive deep into how these expressions work—how we make
 Crochet do things.</p>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="execution-models.html">Execution models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="execution-models.html#eager-evaluation">Eager evaluation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="execution-models.html#applicative-order-evaluation">Applicative-order evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="execution-models.html#when-does-this-matter">When does this matter?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="execution-models.html#partial-programs">Partial programs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="execution-models.html#applications-with-multiple-holes">Applications with multiple holes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="execution-models.html#anonymous-partial-programs">Anonymous partial programs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="execution-models.html#evaluation-time-in-partial-programs">Evaluation time in partial programs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="execution-models.html#delayed-programs">Delayed programs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="execution-models.html#regular-delayed-programs">Regular delayed programs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="execution-models.html#lazy-delayed-programs">Lazy delayed programs</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="intrinsics/index.html">Intrinsic data types</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="intrinsics/gradual.html">Gradual representations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="intrinsics/gradual.html#the-any-type">The <code class="docutils literal notranslate"><span class="pre">any</span></code> type</a></li>
@@ -212,12 +232,12 @@ Crochet do things.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="intrinsics/index.html">
+          <a class="next-page" href="execution-models.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Intrinsic data types</div>
+                <div class="title">Execution models</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>

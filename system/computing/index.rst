@@ -9,4 +9,5 @@ Crochet do things.
 
 .. toctree::
   
+   execution-models
    intrinsics/index
