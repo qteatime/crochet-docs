@@ -33,10 +33,6 @@ The intrinsic types cover the following categories of problems:
   one as an intrinsic type. We also discuss why, when, and how you might
   reach out for other models.
 
-- **Abstraction and execution models**: how do we talk about behaviour
-  *itself* on our programs? Abstraction and execution models give us
-  a language for doing that.
-
 - **Collections**: somestimes we need to talk about several values
   in a consistent way. Collections are one way to achieve that.
 
