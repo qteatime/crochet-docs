@@ -10,4 +10,5 @@ Crochet do things.
 .. toctree::
   
    execution-models
+   bindings
    intrinsics/index
