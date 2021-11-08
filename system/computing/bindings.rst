@@ -7,7 +7,7 @@ different syntax and rules.
 
 
 Global Names
-============
+------------
 
 One of the first instances of naming a value that you'd encounter
 in Crochet is the global name. A global name is introduced by the
