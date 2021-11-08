@@ -8,12 +8,14 @@ for executing computations, and in this section we discuss all of their
 details.
 
 
-Eager evaluation
-----------------
+Immediate evaluation
+--------------------
 
-The default model Crochet uses to execute programs is called "eager
-evaluation". That is, when a program consists of multiple expressions,
-Crochet will execute them one at a time, in the order they're written.
+The default model Crochet uses to execute programs is called to execute
+expressions immediately, often called "eager evaluation". That is,
+when a program consists of multiple expressions, Crochet will execute
+them one at a time, in the order they're written, only moving to the
+next one once the current one finishes executing.
 
 For example, in this piece of code::
 
@@ -25,8 +27,8 @@ finishes, it would execute ``player do-another-thing``. As if it
 was following a step-by-step recipe for cooking something.
 
 
-Applicative-order evaluation
-''''''''''''''''''''''''''''
+Evaluation of sub-expressions
+'''''''''''''''''''''''''''''
 
 Whenever sub-expressions are involved, Crochet will execute the
 sub-expressions first before it executes the outer expressions.

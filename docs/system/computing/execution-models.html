@@ -169,11 +169,13 @@ stuff like the order in which these computations are executed? That’s
 what execution models help answer. Crochet has a few different models
 for executing computations, and in this section we discuss all of their
 details.</p>
-<div class="section" id="eager-evaluation">
-<h2>Eager evaluation<a class="headerlink" href="#eager-evaluation" title="Permalink to this headline">¶</a></h2>
-<p>The default model Crochet uses to execute programs is called “eager
-evaluation”. That is, when a program consists of multiple expressions,
-Crochet will execute them one at a time, in the order they’re written.</p>
+<div class="section" id="immediate-evaluation">
+<h2>Immediate evaluation<a class="headerlink" href="#immediate-evaluation" title="Permalink to this headline">¶</a></h2>
+<p>The default model Crochet uses to execute programs is called to execute
+expressions immediately, often called “eager evaluation”. That is,
+when a program consists of multiple expressions, Crochet will execute
+them one at a time, in the order they’re written, only moving to the
+next one once the current one finishes executing.</p>
 <p>For example, in this piece of code:</p>
 <div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span>player do-something<span class="p">;</span>
 player do-another-thing<span class="p">;</span>
@@ -182,8 +184,8 @@ player do-another-thing<span class="p">;</span>
 <p>Crochet would first execute <code class="docutils literal notranslate"><span class="pre">player</span> <span class="pre">do-something</span></code>, and once that
 finishes, it would execute <code class="docutils literal notranslate"><span class="pre">player</span> <span class="pre">do-another-thing</span></code>. As if it
 was following a step-by-step recipe for cooking something.</p>
-<div class="section" id="applicative-order-evaluation">
-<h3>Applicative-order evaluation<a class="headerlink" href="#applicative-order-evaluation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="evaluation-of-sub-expressions">
+<h3>Evaluation of sub-expressions<a class="headerlink" href="#evaluation-of-sub-expressions" title="Permalink to this headline">¶</a></h3>
 <p>Whenever sub-expressions are involved, Crochet will execute the
 sub-expressions first before it executes the outer expressions.
 For example:</p>
@@ -559,8 +561,8 @@ remembered result can be returned immediately.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Execution models</a><ul>
-<li><a class="reference internal" href="#eager-evaluation">Eager evaluation</a><ul>
-<li><a class="reference internal" href="#applicative-order-evaluation">Applicative-order evaluation</a></li>
+<li><a class="reference internal" href="#immediate-evaluation">Immediate evaluation</a><ul>
+<li><a class="reference internal" href="#evaluation-of-sub-expressions">Evaluation of sub-expressions</a></li>
 <li><a class="reference internal" href="#when-does-this-matter">When does this matter?</a></li>
 </ul>
 </li>
