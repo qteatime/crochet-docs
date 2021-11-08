@@ -206,7 +206,7 @@ most of Crochet's syntax. But some syntax delimits regions with
 brackets instead. For example, the anonymous program syntaxes
 use curly braces to delimit regions::
 
-    let One = 1;             // - `One` and `Two` are available in this whole region.
+    let One = 1;             // - `One` and `Two` are available here
     let Two = {              // |    - 
       let Added = One + 1;   // |    | `Added` is only available here
       Added;                 // |    |
@@ -234,10 +234,10 @@ For example::
 
     let One = 1;                  // A
     let Two = 2;                  // |
-    {                             // |    B
+    do                            // |    B
       let One = "one";            // |    |
       show: "[One] [Two]";        // |    |
-    }();                          // |    |
+    end                           // |    |
     show: "[One] [Two]";          // |
 
 Here the ``show: "[One] [Two]"`` expression in the B region would show

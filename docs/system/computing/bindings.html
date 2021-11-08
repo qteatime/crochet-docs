@@ -345,7 +345,7 @@ of it:</p>
 most of Crochet’s syntax. But some syntax delimits regions with
 brackets instead. For example, the anonymous program syntaxes
 use curly braces to delimit regions:</p>
-<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">One</span> <span class="p">=</span> <span class="mf">1</span><span class="p">;</span>             <span class="c1">// - `One` and `Two` are available in this whole region.</span>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">One</span> <span class="p">=</span> <span class="mf">1</span><span class="p">;</span>             <span class="c1">// - `One` and `Two` are available here</span>
 <span class="k">let</span> <span class="nv">Two</span> <span class="p">=</span> <span class="p">{</span>              <span class="c1">// |    -</span>
   <span class="k">let</span> <span class="nv">Added</span> <span class="p">=</span> <span class="nv">One</span> <span class="o">+</span> <span class="mf">1</span><span class="p">;</span>   <span class="c1">// |    | `Added` is only available here</span>
   <span class="nv">Added</span><span class="p">;</span>                 <span class="c1">// |    |</span>
@@ -370,10 +370,10 @@ they will tell you they don’t know what the name means.</p>
 <p>For example:</p>
 <div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">One</span> <span class="p">=</span> <span class="mf">1</span><span class="p">;</span>                  <span class="c1">// A</span>
 <span class="k">let</span> <span class="nv">Two</span> <span class="p">=</span> <span class="mf">2</span><span class="p">;</span>                  <span class="c1">// |</span>
-<span class="p">{</span>                             <span class="c1">// |    B</span>
+<span class="k">do</span>                            <span class="c1">// |    B</span>
   <span class="k">let</span> <span class="nv">One</span> <span class="p">=</span> <span class="dl">"</span><span class="s2">one</span><span class="dl">"</span><span class="p">;</span>            <span class="c1">// |    |</span>
   <span class="nf">show:</span> <span class="dl">"</span><span class="si">[</span><span class="nv">One</span><span class="si">]</span><span class="s2"> </span><span class="si">[</span><span class="nv">Two</span><span class="si">]</span><span class="dl">"</span><span class="p">;</span>        <span class="c1">// |    |</span>
-<span class="p">}();</span>                          <span class="c1">// |    |</span>
+<span class="k">end</span>                           <span class="c1">// |    |</span>
 <span class="nf">show:</span> <span class="dl">"</span><span class="si">[</span><span class="nv">One</span><span class="si">]</span><span class="s2"> </span><span class="si">[</span><span class="nv">Two</span><span class="si">]</span><span class="dl">"</span><span class="p">;</span>          <span class="c1">// |</span>
 </pre></div>
 </div>
