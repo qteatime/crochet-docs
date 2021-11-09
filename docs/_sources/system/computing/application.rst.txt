@@ -122,17 +122,19 @@ The following are both valid, but compute different values::
 
     1 + (2 * 3);    // this results in 7
 
-There is, however, an exception to this. It is possible to combine commutative
+There is, however, an exception to this. It is possible to combine associative
 binary commands without parenthesis---that is, if Crochet has a guarantee that
-the order of executing the operations will not affect the result of the
-operation, then it's not a problem to combine them. This is only true as far
-as the unparenthesised operator is the same. In Crochet, the ``_ + _``,
-``_ * _``, ``_ and _``, and ``_ or _`` operators are commutative. Meaning
+the different groupings of the operations will not affect the result,
+then it's not a problem to combine them without parenthesis. This is only true as far
+as the unparenthesised operator is the same. In Crochet, the ``_ ++ _``, ``_ + _``,
+``_ * _``, ``_ and _``, and ``_ or _`` operators are associative. Meaning
 that the following expressions are valid::
 
     1 + 2 + 3 + 4;    // always results in 10
 
     1 * 2 * 3 * 4;    // always results in 24
+
+    [1] ++ [2] ++ [3] ++ [4]  // always results in [1, 2, 3, 4]
 
     true and true and false;  // always results in false
 

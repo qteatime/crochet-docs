@@ -277,16 +277,18 @@ The following are both valid, but compute different values:</p>
 <span class="mf">1</span> <span class="o">+</span> <span class="p">(</span><span class="mf">2</span> <span class="o">*</span> <span class="mf">3</span><span class="p">);</span>    <span class="c1">// this results in 7</span>
 </pre></div>
 </div>
-<p>There is, however, an exception to this. It is possible to combine commutative
+<p>There is, however, an exception to this. It is possible to combine associative
 binary commands without parenthesis—that is, if Crochet has a guarantee that
-the order of executing the operations will not affect the result of the
-operation, then it’s not a problem to combine them. This is only true as far
-as the unparenthesised operator is the same. In Crochet, the <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">+</span> <span class="pre">_</span></code>,
-<code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">*</span> <span class="pre">_</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code>, and <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">or</span> <span class="pre">_</span></code> operators are commutative. Meaning
+the different groupings of the operations will not affect the result,
+then it’s not a problem to combine them without parenthesis. This is only true as far
+as the unparenthesised operator is the same. In Crochet, the <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">++</span> <span class="pre">_</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">+</span> <span class="pre">_</span></code>,
+<code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">*</span> <span class="pre">_</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code>, and <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">or</span> <span class="pre">_</span></code> operators are associative. Meaning
 that the following expressions are valid:</p>
 <div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="mf">1</span> <span class="o">+</span> <span class="mf">2</span> <span class="o">+</span> <span class="mf">3</span> <span class="o">+</span> <span class="mf">4</span><span class="p">;</span>    <span class="c1">// always results in 10</span>
 
 <span class="mf">1</span> <span class="o">*</span> <span class="mf">2</span> <span class="o">*</span> <span class="mf">3</span> <span class="o">*</span> <span class="mf">4</span><span class="p">;</span>    <span class="c1">// always results in 24</span>
+
+<span class="p">[</span><span class="mf">1</span><span class="p">]</span> <span class="o">++</span> <span class="p">[</span><span class="mf">2</span><span class="p">]</span> <span class="o">++</span> <span class="p">[</span><span class="mf">3</span><span class="p">]</span> <span class="o">++</span> <span class="p">[</span><span class="mf">4</span><span class="p">]</span>  <span class="c1">// always results in [1, 2, 3, 4]</span>
 
 <span class="k">true</span> <span class="k">and</span> <span class="k">true</span> <span class="k">and</span> <span class="k">false</span><span class="p">;</span>  <span class="c1">// always results in false</span>
 
