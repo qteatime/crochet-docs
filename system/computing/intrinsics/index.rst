@@ -33,6 +33,10 @@ The intrinsic types cover the following categories of problems:
   one as an intrinsic type. We also discuss why, when, and how you might
   reach out for other models.
 
+- **Program representations**: we need to represent partial and
+  delayed programs. In Crochet these end up as either Functions or
+  Thunks.
+
 - **Collections**: somestimes we need to talk about several values
   in a consistent way. Collections are one way to achieve that.
 
@@ -43,3 +47,5 @@ The intrinsic types cover the following categories of problems:
    numbers
    text
    logic
+   functions
+   collections
