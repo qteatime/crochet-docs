@@ -2,10 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Gradual representations" href="gradual.html" /><link rel="prev" title="Naming values" href="../bindings.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Collections" href="collections.html" /><link rel="prev" title="Logical models" href="logic.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
-        <title>Intrinsic data types - Crochet 0.12 documentation</title>
+        <title>Program representations - Crochet 0.12 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css" />
@@ -90,7 +90,7 @@
       <a href="../../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
     </div>
     <div class="header-right">
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
     </div>
@@ -134,12 +134,12 @@
 <li class="toctree-l2 current has-children"><a class="reference internal" href="../index.html">Computing with Crochet</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../execution-models.html">Execution models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../bindings.html">Naming values</a></li>
-<li class="toctree-l3 current has-children current-page"><a class="current reference internal" href="#">Intrinsic data types</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 current has-children"><a class="reference internal" href="index.html">Intrinsic data types</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="gradual.html">Gradual representations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="numbers.html">Numeric models</a></li>
 <li class="toctree-l4"><a class="reference internal" href="text.html">Textual models</a></li>
 <li class="toctree-l4"><a class="reference internal" href="logic.html">Logical models</a></li>
-<li class="toctree-l4"><a class="reference internal" href="functions.html">Program representations</a></li>
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#">Program representations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="collections.html">Collections</a></li>
 </ul>
 </li>
@@ -162,95 +162,52 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
-        <div class="section" id="intrinsic-data-types">
-<h1>Intrinsic data types<a class="headerlink" href="#intrinsic-data-types" title="Permalink to this headline">¶</a></h1>
-<p>Crochet includes, out of the box, a collection of basic types—called
-intrinsics. These types are useful for most Crochet applications, but
-they also define a baseline for some of the security guarantees that
-Crochet provides. Without these it would be very difficult to make
-Crochet safe.</p>
-<p>The intrinsic types cover the following categories of problems:</p>
-<ul class="simple">
-<li><p><strong>Numeric models</strong>: these types represent different forms of numbers,
-only somewhat similar to what you’d see in mathematics as we still
-need to deal with some peculiarities of digital representation and
-computer resources.</p></li>
-<li><p><strong>Textual models</strong>: these types provide a way of representing and
-combining arbitrary pieces of text, securely. This turns out to be
-a much more difficult problem than one may think at first, so we
-spend a lot of time in the details of these textual types—and
-both technical and sociological implications, too.</p></li>
-<li><p><strong>Gradual representations</strong>: we don’t always know what kind of
-data we’re dealing with—or if we’re dealing with a piece of
-data at all. Crochet explicitly captures this and allows different
-pieces of code to have varying amounts of knowledge about what
-data they’re handling. This turns out to be very important for
-security in some situations!</p></li>
-<li><p><strong>Logical models</strong>: we need to represent answers to questions
-like “is the door locked?”, and both philosophy and mathematics have
-given us different models for this. Crochet exposes a very simple
-one as an intrinsic type. We also discuss why, when, and how you might
-reach out for other models.</p></li>
-<li><p><strong>Program representations</strong>: we need to represent partial and
-delayed programs. In Crochet these end up as either Functions or
-Thunks.</p></li>
-<li><p><strong>Collections</strong>: somestimes we need to talk about several values
-in a consistent way. Collections are one way to achieve that.</p></li>
-</ul>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="gradual.html">Gradual representations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="gradual.html#the-any-type">The <code class="docutils literal notranslate"><span class="pre">any</span></code> type</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gradual.html#the-unknown-type">The <code class="docutils literal notranslate"><span class="pre">unknown</span></code> type</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="gradual.html#a-note-on-overwrapping">A note on overwrapping</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="gradual.html#the-sealed-type">The <code class="docutils literal notranslate"><span class="pre">sealed</span></code> type</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gradual.html#the-nothing-type">The <code class="docutils literal notranslate"><span class="pre">nothing</span></code> type</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="numbers.html">Numeric models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="numbers.html#approximating-fractionals">Approximating fractionals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="numbers.html#mixed-operations">Mixed operations</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="text.html">Textual models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="text.html#text-literals">Text literals</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="text.html#unicode-escapes">Unicode escapes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="text.html#handling-of-white-space">Handling of white-space</a></li>
-<li class="toctree-l3"><a class="reference internal" href="text.html#handling-of-invisible-characters">Handling of invisible characters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="text.html#unicode-normalisation">Unicode normalisation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="text.html#raw-text">Raw text</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="text.html#text-composition">Text composition</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="text.html#non-text-composition">Non-text composition</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="text.html#text-and-trust">Text and trust</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="logic.html">Logical models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">Program representations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#thunks">Thunks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="functions.html#partials">Partials</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="collections.html#lists">Lists</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collections.html#records">Records</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="collections.html#security-considerations">Security considerations</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+        <div class="section" id="program-representations">
+<h1>Program representations<a class="headerlink" href="#program-representations" title="Permalink to this headline">¶</a></h1>
+<p>Crochet differentiates delayed programs created through the <code class="docutils literal notranslate"><span class="pre">lazy</span></code>
+special syntax and other partial or delayed programs created either
+through holes or the curly-brackets syntax. The primary reason for
+this is that they really do behave differently under the hood, and
+unifying them would make things more confusing.</p>
+<div class="section" id="thunks">
+<h2>Thunks<a class="headerlink" href="#thunks" title="Permalink to this headline">¶</a></h2>
+<p>A lazy delayed program (created through the <code class="docutils literal notranslate"><span class="pre">lazy</span></code> special syntax)
+is a Thunk, and it’s associated with the <code class="docutils literal notranslate"><span class="pre">thunk</span></code> type. The <code class="docutils literal notranslate"><span class="pre">force</span></code>
+special syntax, which executes a lazy delayed program if no value for
+it has been computed before, is the primary way of interacting with
+these programs.</p>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p>Every other delayed or partial program is a Function—a representation
+of a (maybe partial) program that can be executed at will through the
+<code class="docutils literal notranslate"><span class="pre">Program()</span></code> syntax.</p>
+<p>Functions are classified by the number of requirements they have. Also
+called their “arity”. For example, the function <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">1</span> <span class="pre">+</span> <span class="pre">2</span> <span class="pre">}</span></code> has no
+requirements, and thus arity 0 (or nullary). It is represented by the
+type <code class="docutils literal notranslate"><span class="pre">function-0</span></code>. Whereas the function <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">A,</span> <span class="pre">B</span> <span class="pre">in</span> <span class="pre">A</span> <span class="pre">+</span> <span class="pre">B</span> <span class="pre">}</span></code> and
+the function <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">+</span> <span class="pre">_</span></code> both have two requirements, and thus arity 2
+(or binary). These are represented by the type <code class="docutils literal notranslate"><span class="pre">function-2</span></code>.</p>
+<p>Functions can be executed by providing values to all of their
+requirements:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">Add</span> <span class="p">=</span> <span class="p">{</span> <span class="nv">A</span><span class="p">,</span> <span class="nv">B</span> <span class="k">in</span> <span class="nv">A</span> <span class="o">+</span> <span class="nv">B</span> <span class="p">};</span>
+<span class="nv">Add</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>It’s not immediately obvious by looking at this syntax if all of
+the requirements have been fulfilled, but for Crochet it’s an error
+if the number of values we provide differs from the number of
+requirements.</p>
+<div class="section" id="partials">
+<h3>Partials<a class="headerlink" href="#partials" title="Permalink to this headline">¶</a></h3>
+<p>A Partial is a special kind of function that’s created when commands
+are partially applied. For example, the expression <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">+</span> <span class="pre">1</span></code> creates
+a value of the type <code class="docutils literal notranslate"><span class="pre">partial-1</span></code>. Partials can be used anywhere
+functions of the same arity are expected.</p>
+</div>
 </div>
 </div>
 
@@ -258,23 +215,23 @@ in a consistent way. Collections are one way to achieve that.</p></li>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="gradual.html">
+          <a class="next-page" href="collections.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Gradual representations</div>
+                <div class="title">Collections</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../bindings.html">
+          <a class="prev-page" href="logic.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Naming values</div>
+                <div class="title">Logical models</div>
                 
               </div>
             </a>
@@ -288,7 +245,7 @@ in a consistent way. Collections are one way to achieve that.</p></li>
               <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
               <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
             |
-            <a class="muted-link" href="../../../_sources/system/computing/intrinsics/index.rst.txt"
+            <a class="muted-link" href="../../../_sources/system/computing/intrinsics/functions.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -296,8 +253,31 @@ in a consistent way. Collections are one way to achieve that.</p></li>
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Program representations</a><ul>
+<li><a class="reference internal" href="#thunks">Thunks</a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#partials">Partials</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

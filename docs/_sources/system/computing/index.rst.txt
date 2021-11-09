@@ -12,3 +12,4 @@ Crochet do things.
    execution-models
    bindings
    intrinsics/index
+   application

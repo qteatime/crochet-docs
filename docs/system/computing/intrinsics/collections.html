@@ -2,10 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Gradual representations" href="gradual.html" /><link rel="prev" title="Naming values" href="../bindings.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Applying programs and commands" href="../application.html" /><link rel="prev" title="Program representations" href="functions.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
-        <title>Intrinsic data types - Crochet 0.12 documentation</title>
+        <title>Collections - Crochet 0.12 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css" />
@@ -90,7 +90,7 @@
       <a href="../../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
     </div>
     <div class="header-right">
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
     </div>
@@ -134,13 +134,13 @@
 <li class="toctree-l2 current has-children"><a class="reference internal" href="../index.html">Computing with Crochet</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../execution-models.html">Execution models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../bindings.html">Naming values</a></li>
-<li class="toctree-l3 current has-children current-page"><a class="current reference internal" href="#">Intrinsic data types</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 current has-children"><a class="reference internal" href="index.html">Intrinsic data types</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="gradual.html">Gradual representations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="numbers.html">Numeric models</a></li>
 <li class="toctree-l4"><a class="reference internal" href="text.html">Textual models</a></li>
 <li class="toctree-l4"><a class="reference internal" href="logic.html">Logical models</a></li>
 <li class="toctree-l4"><a class="reference internal" href="functions.html">Program representations</a></li>
-<li class="toctree-l4"><a class="reference internal" href="collections.html">Collections</a></li>
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#">Collections</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../application.html">Applying programs and commands</a></li>
@@ -162,95 +162,69 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
-        <div class="section" id="intrinsic-data-types">
-<h1>Intrinsic data types<a class="headerlink" href="#intrinsic-data-types" title="Permalink to this headline">¶</a></h1>
-<p>Crochet includes, out of the box, a collection of basic types—called
-intrinsics. These types are useful for most Crochet applications, but
-they also define a baseline for some of the security guarantees that
-Crochet provides. Without these it would be very difficult to make
-Crochet safe.</p>
-<p>The intrinsic types cover the following categories of problems:</p>
-<ul class="simple">
-<li><p><strong>Numeric models</strong>: these types represent different forms of numbers,
-only somewhat similar to what you’d see in mathematics as we still
-need to deal with some peculiarities of digital representation and
-computer resources.</p></li>
-<li><p><strong>Textual models</strong>: these types provide a way of representing and
-combining arbitrary pieces of text, securely. This turns out to be
-a much more difficult problem than one may think at first, so we
-spend a lot of time in the details of these textual types—and
-both technical and sociological implications, too.</p></li>
-<li><p><strong>Gradual representations</strong>: we don’t always know what kind of
-data we’re dealing with—or if we’re dealing with a piece of
-data at all. Crochet explicitly captures this and allows different
-pieces of code to have varying amounts of knowledge about what
-data they’re handling. This turns out to be very important for
-security in some situations!</p></li>
-<li><p><strong>Logical models</strong>: we need to represent answers to questions
-like “is the door locked?”, and both philosophy and mathematics have
-given us different models for this. Crochet exposes a very simple
-one as an intrinsic type. We also discuss why, when, and how you might
-reach out for other models.</p></li>
-<li><p><strong>Program representations</strong>: we need to represent partial and
-delayed programs. In Crochet these end up as either Functions or
-Thunks.</p></li>
-<li><p><strong>Collections</strong>: somestimes we need to talk about several values
-in a consistent way. Collections are one way to achieve that.</p></li>
-</ul>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="gradual.html">Gradual representations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="gradual.html#the-any-type">The <code class="docutils literal notranslate"><span class="pre">any</span></code> type</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gradual.html#the-unknown-type">The <code class="docutils literal notranslate"><span class="pre">unknown</span></code> type</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="gradual.html#a-note-on-overwrapping">A note on overwrapping</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="gradual.html#the-sealed-type">The <code class="docutils literal notranslate"><span class="pre">sealed</span></code> type</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gradual.html#the-nothing-type">The <code class="docutils literal notranslate"><span class="pre">nothing</span></code> type</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="numbers.html">Numeric models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="numbers.html#approximating-fractionals">Approximating fractionals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="numbers.html#mixed-operations">Mixed operations</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="text.html">Textual models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="text.html#text-literals">Text literals</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="text.html#unicode-escapes">Unicode escapes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="text.html#handling-of-white-space">Handling of white-space</a></li>
-<li class="toctree-l3"><a class="reference internal" href="text.html#handling-of-invisible-characters">Handling of invisible characters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="text.html#unicode-normalisation">Unicode normalisation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="text.html#raw-text">Raw text</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="text.html#text-composition">Text composition</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="text.html#non-text-composition">Non-text composition</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="text.html#text-and-trust">Text and trust</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="logic.html">Logical models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">Program representations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#thunks">Thunks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="functions.html#partials">Partials</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="collections.html#lists">Lists</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collections.html#records">Records</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="collections.html#security-considerations">Security considerations</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+        <div class="section" id="collections">
+<h1>Collections<a class="headerlink" href="#collections" title="Permalink to this headline">¶</a></h1>
+<p>Sometimes we need to deal with multiple values. Crochet has two primary
+types for this: Lists and Records.</p>
+<div class="section" id="lists">
+<h2>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h2>
+<p>A list is a sequence of similar items—where “similar” really means
+“we can treat these uniformly”, and often boils down to having the
+same type.</p>
+<p>Lists are written in the square brackets syntax:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">4</span><span class="p">,</span> <span class="mf">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The expression above creates a list that contains 5 elements, which
+are the integers from 1 to 5, in that exact order.</p>
+<p>An empty list is written as follows:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span>
+</pre></div>
+</div>
+<p>Lists can be peeked into, transformed, sorted, combined, and a so on.
+The standard library defines a rich set of ways to manipulate lists,
+and similar collections, such as sets.</p>
+</div>
+<div class="section" id="records">
+<h2>Records<a class="headerlink" href="#records" title="Permalink to this headline">¶</a></h2>
+<p>A record is an unordered bag of values that can be referenced with
+a key. Each key references exactly one value in a record, and all
+values have a key.</p>
+<p>We can write records using the bracket-with-arrows syntax:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+  name <span class="o">-&gt;</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span>
+  first-appeared-in <span class="o">-&gt;</span> <span class="dl">"</span><span class="s2">Alice in Wonderland</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>This is a bag with two key and value pairs. The <code class="docutils literal notranslate"><span class="pre">name</span></code> key
+references the value <code class="docutils literal notranslate"><span class="pre">"Alice"</span></code>. And the name <code class="docutils literal notranslate"><span class="pre">first-appeared-in</span></code>
+references the value <code class="docutils literal notranslate"><span class="pre">"Alice</span> <span class="pre">in</span> <span class="pre">Wonderland"</span></code>.</p>
+<p>An empty record is written as follows, to avoid confusion with
+empty lists:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">-&gt;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We can project values out of records in a similar fashion to
+typed data, using the dot operator with the key:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">Point</span> <span class="p">=</span> <span class="p">[</span>x <span class="o">-&gt;</span> <span class="mf">1</span><span class="p">,</span> y <span class="o">-&gt;</span> <span class="mf">2</span><span class="p">];</span>
+<span class="nv">Point</span><span class="p">.</span>x<span class="p">;</span>
+</pre></div>
+</div>
+<div class="section" id="security-considerations">
+<h3>Security considerations<a class="headerlink" href="#security-considerations" title="Permalink to this headline">¶</a></h3>
+<p>Records are somewhat of a weaker form of Typed Data in Crochet—
+we have a structure with some values we can use, but we choose to
+neither attach a unique meaning or security policies to it. This
+means that records can only be used for public and non-sensitive
+information, and are best kept restricted to very local uses—
+where we hold on to the record for a short amount of time, and
+represent bags of information we’ll properly store in typed
+data soon.</p>
+</div>
 </div>
 </div>
 
@@ -258,23 +232,23 @@ in a consistent way. Collections are one way to achieve that.</p></li>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="gradual.html">
+          <a class="next-page" href="../application.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Gradual representations</div>
+                <div class="title">Applying programs and commands</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../bindings.html">
+          <a class="prev-page" href="functions.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Naming values</div>
+                <div class="title">Program representations</div>
                 
               </div>
             </a>
@@ -288,7 +262,7 @@ in a consistent way. Collections are one way to achieve that.</p></li>
               <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
               <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
             |
-            <a class="muted-link" href="../../../_sources/system/computing/intrinsics/index.rst.txt"
+            <a class="muted-link" href="../../../_sources/system/computing/intrinsics/collections.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -296,8 +270,31 @@ in a consistent way. Collections are one way to achieve that.</p></li>
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Collections</a><ul>
+<li><a class="reference internal" href="#lists">Lists</a></li>
+<li><a class="reference internal" href="#records">Records</a><ul>
+<li><a class="reference internal" href="#security-considerations">Security considerations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
