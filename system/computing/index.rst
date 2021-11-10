@@ -16,3 +16,4 @@ Crochet do things.
    using
    equality
    branching
+   comprehension
