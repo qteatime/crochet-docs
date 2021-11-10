@@ -1,0 +1,297 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Working with multiple values" href="comprehension.html" /><link rel="prev" title="Equality" href="equality.html" />
+
+    <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
+        <title>Branching - Crochet 0.12 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/crochet.css" />
+    
+
+
+<style>
+  :root {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../_static/pygments_dark.css"></head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Crochet 0.12 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">The Crochet System</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../whats-crochet.html">What’s Crochet?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installing-crochet.html">Installing Crochet</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../structure/index.html">How is Crochet structured?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../structure/introduction.html">The Crochet universe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure/package-configuration.html">Package configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../types/index.html">Data and types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../types/types-and-data.html">Types and data modelling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/hierarchies.html">Hierarchies of types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/traits.html">Traits</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../commands/index.html">Commands</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../commands/declaration.html">What are commands?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/signatures.html">Signatures and their uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/why.html">Why are commands …?</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Computing with Crochet</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="execution-models.html">Execution models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bindings.html">Naming values</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="intrinsics/index.html">Intrinsic data types</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/gradual.html">Gradual representations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/numbers.html">Numeric models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/text.html">Textual models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/logic.html">Logical models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/functions.html">Program representations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/collections.html">Collections</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="application.html">Applying programs and commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html">Using data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="equality.html">Equality</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Branching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comprehension.html">Working with multiple values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sociology-and-linguistics.html">Annex B: Sociology and linguistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="branching">
+<h1>Branching<a class="headerlink" href="#branching" title="Permalink to this headline">¶</a></h1>
+<p>Sometimes we may want programs to do different things in certain
+conditions. For example, if we’re writing a murder-mystery game,
+characters might act differently depending on whether the player
+is acting as an investigator or a friend of the victim. Often,
+these are achieved by listing different things that the program
+does for each case we want to consider.</p>
+<p>In Crochet, this is achieved by testing for conditions, and
+then using branches in the code. This section describes these
+tools in more details.</p>
+<div class="section" id="conditions">
+<h2>Conditions<a class="headerlink" href="#conditions" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">condition</span></code> syntax allows one to list a sequence of
+conditions and their effects. Crochet will then pick the
+first condition that holds—the first condition which evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code>—
+and execute the effects associated with it.</p>
+<p>For example, if we have a rock-paper-scissors game, we can
+describe the possible outcomes of the game by using conditions:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> move <span class="p">=</span> rock<span class="p">,</span> paper<span class="p">,</span> scissors<span class="p">;</span>
+
+<span class="k">command</span> <span class="p">(</span><span class="nv">Player</span> <span class="k">is</span> move<span class="p">)</span> <span class="nf">against:</span> <span class="p">(</span><span class="nv">Other</span> <span class="k">is</span> move<span class="p">)</span> <span class="k">do</span>
+  <span class="k">condition</span>
+    <span class="k">when</span> <span class="p">(</span><span class="nv">Player</span> <span class="k">is</span> rock<span class="p">)</span> <span class="k">and</span> <span class="p">(</span><span class="nv">Other</span> <span class="k">is</span> scissors<span class="p">)</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">Player wins</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">when</span> <span class="p">(</span><span class="nv">Player</span> <span class="k">is</span> paper<span class="p">)</span> <span class="k">and</span> <span class="p">(</span><span class="nv">Other</span> <span class="k">is</span> rock<span class="p">)</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">Player wins</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">when</span> <span class="p">(</span><span class="nv">Player</span> <span class="k">is</span> scissors<span class="p">)</span> <span class="k">and</span> <span class="p">(</span><span class="nv">Other</span> <span class="k">is</span> paper<span class="p">)</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">Player wins</span><span class="dl">"</span><span class="p">;</span>
+
+    <span class="k">when</span> <span class="p">(</span><span class="nv">Other</span> <span class="k">is</span> rock<span class="p">)</span> <span class="k">and</span> <span class="p">(</span><span class="nv">Player</span> <span class="k">is</span> scissors<span class="p">)</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">Other wins</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">when</span> <span class="p">(</span><span class="nv">Other</span> <span class="k">is</span> paper<span class="p">)</span> <span class="k">and</span> <span class="p">(</span><span class="nv">Player</span> <span class="k">is</span> rock<span class="p">)</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">Other wins</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">when</span> <span class="p">(</span><span class="nv">Other</span> <span class="k">is</span> scissors<span class="p">)</span> <span class="k">and</span> <span class="p">(</span><span class="nv">Player</span> <span class="k">is</span> paper<span class="p">)</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">Other wins</span><span class="dl">"</span><span class="p">;</span>
+
+    <span class="k">when</span> <span class="nv">Player</span> <span class="o">===</span> <span class="nv">Other</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">It's a draw</span><span class="dl">"</span><span class="p">;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>So each condition is specified with the <code class="docutils literal notranslate"><span class="pre">when</span></code> keyword, using some
+logical test. The effect of this condition can be described as a single
+expression with the <code class="docutils literal notranslate"><span class="pre">=&gt;</span> <span class="pre">Expression</span></code> syntax, or a sequence of expressions
+with the <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">...</span> <span class="pre">end</span></code> syntax.</p>
+<p>We can also end a list of conditions with the <code class="docutils literal notranslate"><span class="pre">otherwise</span></code> keyword. This
+always matches, so if every other condition has failed, we’ll execute this
+effect. <code class="docutils literal notranslate"><span class="pre">otherwise</span></code> is just a nicer way of writing <code class="docutils literal notranslate"><span class="pre">when</span> <span class="pre">true</span></code>:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">condition</span>
+  <span class="k">when</span> <span class="nv">Number</span> <span class="o">&lt;</span> <span class="mf">0</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">It's negative</span><span class="dl">"</span><span class="p">;</span>
+  <span class="k">when</span> <span class="nv">Number</span> <span class="o">&gt;</span> <span class="mf">0</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">It's positive</span><span class="dl">"</span><span class="p">;</span>
+  <span class="k">otherwise</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">It's zero</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="comprehension.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Working with multiple values</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="equality.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Equality</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Q.
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="../../_sources/system/computing/branching.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Branching</a><ul>
+<li><a class="reference internal" href="#conditions">Conditions</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </main>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/main.js"></script>
+    </body>
+</html>

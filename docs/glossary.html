@@ -119,7 +119,6 @@
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="system/types/index.html">Data and types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="system/types/types-and-data.html">Types and data modelling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="system/types/using.html">Using typed data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="system/types/hierarchies.html">Hierarchies of types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="system/types/traits.html">Traits</a></li>
 </ul>
@@ -144,6 +143,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="system/computing/application.html">Applying programs and commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system/computing/using.html">Using data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system/computing/equality.html">Equality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system/computing/branching.html">Branching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system/computing/comprehension.html">Working with multiple values</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="system/design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -186,7 +189,7 @@ lambda applications are positional in Crochet, so <code class="docutils literal 
 </dd>
 <dt id="term-Positional-argument">Positional argument<a class="headerlink" href="#term-Positional-argument" title="Permalink to this term">¶</a></dt><dd><p>A positional argument is one whose meaning depends on the position
 it has in a sequence, rather than an explicit name. For example,
-in Crochet, the <a class="reference internal" href="system/types/using.html#new-operator"><span class="std std-ref">new operator</span></a> is positional, because in
+in Crochet, the <a class="reference internal" href="system/computing/using.html#new-operator"><span class="std std-ref">new operator</span></a> is positional, because in
 <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">some-type(A,</span> <span class="pre">B)</span></code>, the meaning of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> would
 change if their order was swapped!</p>
 <p>The opposite concept is a <a class="reference internal" href="#term-Named-argument"><span class="xref std std-term">named argument</span></a>. For example,
@@ -196,7 +199,7 @@ records are named in Crochet, so both <code class="docutils literal notranslate"
 <dt id="term-Projection-of-fields">Projection (of fields)<a class="headerlink" href="#term-Projection-of-fields" title="Permalink to this term">¶</a></dt><dd><p>Data in Crochet is stored in a bag of information called <a class="reference internal" href="system/types/types-and-data.html#what-are-types"><span class="std std-ref">typed data</span></a>.
 Retrieving a particular piece of information from this bag is called
 a <em>projection</em>—you’re “projecting” a certain aspect of the data outside
-of the bag. Projection is handled by the <a class="reference internal" href="system/types/using.html#field-projection"><span class="std std-ref">dot (.) operator</span></a>.</p>
+of the bag. Projection is handled by the <a class="reference internal" href="system/computing/using.html#field-projection"><span class="std std-ref">dot (.) operator</span></a>.</p>
 </dd>
 </dl>
 </div>

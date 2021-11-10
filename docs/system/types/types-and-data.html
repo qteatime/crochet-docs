@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Using typed data" href="using.html" /><link rel="prev" title="Data and types" href="index.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Hierarchies of types" href="hierarchies.html" /><link rel="prev" title="Data and types" href="index.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
         <title>Types and data modelling - Crochet 0.12 documentation</title>
@@ -119,7 +119,6 @@
 </li>
 <li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Data and types</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Types and data modelling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="using.html">Using typed data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hierarchies.html">Hierarchies of types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="traits.html">Traits</a></li>
 </ul>
@@ -144,6 +143,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../computing/application.html">Applying programs and commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/using.html">Using data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/equality.html">Equality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/branching.html">Branching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/comprehension.html">Working with multiple values</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -203,7 +206,7 @@ For example:</p>
 </div>
 <p>Here, <code class="docutils literal notranslate"><span class="pre">point2d</span></code> is a name that will be associated with a combination
 of data that contains <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> points. Here, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are
-also called <a class="reference internal" href="#typed-fields"><span class="std std-ref">fields</span></a>. Association is done through the <a class="reference internal" href="using.html#new-operator"><span class="std std-ref">new operator</span></a>:</p>
+also called <a class="reference internal" href="#typed-fields"><span class="std std-ref">fields</span></a>. Association is done through the <a class="reference internal" href="../computing/using.html#new-operator"><span class="std std-ref">new operator</span></a>:</p>
 <div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">new</span> point2d<span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -218,7 +221,7 @@ this data can be projected with the dot operator:</p>
 <span class="k">assert</span> <span class="nv">P</span><span class="p">.</span>y <span class="p">=</span><span class="o">=&gt;</span> <span class="mf">2</span><span class="p">;</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="using.html#field-projection"><span class="std std-ref">Field projection</span></a> is very restricted for security reasons, and typed
+<p><a class="reference internal" href="../computing/using.html#field-projection"><span class="std std-ref">Field projection</span></a> is very restricted for security reasons, and typed
 data is really mostly operated (and observed) through <a class="reference internal" href="../commands/index.html#commands"><span class="std std-ref">commands</span></a>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -281,7 +284,7 @@ but no fields are specified:</p>
 <div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> some-name<span class="p">;</span>
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="using.html#new-operator"><span class="std std-ref">new operator</span></a> is still what brings these types to the realm of
+<p>The <a class="reference internal" href="../computing/using.html#new-operator"><span class="std std-ref">new operator</span></a> is still what brings these types to the realm of
 data—but there’s no data to associate with the name. Data-less types
 are, instead, used to build unforgeable and unique names. These names
 can have many usages. For example, these names can act as a way to
@@ -308,7 +311,7 @@ of that character.</p>
 <div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">singleton</span> player<span class="p">;</span>
 </pre></div>
 </div>
-<p>In this case we don’t use the <a class="reference internal" href="using.html#new-operator"><span class="std std-ref">new operator</span></a> for materialising the
+<p>In this case we don’t use the <a class="reference internal" href="../computing/using.html#new-operator"><span class="std std-ref">new operator</span></a> for materialising the
 name <code class="docutils literal notranslate"><span class="pre">player</span></code>—it’s already part of the <code class="docutils literal notranslate"><span class="pre">singleton</span></code> declaration.
 It will construct a global name <code class="docutils literal notranslate"><span class="pre">player</span></code> that is unique.</p>
 <p>Indeed, the singleton declaration works much like the following
@@ -325,7 +328,7 @@ seal player<span class="p">;</span>
 </pre></div>
 </div>
 <p>The seal operation at the end ensures that the system has exactly
-one <code class="docutils literal notranslate"><span class="pre">player</span></code> name, by forbiding any future uses of the <a class="reference internal" href="using.html#new-operator"><span class="std std-ref">new operator</span></a>
+one <code class="docutils literal notranslate"><span class="pre">player</span></code> name, by forbiding any future uses of the <a class="reference internal" href="../computing/using.html#new-operator"><span class="std std-ref">new operator</span></a>
 for this type. This guarantee is useful when using these names as keys
 (e.g.: when using them as keys in the Crochet database), as it
 eliminates the potential for confusion when copies of the name
@@ -379,7 +382,7 @@ declaration:</p>
 <p>Here the only thing that has changed is the declaration of the <code class="docutils literal notranslate"><span class="pre">shape</span></code>
 type, replacing the <code class="docutils literal notranslate"><span class="pre">type</span></code> keyword with the <code class="docutils literal notranslate"><span class="pre">abstract</span></code> one. The
 semantics of the <code class="docutils literal notranslate"><span class="pre">shape</span></code> type (and any of its subtypes) remain largely
-unchanged, but this means that the <a class="reference internal" href="using.html#new-operator"><span class="std std-ref">new operator</span></a> will not work on
+unchanged, but this means that the <a class="reference internal" href="../computing/using.html#new-operator"><span class="std std-ref">new operator</span></a> will not work on
 <code class="docutils literal notranslate"><span class="pre">shape</span></code> itself:</p>
 <div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">new</span> shape<span class="p">;</span>
 <span class="c1">// *** Error: non-constructable: `shape` is an abstract type;</span>
@@ -431,7 +434,7 @@ conveniences.</p>
 <h2>Static types<a class="headerlink" href="#static-types" title="Permalink to this headline">¶</a></h2>
 <p>We’ve seen how types are unique, unforgeable names that can be associated
 with a piece of data (or with nothing, in the case of data-less types).
-When one constructs a type through the <a class="reference internal" href="using.html#new-operator"><span class="std std-ref">new operator</span></a>, we get an
+When one constructs a type through the <a class="reference internal" href="../computing/using.html#new-operator"><span class="std std-ref">new operator</span></a>, we get an
 unique piece of data. But until we do so, types don’t really play in
 the same field data does—types are entirely separated entities,
 operated on only through <code class="docutils literal notranslate"><span class="pre">type</span></code> declarations.</p>
@@ -485,12 +488,12 @@ is not a valid piece of code in Crochet.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="using.html">
+          <a class="next-page" href="hierarchies.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Using typed data</div>
+                <div class="title">Hierarchies of types</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>

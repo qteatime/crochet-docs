@@ -1,0 +1,385 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Branching" href="branching.html" /><link rel="prev" title="Using data" href="using.html" />
+
+    <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
+        <title>Equality - Crochet 0.12 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/crochet.css" />
+    
+
+
+<style>
+  :root {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../_static/pygments_dark.css"></head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Crochet 0.12 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">The Crochet System</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../whats-crochet.html">What’s Crochet?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installing-crochet.html">Installing Crochet</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../structure/index.html">How is Crochet structured?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../structure/introduction.html">The Crochet universe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure/package-configuration.html">Package configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../types/index.html">Data and types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../types/types-and-data.html">Types and data modelling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/hierarchies.html">Hierarchies of types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/traits.html">Traits</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../commands/index.html">Commands</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../commands/declaration.html">What are commands?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/signatures.html">Signatures and their uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/why.html">Why are commands …?</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Computing with Crochet</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="execution-models.html">Execution models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bindings.html">Naming values</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="intrinsics/index.html">Intrinsic data types</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/gradual.html">Gradual representations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/numbers.html">Numeric models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/text.html">Textual models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/logic.html">Logical models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/functions.html">Program representations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/collections.html">Collections</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="application.html">Applying programs and commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html">Using data</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Equality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="branching.html">Branching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comprehension.html">Working with multiple values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sociology-and-linguistics.html">Annex B: Sociology and linguistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="equality">
+<h1>Equality<a class="headerlink" href="#equality" title="Permalink to this headline">¶</a></h1>
+<p>When are two Crochet values equal? This question is surprisingly
+difficult to answer, and in this section we cover the common
+cases that give one an idea of how to think about equality.</p>
+<div class="section" id="intrinsic-equality">
+<h2>Intrinsic equality<a class="headerlink" href="#intrinsic-equality" title="Permalink to this headline">¶</a></h2>
+<p>Every value in Crochet has a concept of “intrinsic equality”.
+That is, within the Crochet universe, what other value is
+equal to it. In this case, the idea of intrinsic equality
+means that, if two values are intrinsically equal, then
+they can be used interchangeably anywhere in Crochet.
+In any context.</p>
+<p>Intrinsic equality is computed through the intrinsic
+equality operator (<code class="docutils literal notranslate"><span class="pre">=:=</span></code>, two equal signs separated by a double colon symbol).
+This is not really a Crochet command, but a special piece of Crochet
+syntax that has a well-defined, immutable meaning.</p>
+<p>In essence, in an expression like <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">=:=</span> <span class="pre">B</span></code>, we consider <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>
+equal if:</p>
+<ul class="simple">
+<li><p>They are both integers, and represent the same number;</p></li>
+<li><p>They are both floating points, and represent the same number. This still
+holds for infinities (positive infinity is equal to any other positive
+infinity representation, for example), but it does not hold for the
+special “not a number” (NaN) representation. That’s because NaN is never
+equal to anything—it is the representation of a numeric error.</p></li>
+<li><p>They are both text, and their normalised unicode representation is
+the same. What a “normalised unicode representation” is is explained
+in the Text models chapter.</p></li>
+<li><p>They are both booleans, and both are the value <code class="docutils literal notranslate"><span class="pre">true</span></code>, or both are
+the value <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
+<li><p>They are both <code class="docutils literal notranslate"><span class="pre">nothing</span></code>.</p></li>
+<li><p>They are both interpolations, and the order and values of their textual
+and dynamic parts are equal to each other. That is, <code class="docutils literal notranslate"><span class="pre">"Hello,</span> <span class="pre">[Name]"</span></code>
+is equal to <code class="docutils literal notranslate"><span class="pre">"Hello,</span> <span class="pre">[Person]"</span></code> if <code class="docutils literal notranslate"><span class="pre">Name</span></code> and <code class="docutils literal notranslate"><span class="pre">Person</span></code> are equal,
+but <code class="docutils literal notranslate"><span class="pre">"[Greeting],</span> <span class="pre">Alice"</span></code> and <code class="docutils literal notranslate"><span class="pre">"Hello,</span> <span class="pre">[Name]"</span></code> can never be equal,
+even if <code class="docutils literal notranslate"><span class="pre">Greeting</span></code> is the text <code class="docutils literal notranslate"><span class="pre">"Hello"</span></code> and <code class="docutils literal notranslate"><span class="pre">Name</span></code> is the text
+<code class="docutils literal notranslate"><span class="pre">"Alice"</span></code>, thus being displayed to the user as “Hello, Alice”.</p></li>
+<li><p>They are both lists, and they contain the same number of values, and
+each value in one list is intrinsically equal to the value at the
+same position in the other list. <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code> and <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code> are
+equal, <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code> and <code class="docutils literal notranslate"><span class="pre">[3,</span> <span class="pre">2,</span> <span class="pre">1]</span></code> are not.</p></li>
+<li><p>They are both records, and they contain the same set of keys, which
+are associated with equal values. <code class="docutils literal notranslate"><span class="pre">[x</span> <span class="pre">-&gt;</span> <span class="pre">1,</span> <span class="pre">y</span> <span class="pre">-&gt;</span> <span class="pre">2]</span></code> and <code class="docutils literal notranslate"><span class="pre">[y</span> <span class="pre">-&gt;</span> <span class="pre">2,</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">1]</span></code>
+are equal, but <code class="docutils literal notranslate"><span class="pre">[x</span> <span class="pre">-&gt;</span> <span class="pre">1,</span> <span class="pre">y</span> <span class="pre">-&gt;</span> <span class="pre">2]</span></code> and <code class="docutils literal notranslate"><span class="pre">[x</span> <span class="pre">-&gt;</span> <span class="pre">1,</span> <span class="pre">z</span> <span class="pre">-&gt;</span> <span class="pre">2]</span></code> are not.</p></li>
+</ul>
+<p>All other values in Crochet are considered intrinsically equal if their
+identities are the same.</p>
+</div>
+<div class="section" id="value-identity">
+<h2>Value identity<a class="headerlink" href="#value-identity" title="Permalink to this headline">¶</a></h2>
+<p>Typed data is brought into existence through the <code class="docutils literal notranslate"><span class="pre">new</span></code> operator. When
+this happens, Crochet assigns an unique identity to the value. Like
+a social security number uniquely identifying a person—but this applies
+everywhere in Crochet.</p>
+<p>That is, if we have:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">A</span> <span class="p">=</span> <span class="k">new</span> point2d<span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
+<span class="k">let</span> <span class="nv">B</span> <span class="p">=</span> <span class="k">new</span> point2d<span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Then <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> have distinct (and unique) identities, even though
+they may contain the same values. This is important for Crochet’s idea
+of security—it allows each of these values to be used as a completely
+unique key, allowing whoever controls these values to also control access
+to other things.</p>
+<p>For example, the <code class="docutils literal notranslate"><span class="pre">map</span></code> type in Crochet uses intrinsic equality to
+associate arbitrary keys with values. This means that if we have the
+following:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">Map</span> <span class="p">=</span> <span class="o">#</span>map empty
+            <span class="p">|</span> use-strict-access
+            <span class="p">|</span> <span class="nf">at:</span> <span class="nv">A</span> <span class="nf">put:</span> <span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span>
+            <span class="p">|</span> <span class="nf">at:</span> <span class="nv">B</span> <span class="nf">put:</span> <span class="dl">"</span><span class="s2">Goodbye</span><span class="dl">"</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>And we give <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> to other people, then people who have
+got <code class="docutils literal notranslate"><span class="pre">A</span></code> will only ever be able to get <code class="docutils literal notranslate"><span class="pre">"Hello"</span></code> out of this map.
+And people who have got <code class="docutils literal notranslate"><span class="pre">B</span></code> will only ever be able to get <code class="docutils literal notranslate"><span class="pre">"Goodbye"</span></code>
+out of it.</p>
+</div>
+<div class="section" id="custom-equality">
+<h2>Custom equality<a class="headerlink" href="#custom-equality" title="Permalink to this headline">¶</a></h2>
+<p>The standard library also describes an <code class="docutils literal notranslate"><span class="pre">equality</span></code> trait, which proposes
+that typed data may define its own notion of equality, where desirable.
+Thus, the <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">===</span> <span class="pre">_</span></code> (equals) command is only defined for some types,
+and what it means is up to the people implementing the trait.</p>
+<p>For example, if we were to make a <code class="docutils literal notranslate"><span class="pre">rectangle</span></code> type, it would be useful
+to also allow people to compare them for equality. And since rectangles
+don’t usually carry any sensitive data, we don’t have to worry as much
+about security in this case.</p>
+<p>This definition could look like this:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> rectangle<span class="p">(</span><span class="k">global</span> width<span class="p">,</span> <span class="k">global</span> height<span class="p">);</span>
+
+<span class="k">implement</span> equality <span class="k">for</span> rectangle<span class="p">;</span>
+
+<span class="k">command</span> <span class="p">(</span><span class="nv">A</span> <span class="k">is</span> rectangle<span class="p">)</span> <span class="o">===</span> <span class="p">(</span><span class="nv">B</span> <span class="k">is</span> rectangle<span class="p">)</span> <span class="p">=</span>
+  <span class="p">(</span><span class="nv">A</span> width <span class="o">===</span> <span class="nv">B</span> width<span class="p">)</span> <span class="k">and</span> <span class="p">(</span><span class="nv">A</span> height <span class="o">===</span> <span class="nv">B</span> height<span class="p">);</span>
+</pre></div>
+</div>
+<p>So, in this case, rectangles would be equal if they have the same width
+and height. Note, however, that due to how types in Crochet are laid out
+in a hierarchy, it is still possible for users to extend this rectangle
+type and still have this same equality notion apply to them.</p>
+<p>Consider the following:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> square<span class="p">(</span><span class="k">global</span> side<span class="p">)</span> <span class="k">is</span> rectangle<span class="p">;</span>
+
+<span class="k">command</span> square width <span class="p">=</span> <span class="k">self</span> side<span class="p">;</span>
+<span class="k">command</span> square height <span class="p">=</span> <span class="k">self</span> side<span class="p">;</span>
+</pre></div>
+</div>
+<p>With this definition, the following would all be equal (through <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">===</span> <span class="pre">_</span></code>)
+to each other, even though different <em>types</em> are involved:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">A</span> <span class="p">=</span> <span class="k">new</span> rectangle<span class="p">(</span><span class="mf">10</span><span class="p">,</span> <span class="mf">10</span><span class="p">);</span>
+
+<span class="k">let</span> <span class="nv">B</span> <span class="p">=</span> <span class="k">new</span> rectangle<span class="p">(</span><span class="mf">10</span><span class="p">,</span> <span class="mf">10</span><span class="p">);</span>
+
+<span class="k">let</span> <span class="nv">C</span> <span class="p">=</span> <span class="k">new</span> square<span class="p">(</span><span class="mf">10</span><span class="p">);</span>
+
+<span class="p">(</span><span class="nv">A</span> <span class="o">===</span> <span class="nv">B</span><span class="p">)</span> <span class="k">and</span> <span class="p">(</span><span class="nv">B</span> <span class="o">===</span> <span class="nv">C</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="security-considerations">
+<h3>Security considerations<a class="headerlink" href="#security-considerations" title="Permalink to this headline">¶</a></h3>
+<p>When making types implement equality, you need to ensure that it makes
+sense from a security point of view as well, if your type may contain
+sensitive data, or be used for sensitive operations.</p>
+<p>By implementing custom equality you’re choosing to make some aspect of
+your value observable and comparable to other values in Crochet.
+Every time you choose to make some aspect of your data observable,
+you may end also giving others a way of guessing sensitive data.
+Or, if equality only considers a value partially, you may end up
+in situations where people are able to perform things in your
+program even though they should not have the permission to do so.</p>
+</div>
+</div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="branching.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Branching</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="using.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Using data</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Q.
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="../../_sources/system/computing/equality.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Equality</a><ul>
+<li><a class="reference internal" href="#intrinsic-equality">Intrinsic equality</a></li>
+<li><a class="reference internal" href="#value-identity">Value identity</a></li>
+<li><a class="reference internal" href="#custom-equality">Custom equality</a><ul>
+<li><a class="reference internal" href="#security-considerations">Security considerations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </main>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/main.js"></script>
+    </body>
+</html>
