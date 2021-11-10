@@ -12,6 +12,5 @@ roles.
 .. toctree::
    
    types-and-data
-   using
    hierarchies
    traits

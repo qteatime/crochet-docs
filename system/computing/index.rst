@@ -13,3 +13,5 @@ Crochet do things.
    bindings
    intrinsics/index
    application
+   using
+   equality

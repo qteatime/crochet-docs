@@ -1,13 +1,42 @@
-Using typed data
-================
+Using data
+==========
+
+Literal data
+------------
+
+Most basic pieces of data have a "literal" form in Crochet. These are used
+to construct basic values in the language. Crochet supports the following
+literal forms:
+
+- **Integers**: things like ``1``, ``-300``, and ``1_200_300``
+  (underscores can be used as a separator for thousands).
+
+- **Fractional (Floats)**: things like ``1.0``, ``-300.34``, and ``1_200_300.456``.
+
+- **Text**: things like ``"Hello"`` or ``<<The cat sleeps>>``.
+
+- **Interpolations**: things like ``"Hello, [Name]"`` or ``<<Hello, [Name]>>``.
+
+- **Booleans**: either ``true`` or ``false``.
+
+- **Nothing**: ``nothing``.
+
+- **Lists**: things like ``[]`` or ``[1, 2, 3, 4]``.
+
+- **Records**: things like ``[->]`` or ``[name -> "Alice", appears-in -> "Alice in Wonderland"]``.
+
+Each of these is described in more details in their respective section in
+the Intrinsic data types chapter.
+
 
 .. _new-operator:
 
 The ``new`` operator
 --------------------
 
-In order to manipulate data in Crochet it has to be :ref:`typed <type-declaration>`.
-And we bring typed data into existence with the ``new`` operator::
+In order to manipulate most complex pieces of data in Crochet they have to
+be :ref:`typed <type-declaration>`. And we bring typed data into existence
+with the ``new`` operator::
 
     // Given the type
     type point2d(x, y);
