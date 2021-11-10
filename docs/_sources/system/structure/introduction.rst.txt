@@ -318,8 +318,8 @@ about a program---and then decide whether you trust it or not.
 
 A capability group is an entity that describes some kind of power---or
 capability. For example, we might think that deleting files is a dangerous
-thing. What someone sends you a Crochet package, telling you they'd love
-if you could help beta-testing their new game; and then you run it, and
+thing. What if someone sends you a Crochet package, telling you they'd love
+if you could help beta-testing their new game, and then you run it, and
 it deletes all of your personal photos. That wouldn't be cool.
 
 If, instead, we have a capability for deleting files, then Crochet would
