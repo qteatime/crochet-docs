@@ -2,10 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="What are commands?" href="declaration.html" /><link rel="prev" title="Traits" href="../types/traits.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="What are effects?" href="what-are-effects.html" /><link rel="prev" title="Working with multiple values" href="../computing/comprehension.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
-        <title>Commands - Crochet 0.12 documentation</title>
+        <title>Effects - Crochet 0.12 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
@@ -123,11 +123,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../types/traits.html">Traits</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">Commands</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="declaration.html">What are commands?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="signatures.html">Signatures and their uses</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dispatch.html">Executing commands</a></li>
-<li class="toctree-l3"><a class="reference internal" href="why.html">Why are commands …?</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../commands/index.html">Commands</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../commands/declaration.html">What are commands?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/signatures.html">Signatures and their uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/why.html">Why are commands …?</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../computing/index.html">Computing with Crochet</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -149,9 +149,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../computing/comprehension.html">Working with multiple values</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../effects/index.html">Effects</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label for="toctree-checkbox-7"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../effects/what-are-effects.html">What are effects?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../effects/handlers.html">Effect handlers</a></li>
+<li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">Effects</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label for="toctree-checkbox-7"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="what-are-effects.html">What are effects?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="handlers.html">Effect handlers</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -173,67 +173,31 @@
         <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
-        <div class="section" id="commands">
-<span id="id1"></span><h1>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h1>
-<p>If <a class="reference internal" href="../types/index.html#data-and-types"><span class="std std-ref">Types</span></a> provide the structure for data that a Crochet
-program manipulates—or “what data looks like”—, then Commands describe how
-they <em>behave</em>. Commands are one of central concepts of Crochet, and in this
-section we’ll dive deep into what they are, how they work, and other things
-you should keep in mind when using them.</p>
+        <div class="section" id="effects">
+<h1>Effects<a class="headerlink" href="#effects" title="Permalink to this headline">¶</a></h1>
+<p>By default Crochet programs can’t do anything that users of it
+can observe—which mostly means they can’t do anything useful.
+Effects close this gap in a way that maintains Crochet’s
+guarantees for safety and security. And in this section we
+explore what exactly that means. We dive deep into what
+effects are, how they’re used, and how they achieve safety.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="declaration.html">What are commands?</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="declaration.html#commands-are-global">Commands are global</a></li>
-<li class="toctree-l2"><a class="reference internal" href="declaration.html#signatures">Signatures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="declaration.html#behaviours">Behaviours</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="signatures.html">Signatures and their uses</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="signatures.html#command-names">Command names</a></li>
-<li class="toctree-l2"><a class="reference internal" href="signatures.html#binary-command-names">Binary command names</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="signatures.html#change-operators">Change operators</a></li>
-<li class="toctree-l3"><a class="reference internal" href="signatures.html#boolean-operators">Boolean operators</a></li>
-<li class="toctree-l3"><a class="reference internal" href="signatures.html#equality-operators">Equality operators</a></li>
-<li class="toctree-l3"><a class="reference internal" href="signatures.html#relational-operators">Relational operators</a></li>
-<li class="toctree-l3"><a class="reference internal" href="signatures.html#arithmetic-operators">Arithmetic operators</a></li>
-<li class="toctree-l3"><a class="reference internal" href="signatures.html#concatenation-operators">Concatenation operators</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="signatures.html#requirements">Requirements</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="signatures.html#multiple-trait-requirements">Multiple trait requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="signatures.html#convenience-forms">Convenience forms</a></li>
-<li class="toctree-l3"><a class="reference internal" href="signatures.html#a-word-of-caution-ambiguity">A word of caution: ambiguity</a></li>
-<li class="toctree-l3"><a class="reference internal" href="signatures.html#irrelevant-variables">Irrelevant variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what-are-effects.html">What are effects?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="what-are-effects.html#intentions-context-and-handlers">Intentions, context, and handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="what-are-effects.html#intentions">Intentions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="what-are-effects.html#contexts">Contexts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="what-are-effects.html#handlers">Handlers</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dispatch.html">Executing commands</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dispatch.html#selection-and-application">Selection and application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dispatch.html#the-selection-algorithm">The selection algorithm</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dispatch.html#ranking-trait-requirements">Ranking trait requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dispatch.html#selection-with-multiple-requirements">Selection with multiple requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dispatch.html#ambiguities-in-selection">Ambiguities in selection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dispatch.html#what-if-no-command-is-selected">What if no command is selected?</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dispatch.html#applying-commands">Applying commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dispatch.html#the-self-name">The <code class="docutils literal notranslate"><span class="pre">self</span></code> name</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="why.html">Why are commands …?</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="why.html#why-do-we-need-this-dispatch-thing">Why do we need this “dispatch” thing?</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="why.html#dispatch-and-security">Dispatch and security</a></li>
-<li class="toctree-l3"><a class="reference internal" href="why.html#dispatch-and-collaboration">Dispatch and collaboration</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="why.html#why-are-commands-global">Why are commands global?</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="why.html#how-are-global-commands-consistent">How are global commands consistent?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="why.html#how-are-global-commands-coherent">How are global commands coherent?</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="handlers.html">Effect handlers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="handlers.html#handling-an-effect">Handling an effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="handlers.html#continuations-and-returns">Continuations and returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="handlers.html#nesting-handlers">Nesting handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="handlers.html#effect-scoping">Effect scoping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="handlers.html#missing-handlers">Missing handlers</a></li>
 </ul>
 </li>
 </ul>
@@ -244,23 +208,23 @@ you should keep in mind when using them.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="declaration.html">
+          <a class="next-page" href="what-are-effects.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">What are commands?</div>
+                <div class="title">What are effects?</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../types/traits.html">
+          <a class="prev-page" href="../computing/comprehension.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Traits</div>
+                <div class="title">Working with multiple values</div>
                 
               </div>
             </a>
@@ -274,7 +238,7 @@ you should keep in mind when using them.</p>
               <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
               <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
             |
-            <a class="muted-link" href="../../_sources/system/commands/index.rst.txt"
+            <a class="muted-link" href="../../_sources/system/effects/index.rst.txt"
                rel="nofollow">
               Show Source
             </a>

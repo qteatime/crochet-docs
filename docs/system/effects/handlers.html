@@ -1,0 +1,501 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Annex A: Design philosophy" href="../design-philosophy.html" /><link rel="prev" title="What are effects?" href="what-are-effects.html" />
+
+    <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
+        <title>Effect handlers - Crochet 0.12 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/crochet.css" />
+    
+
+
+<style>
+  :root {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../_static/pygments_dark.css"></head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Crochet 0.12 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">The Crochet System</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../whats-crochet.html">What’s Crochet?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installing-crochet.html">Installing Crochet</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../structure/index.html">How is Crochet structured?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../structure/introduction.html">The Crochet universe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure/package-configuration.html">Package configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../types/index.html">Data and types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../types/types-and-data.html">Types and data modelling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/hierarchies.html">Hierarchies of types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/traits.html">Traits</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../commands/index.html">Commands</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../commands/declaration.html">What are commands?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/signatures.html">Signatures and their uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/why.html">Why are commands …?</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../computing/index.html">Computing with Crochet</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../computing/execution-models.html">Execution models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/bindings.html">Naming values</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../computing/intrinsics/index.html">Intrinsic data types</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/gradual.html">Gradual representations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/numbers.html">Numeric models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/text.html">Textual models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/logic.html">Logical models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/functions.html">Program representations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/collections.html">Collections</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/application.html">Applying programs and commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/using.html">Using data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/equality.html">Equality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/branching.html">Branching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/comprehension.html">Working with multiple values</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Effects</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label for="toctree-checkbox-7"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="what-are-effects.html">What are effects?</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Effect handlers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sociology-and-linguistics.html">Annex B: Sociology and linguistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="effect-handlers">
+<h1>Effect handlers<a class="headerlink" href="#effect-handlers" title="Permalink to this headline">¶</a></h1>
+<p>An effect handler tells Crochet what should happen when an effect
+is <em>performed</em>. These handlers are specified in special
+<code class="docutils literal notranslate"><span class="pre">handle</span> <span class="pre">...</span> <span class="pre">with</span> <span class="pre">...</span> <span class="pre">end</span></code> blocks, where we wrap some piece of
+code and specify how we want certain effects to behave.</p>
+<p>For example:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">handle</span>
+  <span class="k">let</span> <span class="nv">A</span> <span class="p">=</span> <span class="k">perform</span> counter.next<span class="p">();</span>
+  <span class="k">let</span> <span class="nv">B</span> <span class="p">=</span> <span class="k">perform</span> counter.next<span class="p">();</span>
+  <span class="nv">A</span> <span class="o">+</span> <span class="nv">B</span>
+<span class="k">with</span>
+  <span class="k">on</span> counter.next<span class="p">()</span> <span class="k">do</span>
+    <span class="k">continue</span> <span class="k">with</span> <span class="mf">1</span><span class="p">;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Here, we perform the effect <code class="docutils literal notranslate"><span class="pre">counter.next()</span></code> twice. Each of these
+times we’ll run the piece of code in the corresponding <code class="docutils literal notranslate"><span class="pre">on</span></code> handler.
+Our particular handler here only has one expression which says
+<code class="docutils literal notranslate"><span class="pre">continue</span> <span class="pre">with</span> <span class="pre">1</span></code>. This means that, as a result of “performing”
+this effect, we’ll get the value <code class="docutils literal notranslate"><span class="pre">1</span></code>. So both <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> will
+refer to 1.</p>
+<div class="section" id="handling-an-effect">
+<h2>Handling an effect<a class="headerlink" href="#handling-an-effect" title="Permalink to this headline">¶</a></h2>
+<p>What happens when we ask Crochet to perform an effect? Well, it will
+try to find the closest matching handler and execute it. For example:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">handle</span>
+  <span class="k">let</span> <span class="nv">Result</span> <span class="p">=</span> <span class="k">perform</span> greet.hello<span class="p">();</span>
+  <span class="nv">Result</span> <span class="o">+</span> <span class="mf">1</span><span class="p">;</span>
+<span class="k">with</span>
+  <span class="k">on</span> greet.hello<span class="p">()</span> <span class="k">do</span>
+    <span class="nf">show:</span> <span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">continue</span> <span class="k">with</span> <span class="mf">1</span><span class="p">;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Will look at its enclosing <code class="docutils literal notranslate"><span class="pre">handle</span></code> block, and then notice that we
+do have a handler for the <code class="docutils literal notranslate"><span class="pre">greet.hello</span></code> effect. So we execute it,
+showing <code class="docutils literal notranslate"><span class="pre">Hello!</span></code> to the user, and continue from where we stopped
+with <code class="docutils literal notranslate"><span class="pre">1</span></code>. This value is associated with the variable <code class="docutils literal notranslate"><span class="pre">Result</span></code>,
+and we proceed to return <code class="docutils literal notranslate"><span class="pre">Result</span> <span class="pre">+</span> <span class="pre">1</span></code>—that is, <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+<p>In a more visual way, we can think of handles and performs working
+as follows. First we see the handle block, so we keep track of what
+handlers it provides to us. In this example we have a handler for
+<code class="docutils literal notranslate"><span class="pre">greet.hello</span></code>, so our handlers look like this:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="c1">// Current handlers:</span>
+<span class="k">on</span> greet.hello<span class="p">()</span> <span class="k">do</span>
+  <span class="nf">show:</span> <span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">;</span>
+  <span class="k">continue</span> <span class="k">with</span> <span class="mf">1</span><span class="p">;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>We then move on to the piece of code inside the handle block:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="c1">// Current handlers:</span>
+<span class="k">on</span> greet.hello<span class="p">()</span> <span class="k">do</span>
+  <span class="nf">show:</span> <span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">;</span>
+  <span class="k">continue</span> <span class="k">with</span> <span class="mf">1</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c1">// Now running:</span>
+<span class="k">let</span> <span class="nv">Result</span> <span class="p">=</span> <span class="k">perform</span> greet.hello<span class="p">();</span>
+<span class="nv">Result</span> <span class="o">+</span> <span class="mf">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>So the first thing we get to execute is the <code class="docutils literal notranslate"><span class="pre">perform</span></code> instruction.
+Here we see that it’s asking us to perform the <code class="docutils literal notranslate"><span class="pre">greet.hello</span></code> effect,
+and we just happen to have one in our current handlers list. So we
+move on to running the code inside of that handler instead. Here
+we show <code class="docutils literal notranslate"><span class="pre">Hello!</span></code> on the screen, and then continue executing from
+where we “performed” the effect, but with the value <code class="docutils literal notranslate"><span class="pre">1</span></code> instead.
+That is, it’s as if we had replaced the “perform” instruction with <code class="docutils literal notranslate"><span class="pre">1</span></code>:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="c1">// Current handlers:</span>
+<span class="k">on</span> greet.hello<span class="p">()</span> <span class="k">do</span>
+  <span class="nf">show:</span> <span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">;</span>
+  <span class="k">continue</span> <span class="k">with</span> <span class="mf">1</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c1">// Now running:</span>
+<span class="k">let</span> <span class="nv">Result</span> <span class="p">=</span> <span class="mf">1</span><span class="p">;</span>
+<span class="nv">Result</span> <span class="o">+</span> <span class="mf">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>And so we move on to the next expression, <code class="docutils literal notranslate"><span class="pre">Result</span> <span class="pre">+</span> <span class="pre">1</span></code>. Since
+<code class="docutils literal notranslate"><span class="pre">Result</span></code> is associated with <code class="docutils literal notranslate"><span class="pre">1</span></code>, this gives us <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">1</span></code>. The
+final result of this entire <code class="docutils literal notranslate"><span class="pre">handle</span></code> block is, then, <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+</div>
+<div class="section" id="continuations-and-returns">
+<h2>Continuations and returns<a class="headerlink" href="#continuations-and-returns" title="Permalink to this headline">¶</a></h2>
+<p>We’ve only glossed over the whole <code class="docutils literal notranslate"><span class="pre">continue</span> <span class="pre">with</span></code> business. Sadly,
+the way handlers work is complicated and requires a more detailed
+explanation.</p>
+<p>Handlers and <code class="docutils literal notranslate"><span class="pre">perform</span></code> instructions work in tandem—as if they
+were in a conversation. When we “perform”, we ask a handler to take
+over the execution of the program, and so we do as the handler
+tells us to.</p>
+<p>At any point, a handler may decide to give the stage back to the
+perform instruction, giving it an “answer”—this is where the
+<code class="docutils literal notranslate"><span class="pre">continue</span> <span class="pre">with</span></code> expressions come in. This <code class="docutils literal notranslate"><span class="pre">continue</span> <span class="pre">with</span></code>
+expression is called a “continuation”, and it knows exactly where
+in the program we stopped—hence it can “continue” that execution
+“with” some new value.</p>
+<p>Most handlers will use the <code class="docutils literal notranslate"><span class="pre">continue</span> <span class="pre">with</span></code> expression to provide
+some kind of answer to its <code class="docutils literal notranslate"><span class="pre">perform</span></code> counterpart. This is similar
+to how values are returned in commands. That is, the following:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">handle</span>
+  <span class="k">let</span> <span class="nv">Result</span> <span class="p">=</span> <span class="k">perform</span> greet.hello<span class="p">();</span>
+  <span class="nv">Result</span> <span class="o">+</span> <span class="mf">1</span><span class="p">;</span>
+<span class="k">with</span>
+  <span class="k">on</span> greet.hello<span class="p">()</span> <span class="k">do</span>
+    <span class="nf">show:</span> <span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">continue</span> <span class="k">with</span> <span class="mf">1</span><span class="p">;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Is similar to:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> greet hello <span class="k">do</span>
+  <span class="nf">show:</span> <span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">;</span>
+  <span class="mf">1</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c1">// And later:</span>
+<span class="k">let</span> <span class="nv">Result</span> <span class="p">=</span> greet hello<span class="p">;</span>
+<span class="nv">Result</span> <span class="o">+</span> <span class="mf">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>But instead of giving back an answer to the <code class="docutils literal notranslate"><span class="pre">perform</span></code> instructions,
+handlers can also give back an answer <em>to the ``handle`` block itself</em>.
+This is called a “return”, and it looks like the following:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">handle</span>
+  <span class="k">let</span> <span class="nv">Result</span> <span class="p">=</span> <span class="k">perform</span> greet.hello<span class="p">();</span>
+  <span class="nf">show:</span> <span class="dl">"</span><span class="s2">Here...</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nv">Result</span> <span class="o">+</span> <span class="mf">1</span><span class="p">;</span>
+<span class="k">with</span>
+  <span class="k">on</span> greet.hello<span class="p">()</span> <span class="k">do</span>
+    <span class="nf">show:</span> <span class="dl">"</span><span class="s2">Hello!</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mf">1</span><span class="p">;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>This works a bit different from our command execution. Instead of
+putting the <code class="docutils literal notranslate"><span class="pre">1</span></code> back where the <code class="docutils literal notranslate"><span class="pre">perform</span></code> instruction was, the
+<code class="docutils literal notranslate"><span class="pre">return</span></code> instruction replaces the entire <code class="docutils literal notranslate"><span class="pre">handle</span></code> block with that
+value. That is, we show <code class="docutils literal notranslate"><span class="pre">Hello!</span></code> on the screen, and then immediately
+have the result of the entire block be 1. We’ll never get to see
+<code class="docutils literal notranslate"><span class="pre">Here...</span></code> on the screen, because nothing else in that piece of code
+will be executed.</p>
+</div>
+<div class="section" id="nesting-handlers">
+<h2>Nesting handlers<a class="headerlink" href="#nesting-handlers" title="Permalink to this headline">¶</a></h2>
+<p>Handlers can also be nested. For example:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">handle</span>
+
+  <span class="k">handle</span>
+    <span class="k">perform</span> num.one<span class="p">()</span> <span class="o">+</span> <span class="k">perform</span> num.two<span class="p">();</span>
+  <span class="k">with</span>
+    <span class="k">on</span> num.one<span class="p">()</span> <span class="k">do</span>
+      <span class="k">continue</span> <span class="k">with</span> <span class="mf">1</span><span class="p">;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+<span class="k">with</span>
+  <span class="k">on</span> num.two<span class="p">()</span> <span class="k">do</span>
+    <span class="k">continue</span> <span class="k">with</span> <span class="mf">2</span><span class="p">;</span>
+  <span class="k">end</span>
+
+  <span class="k">on</span> num.one<span class="p">()</span> <span class="k">do</span>
+    <span class="k">continue</span> <span class="k">with</span> <span class="mf">11</span><span class="p">;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Here the inner handle block only defines a handler for the <code class="docutils literal notranslate"><span class="pre">num.one</span></code>
+effect, which continues the program with 1. The outer handle block
+defines a handler for <code class="docutils literal notranslate"><span class="pre">num.two</span></code> which continues the program with
+2, and a handler for <code class="docutils literal notranslate"><span class="pre">num.one</span></code> which continues the program with
+11.</p>
+<p>So when we <code class="docutils literal notranslate"><span class="pre">perform</span> <span class="pre">num.one()</span></code>, the inner handler is the closest
+one, and we replace that perform instruction with 1. But when we
+<code class="docutils literal notranslate"><span class="pre">perform</span> <span class="pre">num.two()</span></code>, there’s no handler in the inner handle
+block, so the closest one is the handler in the outer handle
+block, which replaces the perform with 2. The result is then <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">2</span></code>.</p>
+<p>If the inner handle block did not have a handler for <code class="docutils literal notranslate"><span class="pre">num.one</span></code>,
+we would end up using the outer handler for it—ending up with
+<code class="docutils literal notranslate"><span class="pre">11</span> <span class="pre">+</span> <span class="pre">2</span></code>.</p>
+</div>
+<div class="section" id="effect-scoping">
+<h2>Effect scoping<a class="headerlink" href="#effect-scoping" title="Permalink to this headline">¶</a></h2>
+<p>We’ve seen that bindings are valid within certain regions of the code—
+which is their scope. Effects have a similar concept of being only valid
+within a certain region, but the way these regions work is a bit different.</p>
+<p>Bindings have a “lexical scope”—the region where they’re valid can be
+seen in the source code. But effects have “dynamic scope”—the region
+where they’re valid depends on how the program <em>runs</em>.</p>
+<p>For example, consider the case where we have some commands that eventually
+perform an effect:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="nf">show:</span> <span class="nv">Text</span> <span class="p">=</span>
+  <span class="k">perform</span> display.show<span class="p">(</span><span class="nv">Text</span><span class="p">);</span>
+
+<span class="k">command</span> <span class="nf">greet:</span> <span class="nv">Name</span> <span class="p">=</span>
+  <span class="nf">show:</span> <span class="dl">"</span><span class="s2">Hello, </span><span class="si">[</span><span class="nv">Name</span><span class="si">]</span><span class="dl">"</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Then if we have the following handle block:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">handle</span>
+  <span class="nf">greet:</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">with</span>
+  <span class="k">on</span> display.show<span class="p">(</span><span class="nv">Text</span><span class="p">)</span> <span class="k">do</span>
+    transcript <span class="nf">display:</span> <span class="nv">Text</span><span class="p">;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>The handler is not restricted to the code that can be seen in
+the handle block, but rather covers <em>all</em> code that is executed
+from there. This means that, even though the perform only happens
+in the <code class="docutils literal notranslate"><span class="pre">show:</span> <span class="pre">_</span></code> command, it still sees our little handler for
+<code class="docutils literal notranslate"><span class="pre">display.show</span></code>, because it’s called from <code class="docutils literal notranslate"><span class="pre">greet:</span> <span class="pre">_</span></code>, which
+is in turn called from within the <code class="docutils literal notranslate"><span class="pre">handle</span></code> block.</p>
+<p>On the other hand, in the following example, the call to <code class="docutils literal notranslate"><span class="pre">show:</span> <span class="pre">_</span></code> that
+arises from <code class="docutils literal notranslate"><span class="pre">greet:</span> <span class="pre">"Dorothy"</span></code> would not see the handler, because this
+call does not originate from within the handle block:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">handle</span>
+  <span class="nf">greet:</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">with</span>
+  <span class="k">on</span> display.show<span class="p">(</span><span class="nv">Text</span><span class="p">)</span> <span class="k">do</span>
+    transcript <span class="nf">display:</span> <span class="nv">Text</span><span class="p">;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="nf">greet:</span> <span class="dl">"</span><span class="s2">Dorothy</span><span class="dl">"</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="missing-handlers">
+<h2>Missing handlers<a class="headerlink" href="#missing-handlers" title="Permalink to this headline">¶</a></h2>
+<p>What happens if we don’t have a handler for a <code class="docutils literal notranslate"><span class="pre">perform</span></code> instruction?
+Crochet will still execute the code as normal, but when hitting the
+<code class="docutils literal notranslate"><span class="pre">perform</span></code> instruction the program would stop.</p>
+<p>In interactive mode, this means that you’d have a chance of deciding
+how to continue the program, either by providing a value to continue
+the program with, or by returning a value from the handle block.</p>
+</div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../design-philosophy.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Annex A: Design philosophy</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="what-are-effects.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">What are effects?</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Q.
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="../../_sources/system/effects/handlers.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Effect handlers</a><ul>
+<li><a class="reference internal" href="#handling-an-effect">Handling an effect</a></li>
+<li><a class="reference internal" href="#continuations-and-returns">Continuations and returns</a></li>
+<li><a class="reference internal" href="#nesting-handlers">Nesting handlers</a></li>
+<li><a class="reference internal" href="#effect-scoping">Effect scoping</a></li>
+<li><a class="reference internal" href="#missing-handlers">Missing handlers</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </main>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/main.js"></script>
+    </body>
+</html>
