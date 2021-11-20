@@ -2,10 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Data and types" href="../types/index.html" /><link rel="prev" title="The Crochet universe" href="introduction.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Annex A: Design philosophy" href="../design-philosophy.html" /><link rel="prev" title="Verification" href="index.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
-        <title>Package configuration - Crochet 0.12 documentation</title>
+        <title>Example-based testing - Crochet 0.12 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
@@ -112,9 +112,9 @@
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">The Crochet System</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../whats-crochet.html">What’s Crochet?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installing-crochet.html">Installing Crochet</a></li>
-<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">How is Crochet structured?</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="introduction.html">The Crochet universe</a></li>
-<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Package configuration</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../structure/index.html">How is Crochet structured?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../structure/introduction.html">The Crochet universe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure/package-configuration.html">Package configuration</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../types/index.html">Data and types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -155,8 +155,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../effects/contexts.html">Contextual handlers</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../verification/index.html">Verification</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label for="toctree-checkbox-8"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../verification/examples.html">Example-based testing</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Verification</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label for="toctree-checkbox-8"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Example-based testing</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -178,122 +178,80 @@
         <label class="toc-overlay-icon toc-content-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
-        <div class="section" id="package-configuration">
-<span id="id1"></span><h1>Package configuration<a class="headerlink" href="#package-configuration" title="Permalink to this headline">¶</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The package configuration side of Crochet is heavily in flux, and the
-ideas described here <em>will</em> change soon. This is one reason why this
-page is not written in the same style as the other pages in this
-documentation.</p>
-</div>
-<p>A package in Crochet is described by a folder with a <code class="docutils literal notranslate"><span class="pre">crochet.json</span></code> file.
-This file describes everything a package contains—essentially, this is a
-header for a package image. Storing this image using a file system’s nodes
-is just an implementation detail—although currently it’s the only
-implementation too.</p>
-<div class="section" id="the-meta-data-section">
-<h2>The meta-data section<a class="headerlink" href="#the-meta-data-section" title="Permalink to this headline">¶</a></h2>
-<p>A package must contain some meta-data attributes that describe to the
-system what the package is, how it can be referenced, and why one should
-trust it.</p>
-<p>The following root-level fields are part of the meta-data section:</p>
-<dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">name</span></code> (string, required)</dt><dd><p>An unique name for the package. To reduce synchronisation on this, we
-use the reverse-domain convention popular in Java.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">title</span></code> (string, optional)</dt><dd><p>A more friendly name shown to users in the Launcher. <code class="docutils literal notranslate"><span class="pre">name</span></code> is used
-if this is not available.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">description</span></code> (string, optional)</dt><dd><p>A very short description of what the package does.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">stability</span></code> (string enum, optional)</dt><dd><p>An indication of the maturity of the overall package. Can be one of:
-<code class="docutils literal notranslate"><span class="pre">"deprecated"</span></code>, <code class="docutils literal notranslate"><span class="pre">"experimental"</span></code>, <code class="docutils literal notranslate"><span class="pre">"stable"</span></code>, or <code class="docutils literal notranslate"><span class="pre">"immutable"</span></code>
-(which means only security patches are allowed).</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">target</span></code> (string enum, optional)</dt><dd><p>The platforms the package is available on. This is currently a very
-restricted idea of target and will change in the future. The possible
-values are <code class="docutils literal notranslate"><span class="pre">*</span></code> (all platforms), <code class="docutils literal notranslate"><span class="pre">node</span></code>, and <code class="docutils literal notranslate"><span class="pre">browser</span></code>.</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="the-sources-section">
-<h2>The sources section<a class="headerlink" href="#the-sources-section" title="Permalink to this headline">¶</a></h2>
-<p>In the sources section, the package needs to describe which pieces of
-code are part of the package. Sources can be written in any language
-the Crochet system has a compiler for—the VM can only read binary
-images in the <code class="docutils literal notranslate"><span class="pre">.croc</span></code> format, so the compiler must be able to output
-that. Compilers are chosen based on the extension part of the file name.</p>
-<p>The current natively supported languages are: <code class="docutils literal notranslate"><span class="pre">.crochet</span></code> and <code class="docutils literal notranslate"><span class="pre">.lingua</span></code>.</p>
-<p>Fields in this section (at the root of the file) are:</p>
-<dl>
-<dt><code class="docutils literal notranslate"><span class="pre">sources</span></code> (array of files, required)</dt><dd><p>A list of all sources that are to be loaded and executed by the Crochet VM.
-These can be in any language Crochet has a compiler for.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">native_sources</span></code> (array of files, required)</dt><dd><p>A list of all sources that are to be loaded natively by the operating
-system in order to provide functionality that Crochet can bind to through
-<code class="docutils literal notranslate"><span class="pre">foreign</span></code> clauses. Currently this only supports JavaScript.</p>
-<p>In order to be able to load native sources, the package must receive the
-<code class="docutils literal notranslate"><span class="pre">native</span></code> capability from its parent package (or from the user).</p>
-</dd>
-</dl>
-<p>Each item in the array is a file. A file is described by the following
-type:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">File</span> <span class="o">=</span> <span class="kt">string</span> <span class="o">|</span> <span class="p">{</span>
-  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
-  <span class="nx">target</span>: <span class="kt">Target</span><span class="p">;</span>
-<span class="p">}</span>
+        <div class="section" id="example-based-testing">
+<h1>Example-based testing<a class="headerlink" href="#example-based-testing" title="Permalink to this headline">¶</a></h1>
+<p>The simplest form of verification in Crochet is the use of examples.
+In this form one has a specific scenario of the program in mind,
+and then verifies that the program behaves in that specific way.
+Examples are used for verifying small pieces of the program,
+rather than the entire program. And this process is generally
+called “unit testing”.</p>
+<div class="section" id="test-declarations">
+<h2>Test declarations<a class="headerlink" href="#test-declarations" title="Permalink to this headline">¶</a></h2>
+<p>Crochet’s support for example testing comes in the form of
+test declarations. Each of these test declarations can cover
+one of these scenarios, and verifications are done with the
+<code class="docutils literal notranslate"><span class="pre">assert</span></code> expression.</p>
+<p>For example, consider the case where we have a command to
+display the list of items in an inventory with your usual
+English conjunctions. An example test for it could look
+like the following:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">test</span> <span class="dl">"</span><span class="s2">inventory display with conjunctions</span><span class="dl">"</span> <span class="k">do</span>
+  <span class="k">assert</span> <span class="p">(</span><span class="o">#</span>inventory <span class="nf">with:</span> <span class="p">[]</span> <span class="p">|</span> show<span class="p">)</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">You're not carrying anything.</span><span class="dl">"</span><span class="p">;</span>
+
+  <span class="k">assert</span> <span class="p">(</span><span class="o">#</span>inventory <span class="nf">with:</span> <span class="p">[</span>rose<span class="p">]</span> <span class="p">|</span> show<span class="p">)</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">You're carrying </span><span class="si">[</span>rose<span class="si">]</span><span class="s2">.</span><span class="dl">"</span><span class="p">;</span>
+
+  <span class="k">assert</span> <span class="p">(</span><span class="o">#</span>inventory <span class="nf">with:</span> <span class="p">[</span>rose<span class="p">,</span> watch<span class="p">,</span> old-coin<span class="p">]</span> <span class="p">|</span> show<span class="p">)</span>
+    <span class="o">===</span> <span class="dl">"</span><span class="s2">You're carrying </span><span class="si">[</span>rose<span class="si">]</span><span class="s2">, </span><span class="si">[</span>watch<span class="si">]</span><span class="s2">, and </span><span class="si">[</span>old-coin<span class="si">]</span><span class="s2">.</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">end</span>
 </pre></div>
 </div>
-<p>A file that is not described with a target is unconditionally included
-every time the package is loaded. Files with a target can be conditionally
-loaded based on the platform it’s running and available capabilities.</p>
-</div>
-<div class="section" id="the-dependencies-section">
-<h2>The dependencies section<a class="headerlink" href="#the-dependencies-section" title="Permalink to this headline">¶</a></h2>
-<p>Packages may depend on other packages. But dependencies form an acyclic
-graph due to how capability propagation works, thus if package A depends
-on package B, that means package B cannot depend on anything that ultimately
-depends on package A.</p>
-<p>There’s only one field (at the root) in this section:</p>
-<dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">dependencies</span></code> (list of dependency, required)</dt><dd><p>A list of all packages that this package depends on. Most packages will
-depend at least on <code class="docutils literal notranslate"><span class="pre">crochet.core</span></code>, since there’s not much Crochet can
-do out of the box.</p>
-</dd>
-</dl>
-<p>Each dependency has to following type:</p>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Dependency</span> <span class="o">=</span> <span class="kt">string</span> <span class="o">|</span> <span class="p">{</span>
-  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
-  <span class="nx">target</span>: <span class="kt">Target</span><span class="p">;</span>
-  <span class="nx">capabilities</span>: <span class="kt">Capability</span><span class="p">[]</span>
-<span class="p">}</span>
+<p>Here we have three different <code class="docutils literal notranslate"><span class="pre">assert</span></code> expressions that verify
+different possibilities of displaying an inventory. When one isn’t
+carrying anything, “You’re not carrying anything.” should be displayed.
+But when they’re carrying multiple items, we’d expect something
+more along the lines of “You’re carrying a rose, a watch, and an old coin.”.</p>
+<div class="section" id="convenience-for-command-tests">
+<h3>Convenience for command tests<a class="headerlink" href="#convenience-for-command-tests" title="Permalink to this headline">¶</a></h3>
+<p>Though you can always use the test declaration syntax, there’s a slightly
+more convenient syntax for describing examples for a single command.
+Instead of writing the separated test declaration, as above, we could
+have added a test block to the <code class="docutils literal notranslate"><span class="pre">inventory</span> <span class="pre">show:</span> <span class="pre">_</span></code> command itself:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> inventory show <span class="k">do</span>
+  <span class="k">condition</span>
+    <span class="k">when</span> self.items is-empty <span class="o">=&gt;</span> <span class="p">...;</span>
+    <span class="k">when</span> self.items size <span class="o">===</span> <span class="mf">1</span> <span class="o">=&gt;</span> <span class="p">...;</span>
+    <span class="k">otherwise</span> <span class="o">=&gt;</span> <span class="p">...;</span>
+  <span class="k">end</span>
+
+<span class="k">test</span>
+  <span class="k">assert</span> <span class="p">(</span><span class="o">#</span>inventory <span class="nf">with:</span> <span class="p">[]</span> <span class="p">|</span> show<span class="p">)</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">You're not carrying anything.</span><span class="dl">"</span><span class="p">;</span>
+
+  <span class="k">assert</span> <span class="p">(</span><span class="o">#</span>inventory <span class="nf">with:</span> <span class="p">[</span>rose<span class="p">]</span> <span class="p">|</span> show<span class="p">)</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">You're carrying </span><span class="si">[</span>rose<span class="si">]</span><span class="s2">.</span><span class="dl">"</span><span class="p">;</span>
+
+  <span class="k">assert</span> <span class="p">(</span><span class="o">#</span>inventory <span class="nf">with:</span> <span class="p">[</span>rose<span class="p">,</span> watch<span class="p">,</span> old-coin<span class="p">]</span> <span class="p">|</span> show<span class="p">)</span>
+    <span class="o">===</span> <span class="dl">"</span><span class="s2">You're carrying </span><span class="si">[</span>rose<span class="si">]</span><span class="s2">, </span><span class="si">[</span>watch<span class="si">]</span><span class="s2">, and </span><span class="si">[</span>old-coin<span class="si">]</span><span class="s2">.</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">end</span>
 </pre></div>
 </div>
-<p>The string format describes an unconditionally loaded dependency with
-no capability propagation—that means that the package will not be able
-to do anything <em>powerful</em> (only pure computations). The object format allows
-controlling when the package is loaded and which capabilities it gets from
-the parent package.</p>
+<p>This convenience syntax works exactly like the separated test declaration,
+but it uses the name of the command as a description.</p>
 </div>
-<div class="section" id="the-capabilities-section">
-<h2>The capabilities section<a class="headerlink" href="#the-capabilities-section" title="Permalink to this headline">¶</a></h2>
-<p>The capabilities section describes both the capabilities that the
-package defines and the capabilities that it needs in order to work.
-There is currently no support for optional or dynamic capabilities,
-but that’s planned for the future.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">capabilities</span></code> field at the root is the only component of this
-section, and it allows the following fields:</p>
-<dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">provides</span></code> (list of name, required)</dt><dd><p>This describes all capability groups that are <em>exported</em> from the
-package and available for outsiders to use. The name is simply the
-name of the capability group, unqualified.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">requires</span></code> (list of qualified name, required)</dt><dd><p>This describes all capability groups that the package <em>requires</em>
-from the parent in order for it to work. This is the fully qualified
-capability group name, e.g.: <code class="docutils literal notranslate"><span class="pre">crochet.random/read-shared-instance</span></code>.</p>
-</dd>
-</dl>
+</div>
+<div class="section" id="testing-effects">
+<h2>Testing effects<a class="headerlink" href="#testing-effects" title="Permalink to this headline">¶</a></h2>
+<p>When the pieces of program you want to test only depend on the data
+you’re using, your examples will consist of constructing the data,
+executing a command, and then comparing the resulting data with
+what you expected to happen.</p>
+<p>But testing programs that have effects requires more sophisticated
+examples. And that’s because effects usually do things outside
+of what can be reasonably verified in Crochet. So one approach to
+testing these programs is to use a handler that, instead of
+doing things outside of Crochet, just keeps track of what was
+supposed to happen. The examples may then verify that what was
+supposed to happen in the program really matches what the program
+should be doing.</p>
 </div>
 </div>
 
@@ -301,23 +259,23 @@ capability group name, e.g.: <code class="docutils literal notranslate"><span cl
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../types/index.html">
+          <a class="next-page" href="../design-philosophy.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Data and types</div>
+                <div class="title">Annex A: Design philosophy</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="introduction.html">
+          <a class="prev-page" href="index.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">The Crochet universe</div>
+                <div class="title">Verification</div>
                 
               </div>
             </a>
@@ -331,7 +289,7 @@ capability group name, e.g.: <code class="docutils literal notranslate"><span cl
               <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
               <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
             |
-            <a class="muted-link" href="../../_sources/system/structure/package-configuration.rst.txt"
+            <a class="muted-link" href="../../_sources/system/verification/examples.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -351,11 +309,12 @@ capability group name, e.g.: <code class="docutils literal notranslate"><span cl
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Package configuration</a><ul>
-<li><a class="reference internal" href="#the-meta-data-section">The meta-data section</a></li>
-<li><a class="reference internal" href="#the-sources-section">The sources section</a></li>
-<li><a class="reference internal" href="#the-dependencies-section">The dependencies section</a></li>
-<li><a class="reference internal" href="#the-capabilities-section">The capabilities section</a></li>
+<li><a class="reference internal" href="#">Example-based testing</a><ul>
+<li><a class="reference internal" href="#test-declarations">Test declarations</a><ul>
+<li><a class="reference internal" href="#convenience-for-command-tests">Convenience for command tests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing-effects">Testing effects</a></li>
 </ul>
 </li>
 </ul>
