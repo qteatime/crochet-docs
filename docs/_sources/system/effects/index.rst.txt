@@ -13,3 +13,4 @@ effects are, how they're used, and how they achieve safety.
 
    what-are-effects
    handlers
+   contexts

@@ -2,10 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="The Crochet universe" href="introduction.html" /><link rel="prev" title="Installing Crochet" href="../installing-crochet.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Annex A: Design philosophy" href="../design-philosophy.html" /><link rel="prev" title="Effect handlers" href="handlers.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
-        <title>How is Crochet structured? - Crochet 0.12 documentation</title>
+        <title>Contextual handlers - Crochet 0.12 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
@@ -90,7 +90,7 @@
       <a href="../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
     </div>
     <div class="header-right">
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
     </div>
@@ -112,9 +112,9 @@
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">The Crochet System</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../whats-crochet.html">What’s Crochet?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installing-crochet.html">Installing Crochet</a></li>
-<li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">How is Crochet structured?</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="introduction.html">The Crochet universe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="package-configuration.html">Package configuration</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../structure/index.html">How is Crochet structured?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../structure/introduction.html">The Crochet universe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure/package-configuration.html">Package configuration</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../types/index.html">Data and types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -149,10 +149,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../computing/comprehension.html">Working with multiple values</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../effects/index.html">Effects</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label for="toctree-checkbox-7"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../effects/what-are-effects.html">What are effects?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../effects/handlers.html">Effect handlers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../effects/contexts.html">Contextual handlers</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Effects</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label for="toctree-checkbox-7"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="what-are-effects.html">What are effects?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="handlers.html">Effect handlers</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Contextual handlers</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -171,49 +171,67 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
-        <div class="section" id="how-is-crochet-structured">
-<span id="structure"></span><h1>How is Crochet structured?<a class="headerlink" href="#how-is-crochet-structured" title="Permalink to this headline">¶</a></h1>
-<p>Crochet programs are an amalgamation of all sorts of information. So how does
-all of this data come together? How do we make sense of it? How does Crochet
-use it? Those are all questions that understanding how information is
-structured can help answer.</p>
-<p>Structure isn’t just a tool for humans, though. Computers also need information
-to be structured in order to more easily be able to perform whatever work
-we request from them. So in this section we’ll dive deep into how Crochet
-programs are structured, and what exactly these structures mean. After all,
-there must be a reason why things are done the way they are, right?</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">The Crochet universe</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#packages">Packages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="introduction.html#crochet-json"><code class="docutils literal notranslate"><span class="pre">crochet.json</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="introduction.html#directory-structure-convention">Directory structure convention</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#modules">Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#code-entities">Code entities</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="introduction.html#types">Types</a></li>
-<li class="toctree-l3"><a class="reference internal" href="introduction.html#commands">Commands</a></li>
-<li class="toctree-l3"><a class="reference internal" href="introduction.html#traits">Traits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="introduction.html#effects">Effects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="introduction.html#capability-groups">Capability groups</a></li>
-<li class="toctree-l3"><a class="reference internal" href="introduction.html#tests">Tests</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#native-modules">Native modules</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="package-configuration.html">Package configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="package-configuration.html#the-meta-data-section">The meta-data section</a></li>
-<li class="toctree-l2"><a class="reference internal" href="package-configuration.html#the-sources-section">The sources section</a></li>
-<li class="toctree-l2"><a class="reference internal" href="package-configuration.html#the-dependencies-section">The dependencies section</a></li>
-<li class="toctree-l2"><a class="reference internal" href="package-configuration.html#the-capabilities-section">The capabilities section</a></li>
-</ul>
-</li>
-</ul>
+        <div class="section" id="contextual-handlers">
+<h1>Contextual handlers<a class="headerlink" href="#contextual-handlers" title="Permalink to this headline">¶</a></h1>
+<p>Having programs depend on intentions—effects—rather than specific
+ways these intentions may take form allows us to swap them out depending
+on the context without having to change our program’s code. This is
+important for programs that work in different platforms, with different
+capabilities, or just want to change aspects of its execution (as often
+needed for testing).</p>
+<p>Core to this is the idea of “contexts”. But how exactly does one choose
+an effect handler based on these contexts?</p>
+<div class="section" id="reusable-handlers">
+<h2>Reusable handlers<a class="headerlink" href="#reusable-handlers" title="Permalink to this headline">¶</a></h2>
+<p>First, most of the handlers defined in the standard Crochet libraries
+are reusable. They are defined by the package that defines the effect,
+and provided through a command.</p>
+<p>For example, in order to use the random number generator package, we
+can use <code class="docutils literal notranslate"><span class="pre">scoped-random</span> <span class="pre">with-source:</span> <span class="pre">_</span> <span class="pre">do:</span> <span class="pre">_</span></code> command to run a piece
+of Crochet code with the required handlers:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">Randomness-source</span> <span class="p">=</span> <span class="o">#</span>random <span class="nf">with-seed:</span> <span class="mf">1384172941724</span><span class="p">;</span>
+
+scoped-random <span class="nf">with-source:</span> <span class="nv">Randomness-source</span> <span class="nf">do:</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">Random</span> <span class="p">=</span> shared-random instance<span class="p">;</span>
+  <span class="k">let</span> <span class="nv">A</span> <span class="p">=</span> <span class="nv">Random</span> <span class="nf">between:</span> <span class="mf">1</span> <span class="nf">and:</span> <span class="mf">10</span><span class="p">;</span>
+  <span class="k">let</span> <span class="nv">B</span> <span class="p">=</span> <span class="nv">Random</span> <span class="nf">between:</span> <span class="mf">1</span> <span class="nf">and:</span> <span class="mf">10</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The above will choose two integers between 1 and 10 using the source
+of randomness that we provided in the <code class="docutils literal notranslate"><span class="pre">scoped-random</span> <span class="pre">with-source:</span> <span class="pre">_</span> <span class="pre">do:</span> <span class="pre">_</span></code>
+command—but only in code that’s executed from within the delayed program
+we provide in the <code class="docutils literal notranslate"><span class="pre">do:</span></code> keyword.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">do:</span> <span class="pre">_</span></code> part of the signature is a convention followed by these
+commands which provide handlers, but it doesn’t have any special meaning.</p>
+</div>
+<div class="section" id="execution-goals">
+<h2>Execution goals<a class="headerlink" href="#execution-goals" title="Permalink to this headline">¶</a></h2>
+<p>Crochet has an idea of “execution goal”. These may correlate with
+a platform, e.g.: a program may be executed on Windows or on a
+Web Browser, and each of those would be a different execution goal.</p>
+<p>Goals affect which command is used to <em>start</em> the program. For example,
+in a Web Browser program Crochet will start the program by executing
+the <code class="docutils literal notranslate"><span class="pre">main-html:</span> <span class="pre">_</span></code> command. Whereas, if we’re running the program
+in Node.js, Crochet would start the program by executing <code class="docutils literal notranslate"><span class="pre">main:</span> <span class="pre">_</span></code>.</p>
+<p>For example, a common use of the Novella package for writing interactive
+fiction that runs in a Web Browser would define the following entry
+point command:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="nf">main-html:</span> <span class="nv">Root</span> <span class="k">do</span>
+  novella <span class="nf">with-root:</span> <span class="nv">Root</span> <span class="nf">do:</span> <span class="p">{</span>
+    novella <span class="nf">show:</span> <span class="dl">"</span><span class="s2">It was a dark, stormy night...</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Each of these goals has different ideas of which arguments are relevant
+for the command. Currently these execution goals are defined in Crochet
+itself, and are not customisable. But in the future, applications will
+be able to define different execution goals and what it means to run
+the program with those goals.</p>
 </div>
 </div>
 
@@ -221,23 +239,23 @@ there must be a reason why things are done the way they are, right?</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="introduction.html">
+          <a class="next-page" href="../design-philosophy.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">The Crochet universe</div>
+                <div class="title">Annex A: Design philosophy</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../installing-crochet.html">
+          <a class="prev-page" href="handlers.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Installing Crochet</div>
+                <div class="title">Effect handlers</div>
                 
               </div>
             </a>
@@ -251,7 +269,7 @@ there must be a reason why things are done the way they are, right?</p>
               <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
               <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
             |
-            <a class="muted-link" href="../../_sources/system/structure/index.rst.txt"
+            <a class="muted-link" href="../../_sources/system/effects/contexts.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -259,8 +277,28 @@ there must be a reason why things are done the way they are, right?</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Contextual handlers</a><ul>
+<li><a class="reference internal" href="#reusable-handlers">Reusable handlers</a></li>
+<li><a class="reference internal" href="#execution-goals">Execution goals</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
