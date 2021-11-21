@@ -12,3 +12,4 @@ examples, contracts, and models.
 .. toctree::
 
    examples
+   contracts
