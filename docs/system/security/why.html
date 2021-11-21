@@ -2,10 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Signatures and their uses" href="signatures.html" /><link rel="prev" title="Commands" href="index.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Annex A: Design philosophy" href="../design-philosophy.html" /><link rel="prev" title="Security and capabilities" href="index.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
-        <title>What are commands? - Crochet 0.12 documentation</title>
+        <title>Why use capabilities? - Crochet 0.12 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
@@ -90,7 +90,7 @@
       <a href="../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
     </div>
     <div class="header-right">
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
     </div>
@@ -123,11 +123,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../types/traits.html">Traits</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Commands</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">What are commands?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="signatures.html">Signatures and their uses</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dispatch.html">Executing commands</a></li>
-<li class="toctree-l3"><a class="reference internal" href="why.html">Why are commands …?</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../commands/index.html">Commands</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../commands/declaration.html">What are commands?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/signatures.html">Signatures and their uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/why.html">Why are commands …?</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../computing/index.html">Computing with Crochet</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -165,8 +165,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../ffi/ffi.html">The FFI type</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../security/index.html">Security and capabilities</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label for="toctree-checkbox-10"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../security/why.html">Why use capabilities?</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Security and capabilities</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label for="toctree-checkbox-10"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Why use capabilities?</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -185,112 +185,23 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+        <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
-        <div class="section" id="what-are-commands">
-<h1>What are commands?<a class="headerlink" href="#what-are-commands" title="Permalink to this headline">¶</a></h1>
-<p>A command is a way of describing our program’s behaviour. There are other
-things that affect how a program works, but commands are the primary one.
-Crochet’s commands are a bit similar to “functions”, “procedures”, “routines”,
-and “methods” in other programming languages, but they have a few unique
-things about them.</p>
-<p>For example, consider the following command declarations:</p>
-<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="k">true</span> <span class="k">and</span> <span class="k">true</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
-<span class="k">command</span> boolean <span class="k">and</span> boolean <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>This piece of code defines two commands, but both of them have the same
-name: <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code>. The underscores in the name indicate where arguments
-to this command would go. In the definition, these underscores indicate
-the places where the <em>requirements</em> for executing the command go.</p>
-<p>So, for the first command, we can execute it whenever both of the arguments
-are an instance of the type <code class="docutils literal notranslate"><span class="pre">true</span></code>. For the second one, we can execute
-the command whenever both of the arguments are an instance of <code class="docutils literal notranslate"><span class="pre">boolean</span></code>.
-Remember that types in Crochet create an hierarchy, so the boolean hierarchy
-looks like this:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+ any
-|
- `--+ boolean
-    |
-    |--o true
-    `--o false
-</pre></div>
-</div>
-<p>At the root of this hierarchy we have the type <code class="docutils literal notranslate"><span class="pre">any</span></code>. Then we have <code class="docutils literal notranslate"><span class="pre">boolean</span></code>
-descending from it. And both <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code> descending from <code class="docutils literal notranslate"><span class="pre">boolean</span></code>.
-When we use a command, Crochet will pick the one whose requirements are most
-closely matched to the arguments.</p>
-<p>For example, let’s say we have the following use of a command:</p>
-<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">true</span> <span class="k">and</span> <span class="k">true</span>
-</pre></div>
-</div>
-<p>Crochet will find all of the commands that have been declared with the name
-<code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code> and then pick one to execute. First, we need to match all
-requirements. In this case both commands we’ve declared fulfill all of
-the requirements: the value <code class="docutils literal notranslate"><span class="pre">true</span></code> is both an instance of the type <code class="docutils literal notranslate"><span class="pre">true</span></code>,
-and transitively, an instance of the type <code class="docutils literal notranslate"><span class="pre">boolean</span></code> (and <code class="docutils literal notranslate"><span class="pre">any</span></code>!).</p>
-<p>Then, since we have more than one candidate, Crochet needs to somehow
-disambiguate this. And the way it does so is by picking the closest matching
-one. That is, if we have to walk up the hierarchy up to <code class="docutils literal notranslate"><span class="pre">any</span></code>, the closest
-matching is the one we have to take the least amount of steps. Here, the
-command <code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">and</span> <span class="pre">true</span></code> requires no steps on both sides, whereas the command
-<code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">and</span> <span class="pre">boolean</span></code> requires one step on each side. Thus, Crochet picks
-<code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">and</span> <span class="pre">true</span></code>, yielding the result <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
-<p>On the other hand, if we had the expression <code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">and</span> <span class="pre">false</span></code>, or
-<code class="docutils literal notranslate"><span class="pre">false</span> <span class="pre">and</span> <span class="pre">true</span></code>. Or even <code class="docutils literal notranslate"><span class="pre">false</span> <span class="pre">and</span> <span class="pre">false</span></code>, the requirements for the
-<code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">and</span> <span class="pre">true</span></code> command wouldn’t be matched, and we’d end up executing
-the <code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">and</span> <span class="pre">boolean</span></code> command, yielding the result <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
-<p>So, to answer the opening question: a Crochet command is like a function,
-it has a name and we can execute that function to do something. But multiple
-commands can share the same name, and when we execute one, Crochet will pick
-up the closest one that matches all requirements. Some languages call this
-a Multi-method.</p>
-<div class="section" id="commands-are-global">
-<h2>Commands are global<a class="headerlink" href="#commands-are-global" title="Permalink to this headline">¶</a></h2>
-<p>In Crochet, commands are always global. This might come as a surprise since
-almost everything else in Crochet is qualified by the package they’re in.
-So if you define a type like <code class="docutils literal notranslate"><span class="pre">player</span></code>, what you’re really defining is
-the type <code class="docutils literal notranslate"><span class="pre">some-package/player</span></code>. But this is not the case with commands.</p>
-<p>If you define a command <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code>, its name will always be just <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code>,
-regardless of which package it’s defined in.</p>
-</div>
-<div class="section" id="signatures">
-<h2>Signatures<a class="headerlink" href="#signatures" title="Permalink to this headline">¶</a></h2>
-<p>Because commands can have the same <em>name</em>, Crochet needs a different way
-to refer to specific commands. To do this it has a concept called a Signature.
-A Signature combines the name of a command with the requirements to
-execute the command.</p>
-<p>Signatures seem simple at the surface, but they’re actually a fairly complex
-topic, so they’re covered in depth in their own section: Signatures and their
-uses.</p>
-</div>
-<div class="section" id="behaviours">
-<h2>Behaviours<a class="headerlink" href="#behaviours" title="Permalink to this headline">¶</a></h2>
-<p>So, if a command describes a “program’s behaviour”, how exactly does it do
-that? Well, if the left side of the command declaration is its signature,
-then the right side is its behaviour. Here we use expressions to describe
-what the program does if the command is executed.</p>
-<p>The distinction between “expression” and “signatures” isn’t always very
-obvious. A signature may only contain types, and expressions may only
-contain values. But because these are two different concepts, they may
-(and in a lot of cases do!) look pretty much the same. <code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">and</span> <span class="pre">true</span></code>
-can either be a signature (concerning the type <code class="docutils literal notranslate"><span class="pre">true</span></code>), or an
-expression (concerning the value <code class="docutils literal notranslate"><span class="pre">true</span></code>).</p>
-<p>Since the topic is vast, we cover expressions in their own chapter.</p>
-</div>
+        <div class="section" id="why-use-capabilities">
+<h1>Why use capabilities?<a class="headerlink" href="#why-use-capabilities" title="Permalink to this headline">¶</a></h1>
 </div>
 
       </article>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="signatures.html">
+          <a class="next-page" href="../design-philosophy.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Signatures and their uses</div>
+                <div class="title">Annex A: Design philosophy</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -301,7 +212,7 @@ expression (concerning the value <code class="docutils literal notranslate"><spa
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Commands</div>
+                <div class="title">Security and capabilities</div>
                 
               </div>
             </a>
@@ -315,7 +226,7 @@ expression (concerning the value <code class="docutils literal notranslate"><spa
               <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
               <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
             |
-            <a class="muted-link" href="../../_sources/system/commands/declaration.rst.txt"
+            <a class="muted-link" href="../../_sources/system/security/why.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -323,29 +234,8 @@ expression (concerning the value <code class="docutils literal notranslate"><spa
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            Contents
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">What are commands?</a><ul>
-<li><a class="reference internal" href="#commands-are-global">Commands are global</a></li>
-<li><a class="reference internal" href="#signatures">Signatures</a></li>
-<li><a class="reference internal" href="#behaviours">Behaviours</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>

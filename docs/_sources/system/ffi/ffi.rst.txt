@@ -1,6 +1,10 @@
 The FFI type
 ------------
 
+.. warning:: Crochet's FFI currently assumes trusted modules, and it'll
+   most likely evolve into an Alien-based layer that allows a more nuanced
+   view of security and permits safe sandboxing at a lower cost.
+
 Native modules receive a single argument, an ``FFI`` object purposely
 constructed for that package alone---which ensures that the interaction
 between the VM and the native module are still bound to the same

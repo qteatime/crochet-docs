@@ -2,7 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Annex A: Design philosophy" href="../design-philosophy.html" /><link rel="prev" title="Writing external functions" href="interface.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Security and capabilities" href="../security/index.html" /><link rel="prev" title="Writing external functions" href="interface.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
         <title>The FFI type - Crochet 0.12 documentation</title>
@@ -165,6 +165,10 @@
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">The FFI type</a></li>
 </ul>
 </li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../security/index.html">Security and capabilities</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label for="toctree-checkbox-10"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/why.html">Why use capabilities?</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sociology-and-linguistics.html">Annex B: Sociology and linguistics</a></li>
 </ul>
@@ -186,6 +190,12 @@
         </label>
         <div class="section" id="the-ffi-type">
 <h1>The FFI type<a class="headerlink" href="#the-ffi-type" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Crochet’s FFI currently assumes trusted modules, and it’ll
+most likely evolve into an Alien-based layer that allows a more nuanced
+view of security and permits safe sandboxing at a lower cost.</p>
+</div>
 <p>Native modules receive a single argument, an <code class="docutils literal notranslate"><span class="pre">FFI</span></code> object purposely
 constructed for that package alone—which ensures that the interaction
 between the VM and the native module are still bound to the same
@@ -496,12 +506,12 @@ Crochet code.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../design-philosophy.html">
+          <a class="next-page" href="../security/index.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Annex A: Design philosophy</div>
+                <div class="title">Security and capabilities</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
