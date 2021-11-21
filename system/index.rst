@@ -27,6 +27,7 @@ it allows "creating interactive media safely".
    computing/index
    effects/index
    verification/index
+   ffi/index
    design-philosophy
    sociology-and-linguistics
 
