@@ -69,6 +69,9 @@ but it uses the name of the command as a description.
 Testing effects
 ---------------
 
+.. warn:: Effectful testing is still in discovery; this section will be
+   expanded in the future.
+
 When the pieces of program you want to test only depend on the data
 you're using, your examples will consist of constructing the data,
 executing a command, and then comparing the resulting data with
