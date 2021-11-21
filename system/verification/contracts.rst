@@ -1,7 +1,7 @@
 Contracts
 =========
 
-.. warn::
+.. warning::
   
    Contracts are largely a work in progress. Crochet is currently missing
    ways of reusing contracts and applying contracts to more complex
