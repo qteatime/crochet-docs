@@ -13,4 +13,5 @@ Currently, foreign programs are limited to JavaScript.
 .. toctree::
 
    interface
+   ffi
    
