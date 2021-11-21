@@ -28,6 +28,7 @@ it allows "creating interactive media safely".
    effects/index
    verification/index
    ffi/index
+   security/index
    design-philosophy
    sociology-and-linguistics
 
