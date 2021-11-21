@@ -1,0 +1,707 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Annex A: Design philosophy" href="../design-philosophy.html" /><link rel="prev" title="Foreign interfaces" href="index.html" />
+
+    <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
+        <title>Writing external functions - Crochet 0.12 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/crochet.css" />
+    
+
+
+<style>
+  :root {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../_static/pygments_dark.css"></head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Crochet 0.12 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">The Crochet System</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../whats-crochet.html">What’s Crochet?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installing-crochet.html">Installing Crochet</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../structure/index.html">How is Crochet structured?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../structure/introduction.html">The Crochet universe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure/package-configuration.html">Package configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../types/index.html">Data and types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../types/types-and-data.html">Types and data modelling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/hierarchies.html">Hierarchies of types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/traits.html">Traits</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../commands/index.html">Commands</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../commands/declaration.html">What are commands?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/signatures.html">Signatures and their uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/why.html">Why are commands …?</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../computing/index.html">Computing with Crochet</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../computing/execution-models.html">Execution models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/bindings.html">Naming values</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../computing/intrinsics/index.html">Intrinsic data types</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/gradual.html">Gradual representations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/numbers.html">Numeric models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/text.html">Textual models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/logic.html">Logical models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/functions.html">Program representations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/collections.html">Collections</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/application.html">Applying programs and commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/using.html">Using data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/equality.html">Equality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/branching.html">Branching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/comprehension.html">Working with multiple values</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../effects/index.html">Effects</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label for="toctree-checkbox-7"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../effects/what-are-effects.html">What are effects?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/handlers.html">Effect handlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/contexts.html">Contextual handlers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../verification/index.html">Verification</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label for="toctree-checkbox-8"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../verification/examples.html">Example-based testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../verification/contracts.html">Contracts</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Foreign interfaces</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label for="toctree-checkbox-9"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Writing external functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sociology-and-linguistics.html">Annex B: Sociology and linguistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="writing-external-functions">
+<h1>Writing external functions<a class="headerlink" href="#writing-external-functions" title="Permalink to this headline">¶</a></h1>
+<p>The core idea of Crochet’s foreign interfaces is to be able to
+define functions in a separate language, and then execute those
+functions from Crochet code. Currently the only supported language
+is JavaScript.</p>
+<div class="section" id="native-modules">
+<h2>Native modules<a class="headerlink" href="#native-modules" title="Permalink to this headline">¶</a></h2>
+<p>Foreign functions are written in “native modules”, and are loaded
+by specifying them in the package configuration. A JavaScript native
+module has the following form:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">exports</span><span class="p">.</span><span class="k">default</span> <span class="o">=</span> <span class="p">(</span><span class="nx">ffi</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// native function definitions go here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Within that exported function, the native module can either specify
+simple synchronous functions—through the <code class="docutils literal notranslate"><span class="pre">ffi.defun</span></code> method—,
+or complex asynchronous functions—through the <code class="docutils literal notranslate"><span class="pre">ffi.defmachine</span></code> method.
+A synchronous function here is simply one that just takes some arguments,
+does something, and then returns a result.</p>
+<p>For example, a native counter could be written as follows:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>exports.default = (ffi) =&gt; {
+  class Counter {
+    #value;
+
+    constructor(value) {
+      this.#value = value;
+    }
+
+    next() {
+      return new Counter(this.#value + 1n);
+    }
+
+    value() {
+      return this.#value;
+    }
+  }
+
+  ffi.defun("make-counter", (initial_value0) =&gt; {
+    const initial_value = ffi.integer_to_bigint(initial_value0);
+    const counter = new Counter(initial_value);
+    return ffi.box(counter);
+  })
+
+  ffi.defun("next", (counter0) =&gt; {
+    const counter = ffi.unbox(counter0);
+    if (!(counter instanceof Counter)) {
+     throw ffi.panic("invalid-type", "expected Counter");
+   }
+    return ffi.box(counter.next());
+  })
+
+  ffi.defun("value", (counter0) =&gt; {
+    const counter = ffi.unbox(counter0);
+    if (!(counter instanceof Counter)) {
+      throw ffi.panic("invalid-type", "expected Counter");
+    }
+    return ffi.integer(counter.value());
+  })
+}
+</pre></div>
+</div>
+<p>It could then be used in Crochet as follows:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> counter<span class="p">(</span>box<span class="p">);</span>
+
+<span class="k">command</span> <span class="o">#</span>counter <span class="nf">with:</span> <span class="p">(</span><span class="nv">Value</span> <span class="k">is</span> integer<span class="p">)</span> <span class="p">=</span>
+  <span class="k">foreign</span> make-counter<span class="p">(</span><span class="nv">Value</span><span class="p">);</span>
+
+<span class="k">command</span> counter next <span class="p">=</span>
+  <span class="k">foreign</span> next<span class="p">(</span><span class="k">self</span><span class="p">);</span>
+
+<span class="k">command</span> counter value <span class="p">=</span>
+  <span class="k">foreign</span> value<span class="p">(</span><span class="k">self</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The names defind by the native module are only valid within
+the package loading it, so there’s no chance of unexpected
+collisions. However, it’s still possible to use dots (<code class="docutils literal notranslate"><span class="pre">.</span></code>)
+in the name—e.g.: <code class="docutils literal notranslate"><span class="pre">counter.next</span></code> would be a valid foreign
+function name. These dots don’t have any special meaning, but
+it can make names easier to follow in packages that use a
+significant amount of foreign functions.</p>
+</div>
+<div class="section" id="defun-and-defmachine">
+<h2><code class="docutils literal notranslate"><span class="pre">defun</span></code> and <code class="docutils literal notranslate"><span class="pre">defmachine</span></code><a class="headerlink" href="#defun-and-defmachine" title="Permalink to this headline">¶</a></h2>
+<p>Functions can be defined with both <code class="docutils literal notranslate"><span class="pre">defun</span></code> and <code class="docutils literal notranslate"><span class="pre">defmachine</span></code>.
+One could see <code class="docutils literal notranslate"><span class="pre">defun</span></code> as a simplified form of <code class="docutils literal notranslate"><span class="pre">defmachine</span></code>,
+but <code class="docutils literal notranslate"><span class="pre">defun</span></code> has different performance characteristics as well.</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">defun</span></code>, the function being called takes over the
+execution for as long as it takes to return a value to Crochet,
+and it isn’t allowed to execute any Crochet code. This lets
+us not bother with having stack frames for native code, which
+is significantly cheaper, however it does mean that the Crochet
+VM is paused for the duration of the function being executed;
+it’s only really suitable for functions that finish quickly.</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">defmachine</span></code>, we provide a JavaScript generator
+to Crochet. This generator allows us to coordinate with
+Crochet code and do asynchronous things, but it also means
+that we need to allocate and deal with mixed Crochet and
+native frames in the execution stack—this complexity has
+a price that can’t be entirely removed.</p>
+<p>One use case for <code class="docutils literal notranslate"><span class="pre">defmachine</span></code> is to interact with JavaScript
+promises, which are asynchronous. For example, a native
+function that fetches data from the network could look
+like the following:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="kd">function</span> <span class="nx">fetch_text</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+  <span class="k">return</span> <span class="nx">ffi</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">ffi</span><span class="p">.</span><span class="nx">defmachine</span><span class="p">(</span><span class="s2">"fetch"</span><span class="p">,</span> <span class="kd">function</span><span class="o">*</span> <span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="k">yield</span> <span class="nx">ffi</span><span class="p">.</span><span class="k">await</span><span class="p">(</span><span class="nx">fetch_text</span><span class="p">(</span><span class="nx">url</span><span class="p">));</span>
+  <span class="k">return</span> <span class="nx">text</span><span class="p">;</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">ffi.await</span></code> function produces a signal that lets the Crochet VM
+resume the current generator once the promise settles. And we send this
+signal to the VM by <code class="docutils literal notranslate"><span class="pre">yield</span></code>-ing it. In this sense, the VM runs the
+generator step-by-step. At each step, the generator can yield a signal
+that causes the VM to perform some work. And it finishes by returning
+a value.</p>
+<p>Now, the important thing to remember here is that <strong>all</strong> intermediate
+values have to be Crochet values—not JavaScript ones. That’s why we
+abstract <code class="docutils literal notranslate"><span class="pre">fecth</span></code> into a <code class="docutils literal notranslate"><span class="pre">fetch_text</span></code> function, which ensures that
+the promise will be resolved with a Crochet data structure.</p>
+</div>
+<div class="section" id="the-ffi-type">
+<h2>The FFI type<a class="headerlink" href="#the-ffi-type" title="Permalink to this headline">¶</a></h2>
+<p>Native modules receive a single argument, an <code class="docutils literal notranslate"><span class="pre">FFI</span></code> object purposely
+constructed for that package alone—which ensures that the interaction
+between the VM and the native module are still bound to the same
+capabilities that the package itself is.</p>
+<p>Though, that said, until Crochet can sandbox JavaScript code, this
+does not provide many guarantees.</p>
+<div class="section" id="defining-functions">
+<h3>Defining functions<a class="headerlink" href="#defining-functions" title="Permalink to this headline">¶</a></h3>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.defun">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">defun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">name</span></em>, <em class="sig-param"><span class="pre">fn</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.defun" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – The name of the foreign function.</p></li>
+<li><p><strong>fn</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">((CrochetValue[])</span> <span class="pre">=&gt;</span> <span class="pre">CrochetValue)()</span></code></span>) – The foreign function implementation.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Defines a simple, synchronous foreign function. The return must be a
+Crochet value.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.defmachine">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">defmachine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">name</span></em>, <em class="sig-param"><span class="pre">machine</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.defmachine" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – The name of the foreign function.</p></li>
+<li><p><strong>machine</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">((CrochetValue[])</span> <span class="pre">=&gt;</span> <span class="pre">Generator(NativeSignal,</span> <span class="pre">CrochetValue,</span> <span class="pre">CrochetValue))()</span></code></span>) – The foreign function implementation.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Defines a complex foreign function which can interact with the Crochet
+VM by yielding native signals (provided by this object). All intermediate
+values must be Crochet values.</p>
+</dd></dl>
+</div>
+<div class="section" id="constructing-crochet-data">
+<h3>Constructing Crochet data<a class="headerlink" href="#constructing-crochet-data" title="Permalink to this headline">¶</a></h3>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.integer">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">integer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.integer" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">bigint()</span></code></span>) – The number.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Converts a JavaScript bigint value to a Crochet integer.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.float">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.float" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">number()</span></code></span>) – The number.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Converts a JavaScript number value to a Crochet float.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.boolean">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">boolean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.boolean" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<span><a class="reference internal" href="#ffi.boolean" title="ffi.boolean"><code class="xref js js-func docutils literal notranslate"><span class="pre">boolean()</span></code></a></span>) – The boolean.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Converts a JavaScript boolean value to a Crochet boolean.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.text">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.text" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – The text.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Converts a JavaScript string to a Crochet text value. This always
+yields a dynamic text.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.box">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.box" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – The arbitrary value to box.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Converts any JavaScript value to an opaque Crochet box. This box
+can be passed around in Crochet but never <em>opened</em> by Crochet code.
+It must be paired with <a class="reference internal" href="#ffi.unbox" title="ffi.unbox"><code class="xref js js-meth docutils literal notranslate"><span class="pre">ffi.unbox()</span></code></a> in order to extract and
+use its value.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.list">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.list" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">CrochetValue[]()</span></code></span>) – The list.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Converts a JavaScript array to a Crochet list. The items of this
+array must already be Crochet values.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.record">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.record" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">Map(string,</span> <span class="pre">CrochetValue)()</span></code></span>) – The record.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Converts a restricted JavaScript map to a Crochet record. All keys
+in the map must be strings, and all values must already be Crochet
+values.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.interpolation">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.interpolation" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">CrochetValue[]()</span></code></span>) – The parts of the interpolation.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Converts a list of interpolation parts to a Crochet interpolation.
+<em>All</em> parts of the interpolation will be dynamic.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.nothing">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">nothing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ffi.nothing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the special <code class="docutils literal notranslate"><span class="pre">nothing</span></code> value.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.true">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">true</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ffi.true" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the special <code class="docutils literal notranslate"><span class="pre">true</span></code> value.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.false">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">false</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ffi.false" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the special <code class="docutils literal notranslate"><span class="pre">false</span></code> value.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.from_plain_native">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">from_plain_native</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.from_plain_native" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a Crochet value from a plain JavaScript value, recursively.
+Note that this follows the same restrictions as the constructors above—records <em>must</em>
+be maps.</p>
+</dd></dl>
+</div>
+<div class="section" id="using-crochet-values">
+<h3>Using Crochet values<a class="headerlink" href="#using-crochet-values" title="Permalink to this headline">¶</a></h3>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.integer_to_bigint">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">integer_to_bigint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.integer_to_bigint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a Crochet integer to a JavaScript bigint.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.float_to_number">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">float_to_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.float_to_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a Crochet float to a JavaScript number.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.to_js_boolean">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">to_js_boolean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.to_js_boolean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a Crochet boolean to a JavaScript boolean.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.text_to_string">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">text_to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.text_to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a Crochet text (any trusted text) to a JavaScript string.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.list_to_array">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">list_to_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.list_to_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a Crochet list to a JavaScript array.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.interpolation_to_parts">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">interpolation_to_parts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.interpolation_to_parts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a Crochet interpolation to a list of parts. Literal parts in
+the interpolation are represented as JavaScript strings in the resulting
+array. Everything else is represented as a Crochet value.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.record_to_map">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">record_to_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.record_to_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a Crochet record to a JavaScript map.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.unbox">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">unbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.unbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes the value out of a Crochet box. It’s up to the caller of this
+function to verify that the value is indeed what they expect, type-wise.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.to_plain_native">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">to_plain_native</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.to_plain_native" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts an arbitrary Crochet value to a plain JavaScript value, as if
+by one of the destructors above. Boxed values are not handled here. And
+records are always converted to JavaScript maps.</p>
+</dd></dl>
+</div>
+<div class="section" id="native-signals">
+<h3>Native signals<a class="headerlink" href="#native-signals" title="Permalink to this headline">¶</a></h3>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.invoke">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">name</span></em>, <em class="sig-param"><span class="pre">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.invoke" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – The string representation of the command’s signature.</p></li>
+<li><p><strong>args</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">CrochetValue[]()</span></code></span>) – The arguments to provide the command.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns a native signal that causes the VM to invoke the specified
+command with the native module’s package’s capabilities.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.apply">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">fn</span></em>, <em class="sig-param"><span class="pre">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.apply" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">CrochetValue()</span></code></span>) – The Crochet delayed program to apply.</p></li>
+<li><p><strong>args</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">CrochetValue[]()</span></code></span>) – The arguments to provide the delayed program with.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns a native signal that causes the VM to apply a delayed Crochet
+program (lambdas or partials) to the given arguments.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.await">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">await</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">promise</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.await" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>promise</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">Promise(CrochetValue)()</span></code></span>) – The promise to wait for.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns a native signal that causes the VM to wait the promise to be
+successfully settled before continuing the execution of the machine with its
+resolved value.</p>
+</dd></dl>
+</div>
+<div class="section" id="operators">
+<h3>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h3>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.intrinsic_equals">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">intrinsic_equals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em>, <em class="sig-param"><span class="pre">y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.intrinsic_equals" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">CrochetValue()</span></code></span>) – </p></li>
+<li><p><strong>y</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">CrochetValue()</span></code></span>) – </p></li>
+</ul>
+</dd>
+</dl>
+<p>True if <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are equal according to Crochet’s intrinsic
+equality algorithm.</p>
+</dd></dl>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.panic">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">panic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">tag</span></em>, <em class="sig-param"><span class="pre">message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.panic" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – A special mark to add to the panic message (e.g.: an unique name to the error).</p></li>
+<li><p><strong>message</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – The panic message.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Stops the program with a panic message. This error cannot be caught in
+Crochet code.</p>
+</dd></dl>
+</div>
+<div class="section" id="testing-values">
+<h3>Testing values<a class="headerlink" href="#testing-values" title="Permalink to this headline">¶</a></h3>
+<dl class="js method">
+<dt class="sig sig-object js" id="ffi.is_crochet_value">
+<span class="sig-prename descclassname"><span class="pre">ffi.</span></span><span class="sig-name descname"><span class="pre">is_crochet_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ffi.is_crochet_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if <code class="docutils literal notranslate"><span class="pre">x</span></code> is a Crochet value.</p>
+</dd></dl>
+</div>
+</div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../design-philosophy.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Annex A: Design philosophy</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Foreign interfaces</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Q.
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="../../_sources/system/ffi/interface.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Writing external functions</a><ul>
+<li><a class="reference internal" href="#native-modules">Native modules</a></li>
+<li><a class="reference internal" href="#defun-and-defmachine"><code class="docutils literal notranslate"><span class="pre">defun</span></code> and <code class="docutils literal notranslate"><span class="pre">defmachine</span></code></a></li>
+<li><a class="reference internal" href="#the-ffi-type">The FFI type</a><ul>
+<li><a class="reference internal" href="#defining-functions">Defining functions</a></li>
+<li><a class="reference internal" href="#constructing-crochet-data">Constructing Crochet data</a></li>
+<li><a class="reference internal" href="#using-crochet-values">Using Crochet values</a></li>
+<li><a class="reference internal" href="#native-signals">Native signals</a></li>
+<li><a class="reference internal" href="#operators">Operators</a></li>
+<li><a class="reference internal" href="#testing-values">Testing values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </main>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/main.js"></script>
+    </body>
+</html>

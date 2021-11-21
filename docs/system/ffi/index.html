@@ -2,10 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Contracts" href="contracts.html" /><link rel="prev" title="Verification" href="index.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Writing external functions" href="interface.html" /><link rel="prev" title="Contracts" href="../verification/contracts.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
-        <title>Example-based testing - Crochet 0.12 documentation</title>
+        <title>Foreign interfaces - Crochet 0.12 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
@@ -90,7 +90,7 @@
       <a href="../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
     </div>
     <div class="header-right">
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
     </div>
@@ -155,13 +155,13 @@
 <li class="toctree-l3"><a class="reference internal" href="../effects/contexts.html">Contextual handlers</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Verification</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label for="toctree-checkbox-8"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Example-based testing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../verification/index.html">Verification</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label for="toctree-checkbox-8"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../verification/examples.html">Example-based testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../verification/contracts.html">Contracts</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../ffi/index.html">Foreign interfaces</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label for="toctree-checkbox-9"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../ffi/interface.html">Writing external functions</a></li>
+<li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">Foreign interfaces</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label for="toctree-checkbox-9"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html">Writing external functions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -180,88 +180,34 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+        <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
-        <div class="section" id="example-based-testing">
-<h1>Example-based testing<a class="headerlink" href="#example-based-testing" title="Permalink to this headline">¶</a></h1>
-<p>The simplest form of verification in Crochet is the use of examples.
-In this form one has a specific scenario of the program in mind,
-and then verifies that the program behaves in that specific way.
-Examples are used for verifying small pieces of the program,
-rather than the entire program. And this process is generally
-called “unit testing”.</p>
-<div class="section" id="test-declarations">
-<h2>Test declarations<a class="headerlink" href="#test-declarations" title="Permalink to this headline">¶</a></h2>
-<p>Crochet’s support for example testing comes in the form of
-test declarations. Each of these test declarations can cover
-one of these scenarios, and verifications are done with the
-<code class="docutils literal notranslate"><span class="pre">assert</span></code> expression.</p>
-<p>For example, consider the case where we have a command to
-display the list of items in an inventory with your usual
-English conjunctions. An example test for it could look
-like the following:</p>
-<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">test</span> <span class="dl">"</span><span class="s2">inventory display with conjunctions</span><span class="dl">"</span> <span class="k">do</span>
-  <span class="k">assert</span> <span class="p">(</span><span class="o">#</span>inventory <span class="nf">with:</span> <span class="p">[]</span> <span class="p">|</span> show<span class="p">)</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">You're not carrying anything.</span><span class="dl">"</span><span class="p">;</span>
-
-  <span class="k">assert</span> <span class="p">(</span><span class="o">#</span>inventory <span class="nf">with:</span> <span class="p">[</span>rose<span class="p">]</span> <span class="p">|</span> show<span class="p">)</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">You're carrying </span><span class="si">[</span>rose<span class="si">]</span><span class="s2">.</span><span class="dl">"</span><span class="p">;</span>
-
-  <span class="k">assert</span> <span class="p">(</span><span class="o">#</span>inventory <span class="nf">with:</span> <span class="p">[</span>rose<span class="p">,</span> watch<span class="p">,</span> old-coin<span class="p">]</span> <span class="p">|</span> show<span class="p">)</span>
-    <span class="o">===</span> <span class="dl">"</span><span class="s2">You're carrying </span><span class="si">[</span>rose<span class="si">]</span><span class="s2">, </span><span class="si">[</span>watch<span class="si">]</span><span class="s2">, and </span><span class="si">[</span>old-coin<span class="si">]</span><span class="s2">.</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">end</span>
-</pre></div>
-</div>
-<p>Here we have three different <code class="docutils literal notranslate"><span class="pre">assert</span></code> expressions that verify
-different possibilities of displaying an inventory. When one isn’t
-carrying anything, “You’re not carrying anything.” should be displayed.
-But when they’re carrying multiple items, we’d expect something
-more along the lines of “You’re carrying a rose, a watch, and an old coin.”.</p>
-<div class="section" id="convenience-for-command-tests">
-<h3>Convenience for command tests<a class="headerlink" href="#convenience-for-command-tests" title="Permalink to this headline">¶</a></h3>
-<p>Though you can always use the test declaration syntax, there’s a slightly
-more convenient syntax for describing examples for a single command.
-Instead of writing the separated test declaration, as above, we could
-have added a test block to the <code class="docutils literal notranslate"><span class="pre">inventory</span> <span class="pre">show:</span> <span class="pre">_</span></code> command itself:</p>
-<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> inventory show <span class="k">do</span>
-  <span class="k">condition</span>
-    <span class="k">when</span> self.items is-empty <span class="o">=&gt;</span> <span class="p">...;</span>
-    <span class="k">when</span> self.items size <span class="o">===</span> <span class="mf">1</span> <span class="o">=&gt;</span> <span class="p">...;</span>
-    <span class="k">otherwise</span> <span class="o">=&gt;</span> <span class="p">...;</span>
-  <span class="k">end</span>
-
-<span class="k">test</span>
-  <span class="k">assert</span> <span class="p">(</span><span class="o">#</span>inventory <span class="nf">with:</span> <span class="p">[]</span> <span class="p">|</span> show<span class="p">)</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">You're not carrying anything.</span><span class="dl">"</span><span class="p">;</span>
-
-  <span class="k">assert</span> <span class="p">(</span><span class="o">#</span>inventory <span class="nf">with:</span> <span class="p">[</span>rose<span class="p">]</span> <span class="p">|</span> show<span class="p">)</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">You're carrying </span><span class="si">[</span>rose<span class="si">]</span><span class="s2">.</span><span class="dl">"</span><span class="p">;</span>
-
-  <span class="k">assert</span> <span class="p">(</span><span class="o">#</span>inventory <span class="nf">with:</span> <span class="p">[</span>rose<span class="p">,</span> watch<span class="p">,</span> old-coin<span class="p">]</span> <span class="p">|</span> show<span class="p">)</span>
-    <span class="o">===</span> <span class="dl">"</span><span class="s2">You're carrying </span><span class="si">[</span>rose<span class="si">]</span><span class="s2">, </span><span class="si">[</span>watch<span class="si">]</span><span class="s2">, and </span><span class="si">[</span>old-coin<span class="si">]</span><span class="s2">.</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">end</span>
-</pre></div>
-</div>
-<p>This convenience syntax works exactly like the separated test declaration,
-but it uses the name of the command as a description.</p>
-</div>
-</div>
-<div class="section" id="testing-effects">
-<h2>Testing effects<a class="headerlink" href="#testing-effects" title="Permalink to this headline">¶</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Effectful testing is still in discovery; this section will be
-expanded in the future.</p>
-</div>
-<p>When the pieces of program you want to test only depend on the data
-you’re using, your examples will consist of constructing the data,
-executing a command, and then comparing the resulting data with
-what you expected to happen.</p>
-<p>But testing programs that have effects requires more sophisticated
-examples. And that’s because effects usually do things outside
-of what can be reasonably verified in Crochet. So one approach to
-testing these programs is to use a handler that, instead of
-doing things outside of Crochet, just keeps track of what was
-supposed to happen. The examples may then verify that what was
-supposed to happen in the program really matches what the program
-should be doing.</p>
+        <div class="section" id="foreign-interfaces">
+<h1>Foreign interfaces<a class="headerlink" href="#foreign-interfaces" title="Permalink to this headline">¶</a></h1>
+<p>Sometimes Crochet does not provide enough to build the program
+you need. Maybe you have specific performance needs, or maybe
+you want to use something that was built for another programming
+platform. In these cases, Crochet offers a Foreign Interface mechanism
+to interact with external programs.</p>
+<p>Currently, foreign programs are limited to JavaScript.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">Writing external functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#native-modules">Native modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#defun-and-defmachine"><code class="docutils literal notranslate"><span class="pre">defun</span></code> and <code class="docutils literal notranslate"><span class="pre">defmachine</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-ffi-type">The FFI type</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#defining-functions">Defining functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#constructing-crochet-data">Constructing Crochet data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#using-crochet-values">Using Crochet values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#native-signals">Native signals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#operators">Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#testing-values">Testing values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 
@@ -269,23 +215,23 @@ should be doing.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="contracts.html">
+          <a class="next-page" href="interface.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Contracts</div>
+                <div class="title">Writing external functions</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="index.html">
+          <a class="prev-page" href="../verification/contracts.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Verification</div>
+                <div class="title">Contracts</div>
                 
               </div>
             </a>
@@ -299,7 +245,7 @@ should be doing.</p>
               <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
               <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
             |
-            <a class="muted-link" href="../../_sources/system/verification/examples.rst.txt"
+            <a class="muted-link" href="../../_sources/system/ffi/index.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -307,31 +253,8 @@ should be doing.</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            Contents
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Example-based testing</a><ul>
-<li><a class="reference internal" href="#test-declarations">Test declarations</a><ul>
-<li><a class="reference internal" href="#convenience-for-command-tests">Convenience for command tests</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#testing-effects">Testing effects</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
