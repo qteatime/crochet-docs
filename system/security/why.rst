@@ -41,8 +41,10 @@ It's hard to understand the impact of running a program, especially
 outside of a phone or a web browser. The problem is that you're not
 really just running a video game, or a spreadsheet application, or
 a text editor; rather, you're giving full, unsupervised control over
-your computer to the application you're running. Anything you *can*
-do in your computer, so can the application.
+your computer to the application you're running. It's like letting someone
+you don't know sit at your computer and use it while you go outside
+to buy some snacks. Anything you *can* do in your computer, so can the
+applications you run.
 
 Things are a bit less grim in most mobile phones today. Instead of
 giving applications free-reign over your mobile device, phone
