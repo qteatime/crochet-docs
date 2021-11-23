@@ -61,8 +61,8 @@ can do anything the user can, which leads to things like separating
 regular users and administrator user accounts to try reducing the
 impact of problems.
 
-If Capability Security was used in this scenario, it could have
-caught, or at least reduced the impact of the issue.
+If Capability Security was used in this scenario it could have
+caught the issue. Or at least reduced its impact.
 
 For example, let's imagine that the problem started because of a malicious
 user publishing a new version of a popular package for 2d graphics.
