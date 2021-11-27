@@ -2,10 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Signatures and their uses" href="signatures.html" /><link rel="prev" title="Commands" href="index.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Annex A: Design philosophy" href="../design-philosophy.html" /><link rel="prev" title="Capabilities and groups" href="groups.html" />
 
     <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
-        <title>What are commands? - Crochet 0.12 documentation</title>
+        <title>Dynamic capabilities - Crochet 0.12 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
@@ -123,11 +123,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../types/traits.html">Traits</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Commands</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">What are commands?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="signatures.html">Signatures and their uses</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dispatch.html">Executing commands</a></li>
-<li class="toctree-l3"><a class="reference internal" href="why.html">Why are commands …?</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../commands/index.html">Commands</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../commands/declaration.html">What are commands?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/signatures.html">Signatures and their uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/why.html">Why are commands …?</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../computing/index.html">Computing with Crochet</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -165,10 +165,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../ffi/ffi.html">The FFI type</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../security/index.html">Security and capabilities</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label for="toctree-checkbox-10"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../security/why.html">Why use capabilities?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/groups.html">Capabilities and groups</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/dynamic.html">Dynamic capabilities</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Security and capabilities</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label for="toctree-checkbox-10"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="why.html">Why use capabilities?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groups.html">Capabilities and groups</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Dynamic capabilities</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
@@ -190,96 +190,114 @@
         <label class="toc-overlay-icon toc-content-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
-        <div class="section" id="what-are-commands">
-<h1>What are commands?<a class="headerlink" href="#what-are-commands" title="Permalink to this headline">¶</a></h1>
-<p>A command is a way of describing our program’s behaviour. There are other
-things that affect how a program works, but commands are the primary one.
-Crochet’s commands are a bit similar to “functions”, “procedures”, “routines”,
-and “methods” in other programming languages, but they have a few unique
-things about them.</p>
-<p>For example, consider the following command declarations:</p>
-<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="k">true</span> <span class="k">and</span> <span class="k">true</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
-<span class="k">command</span> boolean <span class="k">and</span> boolean <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+        <div class="section" id="dynamic-capabilities">
+<h1>Dynamic capabilities<a class="headerlink" href="#dynamic-capabilities" title="Permalink to this headline">¶</a></h1>
+<p>Crochet’s push for Types as Capabilities has the primary goal of
+making it possible for tools to help people understand the risks
+they are taking by running programs in their computer. Their static
+nature is what allows that—but this comes with its own problems.</p>
+<div class="section" id="why-do-we-need-them">
+<h2>Why do we need them?<a class="headerlink" href="#why-do-we-need-them" title="Permalink to this headline">¶</a></h2>
+<p>When everything is static it means that you both need to grant
+all of the capabilities ahead of the time, and that you can never
+take back the capabilities after you grant them. And that poses
+both security and usability issues.</p>
+<p>To address this, Crochet also allows capabilities to be dynamically
+granted—that is, granted while the program is running, rather than
+before running it. This is necessary for contextual capabilities
+(a future extension to Crochet’s capability system necessary for
+usability), and also for giving packages control over temporary,
+restricted, and revocable capabilities.</p>
+<p>For example, consider the case where we’ve asked the user to choose
+a directory on their computer to save novels that our application
+can generate. We then want to allow the package that handles the
+novels to read and write to this directory (and <em>nothing else</em>),
+but only if the user has given us this power—the user might simply
+not wish to save the novels, and thus should never be even bothered
+with being asked for this power; the user should not be made aware
+that this specific Crochet capability exists until the application
+needs it.</p>
+<p>Static capabilities cannot solve this problem because they would
+both make the user aware of the power before running the program,
+and would never be aware of which directories could be chosen by
+the user—after all, that is something the user decides <em>while</em>
+running the program, not before running it.</p>
+</div>
+<div class="section" id="objects-as-capabilities">
+<h2>Objects as capabilities<a class="headerlink" href="#objects-as-capabilities" title="Permalink to this headline">¶</a></h2>
+<p>By using Types as capabilities, Crochet allows us to reason about
+powers and risks. And then it allows us to control how this power
+is distributed in the program configuration—who gets access to
+what.</p>
+<p>But once the program is configured, what powers are effectively
+used is determined by Commands. And these commands are selected
+by types in principle—but they don’t <em>receive</em> types, they
+receive objects; the little pieces of information that we get
+from Constructing a type.</p>
+<p>And this idea of Commands that are selected by Objects is core
+to languages that use objects as capabilities. If you can get
+your hands on an object, then you’ve gotten the power to its
+commands as well. And because these objects flow through the
+program in arguments to commands, or as return values from
+various operations, we’re no longer restricted to powers
+that the configuration dictates; but powers that the execution
+of the program chooses to grant.</p>
+<p>For example, if we continue with our opening problem in this
+chapter—that of a program that lets users save novels to a
+directory of their choosing (and nothing else), then we could
+have a powerful package that handles asking the user for this
+directory:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> game ask-storage-directory <span class="o">-&gt;</span> directory <span class="k">do</span>
+  <span class="c1">// Implementation intentionally omitted</span>
+<span class="k">end</span>
 </pre></div>
 </div>
-<p>This piece of code defines two commands, but both of them have the same
-name: <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code>. The underscores in the name indicate where arguments
-to this command would go. In the definition, these underscores indicate
-the places where the <em>requirements</em> for executing the command go.</p>
-<p>So, for the first command, we can execute it whenever both of the arguments
-are an instance of the type <code class="docutils literal notranslate"><span class="pre">true</span></code>. For the second one, we can execute
-the command whenever both of the arguments are an instance of <code class="docutils literal notranslate"><span class="pre">boolean</span></code>.
-Remember that types in Crochet create an hierarchy, so the boolean hierarchy
-looks like this:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+ any
-|
- `--+ boolean
-    |
-    |--o true
-    `--o false
+<p>The implementation of this command isn’t too relevant, but it
+returns a <code class="docutils literal notranslate"><span class="pre">directory</span></code> object. This <code class="docutils literal notranslate"><span class="pre">directory</span></code> object would
+then give one powers to read files and save files in that directory
+alone—without even being made aware that other files and directories
+exist.</p>
+<p>We can then pass this object around until it reaches the other
+package that generates novels. This package has no powers from its
+configuration, but it’s able to accept directories and use them:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> novel <span class="nf">save-to:</span> <span class="p">(</span><span class="nv">Directory</span> <span class="k">is</span> directory<span class="p">)</span> <span class="k">do</span>
+  <span class="k">let</span> <span class="nv">File</span> <span class="p">=</span> <span class="nv">Directory</span> <span class="nf">create-file:</span> <span class="k">self</span> title<span class="p">;</span>
+  <span class="nv">File</span> <span class="nf">write-text:</span> <span class="k">self</span> contents<span class="p">;</span>
+<span class="k">end</span>
 </pre></div>
 </div>
-<p>At the root of this hierarchy we have the type <code class="docutils literal notranslate"><span class="pre">any</span></code>. Then we have <code class="docutils literal notranslate"><span class="pre">boolean</span></code>
-descending from it. And both <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code> descending from <code class="docutils literal notranslate"><span class="pre">boolean</span></code>.
-When we use a command, Crochet will pick the one whose requirements are most
-closely matched to the arguments.</p>
-<p>For example, let’s say we have the following use of a command:</p>
-<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">true</span> <span class="k">and</span> <span class="k">true</span>
+<p>Here we’re able to create a file inside of the directory, and write
+to that file. But that’s all we can do. We can’t break out of this
+directory and access other files—or modify other files. Indeed,
+we can’t even be sure that this directory is an <em>actual</em> directory
+in the computer. It could be a Zip archive. It could be a database.
+It could be a storage service that is accessed through the internet.
+As long as the expected semantics are the same, the user of this
+object cannot know its true form, and it should not care.</p>
+<div class="section" id="revocable-capabilities">
+<h3>Revocable capabilities<a class="headerlink" href="#revocable-capabilities" title="Permalink to this headline">¶</a></h3>
+<p>A revocable capability is an object capability that can stop working
+at the convenience of whoever granted it. For example, if we wished
+to grant some piece of code a one-use capability for saving data,
+we could do so by making an object that exposes commands which only
+work once. This could be achieved by using cells:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> save-once<span class="p">(</span>used <span class="k">is</span> cell<span class="o">&lt;</span>boolean<span class="o">&gt;</span><span class="p">);</span>
+
+<span class="k">command</span> <span class="o">#</span>save-once make <span class="p">=</span> <span class="k">new</span> save-once<span class="p">(</span><span class="o">#</span>cell <span class="nf">with-value:</span> <span class="k">false</span><span class="p">);</span>
+
+<span class="k">command</span> save-once <span class="nf">save:</span> <span class="nv">Data</span>
+<span class="k">requires</span> not-used <span class="p">::</span> <span class="k">not</span> <span class="p">(</span>self.used value<span class="p">)</span>
+<span class="k">do</span>
+  <span class="c1">// Implementation of saving the data goes here</span>
+  self.used <span class="o">&lt;-</span> <span class="k">true</span><span class="p">;</span>
+<span class="k">end</span>
 </pre></div>
 </div>
-<p>Crochet will find all of the commands that have been declared with the name
-<code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code> and then pick one to execute. First, we need to match all
-requirements. In this case both commands we’ve declared fulfill all of
-the requirements: the value <code class="docutils literal notranslate"><span class="pre">true</span></code> is both an instance of the type <code class="docutils literal notranslate"><span class="pre">true</span></code>,
-and transitively, an instance of the type <code class="docutils literal notranslate"><span class="pre">boolean</span></code> (and <code class="docutils literal notranslate"><span class="pre">any</span></code>!).</p>
-<p>Then, since we have more than one candidate, Crochet needs to somehow
-disambiguate this. And the way it does so is by picking the closest matching
-one. That is, if we have to walk up the hierarchy up to <code class="docutils literal notranslate"><span class="pre">any</span></code>, the closest
-matching is the one we have to take the least amount of steps. Here, the
-command <code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">and</span> <span class="pre">true</span></code> requires no steps on both sides, whereas the command
-<code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">and</span> <span class="pre">boolean</span></code> requires one step on each side. Thus, Crochet picks
-<code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">and</span> <span class="pre">true</span></code>, yielding the result <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
-<p>On the other hand, if we had the expression <code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">and</span> <span class="pre">false</span></code>, or
-<code class="docutils literal notranslate"><span class="pre">false</span> <span class="pre">and</span> <span class="pre">true</span></code>. Or even <code class="docutils literal notranslate"><span class="pre">false</span> <span class="pre">and</span> <span class="pre">false</span></code>, the requirements for the
-<code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">and</span> <span class="pre">true</span></code> command wouldn’t be matched, and we’d end up executing
-the <code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">and</span> <span class="pre">boolean</span></code> command, yielding the result <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
-<p>So, to answer the opening question: a Crochet command is like a function,
-it has a name and we can execute that function to do something. But multiple
-commands can share the same name, and when we execute one, Crochet will pick
-up the closest one that matches all requirements. Some languages call this
-a Multi-method.</p>
-<div class="section" id="commands-are-global">
-<h2>Commands are global<a class="headerlink" href="#commands-are-global" title="Permalink to this headline">¶</a></h2>
-<p>In Crochet, commands are always global. This might come as a surprise since
-almost everything else in Crochet is qualified by the package they’re in.
-So if you define a type like <code class="docutils literal notranslate"><span class="pre">player</span></code>, what you’re really defining is
-the type <code class="docutils literal notranslate"><span class="pre">some-package/player</span></code>. But this is not the case with commands.</p>
-<p>If you define a command <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code>, its name will always be just <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">and</span> <span class="pre">_</span></code>,
-regardless of which package it’s defined in.</p>
+<p>Here the usage of the command <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">save:</span> <span class="pre">_</span></code> is guarded by the <code class="docutils literal notranslate"><span class="pre">not-used</span></code>
+contract, which makes sure that the <code class="docutils literal notranslate"><span class="pre">used</span></code> field is false. When we save
+the data, we mark this <code class="docutils literal notranslate"><span class="pre">used</span></code> field as true, consequently making the
+<code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">save:</span> <span class="pre">_</span></code> command unusable from there on.</p>
 </div>
-<div class="section" id="signatures">
-<h2>Signatures<a class="headerlink" href="#signatures" title="Permalink to this headline">¶</a></h2>
-<p>Because commands can have the same <em>name</em>, Crochet needs a different way
-to refer to specific commands. To do this it has a concept called a Signature.
-A Signature combines the name of a command with the requirements to
-execute the command.</p>
-<p>Signatures seem simple at the surface, but they’re actually a fairly complex
-topic, so they’re covered in depth in their own section: Signatures and their
-uses.</p>
-</div>
-<div class="section" id="behaviours">
-<h2>Behaviours<a class="headerlink" href="#behaviours" title="Permalink to this headline">¶</a></h2>
-<p>So, if a command describes a “program’s behaviour”, how exactly does it do
-that? Well, if the left side of the command declaration is its signature,
-then the right side is its behaviour. Here we use expressions to describe
-what the program does if the command is executed.</p>
-<p>The distinction between “expression” and “signatures” isn’t always very
-obvious. A signature may only contain types, and expressions may only
-contain values. But because these are two different concepts, they may
-(and in a lot of cases do!) look pretty much the same. <code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">and</span> <span class="pre">true</span></code>
-can either be a signature (concerning the type <code class="docutils literal notranslate"><span class="pre">true</span></code>), or an
-expression (concerning the value <code class="docutils literal notranslate"><span class="pre">true</span></code>).</p>
-<p>Since the topic is vast, we cover expressions in their own chapter.</p>
 </div>
 </div>
 
@@ -287,23 +305,23 @@ expression (concerning the value <code class="docutils literal notranslate"><spa
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="signatures.html">
+          <a class="next-page" href="../design-philosophy.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Signatures and their uses</div>
+                <div class="title">Annex A: Design philosophy</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="index.html">
+          <a class="prev-page" href="groups.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Commands</div>
+                <div class="title">Capabilities and groups</div>
                 
               </div>
             </a>
@@ -317,7 +335,7 @@ expression (concerning the value <code class="docutils literal notranslate"><spa
               <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
               <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
             |
-            <a class="muted-link" href="../../_sources/system/commands/declaration.rst.txt"
+            <a class="muted-link" href="../../_sources/system/security/dynamic.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -337,10 +355,12 @@ expression (concerning the value <code class="docutils literal notranslate"><spa
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">What are commands?</a><ul>
-<li><a class="reference internal" href="#commands-are-global">Commands are global</a></li>
-<li><a class="reference internal" href="#signatures">Signatures</a></li>
-<li><a class="reference internal" href="#behaviours">Behaviours</a></li>
+<li><a class="reference internal" href="#">Dynamic capabilities</a><ul>
+<li><a class="reference internal" href="#why-do-we-need-them">Why do we need them?</a></li>
+<li><a class="reference internal" href="#objects-as-capabilities">Objects as capabilities</a><ul>
+<li><a class="reference internal" href="#revocable-capabilities">Revocable capabilities</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

@@ -9,3 +9,5 @@ is protecting you against.
 .. toctree::
 
    why
+   groups
+   dynamic
