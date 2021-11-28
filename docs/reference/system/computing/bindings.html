@@ -1,0 +1,590 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Intrinsic data types" href="intrinsics/index.html" /><link rel="prev" title="Execution models" href="execution-models.html" />
+
+    <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
+        <title>Naming values - Crochet 0.12 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/crochet.css" />
+    
+
+
+<style>
+  :root {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../../_static/pygments_dark.css"></head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Crochet 0.12 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">The Crochet System</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../whats-crochet.html">What’s Crochet?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installing-crochet.html">Installing Crochet</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../structure/index.html">How is Crochet structured?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../structure/introduction.html">The Crochet universe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure/package-configuration.html">Package configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../types/index.html">Data and types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../types/types-and-data.html">Types and data modelling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/hierarchies.html">Hierarchies of types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/traits.html">Traits</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../commands/index.html">Commands</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../commands/declaration.html">What are commands?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/signatures.html">Signatures and their uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/why.html">Why are commands …?</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Computing with Crochet</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="execution-models.html">Execution models</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Naming values</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="intrinsics/index.html">Intrinsic data types</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/gradual.html">Gradual representations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/numbers.html">Numeric models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/text.html">Textual models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/logic.html">Logical models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/functions.html">Program representations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intrinsics/collections.html">Collections</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="application.html">Applying programs and commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html">Using data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="equality.html">Equality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="branching.html">Branching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comprehension.html">Working with multiple values</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../effects/index.html">Effects</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label for="toctree-checkbox-7"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../effects/what-are-effects.html">What are effects?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/handlers.html">Effect handlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/contexts.html">Contextual handlers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../verification/index.html">Verification</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label for="toctree-checkbox-8"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../verification/examples.html">Example-based testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../verification/contracts.html">Contracts</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ffi/index.html">Foreign interfaces</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label for="toctree-checkbox-9"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ffi/interface.html">Writing external functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ffi/ffi.html">The FFI type</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../security/index.html">Security and capabilities</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label for="toctree-checkbox-10"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/why.html">Why use capabilities?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/groups.html">Capabilities and groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/dynamic.html">Dynamic capabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sociology-and-linguistics.html">Annex B: Sociology and linguistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbook/brief-syntax/index.html">The Brief Syntax Cheatsheet</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label for="toctree-checkbox-11"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/index.html">Declarations</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label for="toctree-checkbox-12"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/capability.html"><code class="docutils literal notranslate"><span class="pre">capability</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/command.html"><code class="docutils literal notranslate"><span class="pre">command</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/define.html"><code class="docutils literal notranslate"><span class="pre">define</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/effect.html"><code class="docutils literal notranslate"><span class="pre">effect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/implement.html"><code class="docutils literal notranslate"><span class="pre">implement</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/local.html"><code class="docutils literal notranslate"><span class="pre">local</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/open.html"><code class="docutils literal notranslate"><span class="pre">open</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/prelude.html"><code class="docutils literal notranslate"><span class="pre">prelude</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/protect.html"><code class="docutils literal notranslate"><span class="pre">protect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/test.html"><code class="docutils literal notranslate"><span class="pre">test</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/trait.html"><code class="docutils literal notranslate"><span class="pre">trait</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/type.html"><code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/index.html">Expressions</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label for="toctree-checkbox-13"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/statement/index.html">Statements</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label for="toctree-checkbox-14"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/statement/assert.html"><code class="docutils literal notranslate"><span class="pre">assert</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/statement/let.html"><code class="docutils literal notranslate"><span class="pre">let</span></code> expression</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/index.html">Complex expressions</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label for="toctree-checkbox-15"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/apply.html">Program application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/condition.html"><code class="docutils literal notranslate"><span class="pre">condition</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/continue-with.html"><code class="docutils literal notranslate"><span class="pre">continue</span> <span class="pre">with</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/delayed.html">Delayed programs (Lambdas)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/do.html"><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">..</span> <span class="pre">end</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/for.html"><code class="docutils literal notranslate"><span class="pre">for</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/force.html"><code class="docutils literal notranslate"><span class="pre">force</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/foreign.html"><code class="docutils literal notranslate"><span class="pre">foreign</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/handle.html"><code class="docutils literal notranslate"><span class="pre">handle</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/hole.html">Holes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/invocation.html">Command invocation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/perform.html"><code class="docutils literal notranslate"><span class="pre">perform</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/pipe.html">Pipe expressions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/projection.html">Projection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/return.html"><code class="docutils literal notranslate"><span class="pre">return</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/self-expr.html"><code class="docutils literal notranslate"><span class="pre">self</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/static-type.html">Static types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/variable.html">Variable references</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/index.html">Atomic expressions</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label for="toctree-checkbox-16"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/boolean.html">Boolean literals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/float.html">Floating point literals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/global.html">Global references</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/integer.html">Integer literals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/interpolate.html">Interpolation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/lazy.html"><code class="docutils literal notranslate"><span class="pre">lazy</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/list.html">List expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/new.html"><code class="docutils literal notranslate"><span class="pre">new</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/nothing.html">Nothing literal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/record.html">Record expressions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/text.html">Text literals</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="naming-values">
+<h1>Naming values<a class="headerlink" href="#naming-values" title="Permalink to this headline">¶</a></h1>
+<p>Values can be named in Crochet, but there are a handful of ways in
+which they can be named, and each of these ways have slightly
+different syntax and rules.</p>
+<div class="section" id="global-names">
+<h2>Global Names<a class="headerlink" href="#global-names" title="Permalink to this headline">¶</a></h2>
+<p>One of the first instances of naming a value that you’d encounter
+in Crochet is the global name. A global name is introduced by the
+<code class="docutils literal notranslate"><span class="pre">define</span></code> declaration, and it looks like this:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">define</span> one <span class="p">=</span> <span class="mf">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>So there’s a name on the left of the equals, and an expression
+at the right of the equals. We can then use this name later to
+refer to this value:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span>one <span class="o">+</span> <span class="mf">2</span><span class="p">;</span>
+
+<span class="c1">// Equivalent to:</span>
+<span class="mf">1</span> <span class="o">+</span> <span class="mf">2</span>
+</pre></div>
+</div>
+<div class="section" id="syntactical-restrictions">
+<h3>Syntactical restrictions<a class="headerlink" href="#syntactical-restrictions" title="Permalink to this headline">¶</a></h3>
+<p>Not everything is allowed in the <code class="docutils literal notranslate"><span class="pre">define</span></code> declaration.
+The name must start with a lower case letter, and follows the same
+naming restrictions that unary commands and type names do. And the
+expression part can only use atomic expressions. That is, within a <code class="docutils literal notranslate"><span class="pre">define</span></code>
+declaration, we can only use expressions that are pure, guaranteed to produce
+a value and which can be executed quickly.</p>
+<p>This means that we can’t write the following in a <code class="docutils literal notranslate"><span class="pre">define</span></code> declaration:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">define</span> two <span class="p">=</span> <span class="mf">1</span> <span class="o">+</span> <span class="mf">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Why? Doesn’t that look like something that will always produce a value,
+and is likely to be executed fairly quickly too? If we consider that the
+<code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">+</span> <span class="pre">_</span></code> command here is arithmetic addition for integers, yes. It should.
+But only if the <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">+</span> <span class="pre">_</span></code> command refers to that particular command in
+the Crochet standard library—and Crochet doesn’t have this guarantee!</p>
+<p>It might be that the standard library has not been loaded. Or that
+something else defined a <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">+</span> <span class="pre">_</span></code> command that does a different thing.
+Crochet cannot really rule out these possibilities, so it takes a more
+conservative approach and just forbids any more complex expression
+in the <code class="docutils literal notranslate"><span class="pre">define</span></code> declaration.</p>
+<p>If we really must write these, then we need to use either partial or
+delayed programs. For example, this is allowed:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">define</span> two <span class="p">=</span> <span class="k">lazy</span> <span class="p">(</span><span class="mf">1</span> <span class="o">+</span> <span class="mf">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now every time we want to use this value we also need to evaluate this
+delayed program:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">force</span> two <span class="o">+</span> <span class="mf">3</span>
+
+<span class="c1">// Equivalent to (if `two` hasn't been forced before):</span>
+<span class="p">(</span><span class="mf">1</span> <span class="o">+</span> <span class="mf">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">3</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="why-are-they-restricted">
+<h3>Why are they restricted?<a class="headerlink" href="#why-are-they-restricted" title="Permalink to this headline">¶</a></h3>
+<p>Unlike other declarations in Crochet, a <code class="docutils literal notranslate"><span class="pre">define</span></code> declaration will
+evaluate a Crochet expression at the time the program is being
+loaded. Allowing non-atomic expressions to be used would cause
+a few troubles, one of them being that the order in which Crochet
+loads code would have to be made relevant.</p>
+<p>This sounds weird. Why is making the order relevant such a big deal?
+Well, it means that it would be more difficult to make Crochet work
+for interactive programming—because besides figuring out how to
+let people edit a program, and have these edits have immediate effect,
+the tool would also need to figure out how to order these edits!
+This is harder than it may sound, as the edits may be in very different
+regions of different files.</p>
+<p>But the second, and more important issue, is that allowing anything
+other than atomic expressions would mean that there could be dangerous
+code executing by simply loading a program. Or package. This doesn’t
+even need to be a program that does <em>evil</em> things on purpose. A program
+that has a <code class="docutils literal notranslate"><span class="pre">define</span></code> declaration that takes too long to finish would
+cause problems to the responsiveness of all interactive tools in
+the Crochet ecosystem. It could very well prevent a program from
+being edited at all!</p>
+<p>While Crochet could solve this problem by just making all <code class="docutils literal notranslate"><span class="pre">define</span></code>
+declarations implicitly delayed, Crochet chooses to take the explicit
+path instead. Users who really need to write more complex expressions
+in a <code class="docutils literal notranslate"><span class="pre">define</span></code> declaration can do so by explicitly choosing how to
+delay that expression.</p>
+</div>
+<div class="section" id="where-can-global-names-be-used">
+<h3>Where can global names be used?<a class="headerlink" href="#where-can-global-names-be-used" title="Permalink to this headline">¶</a></h3>
+<p>Global names can be accessed anywhere within the package that declares
+them, without any additional effort. Using the name in any expression
+will make Crochet pick up the value associated with it, and use that
+value.</p>
+<p>The names can also be used <em>outside</em> of the package that declares them.
+In this case, the name of the package also needs to be specified in
+order to use them.</p>
+<p>For example, if package <code class="docutils literal notranslate"><span class="pre">some-package</span></code> defines a name <code class="docutils literal notranslate"><span class="pre">one</span></code>:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">define</span> one <span class="p">=</span> <span class="mf">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Then package <code class="docutils literal notranslate"><span class="pre">another-package</span></code> can use it as follows:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span>some-package<span class="o">/</span>one <span class="o">+</span> <span class="mf">2</span>
+
+<span class="c1">// Equivalent to:</span>
+
+<span class="mf">1</span> <span class="o">+</span> <span class="mf">2</span>
+</pre></div>
+</div>
+<p>This is called a “qualified name”—where the name of the package is
+combined with the global name using the <code class="docutils literal notranslate"><span class="pre">/</span></code> separator.</p>
+<p>We can refer to the global name without using a qualified name by
+bringing all names from another package within the possible names
+of our package. For example, <code class="docutils literal notranslate"><span class="pre">another-package</span></code> above could have
+used the <code class="docutils literal notranslate"><span class="pre">open</span></code> declaration to bring <code class="docutils literal notranslate"><span class="pre">some-package</span></code> names into
+its set of possibilities:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">open</span> some-package<span class="p">;</span>
+
+<span class="c1">// Then in an expression:</span>
+one <span class="o">+</span> <span class="mf">2</span>
+</pre></div>
+</div>
+<p>When we use a global name like this, Crochet will try to search for
+a definition with that name in the set of possible names in the package.
+This set includes all local names, along with all names in the open
+packages.</p>
+</div>
+</div>
+<div class="section" id="local-names">
+<h2>Local names<a class="headerlink" href="#local-names" title="Permalink to this headline">¶</a></h2>
+<p>A local name in Crochet—also called a “variable” name—starts
+with an uppercase letter, and otherwise can be followed by the same
+characters one has in unary command names and type names.</p>
+<p>Local names can be introduced in a few different ways. The most
+explicit one of them is the <code class="docutils literal notranslate"><span class="pre">let</span></code> expression:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">One</span> <span class="p">=</span> <span class="mf">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Here the thing on the left of the equal sign is the name, and the
+thing on the right of the equal sign is an expression to evaluate.
+The resulting value of evaluating this expression is then associated
+with the name.</p>
+<p>Local names can also be introduced in a partial program. For example,
+in this piece of code we have a partial program that defines two
+local names, <code class="docutils literal notranslate"><span class="pre">One</span></code> and <code class="docutils literal notranslate"><span class="pre">Two</span></code>, and these names are associated
+with the first and second arguments to that partial program:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="nv">One</span><span class="p">,</span> <span class="nv">Two</span> <span class="k">in</span> <span class="nv">One</span> <span class="o">+</span> <span class="nv">Two</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Or in a command declaration. Here we similarly introduce two
+local names, <code class="docutils literal notranslate"><span class="pre">One</span></code> and <code class="docutils literal notranslate"><span class="pre">Two</span></code>:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="nv">One</span> <span class="nf">plus:</span> <span class="nv">Two</span> <span class="p">=</span> <span class="nv">One</span> <span class="o">+</span> <span class="nv">Two</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Some other special forms, like the <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">..</span> <span class="pre">in</span> <span class="pre">..</span> <span class="pre">do</span></code>  expression,
+also define local names. Here we would associate the local name <code class="docutils literal notranslate"><span class="pre">Item</span></code>
+with each element of the list:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="nv">Item</span> <span class="k">in</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">,</span> <span class="mf">3</span><span class="p">]</span> <span class="k">do</span>
+  <span class="nf">show:</span> <span class="nv">Item</span><span class="p">;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<div class="section" id="when-are-local-names-valid">
+<h3>When are local names valid?<a class="headerlink" href="#when-are-local-names-valid" title="Permalink to this headline">¶</a></h3>
+<p>Local names are valid only in the “region” that declares them. This
+is often referred to as the “scope” of the name. In Crochet, these
+regions differ, but they’re generally delimited by the block in
+which the name is introduced.</p>
+<p>For example, consider the case of a name introduced by a command.
+This is the largest block Crochet has. A name introduced in this
+way will be valid anywhere inside of that command—but not outside
+of it:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="nv">One</span> <span class="nf">plus:</span> <span class="nv">Two</span> <span class="k">do</span>  <span class="c1">// -</span>
+  <span class="nv">One</span> <span class="o">+</span> <span class="nv">Two</span><span class="p">;</span>              <span class="c1">// | `One` and `Two` are only valid here</span>
+<span class="k">end</span>                       <span class="c1">// -</span>
+
+<span class="k">define</span> one-plus-two <span class="p">=</span>  <span class="c1">// -</span>
+  <span class="nv">One</span> <span class="o">+</span> <span class="nv">Two</span><span class="p">;</span>           <span class="c1">// | `One` and `Two` are not available here,</span>
+                       <span class="c1">// -  this is a different region.</span>
+</pre></div>
+</div>
+<p>The region is generally delimited by <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">..</span> <span class="pre">end</span></code> keywords in
+most of Crochet’s syntax. But some syntax delimits regions with
+brackets instead. For example, the anonymous program syntaxes
+use curly braces to delimit regions:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">One</span> <span class="p">=</span> <span class="mf">1</span><span class="p">;</span>             <span class="c1">// - `One` and `Two` are available here</span>
+<span class="k">let</span> <span class="nv">Two</span> <span class="p">=</span> <span class="p">{</span>              <span class="c1">// |    -</span>
+  <span class="k">let</span> <span class="nv">Added</span> <span class="p">=</span> <span class="nv">One</span> <span class="o">+</span> <span class="mf">1</span><span class="p">;</span>   <span class="c1">// |    | `Added` is only available here</span>
+  <span class="nv">Added</span><span class="p">;</span>                 <span class="c1">// |    |</span>
+<span class="p">};</span>                       <span class="c1">// |    -</span>
+<span class="nv">One</span> <span class="o">+</span> <span class="nv">Two</span><span class="p">;</span>               <span class="c1">// _</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reusing-names-in-nested-regions">
+<h3>Reusing names in nested regions<a class="headerlink" href="#reusing-names-in-nested-regions" title="Permalink to this headline">¶</a></h3>
+<p>A region that nests within another region may use names that are
+also used in the outer region. This is generally called “shadowing”.
+The nested region’s name have their own meaning and associations,
+and so do the outer region’s names. They don’t interfere with
+each other.</p>
+<p>A more concrete way to see this is to think of each region as
+persons who knows a set of names and what those names stand for.
+You can ask any of these people what a name means, and if they
+know the name, they will answer you. If they don’t know the
+name, they’ll ask the person near them—and if there’s none,
+they will tell you they don’t know what the name means.</p>
+<p>For example:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">One</span> <span class="p">=</span> <span class="mf">1</span><span class="p">;</span>                  <span class="c1">// A</span>
+<span class="k">let</span> <span class="nv">Two</span> <span class="p">=</span> <span class="mf">2</span><span class="p">;</span>                  <span class="c1">// |</span>
+<span class="k">do</span>                            <span class="c1">// |    B</span>
+  <span class="k">let</span> <span class="nv">One</span> <span class="p">=</span> <span class="dl">"</span><span class="s2">one</span><span class="dl">"</span><span class="p">;</span>            <span class="c1">// |    |</span>
+  <span class="nf">show:</span> <span class="dl">"</span><span class="si">[</span><span class="nv">One</span><span class="si">]</span><span class="s2"> </span><span class="si">[</span><span class="nv">Two</span><span class="si">]</span><span class="dl">"</span><span class="p">;</span>        <span class="c1">// |    |</span>
+<span class="k">end</span>                           <span class="c1">// |    |</span>
+<span class="nf">show:</span> <span class="dl">"</span><span class="si">[</span><span class="nv">One</span><span class="si">]</span><span class="s2"> </span><span class="si">[</span><span class="nv">Two</span><span class="si">]</span><span class="dl">"</span><span class="p">;</span>          <span class="c1">// |</span>
+</pre></div>
+</div>
+<p>Here the <code class="docutils literal notranslate"><span class="pre">show:</span> <span class="pre">"[One]</span> <span class="pre">[Two]"</span></code> expression in the B region would show
+<code class="docutils literal notranslate"><span class="pre">one</span> <span class="pre">2</span></code>, as it has its own meaning of the name <code class="docutils literal notranslate"><span class="pre">One</span></code>, but it needs
+to ask the A region about what <code class="docutils literal notranslate"><span class="pre">Two</span></code> means.</p>
+<p>But the <code class="docutils literal notranslate"><span class="pre">show:</span> <span class="pre">"[One]</span> <span class="pre">[Two]"</span></code> expression in the A region would show
+<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">2</span></code>, since it has its own meaning of both of those names.</p>
+</div>
+<div class="section" id="when-are-names-usable">
+<h3>When are names usable?<a class="headerlink" href="#when-are-names-usable" title="Permalink to this headline">¶</a></h3>
+<p>A local name in Crochet is <em>valid</em> from the start to the end of the region
+it is declared—that covers parts of the code that appear even before the
+name is introduced.</p>
+<p>But names are only <em>usable</em> after the expression that introduces them is
+executed. For example, consider:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">Two</span> <span class="p">=</span> <span class="nv">One</span> <span class="o">+</span> <span class="mf">1</span><span class="p">;</span>
+<span class="k">let</span> <span class="nv">One</span> <span class="p">=</span> <span class="mf">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">One</span></code> is valid inside of the expression that introduces the name <code class="docutils literal notranslate"><span class="pre">Two</span></code>,
+but if we were to execute this program Crochet would be confused—at that
+point, there’s no value associated with <code class="docutils literal notranslate"><span class="pre">One</span></code> yet, so execution cannot
+proceed.</p>
+<p>We can, however, use delayed (and anonymous) programs to work around this.
+Because delayed programs aren’t <em>executed</em> right away, they can use names
+that will be introduced later. So long as we actually execute those
+programs once all names are introduced, we’re good. For example:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">Two</span> <span class="p">=</span> <span class="k">lazy</span> <span class="p">(</span><span class="nv">One</span> <span class="o">+</span> <span class="mf">1</span><span class="p">);</span>
+<span class="k">let</span> <span class="nv">One</span> <span class="p">=</span> <span class="mf">1</span><span class="p">;</span>
+<span class="k">force</span> <span class="nv">Two</span><span class="p">;</span>
+
+<span class="c1">// Equivalent to:</span>
+<span class="mf">1</span> <span class="o">+</span> <span class="mf">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="intrinsics/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Intrinsic data types</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="execution-models.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Execution models</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Q.
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="../../../_sources/reference/system/computing/bindings.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Naming values</a><ul>
+<li><a class="reference internal" href="#global-names">Global Names</a><ul>
+<li><a class="reference internal" href="#syntactical-restrictions">Syntactical restrictions</a></li>
+<li><a class="reference internal" href="#why-are-they-restricted">Why are they restricted?</a></li>
+<li><a class="reference internal" href="#where-can-global-names-be-used">Where can global names be used?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#local-names">Local names</a><ul>
+<li><a class="reference internal" href="#when-are-local-names-valid">When are local names valid?</a></li>
+<li><a class="reference internal" href="#reusing-names-in-nested-regions">Reusing names in nested regions</a></li>
+<li><a class="reference internal" href="#when-are-names-usable">When are names usable?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </main>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/main.js"></script>
+    </body>
+</html>

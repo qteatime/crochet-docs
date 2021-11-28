@@ -199,11 +199,14 @@
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../expression/complex/index.html">Complex expressions</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label for="toctree-checkbox-15"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/apply.html">Program application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../expression/complex/condition.html"><code class="docutils literal notranslate"><span class="pre">condition</span></code> expression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/continue-with.html"><code class="docutils literal notranslate"><span class="pre">continue</span> <span class="pre">with</span></code> expression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/delayed.html">Delayed programs (Lambdas)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/do.html"><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">..</span> <span class="pre">end</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../expression/complex/for.html"><code class="docutils literal notranslate"><span class="pre">for</span></code> expression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/force.html"><code class="docutils literal notranslate"><span class="pre">force</span></code> expression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/foreign.html"><code class="docutils literal notranslate"><span class="pre">foreign</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../expression/complex/handle.html"><code class="docutils literal notranslate"><span class="pre">handle</span></code> expression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/hole.html">Holes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/invocation.html">Command invocation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/perform.html"><code class="docutils literal notranslate"><span class="pre">perform</span></code> expression</a></li>
@@ -471,6 +474,24 @@ command. It has the following syntax:</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> <span class="p">(</span><span class="nv">Items</span> <span class="k">is</span> list<span class="p">)</span> separated-list <span class="k">do</span>
+  <span class="k">condition</span>
+    <span class="k">when</span> <span class="nv">Items</span> is-empty <span class="o">=&gt;</span> <span class="dl">""</span><span class="p">;</span>
+    <span class="k">when</span> <span class="nv">Items</span> count <span class="o">===</span> <span class="mf">1</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="si">[</span><span class="nv">Items</span> first<span class="si">]</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">when</span> <span class="nv">Items</span> count <span class="o">===</span> <span class="mf">2</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="si">[</span><span class="nv">Items</span> <span class="nf">at:</span> <span class="mf">1</span><span class="si">]</span><span class="s2">, and </span><span class="si">[</span><span class="nv">Items</span> <span class="nf">at:</span> <span class="mf">2</span><span class="si">]</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">otherwise</span> <span class="k">do</span>
+      <span class="dl">"</span><span class="si">[</span><span class="nv">Items</span> first<span class="si">]</span><span class="s2">, </span><span class="si">[</span><span class="nv">Items</span> rest separated-list<span class="si">]</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">test</span>
+  <span class="k">assert</span> <span class="p">[]</span> separated-list flatten-into-plain-text <span class="o">===</span> <span class="dl">""</span><span class="p">;</span>
+  <span class="k">assert</span> <span class="p">[</span><span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">b</span><span class="dl">"</span><span class="p">]</span> separated-list flatten-into-plain-text <span class="o">===</span> <span class="dl">"</span><span class="s2">a, and b</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
 </div>
 
       </article>
@@ -552,6 +573,7 @@ command. It has the following syntax:</p>
 </li>
 <li><a class="reference internal" href="#test-blocks">Test blocks</a></li>
 <li><a class="reference internal" href="#documentation-comment">Documentation comment</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
 </ul>

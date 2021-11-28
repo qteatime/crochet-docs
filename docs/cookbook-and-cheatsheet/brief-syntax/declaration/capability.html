@@ -90,7 +90,7 @@
       <a href="../../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
     </div>
     <div class="header-right">
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
     </div>
@@ -199,11 +199,14 @@
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../expression/complex/index.html">Complex expressions</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label for="toctree-checkbox-15"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/apply.html">Program application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../expression/complex/condition.html"><code class="docutils literal notranslate"><span class="pre">condition</span></code> expression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/continue-with.html"><code class="docutils literal notranslate"><span class="pre">continue</span> <span class="pre">with</span></code> expression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/delayed.html">Delayed programs (Lambdas)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/do.html"><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">..</span> <span class="pre">end</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../expression/complex/for.html"><code class="docutils literal notranslate"><span class="pre">for</span></code> expression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/force.html"><code class="docutils literal notranslate"><span class="pre">force</span></code> expression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/foreign.html"><code class="docutils literal notranslate"><span class="pre">foreign</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../expression/complex/handle.html"><code class="docutils literal notranslate"><span class="pre">handle</span></code> expression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/hole.html">Holes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/invocation.html">Command invocation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../expression/complex/perform.html"><code class="docutils literal notranslate"><span class="pre">perform</span></code> expression</a></li>
@@ -245,7 +248,7 @@
   <main class="main">
     <div class="content">
       <article role="main">
-        <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
           <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
         </label>
         <div class="section" id="capability">
@@ -260,6 +263,15 @@ It has the following syntax:</p>
 <span class="c1">/// Which may also have multiple lines</span>
 <span class="k">capability</span> some-capability-name<span class="p">;</span>
 </pre></div>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">capability</span> too-powerful-handle-with-care<span class="p">;</span>
+
+<span class="k">type</span> fluff-fiction<span class="p">;</span>
+<span class="k">protect</span> <span class="k">type</span> fluff-fiction <span class="k">with</span> too-powerful-handle-with-care<span class="p">;</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -305,8 +317,27 @@ It has the following syntax:</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">capability</span></code></a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

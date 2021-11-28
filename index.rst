@@ -60,10 +60,6 @@ troubling quesitons here.
          technical details, but also the design and
          sociological ones.
 
-   * :doc:`Standard API Reference`
-         A reference book on all of the standard library in
-         Crochet.
-
 ..
    * :doc:`Core: Crochet's IR`
          A book on the mathematic formalism behind Crochet's
@@ -104,7 +100,7 @@ Indices and tables
 ==================
 
 .. hlist::
-   :columns: 2
+   :columns: 1
 
    * :ref:`Search page <search>`
          Search this documentation.
@@ -115,9 +111,6 @@ Indices and tables
    * :doc:`Glossary <glossary>`
          Explains all technical terms that you may encounter
          in the Crochet books.
-
-   * :doc:`API Reference Index <modindex>`
-         Quick access to references on all standard packages.
 
 .. toctree::
    :hidden:

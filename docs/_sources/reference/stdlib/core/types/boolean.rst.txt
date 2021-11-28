@@ -1,0 +1,35 @@
+Logical types
+=============
+
+
+boolean
+-------
+
+::
+
+    abstract boolean is any;
+
+The base type for Crochet's two-valued logic. ``boolean`` is an abstract type.
+
+Booleans model a two-valued logic where the two possible values are either
+true or false.
+
+
+true
+----
+
+::
+
+    singleton true is boolean;
+
+The ``true`` case of the boolean logic.
+
+
+false
+-----
+
+::
+
+    singleton false is boolean;
+
+The ``false`` case of the boolean logic.

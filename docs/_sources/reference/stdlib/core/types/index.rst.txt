@@ -1,0 +1,14 @@
+Types
+=====
+
+Core both exposes intrinsic Crochet types and defines some of its
+own. The list of types below is grouped by categories.
+
+
+.. toctree::
+
+   any
+   unknown
+   nothing
+   boolean
+   numeric

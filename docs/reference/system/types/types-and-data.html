@@ -1,0 +1,654 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Hierarchies of types" href="hierarchies.html" /><link rel="prev" title="Data and types" href="index.html" />
+
+    <meta name="generator" content="sphinx-4.1.1, furo 2021.07.05.beta38"/>
+        <title>Types and data modelling - Crochet 0.12 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/crochet.css" />
+    
+
+
+<style>
+  :root {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../../_static/pygments_dark.css"></head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Crochet 0.12 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Crochet 0.12 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">The Crochet System</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../whats-crochet.html">What’s Crochet?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installing-crochet.html">Installing Crochet</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../structure/index.html">How is Crochet structured?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../structure/introduction.html">The Crochet universe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure/package-configuration.html">Package configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Data and types</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Types and data modelling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hierarchies.html">Hierarchies of types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traits.html">Traits</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../commands/index.html">Commands</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../commands/declaration.html">What are commands?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/signatures.html">Signatures and their uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/dispatch.html">Executing commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/why.html">Why are commands …?</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../computing/index.html">Computing with Crochet</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../computing/execution-models.html">Execution models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/bindings.html">Naming values</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../computing/intrinsics/index.html">Intrinsic data types</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/gradual.html">Gradual representations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/numbers.html">Numeric models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/text.html">Textual models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/logic.html">Logical models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/functions.html">Program representations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../computing/intrinsics/collections.html">Collections</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/application.html">Applying programs and commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/using.html">Using data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/equality.html">Equality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/branching.html">Branching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computing/comprehension.html">Working with multiple values</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../effects/index.html">Effects</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label for="toctree-checkbox-7"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../effects/what-are-effects.html">What are effects?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/handlers.html">Effect handlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/contexts.html">Contextual handlers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../verification/index.html">Verification</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label for="toctree-checkbox-8"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../verification/examples.html">Example-based testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../verification/contracts.html">Contracts</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ffi/index.html">Foreign interfaces</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label for="toctree-checkbox-9"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ffi/interface.html">Writing external functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ffi/ffi.html">The FFI type</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../security/index.html">Security and capabilities</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label for="toctree-checkbox-10"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/why.html">Why use capabilities?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/groups.html">Capabilities and groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/dynamic.html">Dynamic capabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../design-philosophy.html">Annex A: Design philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sociology-and-linguistics.html">Annex B: Sociology and linguistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbook/brief-syntax/index.html">The Brief Syntax Cheatsheet</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label for="toctree-checkbox-11"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/index.html">Declarations</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label for="toctree-checkbox-12"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/capability.html"><code class="docutils literal notranslate"><span class="pre">capability</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/command.html"><code class="docutils literal notranslate"><span class="pre">command</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/define.html"><code class="docutils literal notranslate"><span class="pre">define</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/effect.html"><code class="docutils literal notranslate"><span class="pre">effect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/implement.html"><code class="docutils literal notranslate"><span class="pre">implement</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/local.html"><code class="docutils literal notranslate"><span class="pre">local</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/open.html"><code class="docutils literal notranslate"><span class="pre">open</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/prelude.html"><code class="docutils literal notranslate"><span class="pre">prelude</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/protect.html"><code class="docutils literal notranslate"><span class="pre">protect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/test.html"><code class="docutils literal notranslate"><span class="pre">test</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/trait.html"><code class="docutils literal notranslate"><span class="pre">trait</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cookbook/brief-syntax/declaration/type.html"><code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/index.html">Expressions</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label for="toctree-checkbox-13"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/statement/index.html">Statements</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label for="toctree-checkbox-14"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/statement/assert.html"><code class="docutils literal notranslate"><span class="pre">assert</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/statement/let.html"><code class="docutils literal notranslate"><span class="pre">let</span></code> expression</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/index.html">Complex expressions</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label for="toctree-checkbox-15"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/apply.html">Program application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/condition.html"><code class="docutils literal notranslate"><span class="pre">condition</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/continue-with.html"><code class="docutils literal notranslate"><span class="pre">continue</span> <span class="pre">with</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/delayed.html">Delayed programs (Lambdas)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/do.html"><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">..</span> <span class="pre">end</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/for.html"><code class="docutils literal notranslate"><span class="pre">for</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/force.html"><code class="docutils literal notranslate"><span class="pre">force</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/foreign.html"><code class="docutils literal notranslate"><span class="pre">foreign</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/handle.html"><code class="docutils literal notranslate"><span class="pre">handle</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/hole.html">Holes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/invocation.html">Command invocation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/perform.html"><code class="docutils literal notranslate"><span class="pre">perform</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/pipe.html">Pipe expressions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/projection.html">Projection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/return.html"><code class="docutils literal notranslate"><span class="pre">return</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/self-expr.html"><code class="docutils literal notranslate"><span class="pre">self</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/static-type.html">Static types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/complex/variable.html">Variable references</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/index.html">Atomic expressions</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label for="toctree-checkbox-16"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/boolean.html">Boolean literals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/float.html">Floating point literals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/global.html">Global references</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/integer.html">Integer literals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/interpolate.html">Interpolation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/lazy.html"><code class="docutils literal notranslate"><span class="pre">lazy</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/list.html">List expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/new.html"><code class="docutils literal notranslate"><span class="pre">new</span></code> expression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/nothing.html">Nothing literal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/record.html">Record expressions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cookbook/brief-syntax/expression/atomic/text.html">Text literals</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="types-and-data-modelling">
+<h1>Types and data modelling<a class="headerlink" href="#types-and-data-modelling" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-are-types">
+<span id="id1"></span><h2>What are types?<a class="headerlink" href="#what-are-types" title="Permalink to this headline">¶</a></h2>
+<p>A type is primarily a way of classifying data. For example, a number like
+<code class="docutils literal notranslate"><span class="pre">1</span></code> is classified as an integer. A piece of text like <code class="docutils literal notranslate"><span class="pre">"hello"</span></code>
+may be classified as a text. A value like <code class="docutils literal notranslate"><span class="pre">true</span></code> can be classified
+as boolean.</p>
+<p>Crochet uses these classifications both to talk about data in a more
+general way—making it a tool for people to communicate with others—,
+and also a tool to define what can and can’t be done to pieces of
+data. That makes types double as a privacy and security feature as
+well.</p>
+<p>This means that, in Crochet, a “type” is:</p>
+<ul class="simple">
+<li><p><strong>A way of granting Dynamic Capabilities</strong> —
+Types are the sole grantors of dynamic capabilities. What a piece of code
+can do depends entirely on which types it has access to, and what it can
+do with those types.</p></li>
+<li><p><strong>A way of doing Dispatch</strong> —
+Crochet’s <a class="reference internal" href="../commands/index.html#commands"><span class="std std-ref">Commands</span></a> are a collection of different functions, and the
+runtime uses types to select which one of these functions should be
+executed for some given arguments. <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">+</span> <span class="pre">B</span></code> may do very different
+things depending on what the types of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> are.</p></li>
+<li><p><strong>A way of classifying and securing data</strong> —
+Crochet’s types are also Runtime Tags, and they provide a way to
+classify and secure data at runtime.</p></li>
+</ul>
+</div>
+<div class="section" id="type-declarations-and-usage">
+<span id="type-declaration"></span><h2>Type declarations and usage<a class="headerlink" href="#type-declarations-and-usage" title="Permalink to this headline">¶</a></h2>
+<p>A type declaration provides a name for a particular combination of data.
+For example:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> point2d<span class="p">(</span>x<span class="p">,</span> y<span class="p">);</span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">point2d</span></code> is a name that will be associated with a combination
+of data that contains <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> points. Here, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are
+also called <a class="reference internal" href="#typed-fields"><span class="std std-ref">fields</span></a>. Association is done through the <a class="reference internal" href="../computing/using.html#new-operator"><span class="std std-ref">new operator</span></a>:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">new</span> point2d<span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Will associate the name <code class="docutils literal notranslate"><span class="pre">point2d</span></code> with the data points <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">2</span></code>. Important to Crochet’s security guarantees is that this
+name association is unforgeable. One must know and have power over
+the <code class="docutils literal notranslate"><span class="pre">point2d</span></code> declaration in order to associate it with data points.</p>
+<p>Once a piece of data is associated with a name, specific fields of
+this data can be projected with the dot operator:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">P</span> <span class="p">=</span> <span class="k">new</span> point2d<span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
+<span class="k">assert</span> <span class="nv">P</span><span class="p">.</span>x <span class="p">=</span><span class="o">=&gt;</span> <span class="mf">1</span><span class="p">;</span>
+<span class="k">assert</span> <span class="nv">P</span><span class="p">.</span>y <span class="p">=</span><span class="o">=&gt;</span> <span class="mf">2</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../computing/using.html#field-projection"><span class="std std-ref">Field projection</span></a> is very restricted for security reasons, and typed
+data is really mostly operated (and observed) through <a class="reference internal" href="../commands/index.html#commands"><span class="std std-ref">commands</span></a>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>What constitutes a valid spelling of a type name in Crochet is
+very restricted. The section on the <a class="reference internal" href="../sociology-and-linguistics.html#lexical-restriction-names"><span class="std std-ref">lexical restriction of names</span></a>
+discusses this in details.</p>
+</div>
+</div>
+<div class="section" id="fields-of-typed-data">
+<span id="typed-fields"></span><h2>Fields of typed data<a class="headerlink" href="#fields-of-typed-data" title="Permalink to this headline">¶</a></h2>
+<p>Typed data consists of an unique, unforgeable name (the type) and a set of
+fields. Each field is a named piece of data, bound at the time it’s constructed,
+and unchangeable henceafter. That is, unlike many object-oriented languages,
+all fields in Crochet are effectively <a class="reference internal" href="../../../glossary.html#term-Immutable-data"><span class="xref std std-term">immutable</span></a>.</p>
+<p>Although fields describe what some kind of “shape” for the data—that is,
+what the typed data is constituted of—, fields don’t really determine
+how Crochet stores this data in a computer. The internal layout
+of a piece of typed data is a bit more complicated, and subject to constant
+changes.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>What constitutes a valid spelling of a field name in Crochet is
+very restricted. The section on the <a class="reference internal" href="../sociology-and-linguistics.html#lexical-restriction-names"><span class="std std-ref">lexical restriction of names</span></a>
+discusses this in details.</p>
+</div>
+<div class="section" id="global-fields">
+<h3>Global fields<a class="headerlink" href="#global-fields" title="Permalink to this headline">¶</a></h3>
+<p>Because fields may carry very sensitive pieces of data, by default they’re
+restricted and can only be accessed within the package that declared the
+type. In order to make them accessible outside of the package, one needs
+to expose them through a <a class="reference internal" href="../commands/index.html#commands"><span class="std std-ref">command</span></a>.</p>
+<p>Some types have very trivial patterns for accessing their fields, however.
+For example, if we have:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> point2d<span class="p">(</span>x<span class="p">,</span> y<span class="p">);</span>
+</pre></div>
+</div>
+<p>Then we don’t really want to do anything before providing the values stored
+in <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> to whoever needs them. So we’d essentially be writing:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> point2d<span class="p">(</span>x<span class="p">,</span> y<span class="p">);</span>
+<span class="k">command</span> point2d x <span class="p">=</span> self.x<span class="p">;</span>
+<span class="k">command</span> point2d y <span class="p">=</span> self.y<span class="p">;</span>
+</pre></div>
+</div>
+<p>In these cases, we can mark the field as “global” and Crochet will generate
+the command definitions above for us. So the following is equivalent, but
+takes less effort:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> point2d<span class="p">(</span><span class="k">global</span> x<span class="p">,</span> <span class="k">global</span> y<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="data-less-types">
+<h2>Data-less types<a class="headerlink" href="#data-less-types" title="Permalink to this headline">¶</a></h2>
+<p>Types are often associated with pieces of data to control how we can
+observe and operate on them, but they’re not <em>always</em> associated with
+a piece of data. For example, types like <code class="docutils literal notranslate"><span class="pre">nothing</span></code> stand on their
+own, they don’t need to be associated with anything else.</p>
+<p>A data-less type declaration looks much like what we’ve seen previously,
+but no fields are specified:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> some-name<span class="p">;</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../computing/using.html#new-operator"><span class="std std-ref">new operator</span></a> is still what brings these types to the realm of
+data—but there’s no data to associate with the name. Data-less types
+are, instead, used to build unforgeable and unique names. These names
+can have many usages. For example, these names can act as a way to
+identify related data: if you’re building a game, characters may be
+data-less types whose actual data is stored elsewhere, like in
+Crochet’s database. They are also often used to define modules,
+or as a secure capability.</p>
+<p>However one decides to use them, construction is similar, but again
+without providing any field bindings:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">new</span> some-name<span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="singleton-types">
+<h2>Singleton types<a class="headerlink" href="#singleton-types" title="Permalink to this headline">¶</a></h2>
+<p>A special form of a data-less type is one where we don’t really want
+to construct multiple unique names. Rather, we want to have one name
+that is unique and unforgeable. modules often fall in this category,
+but so do a lot of the other cases mentioned previously. For example,
+if you’re building a game, and you’re using a data-less type for a
+main character, you don’t really want to have <em>multiple</em> unique copies
+of that character.</p>
+<p>Crochet provides a special type declaration for this:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">singleton</span> player<span class="p">;</span>
+</pre></div>
+</div>
+<p>In this case we don’t use the <a class="reference internal" href="../computing/using.html#new-operator"><span class="std std-ref">new operator</span></a> for materialising the
+name <code class="docutils literal notranslate"><span class="pre">player</span></code>—it’s already part of the <code class="docutils literal notranslate"><span class="pre">singleton</span></code> declaration.
+It will construct a global name <code class="docutils literal notranslate"><span class="pre">player</span></code> that is unique.</p>
+<p>Indeed, the singleton declaration works much like the following
+piece of Crochet:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="c1">// Introduces a new data-less type definition, `player`.</span>
+<span class="k">type</span> player<span class="p">;</span>
+
+<span class="c1">// Constructs an unique `player` name, allows it to be accessed through</span>
+<span class="c1">// the global `player` variable.</span>
+<span class="k">define</span> player <span class="p">=</span> <span class="k">new</span> player<span class="p">;</span>
+
+<span class="c1">// Forbids any further construction of `player` names.</span>
+seal player<span class="p">;</span>
+</pre></div>
+</div>
+<p>The seal operation at the end ensures that the system has exactly
+one <code class="docutils literal notranslate"><span class="pre">player</span></code> name, by forbiding any future uses of the <a class="reference internal" href="../computing/using.html#new-operator"><span class="std std-ref">new operator</span></a>
+for this type. This guarantee is useful when using these names as keys
+(e.g.: when using them as keys in the Crochet database), as it
+eliminates the potential for confusion when copies of the name
+are created accidentally.</p>
+</div>
+<div class="section" id="types-as-possibilities">
+<h2>Types as possibilities<a class="headerlink" href="#types-as-possibilities" title="Permalink to this headline">¶</a></h2>
+<p>There’s one more data modelling aspect that is not covered by the previous
+type declarations. Consider the case where we want to talk about
+mathematical shapes. Sure we can just define each shape independently:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> square<span class="p">(</span>side<span class="p">);</span>
+<span class="k">type</span> circle<span class="p">(</span>radius<span class="p">);</span>
+<span class="k">type</span> triangle<span class="p">(</span>adjacent<span class="p">,</span> opposite<span class="p">,</span> hypotenuse<span class="p">);</span>
+</pre></div>
+</div>
+<p>But these independent definitions obscure that all of them share some
+commonality; all of them are shapes. It gives us no language to talk
+about shapes, in general, only particular shapes.</p>
+<p>To address this, Crochet uses subtyping relationships. That is, types
+are placed into a hierarchy, and types that are higher in the
+hierarchy can be used to talk about some commonalities of the
+types below them.</p>
+<p>In this case, we could introduce a <code class="docutils literal notranslate"><span class="pre">shape</span></code> type that sits atop of
+these specific shapes:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">type</span> shape<span class="p">;</span>
+<span class="k">type</span> square<span class="p">(</span>side<span class="p">)</span> <span class="k">is</span> shape<span class="p">;</span>
+<span class="k">type</span> circle<span class="p">(</span>radius<span class="p">)</span> <span class="k">is</span> shape<span class="p">;</span>
+<span class="k">type</span> triangle<span class="p">(</span>adjacent<span class="p">,</span> opposite<span class="p">,</span> hypotenuse<span class="p">)</span> <span class="k">is</span> shape<span class="p">;</span>
+</pre></div>
+</div>
+<p>Note the <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">shape</span></code> attached at the end of the previous type declarations.
+It denotes that each of these individual shapes can also be understood as
+a <code class="docutils literal notranslate"><span class="pre">shape</span></code>. A <a class="reference internal" href="../commands/index.html#commands"><span class="std std-ref">command</span></a> that accepts <code class="docutils literal notranslate"><span class="pre">shape``s</span> <span class="pre">will</span> <span class="pre">accept</span> <span class="pre">any</span> <span class="pre">of</span> <span class="pre">the</span>
+<span class="pre">specific</span> <span class="pre">ones,</span> <span class="pre">as</span> <span class="pre">well</span> <span class="pre">as</span> <span class="pre">``shape</span></code> itself.</p>
+<p>We discuss hierarchies and possibilities in depth in the Hierarchies of types
+section.</p>
+</div>
+<div class="section" id="abstract-types">
+<h2>Abstract types<a class="headerlink" href="#abstract-types" title="Permalink to this headline">¶</a></h2>
+<p>Types that exist only to denote an hierarchy are often not really <em>useful</em>
+to construct. For example, in our previous examples with the <code class="docutils literal notranslate"><span class="pre">shape</span></code> and
+<code class="docutils literal notranslate"><span class="pre">condition</span></code> types, there aren’t really use cases for constructing them.
+Crochet makes it possible to make this explicit through the <code class="docutils literal notranslate"><span class="pre">abstract</span></code>
+declaration:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">abstract</span> shape<span class="p">;</span>
+<span class="k">type</span> square<span class="p">(</span>side<span class="p">)</span> <span class="k">is</span> shape<span class="p">;</span>
+<span class="k">type</span> circle<span class="p">(</span>radius<span class="p">)</span> <span class="k">is</span> shape<span class="p">;</span>
+<span class="k">type</span> triangle<span class="p">(</span>adjacent<span class="p">,</span> opposite<span class="p">,</span> hypotenuse<span class="p">)</span> <span class="k">is</span> shape<span class="p">;</span>
+</pre></div>
+</div>
+<p>Here the only thing that has changed is the declaration of the <code class="docutils literal notranslate"><span class="pre">shape</span></code>
+type, replacing the <code class="docutils literal notranslate"><span class="pre">type</span></code> keyword with the <code class="docutils literal notranslate"><span class="pre">abstract</span></code> one. The
+semantics of the <code class="docutils literal notranslate"><span class="pre">shape</span></code> type (and any of its subtypes) remain largely
+unchanged, but this means that the <a class="reference internal" href="../computing/using.html#new-operator"><span class="std std-ref">new operator</span></a> will not work on
+<code class="docutils literal notranslate"><span class="pre">shape</span></code> itself:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">new</span> shape<span class="p">;</span>
+<span class="c1">// *** Error: non-constructable: `shape` is an abstract type;</span>
+<span class="c1">//                                it cannot be constructed.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="enumeration-types">
+<h2>Enumeration types<a class="headerlink" href="#enumeration-types" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes you want an hierarchy of names, just like the example of
+modelling a <code class="docutils literal notranslate"><span class="pre">condition</span></code> hierarchy for an RPG earlier in this
+page. The specific subtypes don’t really need to hold any data,
+but you’d like to differentiate each case.</p>
+<p>While it’s possible to just provide all cases one by one, using
+the <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">&lt;parent</span> <span class="pre">type&gt;</span></code> notation, Crochet provides a more
+convenient way of declaring these hierarchies; called an
+enumeration.</p>
+<p>Enumerations in Crochet can be declared as follows:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="k">condition</span> <span class="p">=</span> poisoned<span class="p">,</span> sleeping<span class="p">,</span> silenced<span class="p">;</span>
+</pre></div>
+</div>
+<p>The effect is similar to the following way of declaring the same:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">abstract</span> <span class="k">condition</span><span class="p">;</span>
+<span class="k">singleton</span> poisoned <span class="k">is</span> <span class="k">condition</span><span class="p">;</span>
+<span class="k">singleton</span> sleeping <span class="k">is</span> <span class="k">condition</span><span class="p">;</span>
+<span class="k">singleton</span> silenced <span class="k">is</span> <span class="k">condition</span><span class="p">;</span>
+close <span class="k">condition</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>However, enumerations are closed hierarchies, meaning that it is not
+possible to add new names to the hierarchy somewhere else in the code.
+All possibilities must be provided at the exact place where the enumeration
+is declared.</p>
+<p>Enumerations make use of this additional restriction to provide some
+out-of-the-box functionality. For example, enumerations are <em>ordered</em>,
+which makes them useful for modelling a set of progressive states—or
+steps:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> health <span class="p">=</span> healthy<span class="p">,</span> scratched<span class="p">,</span> bleeding<span class="p">,</span> dead<span class="p">;</span>
+</pre></div>
+</div>
+<p>In a game that features combat and tracks the health of characters without
+using numbers, the above would offer a possibility of using pre-built
+commands, such as <code class="docutils literal notranslate"><span class="pre">healthy</span> <span class="pre">successor</span></code> to move a character who just
+took some damage to the <code class="docutils literal notranslate"><span class="pre">scratched</span></code> state.</p>
+<p>See the Enumerations page for a lengthy discussion on these built-in
+conveniences.</p>
+</div>
+<div class="section" id="static-types">
+<h2>Static types<a class="headerlink" href="#static-types" title="Permalink to this headline">¶</a></h2>
+<p>We’ve seen how types are unique, unforgeable names that can be associated
+with a piece of data (or with nothing, in the case of data-less types).
+When one constructs a type through the <a class="reference internal" href="../computing/using.html#new-operator"><span class="std std-ref">new operator</span></a>, we get an
+unique piece of data. But until we do so, types don’t really play in
+the same field data does—types are entirely separated entities,
+operated on only through <code class="docutils literal notranslate"><span class="pre">type</span></code> declarations.</p>
+<p>This creates some awkward problems, however. For example, consider
+integral numbers, such as <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">2022</span></code>. In Crochet, these are
+all associated with the integer type. And when we define <a class="reference internal" href="../commands/index.html#commands"><span class="std std-ref">commands</span></a>
+on this integer type, we only accept actual integral numbers in them.
+For example, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">2</span></code> is integral addition, but <code class="docutils literal notranslate"><span class="pre">integer</span> <span class="pre">+</span> <span class="pre">integer</span></code>
+is not even valid Crochet code, because types cannot appear there.
+What, then, should a command about integers look like when you don’t
+have an actual number to provide, because the command is responsible
+for producing them?</p>
+<p>To be more concrete, consider the case of taking a textual
+representation of integral numbers, such as <code class="docutils literal notranslate"><span class="pre">"one"</span></code>, and producing
+the equivalent integer—which in this case would be <code class="docutils literal notranslate"><span class="pre">1</span></code>. A language
+may be tempted to define a command on pieces of text, such as:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> text to-integer <span class="p">=</span> <span class="c1">// implementation goes here</span>
+</pre></div>
+</div>
+<p>But command names in Crochet are neither unique nor unforgeable. We
+may have two different people introducing an <code class="docutils literal notranslate"><span class="pre">integer</span></code> type and
+that will result in two distinct types. Commands don’t allow this.
+Naming two commands <code class="docutils literal notranslate"><span class="pre">to-integer</span></code> just means that you need to
+pick which one will be used; you can’t have both. And this runs
+against all of the security guarantees that Crochet relies on.</p>
+<p>So, instead, Crochet has a special notation for using types without
+constructing them. When directly turning types into data, the resulting
+data is going to be associated with a <em>static type</em>—a special version
+of the type, with the same name, but which isn’t part of any hierarchy.</p>
+<p>Types are turned into static data by prefixing their name with <code class="docutils literal notranslate"><span class="pre">#</span></code>. It
+means the special static type when in a type context, and the unique
+static data when in a data context. So, if we were to write a more secure
+version of the previous command, we could do as follows:</p>
+<div class="highlight-crochet notranslate"><div class="highlight"><pre><span></span><span class="k">command</span> text <span class="nf">to:</span> <span class="o">#</span>integer <span class="p">=</span> <span class="c1">// implementation goes here</span>
+</pre></div>
+</div>
+<p>And this would be used like so: <code class="docutils literal notranslate"><span class="pre">"one"</span> <span class="pre">to:</span> <span class="pre">#integer</span></code>, resulting in <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<p>Indeed, these conversion cases are common enough that Crochet has the
+command <code class="docutils literal notranslate"><span class="pre">_</span> <span class="pre">as</span> <span class="pre">_</span></code> in the standard library.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Static types are very limited. They cannot be used in <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">&lt;parent&gt;</span></code>
+relationships, and they do not have any further static types. That is,
+something like <code class="docutils literal notranslate"><span class="pre">##integer</span></code> (the static type of the static type of integer)
+is not a valid piece of code in Crochet.</p>
+</div>
+</div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="hierarchies.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Hierarchies of types</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Data and types</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Q.
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="../../../_sources/reference/system/types/types-and-data.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Types and data modelling</a><ul>
+<li><a class="reference internal" href="#what-are-types">What are types?</a></li>
+<li><a class="reference internal" href="#type-declarations-and-usage">Type declarations and usage</a></li>
+<li><a class="reference internal" href="#fields-of-typed-data">Fields of typed data</a><ul>
+<li><a class="reference internal" href="#global-fields">Global fields</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-less-types">Data-less types</a></li>
+<li><a class="reference internal" href="#singleton-types">Singleton types</a></li>
+<li><a class="reference internal" href="#types-as-possibilities">Types as possibilities</a></li>
+<li><a class="reference internal" href="#abstract-types">Abstract types</a></li>
+<li><a class="reference internal" href="#enumeration-types">Enumeration types</a></li>
+<li><a class="reference internal" href="#static-types">Static types</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </main>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/main.js"></script>
+    </body>
+</html>
