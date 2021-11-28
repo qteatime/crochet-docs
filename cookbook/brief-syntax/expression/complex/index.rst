@@ -9,11 +9,14 @@ are, but they are not allowed in ``define`` declarations.
 .. toctree::
 
    apply
+   condition
    continue-with
    delayed
    do
+   for
    force
    foreign
+   handle
    hole
    invocation
    perform

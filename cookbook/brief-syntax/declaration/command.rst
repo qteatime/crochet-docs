@@ -241,3 +241,24 @@ Commands may have a preceding documentation comment with the syntax::
     command _ name do
       // Implementation
     end
+
+
+Example
+-------
+
+::
+
+    command (Items is list) separated-list do
+      condition
+        when Items is-empty => "";
+        when Items count === 1 => "[Items first]";
+        when Items count === 2 => "[Items at: 1], and [Items at: 2]";
+        otherwise do
+          "[Items first], [Items rest separated-list]";
+        end
+      end
+    test
+      assert [] separated-list flatten-into-plain-text === "";
+      assert ["a", "b"] separated-list flatten-into-plain-text === "a, and b";
+    end
+

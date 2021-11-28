@@ -55,7 +55,7 @@ troubling quesitons here.
 .. hlist::
    :columns: 1
 
-   * :doc:`The Crochet System <system/index>`
+   * :doc:`The Crochet System <reference/system/index>`
          A reference book on Crochet. Dives deep into the
          technical details, but also the design and
          sociological ones.
@@ -77,7 +77,7 @@ Cookbooks and Cheatsheets
 .. hlist::
    :columns: 1
 
-   * :doc:`The Brief Syntax Cheatsheet <cookbook-and-cheatsheet/brief-syntax/index>`
+   * :doc:`The Brief Syntax Cheatsheet <cookbook/brief-syntax/index>`
          A short document describing all syntactical forms in Crochet.
          Assumes that the reader is familiar with the concepts in the
          language.
@@ -122,6 +122,6 @@ Indices and tables
 .. toctree::
    :hidden:
 
-   system/index
-   cookbook-and-cheatsheet/brief-syntax/index
+   reference/system/index
+   cookbook/brief-syntax/index
    glossary

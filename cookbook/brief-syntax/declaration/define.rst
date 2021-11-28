@@ -11,3 +11,10 @@ It may be preceded by some documentation comment with the syntax::
     /// with perhaps multiple lines
     define some-name = Atomic-expression;
 
+
+Example
+-------
+
+::
+
+    define pi = 3.14;
