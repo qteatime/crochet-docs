@@ -22,19 +22,22 @@ These project-driven books are the perfect way to start your
 journey through Crochet. Pick the one that best suits your
 goals and experience with programming, and create away~.
 
-.. hlist::
-   :columns: 1
+(Work in progress)
 
-   * :doc:`Crochet for Functional Programmers`
-         For people who're familiar with functional programming.
-         This example-based book will guide you through the different
-         concepts in Crochet by having you construct a few
-         different and fun toy programs.
-
-   * :doc:`Simulating with Crochet`
-         For people who have never programmed before. This book
-         will guide you on your first steps with creating simulation
-         and AI-based games.
+..
+  .. hlist::
+     :columns: 1
+  
+     * :doc:`Crochet for Functional Programmers`
+           For people who're familiar with functional programming.
+           This example-based book will guide you through the different
+           concepts in Crochet by having you construct a few
+           different and fun toy programs.
+  
+     * :doc:`Simulating with Crochet`
+           For people who have never programmed before. This book
+           will guide you on your first steps with creating simulation
+           and AI-based games.
 
 
 Reference books
@@ -61,6 +64,7 @@ troubling quesitons here.
          A reference book on all of the standard library in
          Crochet.
 
+..
    * :doc:`Core: Crochet's IR`
          A book on the mathematic formalism behind Crochet's
          intermediary representation. Aimed at programming language designers
@@ -73,6 +77,12 @@ Cookbooks and Cheatsheets
 .. hlist::
    :columns: 1
 
+   * :doc:`The Brief Syntax Cheatsheet <cookbook-and-cheatsheet/brief-syntax/index>`
+         A short document describing all syntactical forms in Crochet.
+         Assumes that the reader is familiar with the concepts in the
+         language.
+
+..
    * :doc:`A Catalogue of Techniques`
          A book of recipes for how to express different programming
          techniques in Crochet.
@@ -113,4 +123,5 @@ Indices and tables
    :hidden:
 
    system/index
+   cookbook-and-cheatsheet/brief-syntax/index
    glossary
