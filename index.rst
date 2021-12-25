@@ -90,7 +90,7 @@ Contributor guides
 .. hlist::
    :columns: 1
 
-   * :doc:`Contributing to Crochet`
+   * :doc:`Contributing to Crochet <contributing/index>`
          A short book on how to contribute to Crochet in different
          ways. From ideas to community work and code.
 
@@ -117,4 +117,5 @@ Indices and tables
 
    reference/system/index
    cookbook/brief-syntax/index
+   contributing/index
    glossary
