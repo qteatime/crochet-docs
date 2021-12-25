@@ -46,6 +46,19 @@ don't need to be escaped::
     <<They exchanged some glances. "Are you not eating...?" Awra asked.>>
 
 
+.. warning::
+
+   Currently, when writing multi-line text literals, Crochet will remove
+   any leading white-space up to the *column* of the opening quotation mark.
+   This is, however, a very confusing behaviour if you're not looking at
+   the source code in a plain text editor with monospaced font, so it will
+   be removed in the next version of the language.
+
+   You don't have to worry about the change in semantics because Crochet
+   modules are versioned (by the language heading at the top), and the
+   compiler can just migrate your source code automatically.
+
+
 Unicode escapes
 '''''''''''''''
 
@@ -63,108 +76,6 @@ are equivalent::
 
 There are certain situations in Crochet where characters must be written
 in their unicode escape form.
-
-
-Handling of white-space
-'''''''''''''''''''''''
-
-Any leading or trailing white-space character in a line in a text literal
-is ignored by Crochet. That is, the following literals are equivalent::
-
-    <<    Hello!    >>
-
-    <<Hello!>>
-
-As are the following::
-
-    <<First line
-          and second line
-        and third line       >>
-
-    <<First line
-    and second line
-    and third line>>
-
-White-space that is not leading or trailing in a line is collapsed. That is,
-multiple space characters are treated as if there was a single space character.
-Thus, the following are equivalent::
-
-    <<This   has    many     spaces,    but   Crochet    doesn't    care>>
-
-    <<This has many spaces, but Crochet doesn't care>>
-
-All white-space characters are normalised, which means that tabs (unicode
-``\u0009``) becomes a single ASCII space (unicode ``\u0020``).
-
-White-space that must be preserved in the literal needs to appear as
-its unicode escape code in the source code, but tools are free to provide
-friendlier presentations and editing interfaces. For example::
-
-    <<One\u0009Two\u0009Three>>
-
-Is how one would express the words "one", "two", and "three" separated by
-tabs.
-
-
-Handling of invisible characters
-''''''''''''''''''''''''''''''''
-
-Unicode supports invisible and control characters---characters that don't
-really have any glyph representation, but change how the text is interpreted
-by the program presenting it on the screen.
-
-Crochet requires all invisible and control characters to appear as explicit
-unicode escape sequences in the source code, but tools are free to provide
-friendlier presentations and editing interfaces.
-
-
-Unicode normalisation
-'''''''''''''''''''''
-
-Unicode allows text that can be presented in the same way on screen to be
-written in very different forms. For example::
-
-    <<cafe\u0301>>
-
-Is presented in the screen in the same way as::
-
-    <<café>>
-
-But in the source code, these are different pieces of text---they're composed
-of different characters. In Crochet, any text written in a literal is
-converted to its canonical composed form. That means that in both of these
-cases, Crochet will *act* as if the source code contained the second form,
-where the ``é`` character is a single character.
-
-Because Crochet uses the canonical form---where it's assumed that the meaning
-of both representations will not change---there are some cases where one may
-consider the meaning to be the same, but Crochet cannot make that inference.
-
-For example, the following pieces of text could be considered to mean the
-same thing in Japanese::
-
-    <<ネコ>>
-
-    <<ﾈｺ>>
-
-    <<ねこ>>
-
-    <<猫>>
-
-All of these pieces of text *can* be read as "neko" (cat), but the choice
-of spelling and the way they compose with surrounding pieces of text might
-be relevant to their *meaning*, therefore Crochet does not do any
-normalisation for these cases automatically.
-
-
-Raw text
-''''''''
-
-A special kind of text literal is the "raw" literal. Within this form,
-Crochet does not do any normalisation or special handling of white space.
-Raw literals are preceded by the letter ``r``::
-
-    r"These   spaces   will   be    preserved!   "
 
 
 Text composition
