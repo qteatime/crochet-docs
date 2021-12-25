@@ -125,5 +125,7 @@ This ensures that all Crochet users can use your work in their projects :)
 
    code-of-conduct
    bug-report
+   security-report
    feature-request
+   pull-request
    
