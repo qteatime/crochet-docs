@@ -60,6 +60,10 @@ troubling quesitons here.
          technical details, but also the design and
          sociological ones.
 
+   * :doc:`Crochet's API Reference <reference/api/index>`
+         Short and cross-referenced API documentation on the
+         built-in Crochet packages.
+
 ..
    * :doc:`Core: Crochet's IR`
          A book on the mathematic formalism behind Crochet's
@@ -116,6 +120,7 @@ Indices and tables
    :hidden:
 
    reference/system/index
+   reference/api/index
    cookbook/brief-syntax/index
    contributing/index
    glossary
