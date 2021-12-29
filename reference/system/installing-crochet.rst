@@ -5,24 +5,24 @@ Before you can use Crochet you'll need to install it. There
 are a few ways of installing Crochet, and this page will
 walk you through them.
 
+.. 
+   (Recommended) Installing the pre-packaged Crochet
+   -------------------------------------------------
 
-(Recommended) Installing the pre-packaged Crochet
--------------------------------------------------
+   This is the recommended way of installing Crochet for anyone
+   who isn't comfortable using the command line (or don't even
+   know what that might be).
 
-This is the recommended way of installing Crochet for anyone
-who isn't comfortable using the command line (or don't even
-know what that might be).
+   `Download the zip package for your operating system <https://github.com/qteatime/crochet/releases>`_
+   from the Crochet releases page. For example, if you're running
+   a Windows machine, you'd install the `crochet-VERSION-win32.zip`,
+   where `VERSION` is the version of Crochet you're installing.
 
-`Download the zip package for your operating system <https://github.com/qteatime/crochet/releases>`_
-from the Crochet releases page. For example, if you're running
-a Windows machine, you'd install the `crochet-VERSION-win32.zip`,
-where `VERSION` is the version of Crochet you're installing.
-
-Once you've finished downloading it, unpack the contents of the
-archive somewhere in your computer, and then run the `Crochet`
-(or `Crochet.exe`, or `Crochet.app`) application in the unpacked folder.
-This will open the Crochet IDE (Purr), which contains everything
-you need to build and run Crochet programs.
+   Once you've finished downloading it, unpack the contents of the
+   archive somewhere in your computer, and then run the `Crochet`
+   (or `Crochet.exe`, or `Crochet.app`) application in the unpacked folder.
+   This will open the Crochet IDE (Purr), which contains everything
+   you need to build and run Crochet programs.
 
 
 (Advanced) Installing Crochet with npm
@@ -37,7 +37,7 @@ Crochet from the terminal:
 
 .. code-block:: shell
 
-   npm install -g @origamitower/crochet
+   npm install -g @qteatime/crochet
 
 With this you should have a ``crochet`` application available
 in the terminal. You can test if everything is okay by running
