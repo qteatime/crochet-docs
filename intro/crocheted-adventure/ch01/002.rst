@@ -57,9 +57,11 @@ has a playground?!"
 "Oh, no worries," Sellaris dials down their hyper energy a bit again.
 "Some other texts call it a repel...? A ripple...? A..."
 
-"A REPL," Crochet intervenes.
+"A R-E-P-L," Crochet intervenes, pronouncing each letter separately.
+"It stands for 'read, eval, print, loop'."
 
-"A REPL! That one! Crochet calls it a playground, which I think is the
+"A REPL!" Sellaris just pronounces it like 'repel' again.
+"That one! Crochet calls it a playground, which I think is the
 cuter name anyway. You can bring it with a Terminal incantation again.
 I'll say the words, you work your hook to get the magic flowing. Be
 sure to do it from the Adventuring Starter Pack's domain."
