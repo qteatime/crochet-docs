@@ -1,0 +1,111 @@
+Comman--what now?
+=================
+
+"Definitions? Commands?" You shoot Sellaris a confused glance. You had
+heard these words before, but you don't think the gatekeeper means the
+same thing you thought these words would mean.
+
+"Ah, my bad. I was a bit excited about fixing the torch system and forgot
+to explain things along the way," they chuckle, brushing their hair awkwardly
+with their hand. You think "a bit excited" is a bit too generous for them,
+but keep the thought to yourself.
+
+"In any case," Sellaris starts, "a **definition** is a name for some
+value, which you can access anywhere in the program. I think the closest
+concept in other programming languages would be a global variable---a
+name that's widely available in the program."
+
+You nod. You had seen global variables before, and you thought they were
+a questionable idea. This language seemed to make liberal use of them and
+you weren't quite sure if you were on board with that yet...
+
+"In the programs we've written so far, ``simulation`` was the only
+definition we've used. This refers to the global simulation in the
+program."
+
+"What about this ``torch-system`` and ``power-grid`` words, then?" You ask.
+
+"Right, those are all **commands**. A command is sort of like a collection
+of operations that you can apply to a value. But when you invoke a command,
+the language will look at the values you're passing to it and pick the most appropriate
+one out of that set, then run that one operation. There are languages out there that call this
+'multi-method', I think?" Sellaris looks at Crochet for confirmation, the
+girl nods.
+
+"It's also called multiple dispatch in textbooks. The 'dispatch' part refers
+to this idea of selecting one of the functions from the set when you invoke
+it. And the 'multiple' part means that all of the values involved are considered
+for the selection," Crochet adds, her gaze diverted to the ground, her fingers
+fiddling in the air. She gives you the impression that a big part of her life
+consisted in dwelling quite a bit in libraries and academic literature.
+
+"Most other languages out there have what's called single dispatch instead.
+Same idea, but only one of the values you're passing to the function is
+considered in the selection. Most object-oriented languages use the single
+dispatch idea, which is also why they have a 'this' keyword, and..." her
+words trail off as her gaze reaches up to look at you and Sellaris. "Ah,
+sorry, I'm just rambling now. I'll be quiet."
+
+"Eh? I thought that was pretty interesting," Sellaris counters. And then looks
+at you. "Oh, but maybe it's better if we leave it for later, I guess it can be
+quite overwhelming if we go into too many details at once." Crochet nods, shyly.
+
+"So, back to commands. The ones we've seen so far are called
+**unary postfix commands**. For example, where you see ``torch-system``,
+that's actually a command named ``_ torch-system``. The underscore indicates
+where you pass values to the command---it's 'unary' because it only takes one
+value, and 'postfix' because the name of the command goes after the value.
+So in ``simulation torch-system`` we're invoking the ``_ torch-system``
+command and giving it the value ``simulation`` refers to."
+
+"This goes for the other ones as well. ``_ power-grid`` and ``_ drained-cells``
+are both unary postfix commands. The only thing you need to remember is that
+the names of these commands can only have letters and hyphens. And you
+separate the value from the command name with spaces."
+
+"Actually," Sellaris puts their index finger to their chin. They're staring
+at your screen with a pensive expression. "Maybe it's interesting to see
+how these are brought to life? You can use the ``Documentation`` tab in
+the Crochet launcher to look at what's in the project."
+
+You click the "Documentation" button in the launcher, just below the Playground
+button, and the Adventuring Starter Pack manual comes up on the screen.
+It has a summary of the package along with some introductory text on it.
+
+"Great. Now, see the search bar on the top. Try searching for ``power-grid``,
+then click the ``_ power-grid`` command there. You should see a page listing
+all **branches**---this is what Crochet calls each operation in a command---with
+that name. The one we're looking for is ``torch-system power-grid``---the
+``power-grid`` command for the ``torch-system`` type. Open that one."
+
+You follow Sellaris' instructions, on your screen comes up the short
+description of that command branch, along with its source code::
+
+    command torch-system power-grid =
+      self.power-grid;
+
+"This source code tells you how this particular command branch was defined.
+It looks very similar to how you use it, don't you think? The only real
+difference is that in the thing at the top, the **signature**, you specify
+how this command is selected---by specifying which types activate it, in
+this case ``torch-system``."
+
+"Meanwhile, when you're using a command you specify the value itself in that
+same place. This is why the name of the command is ``_ power-grid``. There
+are many other kinds of these signatures, so it makes sense to identify 
+where values and types go, and what the actual name of the command is."
+
+You nod, but you get the feeling that Sellaris just dumped a huge amount 
+of concepts on you without any time for you to digest them. A few steps
+away from you, Crochet notices your troubled expression and gives you
+a reassuring smile. "Well, I'm sure you'll have an easier time with
+these ideas when you start playing around with them. Theory may feel
+too vague and encompassing sometimes, and there's no rush to understand
+all of the small details, really," she says, a friendly tone.
+
+"Ah!" Sellaris puts their hand over their mouth, in an exaggerated gesture,
+as if to say they're sorry for rambling on. A light-hearted laughter follows.
+"That's right. Let's just try things and see how it goes instead. We can
+always go into more details later, if you feel like it."
+
+:doc:`"That sounds like a plan." <004>`
