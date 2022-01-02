@@ -17,13 +17,21 @@ and---reportedly---succeeded! You could visit it. You could go inside
 of the Spire. Descend its unending stairs. Or ramps. See for yourself
 what laid within its deepest walls.
 
-You were curious, and now you are here.
+You were curious, and now you were here.
 
 There's one small problem you had not entirely thought of, however:
 how do you even *get* inside? No matter how you look at it, the
 small dome that greeted you had a door. And the door was closed.
 Yes, you did try to pull it. You tried pushing it as well. No luck.
 You presume that the small keyhole at its centre is to blame.
+
+.. figure:: ../images/spire-dome.png
+   :figwidth: 100%
+   :alt: So here you stand, hands on the door, and a troubled expression
+         on your face. Your long, wavy, fluffy hair fluttering slightly
+         with the wind---and for once you were glad you decided to wear
+         your extra warm shawl and knitted sweater. That said, this
+         standstill wasn't exactly what you were hoping for.
 
 You may think: well, fine, I'll just have to pick the lock now.
 Many before you have thought the same. It did not work. Somehow,

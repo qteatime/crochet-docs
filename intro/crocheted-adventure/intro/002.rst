@@ -7,6 +7,10 @@ in their hands, a curious look on their face. You blink, they
 walk closer, stand on the tip of their toes, bring their face
 nearer. "Are you, by any chance, an adventurer?"
 
+.. figure:: ../images/sellaris-greet.png
+   :figwidth: 100%
+   :alt: (TODO)
+
 An adventurer! Now it's been a while since you've heard *that*
 one. It's not how you'd generally describe yourself, at least.
 You were a programmer. You knew a bit about functional
