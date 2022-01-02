@@ -1,0 +1,112 @@
+I Command Thee!
+===============
+
+"So," you look at the little ball of effusiveness at your side, wondering
+if Sellaris' eyes are ever not-sparkling. "what exactly do you mean by
+'more clever programming'?"
+
+"Ah, see," they start, putting their hands together. You get the impression
+they regret their choice of words. "What I mean is that we've been dealing
+with just one thing at a time so far, but now we need to deal with many
+things at once---even though there'll be only the red power cell in the set."
+
+You nod, Sellaris continues. "But I don't think I needed to make that big
+of a deal out of it," they punctuate with an awkward chuckle. "Anyway.
+We can remove cells from the power grid with the ``power-grid take-out: power-cell``
+command, but since we have potentially many of them, we'll need to do this
+for each of the drained cells."
+
+"Well, I say that," they continue, "but the program you need to write sort
+of just spells what I just said anyway?"
+
+::
+
+    for Cell in simulation torch-system power-grid drained-cells do
+      simulation torch-system power-grid take-out: Cell;
+    end
+
+"Oh!" Sellaris exclaims after looking at the output in the screen. "That's
+a bit of an unfortunate result." You watch them rest their chin on their hand,
+not saying much else. At least until they notice the puzzled look on
+your face. "See where it says '#set in crochet.core', and then it shows a
+grid with three cells, but no red power cell?" You look at the output Sellaris
+is pointing at. "That's what the power grid looks after we've taken the cell
+out. Which is alright. But if we had multiple drained cells it would show
+the grid multiple times, just with its final state. It can be hard to
+think about the way these outputs compose when you're coming up with them."
+
+You think you get what Sellaris is saying. Sometimes you build something
+with a particular goal in mind, and then someone else takes that and puts
+it in a context you never thought about before. There's no telling what
+could happen in those cases. Like when you use a pencil to hold your
+hair bun---it might work, but it's certainly not the kind of use that
+people who made the pencil had in mind.
+
+"But, well, we can take a look at the power grid now to see if everything
+looks good."
+
+::
+
+    simulation torch-system power-grid;
+
+You run the program snippet in the playground. Out comes a new representation
+of the grid's health, this time with no red---or drained---cells. Sellaris
+looks pleased, and about to go on another rambling session.
+
+"Hey," you interrupt them just in case. "Should we try running it to see
+what happens?"
+
+Sellaris' eyes moves from you to Crochet. The girl with pink hair seems a
+bit at a loss for what to say. She ponders for a few moments. "I don't
+think there's any harm in that, at least. It's just a simulation. If it
+doesn't work I guess we'll get a new error message to chase."
+
+"Let's run it again, then!" Sellaris' loud voice reaches your ears. You try
+to remember the command you first ran, stealing some glances at the expectant
+gatekeeper beside you. It takes a few moments for it to resurface::
+
+    simulation torch-system start;
+
+Red text fills the screen again. This time something about the power grid
+not being complete. "Let's see...", You hear Sellaris from beside you, and
+turn around in time to see them open the documentation and poke around the
+source code for clues. "It seems that a power grid is complete if it has
+at least one cell of each type. I guess we'd see that if we looked at
+the ``_ cell-groups`` of the power grid?"
+
+"Should we try attaching a new red cell to it?" Crochet suggests. Her
+low voice would make it hard to understand in a noisier environment, but
+here you hear her clearly. And you nod. Her mouth shapes into a reserved
+smile.
+
+"We can create a red cell by using the ``#power-cell red: _`` command.
+There's something here about the value of the colour that I don't quite
+get yet, but it has to be a whole number between 0 and 255?"
+You see Sellaris pour over the documentation again. "And we
+can attach it to the power grid by using its ``_ attach: _`` command."
+
+You try putting this new information together and come up with a new
+program snippet on your own::
+
+    simulation torch-system power-grid attach: (
+      #power-cell red: 255
+    );
+
+Out comes a new representation of the power grid's healthy, and Sellaris'
+voice reaches you almost immediately after. "Oh! It's the intensity of the
+colour!" Your eyes move to where Sellaris is pointing. Indeed, the red
+cell you just placed into the power grid is far more vivid than the other
+cells---you imagine the others must have a lower colour value.
+
+The two of you look at each other for a few moments. "I suppose we try
+to run it again to see what happens?" Sellaris takes the words out of your
+mind and turn them into sounds. You nod::
+
+    simulation torch-system start;
+
+No dice. But you're a little bit happy now that the error message doesn't
+mention the power grid anymore. *'If anything, that's progress'*, you think
+to yourself.
+
+:doc:`"Light spheres, huh?" <005>`
+

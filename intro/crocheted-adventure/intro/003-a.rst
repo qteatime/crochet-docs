@@ -1,0 +1,118 @@
+I'm a seasoned adventurer
+=========================
+
+"What...", you try to get your thoughts together after all of the
+things Sellaris told you. "I've never heard of an Adventuring Starter
+Pack," you start there. "And I also don't know how to activate a
+Crochet hook," you show the small device on your open hand, "you
+mean this one, right? I've never used one"
+
+Sellaris nods. "Ah, yes, sorry. Sometimes people tell me I speak
+too fast. And too much," they sigh. "I didn't mean to overwhelm you.
+We can go through this slowly."
+
+They pull out a book from their pocket---it must be quite sizable
+with all of the things they're holding in it; you wish your pockets
+were that big. From where you stand you can read the big letters in
+the cover of the book, it says
+:doc:`The Crochet System <../../../reference/system/index>`.
+They pull out another book. This one is... thin. But more than that,
+it's *different*. You have never seen a book quite like that one.
+The cover says :doc:`Crochet's API Reference <../../../reference/api/index>`.
+
+"You should keep these around somewhere, but you won't need them
+**right now**," they say, handing the two books to you. You stare
+at Sellaris, at a loss for what to do with the books. *How* do you keep these
+around? As if reading your mind, Sellaris puts their hands in their
+pocket again. This time, out comes a big cross-body bag, which they
+hand to you with a sad expression on their face---maybe they did
+not have heaps of them, but who knows.
+
+"If you put them in this Browser-bag, say if you put them in one
+of its tabs, then you can keep them around with you while you
+adventure. And you can access them quickly."
+
+You nod. "And what about the Crochet hook? How do I activate it?"
+
+"Right!" Sellaris claps their hands together. "Let's do that one, then.
+So, once you have `Node.js <https://nodejs.org/en/>`_ you'll be able to
+activate your Crochet hook with the `npm <https://nodejs.org/en/knowledge/getting-started/npm/what-is-npm/>`_
+tool. If you have Node.js, you should have npm. They come together these
+days."
+
+"So," Sellaris continues, "to activate it with npm, you need an incantation.
+You know how to perform the spells, right? In your terminal?
+With the arcane commands and everything? So, I'm going to write here the
+words you need to invoke this spell," at some point they had got their
+hands into a fine gel pen and a piece of paper, and they were now scribbling
+something in it.
+
+.. code-block:: shell
+
+   $ npm install --global @qteatime/crochet@experimental
+
+Seeing what's written in the paper startles you a bit. You blink a couple
+of times. You've heard about these before. "Global...?"
+
+"Of course. Well, you don't *need* it to be global. But it makes things
+a bit easier. If you'd rather do it some other way, feel free to do it
+in a way you prefer and are more comfortable with."
+
+You perform the incantations, Sellaris watching your sorcery attentively.
+And when you're done, you notice their light blue eyes sparkle in
+anticipation. "You should give it a try! Here, try this one!" It's another
+piece of paper, with a different incantation this time. "Try waving the
+Crochet hook this time."
+
+.. code-block:: shell
+
+   $ crochet version
+
+You do as Sellaris tells you. The hook sparkles, tracing words and sounds
+in the air:
+
+    Crochet version 0.13.0
+
+"Yay! That's it! Your Crochet hook is good to go. Now let's get you
+cozy with the Adventuring Starter Pack. That'll be invaluable in
+your adventure through the Spire," Sellaris hands you another
+incantation in a piece of paper. You're getting used to this.
+You prepare your terminal.
+
+.. code-block:: shell
+
+   $ git clone https://github.com/qteatime/adventuring-starter-pack.git
+
+This time, rather than words, you see a small box materialising
+in front of you. Out of nothing. The way computer incantations
+were just able to fabricate anything you could imagine had
+always astounded you.
+
+But---and here was Sellaris poking you on the shoulder---you didn't
+have as much time to marvel over the wonders of computer spells now.
+The short person beside you was already giving you more papers.
+
+.. code-block:: shell
+
+   $ cd adventuring-starter-pack
+
+"Oh!" The realisation dawns on you as quickly as you finish reading
+it. Of course! Since you were going to be using this Adventuring
+Starter Pack from now on, it made sense that your future spells
+were done from within its domain.
+
+"Ahaha," at your side, Sellaris lets out an awkward laugh. "That
+one was supposed to go together with the git one, but it slipped
+my mind when I was focused on writing the spells."
+
+You nod. So even the gatekeeper, who seemed to know all of these
+arcane incantations by heart, sometimes made mistakes too, huh?
+You wouldn't have guessed by looking at them---but then, you
+wouldn't have guessed many other things by just looking at
+them, if you were being honest.
+
+"I think we're done with preparations, though!" Sellaris
+eyes are sparkling again. "You know what that means, right?"
+
+:doc:`"We can venture inside of the Spire now?" <../ch01/001>`
+

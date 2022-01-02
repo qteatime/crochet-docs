@@ -24,10 +24,15 @@ goals and experience with programming, and create away~.
 
 (Work in progress)
 
+.. hlist::
+   :columns: 1
+
+   * :doc:`A Crocheted Adventure <intro/crocheted-adventure/index>`
+         A short Interactive Fiction book where you interact with
+         the story by programming and modifying programs. Learn
+         Crochet through stories and puzzles.
+
 ..
-  .. hlist::
-     :columns: 1
-  
      * :doc:`Crochet for Functional Programmers`
            For people who're familiar with functional programming.
            This example-based book will guide you through the different
@@ -119,6 +124,7 @@ Indices and tables
 .. toctree::
    :hidden:
 
+   intro/crocheted-adventure/index
    reference/system/index
    reference/api/index
    cookbook/brief-syntax/index

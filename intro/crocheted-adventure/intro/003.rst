@@ -1,0 +1,60 @@
+Preparing for the adventure
+===========================
+
+Sellaris ponders for a moment at your question. They stare
+at you from head to toe, their hand holding their chin in
+a pensive demeanour. "I do, but..." They see them hesitate
+for a moment. Close their eyes. As if they were thinking
+really hard about it. "Look, it's dangerous to adventure
+alone, don't you think?"
+
+You feel like you've heard that line somewhere before, but
+the exact place eludes you. You nod.
+
+"And besides, it doesn't seem like you're prepared at all!"
+You're surprised at the sudden accusative tone. Sellaris is
+pointing at you... at your hands? You think it's at your hands.
+"Where's your hand-computer? You can't presume to venture
+through the dark reign of the Spire without one, surely."
+
+A hand-computer? You had heard of them before. Practical
+stuff. Though you might have spent more of your time with the bigger ones.
+Like laptops. Yet, now that you thought about it, it *would* be a bit
+difficult to carry one of those here.
+
+"Fine," the gatekeeper sighs. And putting their hand in
+their pocket, manages to procure a small device that
+they give you---not exactly happily. "I'll let you
+have this, then. But I imagine we'll have to go over
+the basics here."
+
+You've accepted their gift, your eyes still
+wide in surprise. "This is..." You looked again to
+be sure. There was no mistaking it. No matter how
+you looked at the device, this was a... Crochet hook?
+
+"First, you should make sure you have Node.js. Then you'll
+need to activate your Crochet hook. And you will also need
+the Adventuring Starter Pack. Oh! And you will need Git, too.
+The version control system, not GitHub. Not that it would hurt
+to have both, in any ca---"
+
+You interrupt Sellaris' rambling.
+
+----
+
+:doc:`"Wait, you're going to fast! Node.js? Git? What are all these?"`
+    All adventurers have to start somehwere. If you've never
+    heard of these tools before, this will take you through
+    an explanation of all of them, and how to set them up.
+
+:doc:`"What... I've never even heard of an Adventuring Starter Pack." <003-a>`
+    Some adventurers are already versed in Node.js and Git.
+    But you might still be lost as to how one would go about
+    activating a Crochet hook. And what even is an Adventuring
+    Starter Pack *anyway*? This will clear those for you.
+
+.. toctree::
+   :hidden:
+
+   003-a

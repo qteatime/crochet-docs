@@ -1,0 +1,161 @@
+We'll sort this out!
+====================
+
+"Light spheres, huh?" You try to make sense of what the error message
+is trying to tell you, but it's hard to come up with many ideas when
+you're so unfamiliar with the torch system. Many of these terminologies
+and errors would probably make more sense had you immersed yourself in
+its concepts before.
+
+"I had no idea that was a thing," by your side, Sellaris is reading the error
+message out loud, with a confused expression on their face. "Mmh...", they
+ponder about it a bit, scratch their head, and raise their shoulders, shrugging. 
+"Let's see what it means to have correct slots in that sub-system." They occupy
+themselves with going through the documentation again. "It seems that it has a
+slot for each primary colour component---and one for its opacity---, and it expects
+the power cells we insert in it to be of a matching type."
+
+"How are these cells inserted?" You ask, you don't remember doing anything
+with this light spheres thing before. The only type you have touched so far
+was the power grid. But maybe they *are* connected in some way? You couldn't
+tell.
+
+"Mmh, we can figure that out later. Let's try taking a look at what this
+light spheres thing is first. That might give us some clues as to where
+to start chasing the error," Sellaris proposes, you nod. "I think you
+can just get the ``light-spheres`` out of the ``torch-system``."
+
+::
+
+    simulation torch-system light-spheres;
+
+
+The playground shows you a diagram of the light spheres system. Four spheres
+are placed around a box, each labelled with a colour component. The red and
+alpha slots are filled with a colour you recognise---these were the same colour
+you saw in the power grid's cells. But the green and blue slots are... translucent?
+
+"I guess these two are causing some problem. At least the red one we just
+inserted seems to be fine?" Sellaris is pointing at the diagram on your
+screen again. "Hey, there's a section that says 'Errors' here. I wonder if
+that will give us a more detailed summary of what's wrong?"
+
+You click the "Errors" tab in the playground. It is indeed a bit more chatty
+about the issues with the light spheres:
+
+    2 errors found.
+
+    - Green slot was filled with a Blue power cell.
+    - Blue slot was filled with a Green power cell.
+
+"Oh, it looks like the green and blue power cells have been swapped somehow.
+That sounds like a bug in the system itself, rather than something we did?"
+Sellaris lifts their eyes towards Crochet. It takes her by surprise.
+
+Crochet's eyes widen for a moment, and then she lowers her gaze again, her
+right hand moving to hold her left wrist. "Uh..." She falters. "I think...
+I think the simulation wasn't fully finished. I think people might have
+worked on the real system to get it running, and then forgot about updating
+the simulation to match it."
+
+"Ahaha," Sellaris lets out an awkward laughter. You can hear a hint of pain
+in their voice. "I guess that tends to happen with simulations. People are
+too busy working on the real thing, trying to get that out, and they don't
+maintain their simulations with as much care. If they do at all. And at
+some point they diverge enough that the simulation doesn't even model
+the real system anymore---you can't use it to try to understand or verify
+things."
+
+Crochet nods from a distance. "Let's hope that's not quite the case here,
+and the simulation is still only a bit behind the real Spire."
+
+You ponder about what it would mean for the simulation to diverge too much.
+After all, you came here to experience the Spire. The simulation thing
+didn't even cross your mind when you set out in this adventure. But now
+it was taking a considerable investment of your time---you'd be very sad
+if it was all for nothing.
+
+"We can try fixing the light spheres and then trying it out in the real
+Spire? That way we'll have a better idea of where we stand with this
+simulation, I think," Sellaris tries to lift the mood a bit by being
+loud and positive---more loud than positive.
+
+You came this far already, might as well see things through to the end.
+And, plus, it's not like you had a dislike for the simulation. You just
+had a different expectation when you started this adventure. But sometimes
+the unexpected can be fun, too.
+
+"Alright," you say, steeling your resolve. "How should we proceed, then?
+Do we look at how these light spheres are created in order to figure out
+what went wrong?"
+
+"That sounds good," Sellaris agrees, then starts poking around the
+documentation again. "Eh? So, in the ``#light-spheres from: power-grid``
+command we take one power cell of each type in the grid, and sort them.
+And it expects that this sorting will produce a specific order of the
+cells, I guess? Not really what I was expecting to see..."
+
+"Is there a way for us to look at how it orders the cells, or what the
+order it expects is?" You ask, Sellaris goes back to reading more of
+the documentation.
+
+"The ``_ has-correct-slots`` command uses Red, Green, Blue, and Alpha
+as the expected order, at least. So I think it's safe to say that this
+is what the sorting code should produce." You nod, Sellaris continues,
+"As for how we go about figuring what's happening..." There's a long
+pause. Sellaris scratches their head, frustration painted on their
+face. "Aaaaargh! I don't have the slightest idea, I'm sorry."
+
+"Eh, it's okay," you try to reassure them. It's not like they're at
+fault here or something---they have helped considerably. As a beginner,
+you wouldn't even know where to start with poking all around these
+programs and documentation. But you were also a bit bummed.
+
+"We can trace the program," Crochet suggests, and this time she
+comes close to where you and Sellaris are sitting. She crouches
+by your other side, peeking at the screen.
+
+"Trace the program?" You inquire. It's not a concept you had heard
+of before. And you don't think it was your lack of experience---you
+had debugged one or two programs in the past, too.
+
+"Ah," Crochet puts her hands together, the fingers connecting one
+by one, momentarily. "How should I explain this?" She pauses for
+a moment, collecting her thoughts. "You know how people try to
+debug programs by printing messages to the screen as the program
+runs? And they even dub that 'printf-debugging' or some-such?"
+You nod. "That's tracing. It's pretty much a record of what
+the program did while it was running."
+
+"Oh!" It's like a light bulb popped in your head the moment she
+was done speaking. You had done this before, "So we just change
+the code to output these messages about what the sorting command
+is doing, right?" You suggest, excited.
+
+But your excitement doesn't quite reach Crochet. She is a bit slow
+on the uptake, but a moment later she's waving her hands negatively.
+"Ah, no. Well, that would work, too. But we don't need to change
+the code."
+
+*'Doing printf-debugging without changing any code?'*, now you
+were intrigued. Your expectant eyes meet Crochet's, the pink haired
+girl lets hers wander back to the ground, red painting her cheeks.
+
+"Ah... What I mean is, there's a tool we can use that will let us
+select the code we want to know more about, and then trace its
+execution. We can look at the trace later in the same way we've
+been looking at the power grid and the light spheres in the Playground
+so far."
+
+You look at the screen again. You had noticed it before, but right
+beside "Result", it does say "Logs". And logging *is* also how people
+call printf-debugging some times, so you conclude that must be what
+she's talking about.
+
+"First you will need to open the debugging package. That includes
+a tool for tracing code."
+
+::
+
+    open crochet.debug;
+

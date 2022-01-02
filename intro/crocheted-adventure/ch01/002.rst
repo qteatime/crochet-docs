@@ -1,0 +1,173 @@
+Light the way!
+==============
+
+"So our problem right now is that the Torch System is not working,"
+Sellaris explains again, you see Crochet nod, but you still don't
+get what a 'Torch system' is---you can see that something isn't
+working, though.
+
+"This..." you try to explain your confusion. "This 'Torch System',
+what exactly is it? I've seen torches before, and generally they
+just took a bit of fire to work."
+
+"It's called 'The Torch System', but they're not really your usual
+torches. You can't just set them on fire---you can't even reach them.
+They're all behind these glass domes that are supposed to keep the
+oxygen flowing there or something," Sellaris starts. You brace
+yourself for the long explanation.
+
+"So in order to light them, they came up with this computer program
+called the 'Torch System'. A lot of the things here in the Spire are
+controlled by computers, in fact. Don't ask me why," you can hear
+a hint of pain in Sellaris' voice, and you feel like, in some sense,
+you could relate to it.
+
+"The Torch System runs continuously here to keep all torches alight.
+But sometimes it stops working. I've called for repairs before, but
+they keep telling me they're on vacation, that the Spire isn't
+'critical infrastructure'. All of that stuff. It's hopeless."
+
+You couldn't blame the Spire's support people. Vacations were important.
+And it's not like the Spire being out of order would really cause that many 
+issues to people's every day lives. On the other hand, the glittering
+hook illuminated enough of Sellaris' face for you to notice their
+intent gaze at you, an expectant smile on their face. You had a
+bad feeling about this.
+
+"Which takes us to now," Sellaris goes on. "Since we're all here, we
+can just try and fix the Torch System once and for all!" They proclaim,
+proudly, hands in the air. An excitement that is not shared by poor
+Crochet beside them.
+
+Sellaris gently pokes Crochet on the shoulder, trying to encourage
+her to talk. The pink-haired girl sighs. "I...," her voice trails off
+the first time around. She tries again. "I remember the Adventuring
+Starter Pack having a small simulation of the torch system. We could
+try experimenting with that one before we tackle the real one?"
+
+"Oh!" It's Sellaris' loud voice again that you hear. "That's a great
+idea! I knew calling you here was the right thing to do." The gatekeeper
+has a big smile on their face. "Maybe we should try running it first.
+Do you know how to bring up Crochet's playground?"
+
+You didn't have the slightest idea of what her playground was. Let alone
+know how to bring it up. "You'll have to be more specific than that. She
+has a playground?!"
+
+"Oh, no worries," Sellaris dials down their hyper energy a bit again.
+"Some other texts call it a repel...? A ripple...? A..."
+
+"A R-E-P-L," Crochet intervenes, pronouncing each letter separately.
+"It stands for 'read, eval, print, loop'. You give the program some
+code, and it shows you the result of running it."
+
+"A REPL!" Sellaris just pronounces it like 'repel' again.
+"That one! Crochet calls it a playground, which I think is the
+cuter name anyway. You can bring it with a Terminal incantation again.
+I'll say the words, you work your hook to get the magic flowing."
+
+You watch Sellaris' mouth move, the sound reaches you loud and clear:
+
+.. code-block:: shell
+
+   $ crochet launcher:server --project-directory .
+
+You see some words show up in your Terminal. "That should start the
+launcher and the app servers," the ever-excited gatekeeper pipes
+beside you, as they watch your screen. "You should point your browser
+to the launcher address. It should be something like
+<http://localhost:8000>, I think?"
+
+When you navigate to the address Sellaris mentioned---you notice that
+it's the same one as what shows up in your Terminal output---you're
+greeted by a page that says "Adventuring Starter Pack: start your
+crocheted adventure here!"
+
+The text fills you with an odd sense of déjà vu. A moment later you
+remember---it is the same name as the book you had picked up earlier
+that day. *'The wonders of the Spire never cease'*, you think.
+
+Sellaris scuttles over to your side, peeps at your screen. "Yes! That
+one! That's the stuff!" The usual effusive tone. "You should open the
+Adventure Starter Pack, and then go to the Playground."
+
+You're greeted by a page that says "Crochet Playground", and contains
+a single text box. The cursor blinks on-and-off. "Mmh," Sellaris seems
+a bit at a loss for what to do, they look at Crochet for advice.
+
+"Ah...," the pink-haired girl fiddles with her thumbs. "Perhaps...
+Maybe we should just try running it first and see what happens?"
+
+Sellaris' eyes perk up. "That's a great idea! Let's try that! But you
+need some code to start it, right? Do you know the incantation?" They
+look at Crochet again---you can tell she isn't really used to getting
+all of this attention.
+
+Crochet writes something in a piece of paper and hands it to Sellaris.
+The gatekeeper reads it out loud::
+
+      simulation torch-system start;
+
+You type it in the text box and click the big blue button to run the
+program. The computer yells at you, in red. *'It didn't like the program'*,
+you think. At your side, Sellaris is busy reading the error message
+with an unusually serious expression on their face.
+
+"Ah! It says there that in order to start the torch system, the power
+grid must be healthy. It seems that being healthy means that all
+of the cells in the grid must have some energy. See here, where it
+says 'PRECONDITION'?" You look at where Sellaris is pointing in the
+screen. It does say 'assertion-violated: PRECONDITION:'. Not the
+most friendly way of expressing its thoughts, but you're used to
+computers talking in an odd way at this point.
+
+"I totally forgot about the power grid. Of course! In order to keep
+the torch system running we need energy. So there's this 'power grid'
+thing that's made out of a few energy cells. And these cells run out
+of energy over time. Let's take a look at the power grid health's
+first."
+
+You hear Sellaris read another program to you, Crochet is still handing
+the pieces of paper to them for some reason::
+
+      simulation torch-system power-grid;
+
+The computer now shows the results of your program. There are four boxes,
+labelled "Red", "Green", "Blue", and "Alpha". They're all filled with some
+colour, except for "Red". The text below that box says "0%", so you suspect
+that might be the faulty power cell.
+
+"As I thought," Sellaris starts, "the red cell has been completely drained.
+We'll need to replace it..." and goes pensive for a moment. "This will
+require some more advanced techniques," they conclude.
+
+"What do you mean?" You're not quite following. Isn't it just running
+programs, like you were doing before? It's a computer simulation, right?
+
+"Oh! Well, go ahead and look at how the power grid gives you the cells
+that don't have energy anymore."
+
+::
+
+      simulation torch-system power-grid drained-cells;
+
+When you run this program, the playground gives you an output you hadn't
+quite seen before. You see the single "Red" cell that you expected,
+at its pitiful 0% of energy, but above it there's another piece of
+text. "#set in crochet.core", it says.
+
+"See, this power grid is designed such that you can only take out one
+specific power cell at a time, but it only gives you a set of the cells
+you need to take out. So far we've managed to do alright with just
+accessing the ``simulation`` definition and invoking commands on it.
+This one will require some more clever programming."
+
+:doc:`"Definitions? Commands?" <003>`
+
+----
+
+.. tip::
+
+   Besides clicking the blue "run" button to run the program snippets
+   in the playground, it's possible to achieve the same by pressing 
+   the :kbd:`Control` and :kbd:`Return` keys at the same time.

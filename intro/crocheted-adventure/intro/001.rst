@@ -1,0 +1,36 @@
+Your journey begins
+===================
+
+You had heard rumours of it. Of the Spire. The massive monument at the
+centre of the world which---this is where it got weird---which extended
+downwards. Towards the centre of the Earth. Perhaps they had learnt the
+mistakes from other such towers that try to reach the sky or something,
+and then have annoyed gods seething confusion among the people to thwart
+their plans.
+
+Who'd thwart the plans of constructing one that tried to reach the
+centre of the Earth? (Here, in fact, you *could* come up with many
+**whats**, but no **who** crossed your mind)
+
+Still, you were curious. Who wouldn't be? They tried to build it
+and---reportedly---succeeded! You could visit it. You could go inside
+of the Spire. Descend its unending stairs. Or ramps. See for yourself
+what laid within its deepest walls.
+
+You were curious, and now you are here.
+
+There's one small problem you had not entirely thought of, however:
+how do you even *get* inside? No matter how you look at it, the
+small dome that greeted you had a door. And the door was closed.
+Yes, you did try to pull it. You tried pushing it as well. No luck.
+You presume that the small keyhole at its centre is to blame.
+
+You may think: well, fine, I'll just have to pick the lock now.
+Many before you have thought the same. It did not work. Somehow,
+even perfectly replicating the shape it expects isn't enough.
+Rumours had it that the door was locked by pure magic.
+
+You knew magic did not exist. But you also knew towers weren't
+supposed to grow towards the centre of the Earth.
+
+:doc:`"There must be something else here..." <002>`
