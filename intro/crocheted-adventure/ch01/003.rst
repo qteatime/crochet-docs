@@ -1,6 +1,14 @@
 Comman--what now?
 =================
 
+.. note::
+
+   This is primarily a theoretical section on Crochet's terminology and the
+   semantics of definitions and commands. If you've felt a little bit lost 
+   so far, this might clear a few things for you. But, if you feel comfortable,
+   you can also :doc:`move on to the next section <004>` without missing any
+   of the story or puzzles.
+
 "Definitions? Commands?" You shoot Sellaris a confused glance. You had
 heard these words before, but you don't think the gatekeeper means the
 same thing you thought these words would mean.
@@ -23,14 +31,18 @@ you weren't quite sure if you were on board with that yet...
 definition we've used. This refers to the global simulation in the
 program."
 
-"What about this ``torch-system`` and ``power-grid`` words, then?" You ask.
+"What about these ``torch-system`` and ``power-grid`` words, then?" You ask.
 
 "Right, those are all **commands**. A command is sort of like a collection
 of operations that you can apply to a value. But when you invoke a command,
 the language will look at the values you're passing to it and pick the most appropriate
-one out of that set, then run that one operation. There are languages out there that call this
-'multi-method', I think?" Sellaris looks at Crochet for confirmation, the
-girl nods.
+one out of that set, then run that one operation. Like how you can say ``roll``,
+and then it means something completely different depending on whether you're
+talking about a dog or a wheel-chair, y'know?"
+
+"Ah! But I think you might even have seen this before," Sellaris goes on.
+"There are languages out there that call this 'multi-method', I think?"
+They look at Crochet for confirmation, the girl nods.
 
 "It's also called multiple dispatch in textbooks. The 'dispatch' part refers
 to this idea of selecting one of the functions from the set when you invoke

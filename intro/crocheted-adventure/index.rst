@@ -2,6 +2,11 @@
 A Crocheted Adventure
 =====================
 
+.. note::
+
+   This book is very raw, unedited, and... unfinished? Keep any expectations
+   you may have as low as possible and you might still enjoy it :)
+
 You've loved story-books for as far as you can remember. Especially
 the ones that let you *change* how the story was told. What were
 they called again? Inventive books? No, not quite. Interactive books?

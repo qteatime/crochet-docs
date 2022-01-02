@@ -114,7 +114,7 @@ you think. At your side, Sellaris is busy reading the error message
 with an unusually serious expression on their face.
 
 "Ah! It says there that in order to start the torch system, the power
-grid must be complete. It seems that being complete means that all
+grid must be healthy. It seems that being healthy means that all
 of the cells in the grid must have some energy. See here, where it
 says 'PRECONDITION'?" You look at where Sellaris is pointing in the
 screen. It does say 'assertion-violated: PRECONDITION:'. Not the
@@ -163,6 +163,8 @@ accessing the ``simulation`` definition and invoking commands on it.
 This one will require some more clever programming."
 
 :doc:`"Definitions? Commands?" <003>`
+
+----
 
 .. tip::
 

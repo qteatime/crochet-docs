@@ -67,3 +67,46 @@ gatekeeper beside you. It takes a few moments for it to resurface::
 
     simulation torch-system start;
 
+Red text fills the screen again. This time something about the power grid
+not being complete. "Let's see...", You hear Sellaris from beside you, and
+turn around in time to see them open the documentation and poke around the
+source code for clues. "It seems that a power grid is complete if it has
+at least one cell of each type. I guess we'd see that if we looked at
+the ``_ cell-groups`` of the power grid?"
+
+"Should we try attaching a new red cell to it?" Crochet suggests. Her
+low voice would make it hard to understand in a noisier environment, but
+here you hear her clearly. And you nod. Her mouth shapes into a reserved
+smile.
+
+"We can create a red cell by using the ``#power-cell red: _`` command.
+There's something here about the value of the colour that I don't quite
+get yet, but it has to be a whole number between 0 and 255?"
+You see Sellaris pour over the documentation again. "And we
+can attach it to the power grid by using its ``_ attach: _`` command."
+
+You try putting this new information together and come up with a new
+program snippet on your own::
+
+    simulation torch-system power-grid attach: (
+      #power-cell red: 255
+    );
+
+Out comes a new representation of the power grid's healthy, and Sellaris'
+voice reaches you almost immediately after. "Oh! It's the intensity of the
+colour!" Your eyes move to where Sellaris is pointing. Indeed, the red
+cell you just placed into the power grid is far more vivid than the other
+cells---you imagine the others must have a lower colour value.
+
+The two of you look at each other for a few moments. "I suppose we try
+to run it again to see what happens?" Sellaris takes the words out of your
+mind and turn them into sounds. You nod::
+
+    simulation torch-system start;
+
+No dice. But you're a little bit happy now that the error message doesn't
+mention the power grid anymore. *'If anything, that's progress'*, you think
+to yourself.
+
+:doc:`"Light spheres, huh?" <005>`
+
