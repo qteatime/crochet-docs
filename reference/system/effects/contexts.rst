@@ -17,27 +17,26 @@ Reusable handlers
 
 First, most of the handlers defined in the standard Crochet libraries
 are reusable. They are defined by the package that defines the effect,
-and provided through a command.
+and provided through a reusable handler.
 
 For example, in order to use the random number generator package, we
-can use ``scoped-random with-source: _ do: _`` command to run a piece
-of Crochet code with the required handlers::
+can use the ``scoped-random with-source: _`` handler to run a piece
+of Crochet code with that effect::
 
     let Randomness-source = #random with-seed: 1384172941724;
 
-    scoped-random with-source: Randomness-source do: {
+    handle
       let Random = shared-random instance;
       let A = Random between: 1 and: 10;
       let B = Random between: 1 and: 10;
-    }
+    with
+      use scoped-random with-source: Randomness-source;
+    end
 
 The above will choose two integers between 1 and 10 using the source
-of randomness that we provided in the ``scoped-random with-source: _ do: _``
-command---but only in code that's executed from within the delayed program
-we provide in the ``do:`` keyword.
-
-The ``do: _`` part of the signature is a convention followed by these
-commands which provide handlers, but it doesn't have any special meaning.
+of randomness that we provided in the ``scoped-random with-source: _``
+handler---but only in code that's executed from within the delayed program
+we provide in the ``handle`` block.
 
 
 Execution goals
@@ -47,19 +46,21 @@ Crochet has an idea of "execution goal". These may correlate with
 a platform, e.g.: a program may be executed on Windows or on a
 Web Browser, and each of those would be a different execution goal.
 
-Goals affect which command is used to *start* the program. For example,
-in a Web Browser program Crochet will start the program by executing
-the ``main-html: _`` command. Whereas, if we're running the program
-in Node.js, Crochet would start the program by executing ``main: _``.
+Goals affect which files are included in the program, and which command is used
+to *start* it. For example, in a Web Browser program Crochet will start the
+program by executing the ``main-html: _`` command. Whereas, if we're running
+the program in Node.js, Crochet would start the program by executing
+``main: _``.
 
-For example, a common use of the Novella package for writing interactive
-fiction that runs in a Web Browser would define the following entry
-point command::
+A common use of the Novella package for writing interactive fiction that
+runs in a Web Browser would define the following entry point command::
 
     command main-html: Root do
-      novella with-root: Root do: {
+      handle
         novella show: "It was a dark, stormy night...";
-      }
+      with
+        use novella with-root: Root;
+      end
     end
 
 Each of these goals has different ideas of which arguments are relevant

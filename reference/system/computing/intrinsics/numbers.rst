@@ -16,7 +16,7 @@ The numeric tower in Crochet has two types:
   order to represent it---and the more computing power is needed to
   perform arithmetic operations on it.
 
-- **Floating points**: the ``float`` type is an approximation of
+- **Floating points**: the ``float-64bit`` type is an approximation of
   fractional numbers that always consumes 64 bits of memory. It
   can accurately represent some integral numbers, and approximate
   some decimal numbers with varying degrees of precision.
@@ -25,7 +25,7 @@ The numeric tower in Crochet has two types:
 Approximating fractionals
 -------------------------
 
-The ``float`` type follows the `IEEE-754 <https://en.wikipedia.org/wiki/IEEE_754>`_
+The ``float-64bit`` type follows the `IEEE-754 <https://en.wikipedia.org/wiki/IEEE_754>`_
 specification, natively supported in hardware. Approximations always
 consume 64 bits of memory, which means that integral numbers very far
 from 0 and fractions are not going to be *accurately* represented in

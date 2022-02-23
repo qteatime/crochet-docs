@@ -275,17 +275,20 @@ Enumerations in Crochet can be declared as follows::
 The effect is similar to the following way of declaring the same::
 
     abstract condition;
-    singleton poisoned is condition;
-    singleton sleeping is condition;
-    singleton silenced is condition;
+    singleton condition--poisoned is condition;
+    singleton condition--sleeping is condition;
+    singleton condition--silenced is condition;
     close condition;
 
-However, enumerations are closed hierarchies, meaning that it is not
+Note how the name of each possibility is qualified by its parent type's
+name, and how they're correctly placed in an hierarchy.
+
+Enumerations form closed hierarchies, meaning that it is not
 possible to add new names to the hierarchy somewhere else in the code.
 All possibilities must be provided at the exact place where the enumeration
 is declared.
 
-Enumerations make use of this additional restriction to provide some
+They also make use of this additional restriction to provide some
 out-of-the-box functionality. For example, enumerations are *ordered*,
 which makes them useful for modelling a set of progressive states---or
 steps::
@@ -294,8 +297,8 @@ steps::
 
 In a game that features combat and tracks the health of characters without
 using numbers, the above would offer a possibility of using pre-built
-commands, such as ``healthy successor`` to move a character who just
-took some damage to the ``scratched`` state.
+commands, such as ``health--healthy successor`` to move a character who just
+took some damage to the ``health--scratched`` state.
 
 See the Enumerations page for a lengthy discussion on these built-in
 conveniences.

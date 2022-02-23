@@ -164,6 +164,22 @@ are too powerful, and no other package will ever be able to access them. That
 power is then entirely restricted to its defining package.
 
 
+The ``internal`` capability
+'''''''''''''''''''''''''''
+
+It's often desirable to keep some definitions contained within its declaring
+package, by default. In Crochet, all packages get an intrinsic ``internal``
+capability to achieve this.
+
+For example, it may be desirable to keep secret seals internal::
+
+    define seal = lazy (#secret-seal description: "internal seal");
+    protect global seal with internal;
+
+That way we can ensure that only code within this package has the ability
+of creating and reading its own secret pieces of data.
+
+
 Propagating capabilities
 ------------------------
 

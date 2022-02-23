@@ -226,7 +226,7 @@ perform an effect::
       perform display.show(Text);
 
     command greet: Name =
-      show: "Hello, [Name]";
+      show: "Hello, [Name].";
 
 Then if we have the following handle block::
 
@@ -235,6 +235,7 @@ Then if we have the following handle block::
     with
       on display.show(Text) do
         transcript display: Text;
+        continue with nothing;
       end
     end
 
@@ -254,6 +255,7 @@ call does not originate from within the handle block::
     with
       on display.show(Text) do
         transcript display: Text;
+        continue with nothing;
       end
     end
     greet: "Dorothy";
@@ -269,3 +271,116 @@ Crochet will still execute the code as normal, but when hitting the
 In interactive mode, this means that you'd have a chance of deciding
 how to continue the program, either by providing a value to continue
 the program with, or by returning a value from the handle block.
+
+
+Reusable handlers
+-----------------
+
+Handle blocks define how effects behave in the program, but defining
+all of that behaviour in the handle block isn't feasible or desirable.
+The package that defines the handle block might not even have access
+to the effect, for security reasons. And even when it does, it can
+easily lead to cases where the same handler code is repeated all over
+the place, making the use of effects a chore.
+
+To address these two problems, Crochet allows defining **reusable**
+handlers. We can introduce one using the ``handler`` declaration::
+
+    handler show-on-transcript with
+      on display.show(Text) do
+        transcript display: Text;
+        continue with nothing;
+      end
+    end
+
+We can then reference this handler within a handle block::
+
+    handle
+      greet: "Alice";
+    with
+      use show-on-transcript;
+    end
+
+Any number of ``use`` declarations can be mixed with ``on ...``
+declarations in the handle block, but effects handled by the block
+are not allowed to overlap. That is, it's not possible to have::
+
+    handle
+      greet: "Alice";
+    with
+      use show-on-transcript;
+      on display.show(Text) => continue with nothing;
+    end
+
+Here both ``show-on-transcript`` and the inline handler are managing
+the same ``display.show`` effect, so it's unclear which one Crochet
+should use. That's thus disallowed.
+
+
+Parameterised handlers
+''''''''''''''''''''''
+
+Consider the case where it's not entirely clear how a handler should
+behave from its own perspective---it needs a bit more of context. For
+example, when we display text, we might want to identify where that
+text came from. Parameterisation allows the user of the handlers to
+fill in this missing information.
+
+Handler parameters are described in a similar way to command parameters::
+
+    handler show-on-transcript chapter: (Chapter is text) with
+      on display.show(Text) do
+        transcript display: "([Chapter]) [Text]";
+        continue with nothing;
+      end
+    end
+
+We can use it like so::
+
+    handle
+      greet: "Alice";
+    with
+      use show-on-transcript chapter: "Prologue";
+      on display.show(Text) => continue with nothing;
+    end
+
+With would result in the following output:
+
+    (Prologue) Hello, Alice.
+
+Note that, just like the commands ``greet: _`` and ``greet: _ from: _`` are
+distinct, the parameterised handlers are also distinct. That is,
+``show-on-transcript``, ``show-on-transcript chapter: _``, and
+``show-on-transcript chapter: _ act: _`` would all be distinct handlers.
+
+
+Handler initialisation
+''''''''''''''''''''''
+
+Another aspect of reusable handlers is that they may contain custom
+initialisation code. That is, code that is executed before the ``handle``
+block that contains it, and that may set up any necessary state for the
+handler. This is often coupled with parameterised handlers to make the
+internal state observable outside.
+
+For example, a handler that collects text that uses ``display.show``
+could be done as follows::
+
+    type io(input is cell<list<text>>, output is cell<list<text>>);
+
+    handler collect-show output: (IO is io) do
+      let Output = IO.output;
+    with
+      on display.show(Text) do
+        Output <- Output value append: Text;
+        continue with nothing;
+      end
+    end
+
+Initialisation code is executed before the handler is installed, so no
+effects performed within it will be handled by the ``handle`` block 
+that's using the handler. It is also executed in the sequence it appears
+in the containing ``handle`` block, so ``use a; use b;`` would first
+execute the initialisation code of ``a``, and then the initialisation
+code of ``b``.
+

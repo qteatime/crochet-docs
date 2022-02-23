@@ -278,8 +278,8 @@ We discuss more about traits, including how and when to use them, in the
 :ref:`Data and Types <data-and-types>` chapter.
 
 
-Effects
-'''''''
+Effects and Handlers
+''''''''''''''''''''
 
 Many programming systems try to make it easier to show things on the screen
 or interact with files. After all, what good is a program if you can't see
@@ -302,7 +302,15 @@ decided later, and can very well be replaced. For example::
 
 Here we tell Crochet that we have some intention of showing text on the screen,
 and later we can ask Crochet to do so by performing this: ``perform display.show("Hello")``.
-But *how* Crochet actually goes about performing it is defined elsewhere.
+But *how* Crochet actually goes about performing it is defined elsewhere,
+through handlers:
+
+    handler show-on-transcript with
+      on display.show(Text) do
+        transcript show: Text;
+        continue with nothing;
+      end
+    end
 
 Effects are certainly one of the more difficult parts of Crochet. And so they
 get their own chapter, which explains, in depth, why they're important, how
