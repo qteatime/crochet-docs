@@ -74,7 +74,11 @@ keywords = [
   "otherwise",
   "true",
   "false",
-  "nothing"
+  "nothing",
+  "handler",
+  "default",
+  "use",
+  "alias"
 ]
 
 class CrochetLexer(RegexLexer):
