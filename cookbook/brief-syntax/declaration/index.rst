@@ -10,6 +10,7 @@ alphabetically sorted.
    command
    define
    effect
+   handler
    implement
    local
    open
