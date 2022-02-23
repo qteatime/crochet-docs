@@ -28,6 +28,15 @@ expression::
       on some-effect.operation() => continue with "ok";
     end
 
+Additionally, it's possible to reference reusable handlers::
+
+    handle
+      Code;
+    with
+      use some-reusable-handler;
+      use other-reusable-handler parameter: Argument;
+    end
+
 
 Example
 -------

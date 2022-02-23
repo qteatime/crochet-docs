@@ -30,9 +30,9 @@ It is roughly equivalent to the following, more verbose definition, along
 with a handful of pre-defined commands::
 
     abstract some-name;
-    singleton first-value is some-name;
-    singleton second-value is some-name;
-    singleton third-value is some-name;
+    singleton some-name--first-value is some-name;
+    singleton some-name--second-value is some-name;
+    singleton some-name--third-value is some-name;
 
 Enumeration types do not support inheriting from another type.
 
