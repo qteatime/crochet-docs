@@ -51,31 +51,32 @@ And it should give you something like the following:
 
 .. code-block:: text
 
-   crochet --- a safe programming language
-   
-   Usage:
-     crochet run <crochet.json> [options] [-- <app-args...>]
-     crochet run-web <crochet.json> [options]
-     crochet package <crochet.json> [options]
-     crochet repl <crochet.json> [options]
-     crochet test <crochet.json> [options]
-     crochet build <crochet.json> [options]
-     crochet launcher:server [options]
-     crochet show-ir <file.crochet> [options]
-     crochet show-ast <file.crochet> [options]
-     crochet new <name> [options]
-     crochet help [<command>]
-     crochet version
-   
-   Options:
-     --verbose      Outputs debugging information
+    crochet --- a safe programming language
 
-Run the `launcher:server` command to start an HTTP server for
-the Crochet IDE on port 8000.
+    Usage:
+      crochet run <crochet.json> [-- <app-args...>]
+      crochet run-web <crochet.json> [--port PORT --www-root DIR]
+      crochet playground <crochet.json> [--port PORT --target ('node' | 'browser')]
+      crochet docs <crochet.json> [--port PORT --target ('node' | 'browser')]
+      crochet package <crochet.json> [--package-to OUT_DIR]
+      crochet test <crochet.json> [--test-title PATTERN --test-module PATTERN --test-package PATTERN --test-show-ok]
+      crochet build <crochet.json>
+      crochet show-ir <file.crochet>
+      crochet show-ast <file.crochet>
+      crochet new <name>
+      crochet help [<command>]
+      crochet version
+
+    Options:
+      --verbose          Outputs debugging information
+      --disclose-debug   Treats all types as public data when printing
+
+Run the ``playground`` command to start an HTTP server for an interactive
+shell for a specific Crochet package on port 8000.
 
 
 Editor support
-''''''''''''''
+--------------
 
 Besides the built-in Crochet IDE, there is minimal support for
 `Visual Studio Code <https://code.visualstudio.com/>`_. The
