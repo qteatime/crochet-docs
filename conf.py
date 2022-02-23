@@ -18,7 +18,7 @@ copyright = '2021, Q.'
 author = 'Q.'
 
 # The full version, including alpha/beta/rc tags
-release = '0.12'
+release = '0.14'
 
 
 # -- General configuration ---------------------------------------------------
