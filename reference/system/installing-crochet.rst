@@ -37,7 +37,7 @@ Crochet from the terminal:
 
 .. code-block:: shell
 
-   npm install -g @qteatime/crochet
+   npm install -g @qteatime/crochet@experimental
 
 With this you should have a ``crochet`` application available
 in the terminal. You can test if everything is okay by running
