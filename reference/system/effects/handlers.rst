@@ -384,3 +384,23 @@ in the containing ``handle`` block, so ``use a; use b;`` would first
 execute the initialisation code of ``a``, and then the initialisation
 code of ``b``.
 
+
+Default handlers
+''''''''''''''''
+
+For non-parameterised effects, it might be useful to install them
+automatically at the global level. This allows pieces of functionality
+to be redefined through handle blocks, but without imposing the use of
+them on all programs, which might be useful in some cases.
+
+Handlers can be marked as default like so::
+
+    handler atomic-memory-cell with
+      ...
+    end
+
+    default handler atomic-memory-cell;
+
+Default handlers are installed before executing the application entry-point,
+but **after** executing all prelude blocks. This means that preludes must
+be inherently pure.
